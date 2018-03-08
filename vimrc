@@ -37,6 +37,14 @@ set visualbell                    " No beeping.
 set nobackup                      " Don't make a backup before overwriting a file.
 set nowritebackup                 " And again.
 set directory=$HOME/.vim/tmp//,.  " Keep swap files in one location
+"EE settings
+set autochdir
+nmap O O<esc>
+let g:pathogen_disabled = []
+"call add(g:pathogen_disabled, 'nerdtree')
+"call pathogen#infect()
+"autocmd vimenter * NERDTree
+"EE settings end
 
 " UNCOMMENT TO USE
 "set tabstop=2                    " Global tab width.
@@ -48,6 +56,7 @@ set laststatus=2                  " Show the status line all the time
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
 
 " Or use vividchalk
+" Extra line
 " Disabling because topfunky not installed /EE
 "colorscheme topfunky-light
 
@@ -75,3 +84,5 @@ map <leader>tm :tabmove
 " Automatic fold settings for specific files. Uncomment to use.
 " autocmd FileType ruby setlocal foldmethod=syntax
 " autocmd FileType css  setlocal foldmethod=indent shiftwidth=2 tabstop=2
+execute pathogen#infect()
+call pathogen#helptags()
