@@ -41,6 +41,7 @@ set directory=$HOME/.vim/tmp//,.  " Keep swap files in one location
 "EE settings
 set autochdir
 nmap O O<esc>
+set rtp+=~/.fzf
 let g:pathogen_disabled = []
 "call add(g:pathogen_disabled, 'nerdtree')
 "call pathogen#infect()
