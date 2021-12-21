@@ -43,8 +43,10 @@ set autochdir
 nmap O O<esc>
 set rtp+=/home/edvard/.fzf
 map <leader>t :FZF<cr>
+map <leader>a :Ack 
 let g:pathogen_disabled = []
-autocmd FileType yml setlocal shiftwidth=2 tabstop=2
+autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
+let g:ackprg="ack -H --nocolor --nogroup "
 "call add(g:pathogen_disabled, 'nerdtree')
 "call pathogen#infect()
 "autocmd vimenter * NERDTree
