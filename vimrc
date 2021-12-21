@@ -44,6 +44,7 @@ nmap O O<esc>
 set rtp+=/home/edvard/.fzf
 map <leader>t :FZF<cr>
 let g:pathogen_disabled = []
+autocmd FileType yml setlocal shiftwidth=2 tabstop=2
 "call add(g:pathogen_disabled, 'nerdtree')
 "call pathogen#infect()
 "autocmd vimenter * NERDTree
@@ -52,7 +53,7 @@ let g:pathogen_disabled = []
 " UNCOMMENT TO USE
 "set tabstop=2                    " Global tab width.
 "set shiftwidth=2                 " And again, related.
-"set expandtab                    " Use spaces instead of tabs
+set expandtab                    " Use spaces instead of tabs
 
 set laststatus=2                  " Show the status line all the time
 " Useful status information at bottom of screen
