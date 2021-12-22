@@ -44,6 +44,8 @@ nmap O O<esc>
 set rtp+=/home/edvard/.fzf
 map <leader>t :FZF<cr>
 map <leader>a :Ack! 
+map <leader>vs :source ~/.vimrc
+map <leader>vl :e ~/.vimrc
 let g:pathogen_disabled = []
 autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
 let g:ackprg="ack -H --nocolor --nogroup "
