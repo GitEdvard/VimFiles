@@ -43,7 +43,7 @@ set autochdir
 nmap O O<esc>
 set rtp+=/home/edvard/.fzf
 map <leader>t :FZF<cr>
-map <leader>a :Ack 
+map <leader>a :Ack! 
 let g:pathogen_disabled = []
 autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
 let g:ackprg="ack -H --nocolor --nogroup "
