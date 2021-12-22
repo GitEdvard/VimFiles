@@ -49,6 +49,9 @@ vmap <leader>aw <Plug>CtrlSFVwordExec<cr>
 nmap <leader>aw <Plug>CtrlSFCwordPath
 map <leader>vs :source ~/.vimrc<cr>
 map <leader>vl :e ~/.vimrc
+map <leader>nn :NERDTree<cr>
+map <leader>nt :NERDTreeToggle<cr>
+map <leader>nf :NERDTreeFind<cr>
 let g:pathogen_disabled = []
 autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
 "call add(g:pathogen_disabled, 'nerdtree')
