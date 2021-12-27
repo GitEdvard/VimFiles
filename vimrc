@@ -39,7 +39,7 @@ set nobackup                      " Don't make a backup before overwriting a fil
 set nowritebackup                 " And again.
 set directory=$HOME/.vim/tmp//,.  " Keep swap files in one location
 "EE settings
-set autochdir
+"set autochdir
 nmap O O<esc>
 set rtp+=/home/edvard/.fzf
 map <leader>t :FZF<cr>
