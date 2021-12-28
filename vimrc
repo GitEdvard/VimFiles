@@ -4,6 +4,14 @@ execute pathogen#infect()
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
+set incsearch
+set tabstop=2 shiftwidth=2 expandtab
+"Case insensitive search.
+set ic
+" Set this to enable lightline 
+set laststatus=2
+" This is handled by lightline
+set noshowmode
 
 " https://github.com/junegunn/vim-plug
 call plug#begin('~/.vim/plugged')
@@ -14,7 +22,11 @@ Plug 'scrooloose/nerdtree'
 Plug 'dyng/ctrlsf.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-
+Plug 'vim-scripts/LustyExplorer' 
+Plug 'jlanzarotta/bufexplorer'
+Plug 'itchyny/lightline.vim'
+Plug 'pearofducks/ansible-vim'
+Plug 'stephpy/vim-yaml'
 call plug#end()
 
 """
@@ -41,6 +53,7 @@ command! Config execute ":e $MYVIMRC"
 
 " Call ":Reload" to apply the latest .vimrc contents
 command! Reload execute "source ~/.vimrc"
+command! Longfile execute ":e ~/sources/test/dotfiles/.vimrc"
 
 " Simple tab navigation with <C-h> and <C-l> to intuitively go left and right
 noremap <C-h> :tabp<CR>
@@ -50,9 +63,42 @@ noremap <C-l> :tabn<CR>
 noremap <C-J> :tabc<CR>
 
 " Be kind to ourselves and enable the mouse
+" Updated by EE, add '-' to prevent visual mode on selection
 if has('mouse')
-  set mouse=a
+  set mouse-=a
 endif
+
+"""
+" ansible-vim
+"""
+let g:ansible_unindent_after_newline = 1
+let g:ansible_name_highlight = 'd'
+let g:ansible_extra_keywords_highlight = 1
+let g:ansible_extra_keywords_highlight_group = 'Statement'
+let g:ansible_normal_keywords_highlight = 'Constant'
+let g:ansible_template_syntaxes = { '*.rb.j2': 'ruby' }
+let g:ansible_ftdetect_filename_regex = '\v(playbook|site|main|local|requirements)\.ya?ml$'
+
+" vim-plug example
+let g:ansible_goto_role_paths = './roles,../_common/roles'
+
+function! FindAnsibleRoleUnderCursor()
+  if exists("g:ansible_goto_role_paths")
+    let l:role_paths = g:ansible_goto_role_paths
+  else
+    let l:role_paths = "./roles"
+  endif
+  let l:tasks_main = expand("<cfile>") . "/tasks/main.yml"
+  let l:found_role_path = findfile(l:tasks_main,l:role_paths)
+  if l:found_role_path == ""
+    echo l:tasks_main . " not found"
+  else
+    execute "edit " . fnameescape(l:found_role_path)
+  endif
+endfunction
+
+au BufRead,BufNewFile */system-management/snpseq/*.yml nnoremap <leader>r :call FindAnsibleRoleUnderCursor()<CR>
+au BufRead,BufNewFile */system-management/snpseq/*.yml vnoremap <leader>r :call FindAnsibleRoleUnderCursor()<CR>
 
 """
 " FZF
