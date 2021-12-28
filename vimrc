@@ -22,11 +22,11 @@ Plug 'scrooloose/nerdtree'
 Plug 'dyng/ctrlsf.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'vim-scripts/LustyExplorer' 
 Plug 'jlanzarotta/bufexplorer'
 Plug 'itchyny/lightline.vim'
 Plug 'pearofducks/ansible-vim'
 Plug 'stephpy/vim-yaml'
+Plug 'kdheepak/lazygit.nvim'
 call plug#end()
 
 """
@@ -155,6 +155,10 @@ nmap <leader>C :CtrlSFToggle<CR>
 " Use Ripgrep with CtrlSF for performance
 let g:ctrlsf_ackprg = '/usr/bin/rg'
 
+"""
+" lazygit
+"""
+nnoremap <silent> <leader>gg :LazyGit<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BONUS SECTION!
@@ -171,7 +175,7 @@ let g:ctrlsf_ackprg = '/usr/bin/rg'
 noremap <leader>h :tab term ++close htop<CR>
 
 " https://github.com/jesseduffield/lazygit
-noremap <leader>g :tab term ++close lazygit<CR>
+"noremap <leader>g :tab term ++close lazygit<CR>
 
 " term variants of the tab navigation bindings from above to make the
 " interactive command line tools easier to work with
