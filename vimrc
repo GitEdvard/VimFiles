@@ -1,101 +1,133 @@
-" Example Vim configuration.
-" Copy or symlink to ~/.vimrc or ~/_vimrc.
-
-set nocompatible                  " Must come first because it changes other options.
-
-silent! call pathogen#runtime_append_all_bundles()
-syntax enable                     " Turn on syntax highlighting.
-filetype plugin indent on         " Turn on file type detection.
-
-runtime macros/matchit.vim        " Load the matchit plugin.
-
-set showcmd                       " Display incomplete commands.
-set showmode                      " Display the mode you're in.
-
-set backspace=indent,eol,start    " Intuitive backspacing.
-
-set hidden                        " Handle multiple buffers better.
-
-set wildmenu                      " Enhanced command line completion.
-set wildmode=list:longest         " Complete files like a shell.
-
-set ignorecase                    " Case-insensitive searching.
-set smartcase                     " But case-sensitive if expression contains a capital letter.
-
-set number                        " Show line numbers.
-set ruler                         " Show cursor position.
-
-set incsearch                     " Highlight matches as you type.
-set hlsearch                      " Highlight matches.
-
-set wrap                          " Turn on line wrapping.
-set scrolloff=3                   " Show 3 lines of context around the cursor.
-
-set title                         " Set the terminal's title
-
-set visualbell                    " No beeping.
-
-set nobackup                      " Don't make a backup before overwriting a file.
-set nowritebackup                 " And again.
-set directory=$HOME/.vim/tmp//,.  " Keep swap files in one location
-"EE settings
-"set autochdir
-nmap O O<esc>
-set rtp+=/home/edvard/.fzf
-map <leader>t :FZF<cr>
-map <leader>aa :CtrlSF 
-map <leader>at :CtrlSFToggle<cr>
-vmap <leader>aw <Plug>CtrlSFVwordExec<cr>
-nmap <leader>aw <Plug>CtrlSFCwordPath
-map <leader>vs :source ~/.vimrc<cr>
-map <leader>vl :e ~/.vimrc
-map <leader>nn :NERDTree<cr>
-map <leader>nt :NERDTreeToggle<cr>
-map <leader>nf :NERDTreeFind<cr>
-let g:pathogen_disabled = []
-autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
-"call add(g:pathogen_disabled, 'nerdtree')
-"call pathogen#infect()
-"autocmd vimenter * NERDTree
-"EE settings end
-
-" UNCOMMENT TO USE
-"set tabstop=2                    " Global tab width.
-"set shiftwidth=2                 " And again, related.
-set expandtab                    " Use spaces instead of tabs
-
-set laststatus=2                  " Show the status line all the time
-" Useful status information at bottom of screen
-set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
-
-" Or use vividchalk
-" Extra line
-" Disabling because topfunky not installed /EE
-"colorscheme topfunky-light
-
-" Tab mappings.
-"map <leader>tt :tabnew<cr>
-"map <leader>te :tabedit
-"map <leader>tc :tabclose<cr>
-"map <leader>to :tabonly<cr>
-"map <leader>tn :tabnext<cr>
-"map <leader>tp :tabprevious<cr>
-"map <leader>tf :tabfirst<cr>
-"map <leader>tl :tablast<cr>
-"map <leader>tm :tabmove
-
-" Uncomment to use Jamis Buck's file opening plugin
-"map <Leader>t :FuzzyFinderTextMate<Enter>
-
-" Controversial...swap colon and semicolon for easier commands
-"nnoremap ; :
-"nnoremap : ;
-
-"vnoremap ; :
-"vnoremap : ;
-
-" Automatic fold settings for specific files. Uncomment to use.
-" autocmd FileType ruby setlocal foldmethod=syntax
-" autocmd FileType css  setlocal foldmethod=indent shiftwidth=2 tabstop=2
+" https://github.com/tpope/vim-pathogen
 execute pathogen#infect()
-call pathogen#helptags()
+
+" Use Vim settings, rather then Vi settings (much better!).
+" This must be first, because it changes other options as a side effect.
+set nocompatible
+
+" https://github.com/junegunn/vim-plug
+call plug#begin('~/.vim/plugged')
+
+" This is our list of plugins to install
+Plug 'mhinz/vim-startify'
+Plug 'scrooloose/nerdtree'
+Plug 'dyng/ctrlsf.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
+call plug#end()
+
+"""
+" Basic config setup
+"""
+
+" Standard Vim configuration boilerplate
+syntax on
+filetype plugin indent on
+set t_Co=256
+set encoding=utf-8
+set number
+
+" Bind "jj" to <esc> to jump out of insert mode
+inoremap jj <esc>
+
+let mapleader = "\<Space>"
+
+" Custom configuration begins
+
+" With this, you can enter ":Config" in normal mode to open the Vim
+" configuration.
+command! Config execute ":e $MYVIMRC"
+
+" Call ":Reload" to apply the latest .vimrc contents
+command! Reload execute "source ~/.vimrc"
+
+" Simple tab navigation with <C-h> and <C-l> to intuitively go left and right
+noremap <C-h> :tabp<CR>
+noremap <C-l> :tabn<CR>
+
+" Close the tab with <C-j>
+noremap <C-J> :tabc<CR>
+
+" Be kind to ourselves and enable the mouse
+if has('mouse')
+  set mouse=a
+endif
+
+"""
+" FZF
+"""
+
+" https://github.com/junegunn/fzf.vim
+
+" Let The :Files command show all files in the repo (including dotfiles)
+let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --glob "!.git/*"'
+
+" Bind "//" to a fzf-powered buffer search
+nmap // :BLines!<CR>
+
+" Bind "??" to a fzf-powered project search
+nmap ?? :Rg!<CR>
+
+" Bind "<leader>p" to a fzf-powered filename search
+nmap <leader>p :Files!<CR>
+
+" Bind "cc" to a fzf-powered command search
+nmap cc :Commands!<CR>
+
+"""
+" NERDTree
+"""
+
+let NERDTreeShowHidden=1
+
+function! ToggleNERDTree()
+  NERDTreeToggle
+  " Set NERDTree instances to be mirrored
+  silent NERDTreeMirror
+endfunction
+
+" Bind "<leader>n" to toggle NERDTree
+nmap <leader>n :call ToggleNERDTree()<CR>
+
+"""
+" CtrlSF
+"""
+
+" https://github.com/dyng/ctrlsf.vim
+
+" Set "<leader>s" to substitute the word under the cursor. Works great with
+" CtrlSF!
+nmap <leader>s :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
+
+" Set up some handy CtrlSF bindings
+nmap <leader>a :CtrlSF -R ""<Left>
+nmap <leader>A <Plug>CtrlSFCwordPath -W<CR>
+nmap <leader>c :CtrlSFFocus<CR>
+nmap <leader>C :CtrlSFToggle<CR>
+
+" Use Ripgrep with CtrlSF for performance
+let g:ctrlsf_ackprg = '/usr/bin/rg'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" BONUS SECTION!
+"
+" You can easily open external interactive command line tools from within Vim.
+" This isn't for everyone, but it's a convenient way to quickly open a non-Vim
+" tool that you frequently use briefly. These examples open htop or lazygit in
+" a Vim term tab.  As soon as the interactive tool's session exits, the term
+" tab is closed.
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" https://hisham.hm/htop/
+noremap <leader>h :tab term ++close htop<CR>
+
+" https://github.com/jesseduffield/lazygit
+noremap <leader>g :tab term ++close lazygit<CR>
+
+" term variants of the tab navigation bindings from above to make the
+" interactive command line tools easier to work with
+tmap <C-h> <C-w>:tabp<CR>
+tmap <C-l> <C-w>:tabn<CR>
