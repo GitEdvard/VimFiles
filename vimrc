@@ -68,6 +68,39 @@ if has('mouse')
   set mouse-=a
 endif
 
+let g:lightline = {
+      \ 'component_function': {
+      \   'filename': 'LightlineFilename'
+      \ }
+      \ }
+function! LightlineFilename()
+    return expand('%')
+endfunction
+
+" Show file path in lightline
+" https://github.com/itchyny/lightline.vim/issues/87#issuecomment-119130738
+"
+" Show devicons in tabs
+" https://github.com/itchyny/lightline.vim/issues/469#issuecomment-630597998
+"let g:lightline = {
+"  \ 'colorscheme': 'darcula',
+"  \ 'active': {
+"  \   'right': [['coc_info', 'coc_hints', 'coc_errors', 'coc_warnings', 'coc_ok'], ['lineinfo'], ['fileformat', 'filetype']]
+"  \ },
+"  \ 'component_function': {
+"  \   'filename': 'LightLineFilename'
+"  \ },
+"  \ 'component': {
+"  \   'lineinfo': "[%l:%-v] [%{printf('%03d/%03d',line('.'),line('$'))}]",
+"  \ },
+"  \   'tabnum': 'LightlineWebDevIcons',
+"  \ }
+"  \ }
+"
+"function! LightlineFilename()
+"    return expand('%:p:h')
+"endfunction
+
 """
 " ansible-vim
 """
@@ -100,6 +133,8 @@ endfunction
 au BufRead,BufNewFile */system-management/snpseq/*.yml nnoremap <leader>r :call FindAnsibleRoleUnderCursor()<CR>
 au BufRead,BufNewFile */system-management/snpseq/*.yml vnoremap <leader>r :call FindAnsibleRoleUnderCursor()<CR>
 
+au BufRead,BufNewFile */miarka-provision/*.yml nnoremap <leader>r :call FindAnsibleRoleUnderCursor()<CR>
+au BufRead,BufNewFile */miarka-provision/*.yml vnoremap <leader>r :call FindAnsibleRoleUnderCursor()<CR>
 """
 " FZF
 """
@@ -118,6 +153,8 @@ nmap ?? :Rg!<CR>
 " Bind "<leader>p" to a fzf-powered filename search
 nmap <leader>p :Files!<CR>
 
+" Bind "<leader>b" to show buffers
+nmap <leader>b :Buffers!<CR>
 " Bind "cc" to a fzf-powered command search
 nmap cc :Commands!<CR>
 
@@ -134,7 +171,8 @@ function! ToggleNERDTree()
 endfunction
 
 " Bind "<leader>n" to toggle NERDTree
-nmap <leader>n :call ToggleNERDTree()<CR>
+nmap <leader>nn :call ToggleNERDTree()<CR>
+nmap <leader>nf :NERDTreeFind<CR>
 
 """
 " CtrlSF
@@ -179,5 +217,9 @@ noremap <leader>g :tab term++close lazygit<CR>
 
 " term variants of the tab navigation bindings from above to make the
 " interactive command line tools easier to work with
-tmap <C-h> <C-w>:tabp<CR>
-tmap <C-l> <C-w>:tabn<CR>
+noremap <C-h> :tabp<CR>
+noremap - :tabm -1<CR>
+noremap <C-l> :tabn<CR>
+noremap = :tabm +1<CR>
+noremap <C-j> :tabc<CR>
+noremap <C-k> :tabe <Bar> Startify<CR>
