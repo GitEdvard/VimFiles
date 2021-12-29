@@ -55,6 +55,9 @@ command! Config execute ":e $MYVIMRC"
 command! Reload execute "source ~/.vimrc"
 command! Longfile execute ":e ~/sources/test/dotfiles/.vimrc"
 
+" Swap to latest buffer
+noremap <leader>o :bp<cr>
+
 " Simple tab navigation with <C-h> and <C-l> to intuitively go left and right
 noremap <C-h> :tabp<CR>
 noremap <C-l> :tabn<CR>
@@ -100,6 +103,8 @@ endfunction
 au BufRead,BufNewFile */system-management/snpseq/*.yml nnoremap <leader>r :call FindAnsibleRoleUnderCursor()<CR>
 au BufRead,BufNewFile */system-management/snpseq/*.yml vnoremap <leader>r :call FindAnsibleRoleUnderCursor()<CR>
 
+au BufRead,BufNewFile */miarka-provision/*.yml nnoremap <leader>r :call FindAnsibleRoleUnderCursor()<CR>
+au BufRead,BufNewFile */miarka-provision/*.yml vnoremap <leader>r :call FindAnsibleRoleUnderCursor()<CR>
 """
 " FZF
 """
@@ -118,6 +123,8 @@ nmap ?? :Rg!<CR>
 " Bind "<leader>p" to a fzf-powered filename search
 nmap <leader>p :Files!<CR>
 
+" Bind "<leader>b" to show buffers
+nmap <leader>b :Buffers!<CR>
 " Bind "cc" to a fzf-powered command search
 nmap cc :Commands!<CR>
 
@@ -175,5 +182,9 @@ noremap <leader>g :tab term ++close lazygit<CR>
 
 " term variants of the tab navigation bindings from above to make the
 " interactive command line tools easier to work with
-tmap <C-h> <C-w>:tabp<CR>
-tmap <C-l> <C-w>:tabn<CR>
+noremap <C-h> :tabp<CR>
+noremap - :tabm -1<CR>
+noremap <C-l> :tabn<CR>
+noremap = :tabm +1<CR>
+noremap <C-j> :tabc<CR>
+noremap <C-k> :tabe <Bar> Startify<CR>
