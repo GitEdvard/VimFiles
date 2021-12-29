@@ -55,9 +55,6 @@ command! Config execute ":e $MYVIMRC"
 command! Reload execute "source ~/.vimrc"
 command! Longfile execute ":e ~/sources/test/dotfiles/.vimrc"
 
-" Swap to latest buffer
-noremap <leader>o :bp<cr>
-
 " Simple tab navigation with <C-h> and <C-l> to intuitively go left and right
 noremap <C-h> :tabp<CR>
 noremap <C-l> :tabn<CR>
@@ -70,6 +67,39 @@ noremap <C-J> :tabc<CR>
 if has('mouse')
   set mouse-=a
 endif
+
+let g:lightline = {
+      \ 'component_function': {
+      \   'filename': 'LightlineFilename'
+      \ }
+      \ }
+function! LightlineFilename()
+    return expand('%')
+endfunction
+
+" Show file path in lightline
+" https://github.com/itchyny/lightline.vim/issues/87#issuecomment-119130738
+"
+" Show devicons in tabs
+" https://github.com/itchyny/lightline.vim/issues/469#issuecomment-630597998
+"let g:lightline = {
+"  \ 'colorscheme': 'darcula',
+"  \ 'active': {
+"  \   'right': [['coc_info', 'coc_hints', 'coc_errors', 'coc_warnings', 'coc_ok'], ['lineinfo'], ['fileformat', 'filetype']]
+"  \ },
+"  \ 'component_function': {
+"  \   'filename': 'LightLineFilename'
+"  \ },
+"  \ 'component': {
+"  \   'lineinfo': "[%l:%-v] [%{printf('%03d/%03d',line('.'),line('$'))}]",
+"  \ },
+"  \   'tabnum': 'LightlineWebDevIcons',
+"  \ }
+"  \ }
+"
+"function! LightlineFilename()
+"    return expand('%:p:h')
+"endfunction
 
 """
 " ansible-vim
@@ -141,7 +171,8 @@ function! ToggleNERDTree()
 endfunction
 
 " Bind "<leader>n" to toggle NERDTree
-nmap <leader>n :call ToggleNERDTree()<CR>
+nmap <leader>nn :call ToggleNERDTree()<CR>
+nmap <leader>nf :NERDTreeFind<CR>
 
 """
 " CtrlSF
