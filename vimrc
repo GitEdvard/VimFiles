@@ -175,7 +175,7 @@ nnoremap <silent> <leader>gg :LazyGit<CR>
 noremap <leader>h :tab term ++close htop<CR>
 
 " https://github.com/jesseduffield/lazygit
-"noremap <leader>g :tab term ++close lazygit<CR>
+noremap <leader>g :tab term++close lazygit<CR>
 
 " term variants of the tab navigation bindings from above to make the
 " interactive command line tools easier to work with
