@@ -27,6 +27,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'pearofducks/ansible-vim'
 Plug 'stephpy/vim-yaml'
 Plug 'kdheepak/lazygit.nvim'
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
 """
@@ -158,6 +159,8 @@ nmap <leader>b :Buffers!<CR>
 " Bind "cc" to a fzf-powered command search
 nmap cc :Commands!<CR>
 
+" Shows Git history for the current buffer
+command! FileHistory execute ":BCommits"
 """
 " NERDTree
 """
