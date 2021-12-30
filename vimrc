@@ -28,6 +28,7 @@ Plug 'pearofducks/ansible-vim'
 Plug 'stephpy/vim-yaml'
 Plug 'kdheepak/lazygit.nvim'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
 call plug#end()
 
 """
