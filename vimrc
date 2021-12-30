@@ -49,7 +49,8 @@ let mapleader = "\<Space>"
 
 " With this, you can enter ":Config" in normal mode to open the Vim
 " configuration.
-command! Config execute ":e $MYVIMRC"
+" command! Config execute ":e $MYVIMRC"
+command! Config execute ":e ~/.vimrc"
 
 " Call ":Reload" to apply the latest .vimrc contents
 command! Reload execute "source ~/.vimrc"
@@ -135,6 +136,9 @@ au BufRead,BufNewFile */system-management/snpseq/*.yml vnoremap <leader>r :call 
 
 au BufRead,BufNewFile */miarka-provision/*.yml nnoremap <leader>r :call FindAnsibleRoleUnderCursor()<CR>
 au BufRead,BufNewFile */miarka-provision/*.yml vnoremap <leader>r :call FindAnsibleRoleUnderCursor()<CR>
+
+au BufRead,BufNewFile */ansible/*.yml nnoremap <leader>r :call FindAnsibleRoleUnderCursor()<CR>
+au BufRead,BufNewFile */ansible/*.yml vnoremap <leader>r :call FindAnsibleRoleUnderCursor()<CR>
 """
 " FZF
 """
@@ -213,7 +217,7 @@ nnoremap <silent> <leader>gg :LazyGit<CR>
 noremap <leader>h :tab term ++close htop<CR>
 
 " https://github.com/jesseduffield/lazygit
-noremap <leader>g :tab term++close lazygit<CR>
+noremap <leader>g :tab term lazygit<CR>
 
 " term variants of the tab navigation bindings from above to make the
 " interactive command line tools easier to work with
