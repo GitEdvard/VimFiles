@@ -43,6 +43,8 @@ set encoding=utf-8
 set relativenumber
 
 " Custom configuration begins
+colorscheme peachpuff
+
 " Bind "jj" to <esc> to jump out of insert mode
 inoremap jj <esc>
 
