@@ -40,14 +40,23 @@ syntax on
 filetype plugin indent on
 set t_Co=256
 set encoding=utf-8
-set number
+set relativenumber
 
+" Custom configuration begins
 " Bind "jj" to <esc> to jump out of insert mode
 inoremap jj <esc>
 
 let mapleader = "\<Space>"
 
-" Custom configuration begins
+" Fix zt an zb near edges
+set scrolloff=3 
+
+" Insert new lines without exit normal mode
+nmap oo o<esc>k
+nmap OO O<esc>j
+
+" Set wait time between key strokes
+set timeoutlen=300
 
 " With this, you can enter ":Config" in normal mode to open the Vim
 " configuration.
