@@ -46,8 +46,11 @@ set relativenumber
 " (Doesn't seem to work)
 set clipboard=unnamed
 
+""""
 " Custom configuration begins
+""""
 colorscheme peachpuff
+
 
 " Bind "jj" to <esc> to jump out of insert mode
 inoremap jj <esc>
@@ -219,10 +222,14 @@ nmap <leader>C :CtrlSFToggle<CR>
 " Use Ripgrep with CtrlSF for performance
 let g:ctrlsf_ackprg = '/usr/bin/rg'
 
-"""
-" lazygit
-"""
+function! Tig()
+  !tig status
+  redraw!
+endfunction
+
+" git commands
 nnoremap <silent> <leader>gg :LazyGit<CR>
+nnoremap <silent> <leader>gt :call Tig()<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BONUS SECTION!
@@ -234,12 +241,6 @@ nnoremap <silent> <leader>gg :LazyGit<CR>
 " tab is closed.
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" https://hisham.hm/htop/
-noremap <leader>h :tab term ++close htop<CR>
-
-" https://github.com/jesseduffield/lazygit
-noremap <leader>g :tab term lazygit<CR>
 
 " term variants of the tab navigation bindings from above to make the
 " interactive command line tools easier to work with
