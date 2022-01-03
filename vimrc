@@ -64,6 +64,9 @@ nmap OO O<esc>j
 " Set wait time between key strokes
 set timeoutlen=500
 
+" Prettify json 
+command! JsonPrettify execute ":r !xclip -selection clipboard -o | jsonlint"
+
 " With this, you can enter ":Config" in normal mode to open the Vim
 " configuration.
 " command! Config execute ":e $MYVIMRC"
