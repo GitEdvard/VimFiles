@@ -42,6 +42,10 @@ set t_Co=256
 set encoding=utf-8
 set relativenumber
 
+" Make OS X play nicely with Vim
+" (Doesn't seem to work)
+set clipboard=unnamed
+
 " Custom configuration begins
 colorscheme peachpuff
 
