@@ -58,7 +58,7 @@ nmap oo o<esc>k
 nmap OO O<esc>j
 
 " Set wait time between key strokes
-set timeoutlen=300
+set timeoutlen=500
 
 " With this, you can enter ":Config" in normal mode to open the Vim
 " configuration.
