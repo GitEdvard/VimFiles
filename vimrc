@@ -221,7 +221,7 @@ nmap <leader>s :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 
 " Set up some handy CtrlSF bindings
 nmap <leader>a :CtrlSF -R ""<Left>
-nmap <leader>A <Plug>CtrlSFCwordPath -W<CR>
+nmap <leader>A <Plug>CtrlSFCwordPath -W<CR>:CtrlSFFocus<CR>
 nmap <leader>c :CtrlSFFocus<CR>
 nmap <leader>C :CtrlSFToggle<CR>
 
