@@ -42,6 +42,12 @@ set t_Co=256
 set encoding=utf-8
 set relativenumber
 
+" Get rid of pesky q:s
+set guicursor=
+" Workaround some broken plugins which set guicursor indiscriminately.
+autocmd OptionSet guicursor noautocmd set guicursor=
+
+
 " Make OS X play nicely with Vim
 " (Doesn't seem to work)
 set clipboard=unnamed
