@@ -84,6 +84,8 @@ command! Config execute ":e ~/.vimrc"
 " Call ":Reload" to apply the latest .vimrc contents
 command! Reload execute "source ~/.vimrc"
 command! Longfile execute ":e ~/sources/test/dotfiles/.vimrc"
+command! Gitpush execute ":! git push origin develop"
+command! Gitpushforce execute ":! git push -f origin develop"
 
 " Simple tab navigation with <C-h> and <C-l> to intuitively go left and right
 noremap <C-h> :tabp<CR>
@@ -220,8 +222,10 @@ nmap <leader>nf :NERDTreeFind<CR>
 nmap <leader>s :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 
 " Set up some handy CtrlSF bindings
-nmap <leader>a :CtrlSF -R ""<Left>
-nmap <leader>A <Plug>CtrlSFCwordPath -W<CR>:CtrlSFFocus<CR>
+"nmap <leader>a :CtrlSF -R ""<Left>
+nmap <leader>a <Plug>CtrlSFCwordPath -W<CR>:CtrlSFFocus<CR>
+nmap <leader>A <Plug>CtrlSFCwordPath
+
 nmap <leader>c :CtrlSFFocus<CR>
 nmap <leader>C :CtrlSFToggle<CR>
 
