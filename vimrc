@@ -29,6 +29,7 @@ Plug 'stephpy/vim-yaml'
 Plug 'kdheepak/lazygit.nvim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
+"Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
 
 """
@@ -57,6 +58,8 @@ set clipboard=unnamed
 """"
 colorscheme peachpuff
 
+" Last command
+nmap <leader>l :<up><cr>
 
 " Bind "jj" to <esc> to jump out of insert mode
 inoremap jj <esc>
