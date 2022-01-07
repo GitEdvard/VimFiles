@@ -78,6 +78,12 @@ nmap OO O<esc>j
 set timeoutlen=500
 
 " Prettify json 
+" --- backup and swap files ---
+" I save all the time, those are annoying and unnecessary...
+set nobackup
+set nowritebackup
+set noswapfile
+
 command! JsonPrettify execute ":r !xclip -selection clipboard -o | jsonlint"
 
 " With this, you can enter ":Config" in normal mode to open the Vim
@@ -112,30 +118,6 @@ let g:lightline = {
 function! LightlineFilename()
     return expand('%')
 endfunction
-
-" Show file path in lightline
-" https://github.com/itchyny/lightline.vim/issues/87#issuecomment-119130738
-"
-" Show devicons in tabs
-" https://github.com/itchyny/lightline.vim/issues/469#issuecomment-630597998
-"let g:lightline = {
-"  \ 'colorscheme': 'darcula',
-"  \ 'active': {
-"  \   'right': [['coc_info', 'coc_hints', 'coc_errors', 'coc_warnings', 'coc_ok'], ['lineinfo'], ['fileformat', 'filetype']]
-"  \ },
-"  \ 'component_function': {
-"  \   'filename': 'LightLineFilename'
-"  \ },
-"  \ 'component': {
-"  \   'lineinfo': "[%l:%-v] [%{printf('%03d/%03d',line('.'),line('$'))}]",
-"  \ },
-"  \   'tabnum': 'LightlineWebDevIcons',
-"  \ }
-"  \ }
-"
-"function! LightlineFilename()
-"    return expand('%:p:h')
-"endfunction
 
 """
 " ansible-vim
