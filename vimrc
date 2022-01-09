@@ -29,7 +29,8 @@ Plug 'stephpy/vim-yaml'
 Plug 'kdheepak/lazygit.nvim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-Plug 'davidhalter/jedi-vim'
+Plug 'neoclide/coc.nvim'
+"Plug 'davidhalter/jedi-vim'
 "Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
 
