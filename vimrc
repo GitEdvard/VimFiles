@@ -123,6 +123,7 @@ endfunction
 """
 " ansible-vim
 """
+source ~/.vim/myscripts/find_ansible_role.vim
 let g:ansible_unindent_after_newline = 1
 let g:ansible_name_highlight = 'd'
 let g:ansible_extra_keywords_highlight = 1
@@ -131,23 +132,6 @@ let g:ansible_normal_keywords_highlight = 'Constant'
 let g:ansible_template_syntaxes = { '*.rb.j2': 'ruby' }
 let g:ansible_ftdetect_filename_regex = '\v(playbook|site|main|local|requirements)\.ya?ml$'
 
-" vim-plug example
-let g:ansible_goto_role_paths = './roles,../_common/roles'
-
-function! FindAnsibleRoleUnderCursor()
-  if exists("g:ansible_goto_role_paths")
-    let l:role_paths = g:ansible_goto_role_paths
-  else
-    let l:role_paths = "./roles"
-  endif
-  let l:tasks_main = expand("<cfile>") . "/tasks/main.yml"
-  let l:found_role_path = findfile(l:tasks_main,l:role_paths)
-  if l:found_role_path == ""
-    echo l:tasks_main . " not found"
-  else
-    execute "edit " . fnameescape(l:found_role_path)
-  endif
-endfunction
 
 au BufRead,BufNewFile */system-management/snpseq/*.yml nnoremap <leader>r :call FindAnsibleRoleUnderCursor()<CR>
 au BufRead,BufNewFile */system-management/snpseq/*.yml vnoremap <leader>r :call FindAnsibleRoleUnderCursor()<CR>
