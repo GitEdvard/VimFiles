@@ -17,6 +17,7 @@ set noshowmode
 call plug#begin('~/.vim/plugged')
 
 " This is our list of plugins to install
+Plug 'chriskempson/base16-vim'
 Plug 'mhinz/vim-startify'
 Plug 'scrooloose/nerdtree'
 Plug 'dyng/ctrlsf.vim'
