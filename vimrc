@@ -45,6 +45,12 @@ set t_Co=256
 set encoding=utf-8
 set relativenumber
 
+" To install language servers, manually run:
+"   :call InstallCocPlugins()
+function InstallCocPlugins()
+  CocInstall coc-pyright
+  source ~/.vim/myscripts/mycoc.vim
+endfunction
 " Get rid of pesky q:s
 set guicursor=
 " Workaround some broken plugins which set guicursor indiscriminately.
