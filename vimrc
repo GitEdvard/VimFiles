@@ -17,6 +17,7 @@ set noshowmode
 call plug#begin('~/.vim/plugged')
 
 " This is our list of plugins to install
+Plug 'chriskempson/base16-vim'
 Plug 'mhinz/vim-startify'
 Plug 'scrooloose/nerdtree'
 Plug 'dyng/ctrlsf.vim'
@@ -44,6 +45,16 @@ filetype plugin indent on
 set t_Co=256
 set encoding=utf-8
 set relativenumber
+
+" To install language servers, manually run:
+"   :call InstallCocPlugins()
+function InstallCocPlugins()
+  CocInstall coc-pyright
+  source ~/.vim/myscripts/mycoc.vim
+endfunction
+
+" Highlight self keyword in python 
+:syn keyword pythonBuiltin self
 
 " Get rid of pesky q:s
 set guicursor=
@@ -123,7 +134,7 @@ endfunction
 """
 " ansible-vim
 """
-source ~/.vim/find_ansible_role.vim
+source ~/.vim/myscripts/find_ansible_role.vim
 let g:ansible_unindent_after_newline = 1
 let g:ansible_name_highlight = 'd'
 let g:ansible_extra_keywords_highlight = 1
