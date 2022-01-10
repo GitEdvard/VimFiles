@@ -52,6 +52,10 @@ function InstallCocPlugins()
   CocInstall coc-pyright
   source ~/.vim/myscripts/mycoc.vim
 endfunction
+
+" Highlight self keyword in python 
+:syn keyword pythonBuiltin self
+
 " Get rid of pesky q:s
 set guicursor=
 " Workaround some broken plugins which set guicursor indiscriminately.
