@@ -50,11 +50,8 @@ set relativenumber
 "   :call InstallCocPlugins()
 function InstallCocPlugins()
   CocInstall coc-pyright
-  source ~/.vim/myscripts/mycoc.vim
+  source ~/.vim/myscripts/coc-settings.vim
 endfunction
-
-" Highlight self keyword in python 
-:syn keyword pythonBuiltin self
 
 " Get rid of pesky q:s
 set guicursor=
@@ -76,6 +73,9 @@ nmap <leader>l :<up><cr>
 
 " Bind "jj" to <esc> to jump out of insert mode
 inoremap jj <esc>
+
+" Highlight self keyword in python 
+:syn keyword pythonBuiltin self
 
 let mapleader = "\<Space>"
 
