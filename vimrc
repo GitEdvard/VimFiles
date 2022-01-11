@@ -74,6 +74,10 @@ nmap <leader>l :<up><cr>
 " Bind "jj" to <esc> to jump out of insert mode
 inoremap jj <esc>
 
+" Fix quotes
+inoremap " ""<left>
+inoremap ' ''<left>
+
 " Highlight self keyword in python 
 :syn keyword pythonBuiltin self
 
