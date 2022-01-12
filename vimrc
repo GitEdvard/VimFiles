@@ -70,8 +70,8 @@ set clipboard=unnamed
 """"
 colorscheme peachpuff
 
-" Last command
-nmap <leader>l :<up><cr>
+" Last buffer
+nmap <leader>l :bp<CR>
 
 " Bind "jj" to <esc> to jump out of insert mode
 inoremap jj <esc>
