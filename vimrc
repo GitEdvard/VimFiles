@@ -83,6 +83,9 @@ noremap <leader>h :noh<CR>
 
 hi ctrlsfMatch cterm=NONE ctermfg=black ctermbg=blue
 
+" show hidden     whitespace
+highlight ExtraWhitespace ctermbg=red guibg=red 
+
 " Highlight self keyword in python 
 :syn keyword pythonBuiltin self
 
