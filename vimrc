@@ -50,11 +50,10 @@ set relativenumber
 "   :call InstallCocPlugins()
 function InstallCocPlugins()
   CocInstall coc-pyright
-  source ~/.vim/myscripts/mycoc.vim
+  source ~/.vim/myscripts/coc-settings.vim
 endfunction
 
-" Highlight self keyword in python 
-:syn keyword pythonBuiltin self
+command! InstallCocPlugins execute ":call InstallCocPlugins()"
 
 " Get rid of pesky q:s
 set guicursor=
@@ -71,11 +70,24 @@ set clipboard=unnamed
 """"
 colorscheme peachpuff
 
-" Last command
-nmap <leader>l :<up><cr>
+" Last buffer
+nmap <leader>l :bp<CR>
 
 " Bind "jj" to <esc> to jump out of insert mode
 inoremap jj <esc>
+
+" Quickly get rid of highlighting
+noremap <leader>h :noh<CR>
+
+"hi Search cterm=NONE ctermfg=grey ctermbg=blue
+
+hi ctrlsfMatch cterm=NONE ctermfg=black ctermbg=blue
+
+" show hidden     whitespace
+highlight ExtraWhitespace ctermbg=red guibg=red 
+
+" Highlight self keyword in python 
+:syn keyword pythonBuiltin self
 
 let mapleader = "\<Space>"
 
@@ -170,8 +182,12 @@ nmap ?? :Rg!<CR>
 " Bind "<leader>p" to a fzf-powered filename search
 nmap <leader>p :Files!<CR>
 
-" Bind "<leader>b" to show buffers
+" Bind "<leader>b" to show buffers with contents
 nmap <leader>b :Buffers!<CR>
+
+" Bind "<leader>bb" to show buffers without contents
+nmap <leader>bb :call fzf#vim#buffers()<CR>
+
 " Bind "cc" to a fzf-powered command search
 nmap cc :Commands!<CR>
 
@@ -222,18 +238,6 @@ endfunction
 " git commands
 nnoremap <silent> <leader>gg :LazyGit<CR>
 nnoremap <silent> <leader>gt :call Tig()<CR>
-
-"""""""""
-" jedi vim
-""""""""
-let g:jedi#goto_command = "<leader>d"
-let g:jedi#goto_assignments_command = "<leader>g"
-let g:jedi#goto_stubs_command = "<leader>s"
-let g:jedi#goto_definitions_command = ""
-let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "<leader>n"
-let g:jedi#completions_command = "<C-Space>"
-let g:jedi#rename_command = "<leader>r"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BONUS SECTION!
