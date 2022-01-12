@@ -53,6 +53,8 @@ function InstallCocPlugins()
   source ~/.vim/myscripts/coc-settings.vim
 endfunction
 
+command! InstallCocPlugins execute ":call InstallCocPlugins()"
+
 " Get rid of pesky q:s
 set guicursor=
 " Workaround some broken plugins which set guicursor indiscriminately.
@@ -74,9 +76,8 @@ nmap <leader>l :<up><cr>
 " Bind "jj" to <esc> to jump out of insert mode
 inoremap jj <esc>
 
-" Fix quotes
-inoremap " ""<left>
-inoremap ' ''<left>
+" Quickly get rid of highlighting
+noremap <leader>h :noh<CR>
 
 "hi Search cterm=NONE ctermfg=grey ctermbg=blue
 
@@ -178,8 +179,12 @@ nmap ?? :Rg!<CR>
 " Bind "<leader>p" to a fzf-powered filename search
 nmap <leader>p :Files!<CR>
 
-" Bind "<leader>b" to show buffers
+" Bind "<leader>b" to show buffers with contents
 nmap <leader>b :Buffers!<CR>
+
+" Bind "<leader>bb" to show buffers without contents
+nmap <leader>bb :call fzf#vim#buffers()<CR>
+
 " Bind "cc" to a fzf-powered command search
 nmap cc :Commands!<CR>
 
