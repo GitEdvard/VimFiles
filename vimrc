@@ -76,6 +76,10 @@ nmap <leader>l :bp<CR>
 " Bind "jj" to <esc> to jump out of insert mode
 inoremap jj <esc>
 
+" Swap colon and semicolon
+noremap ; :
+noremap <leader>; ;
+
 " Quickly get rid of highlighting
 noremap <leader>h :noh<CR>
 
