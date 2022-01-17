@@ -64,6 +64,9 @@ autocmd OptionSet guicursor noautocmd set guicursor=
 " (Doesn't seem to work)
 set clipboard=unnamed
 
+" http://damien.lespiau.name/blog/2009/03/18/per-project-vimrc/comment-page-1/
+" set exrc " enable per-directory .vimrc files
+set secure " disable unsafe commands in local .vimrc files
 """"
 " Custom configuration begins
 """"
@@ -83,6 +86,12 @@ noremap <leader>; ;
 vmap <leader>c "+y
 " Quickly get rid of highlighting
 noremap <leader>h :noh<CR>
+
+" Delete buffers
+nmap BD :Bdelete hidden<CR>
+
+" Format selected code.
+xmap <leader>b  <Plug>(coc-format-selected)
 
 "hi Search cterm=NONE ctermfg=grey ctermbg=blue
 
