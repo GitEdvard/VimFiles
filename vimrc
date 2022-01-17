@@ -30,6 +30,7 @@ Plug 'stephpy/vim-yaml'
 Plug 'kdheepak/lazygit.nvim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
+Plug 'ntpeters/vim-better-whitespace'
 "Plug 'ctrlpvim/ctrlp.vim'
 " To install language servers, manually run:
 "   :call InstallCocPlugins()
