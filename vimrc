@@ -8,7 +8,7 @@ set incsearch
 set tabstop=2 shiftwidth=2 expandtab
 "Case insensitive search.
 set ic
-" Set this to enable lightline 
+" Set this to enable lightline
 set laststatus=2
 " This is handled by lightline
 set noshowmode
@@ -31,7 +31,6 @@ Plug 'kdheepak/lazygit.nvim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'neoclide/coc.nvim'
-"Plug 'davidhalter/jedi-vim'
 "Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
 
@@ -80,6 +79,8 @@ inoremap jj <esc>
 noremap ; :
 noremap <leader>; ;
 
+" Copy to system clipboard
+vmap <leader>c "+y
 " Quickly get rid of highlighting
 noremap <leader>h :noh<CR>
 
@@ -88,15 +89,15 @@ noremap <leader>h :noh<CR>
 hi ctrlsfMatch cterm=NONE ctermfg=black ctermbg=blue
 
 " show hidden     whitespace
-highlight ExtraWhitespace ctermbg=red guibg=red 
+highlight ExtraWhitespace ctermbg=red guibg=red
 
-" Highlight self keyword in python 
+" Highlight self keyword in python
 :syn keyword pythonBuiltin self
 
 let mapleader = "\<Space>"
 
 " Fix zt an zb near edges
-set scrolloff=3 
+set scrolloff=3
 
 " Insert new lines without exit normal mode
 nmap oo o<esc>k
@@ -105,7 +106,7 @@ nmap OO O<esc>j
 " Set wait time between key strokes
 set timeoutlen=500
 
-" Prettify json 
+" Prettify json
 " --- backup and swap files ---
 " I save all the time, those are annoying and unnecessary...
 set nobackup
