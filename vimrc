@@ -32,6 +32,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'RRethy/vim-illuminate'
+" Plug 'patstockwell/vim-monokai-tasty'
 "Plug 'ctrlpvim/ctrlp.vim'
 
 " To install language servers, manually run:
@@ -64,14 +65,6 @@ set guicursor=
 " Workaround some broken plugins which set guicursor indiscriminately.
 autocmd OptionSet guicursor noautocmd set guicursor=
 
-augroup illuminate_augroup
-    autocmd!
-    autocmd VimEnter * hi link illuminatedWord CursorLine
-augroup END
-
-" Time in milliseconds (default 0)
-let g:Illuminate_delay = 700
-
 " https://github.com/neoclide/coc.nvim/issues/3312
 autocmd VimLeavePre * if get(g:, 'coc_process_pid', 0)
   \	| call system('kill -9 '.g:coc_process_pid) | endif
@@ -88,6 +81,14 @@ set secure " disable unsafe commands in local .vimrc files
 " Custom configuration begins
 """"
 colorscheme peachpuff
+
+augroup illuminate_augroup
+    autocmd!
+    autocmd VimEnter * hi illuminatedWord cterm=underline gui=underline
+augroup END
+
+" Time in milliseconds (default 0)
+let g:Illuminate_delay = 700
 
 " Last buffer
 nmap <leader>l :bp<CR>
