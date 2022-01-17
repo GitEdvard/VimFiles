@@ -31,7 +31,9 @@ Plug 'kdheepak/lazygit.nvim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'RRethy/vim-illuminate'
 "Plug 'ctrlpvim/ctrlp.vim'
+
 " To install language servers, manually run:
 "   :call InstallCocPlugins()
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
@@ -61,6 +63,14 @@ command! InstallCocPlugins execute ":call InstallCocPlugins()"
 set guicursor=
 " Workaround some broken plugins which set guicursor indiscriminately.
 autocmd OptionSet guicursor noautocmd set guicursor=
+
+augroup illuminate_augroup
+    autocmd!
+    autocmd VimEnter * hi link illuminatedWord CursorLine
+augroup END
+
+" Time in milliseconds (default 0)
+let g:Illuminate_delay = 700
 
 " https://github.com/neoclide/coc.nvim/issues/3312
 autocmd VimLeavePre * if get(g:, 'coc_process_pid', 0)
