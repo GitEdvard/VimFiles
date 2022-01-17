@@ -30,8 +30,10 @@ Plug 'stephpy/vim-yaml'
 Plug 'kdheepak/lazygit.nvim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-Plug 'neoclide/coc.nvim'
 "Plug 'ctrlpvim/ctrlp.vim'
+" To install language servers, manually run:
+"   :call InstallCocPlugins()
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 call plug#end()
 
 """
@@ -59,6 +61,9 @@ set guicursor=
 " Workaround some broken plugins which set guicursor indiscriminately.
 autocmd OptionSet guicursor noautocmd set guicursor=
 
+" https://github.com/neoclide/coc.nvim/issues/3312
+autocmd VimLeavePre * if get(g:, 'coc_process_pid', 0)
+  \	| call system('kill -9 '.g:coc_process_pid) | endif
 
 " Make OS X play nicely with Vim
 " (Doesn't seem to work)
@@ -67,6 +72,7 @@ set clipboard=unnamed
 " http://damien.lespiau.name/blog/2009/03/18/per-project-vimrc/comment-page-1/
 " set exrc " enable per-directory .vimrc files
 set secure " disable unsafe commands in local .vimrc files
+
 """"
 " Custom configuration begins
 """"
