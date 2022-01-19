@@ -8,6 +8,8 @@ set incsearch
 set tabstop=2 shiftwidth=2 expandtab
 "Case insensitive search.
 set ic
+" Smart case searches
+set smartcase
 " Set this to enable lightline
 set laststatus=2
 " This is handled by lightline
@@ -83,13 +85,18 @@ set secure " disable unsafe commands in local .vimrc files
 " colorscheme vim-monokai-tasty
 colorscheme codedark
 
+
 set cursorline
 set termguicolors
+
 augroup illuminate_augroup
     autocmd!
     autocmd VimEnter * hi link illuminatedWord CursorLine
 augroup END
 
+" Retain selection when indenting blocks
+vmap > >gv
+vmap < <gv
 " Time in milliseconds (default 0)
 let g:Illuminate_delay = 700
 
@@ -101,7 +108,7 @@ inoremap jj <esc>
 
 " Swap colon and semicolon
 noremap ; :
-noremap <leader>; ;
+noremap , ;
 
 " Copy to system clipboard
 vmap <leader>c "+y
