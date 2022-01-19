@@ -32,7 +32,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'RRethy/vim-illuminate'
-" Plug 'patstockwell/vim-monokai-tasty'
+Plug 'patstockwell/vim-monokai-tasty'
+Plug 'tomasiser/vim-code-dark'
 "Plug 'ctrlpvim/ctrlp.vim'
 
 " To install language servers, manually run:
@@ -57,7 +58,6 @@ function InstallCocPlugins()
   CocInstall coc-pyright
   source ~/.vim/myscripts/coc-settings.vim
 endfunction
-
 command! InstallCocPlugins execute ":call InstallCocPlugins()"
 
 " Get rid of pesky q:s
@@ -80,11 +80,14 @@ set secure " disable unsafe commands in local .vimrc files
 """"
 " Custom configuration begins
 """"
-colorscheme peachpuff
+" colorscheme vim-monokai-tasty
+colorscheme codedark
 
+set cursorline
+set termguicolors
 augroup illuminate_augroup
     autocmd!
-    autocmd VimEnter * hi illuminatedWord cterm=underline gui=underline
+    autocmd VimEnter * hi link illuminatedWord CursorLine
 augroup END
 
 " Time in milliseconds (default 0)
