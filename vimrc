@@ -8,7 +8,7 @@ set incsearch
 set tabstop=2 shiftwidth=2 expandtab
 "Case insensitive search.
 set ic
-" Set this to enable lightline 
+" Set this to enable lightline
 set laststatus=2
 " This is handled by lightline
 set noshowmode
@@ -30,9 +30,14 @@ Plug 'stephpy/vim-yaml'
 Plug 'kdheepak/lazygit.nvim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-Plug 'neoclide/coc.nvim'
-"Plug 'davidhalter/jedi-vim'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'RRethy/vim-illuminate'
+" Plug 'patstockwell/vim-monokai-tasty'
 "Plug 'ctrlpvim/ctrlp.vim'
+
+" To install language servers, manually run:
+"   :call InstallCocPlugins()
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 call plug#end()
 
 """
@@ -60,15 +65,30 @@ set guicursor=
 " Workaround some broken plugins which set guicursor indiscriminately.
 autocmd OptionSet guicursor noautocmd set guicursor=
 
+" https://github.com/neoclide/coc.nvim/issues/3312
+autocmd VimLeavePre * if get(g:, 'coc_process_pid', 0)
+  \	| call system('kill -9 '.g:coc_process_pid) | endif
 
 " Make OS X play nicely with Vim
 " (Doesn't seem to work)
 set clipboard=unnamed
 
+" http://damien.lespiau.name/blog/2009/03/18/per-project-vimrc/comment-page-1/
+" set exrc " enable per-directory .vimrc files
+set secure " disable unsafe commands in local .vimrc files
+
 """"
 " Custom configuration begins
 """"
 colorscheme peachpuff
+
+augroup illuminate_augroup
+    autocmd!
+    autocmd VimEnter * hi illuminatedWord cterm=underline gui=underline
+augroup END
+
+" Time in milliseconds (default 0)
+let g:Illuminate_delay = 700
 
 " Last buffer
 nmap <leader>l :bp<CR>
@@ -76,23 +96,35 @@ nmap <leader>l :bp<CR>
 " Bind "jj" to <esc> to jump out of insert mode
 inoremap jj <esc>
 
+" Swap colon and semicolon
+noremap ; :
+noremap <leader>; ;
+
+" Copy to system clipboard
+vmap <leader>c "+y
 " Quickly get rid of highlighting
 noremap <leader>h :noh<CR>
+
+" Delete buffers
+nmap BD :Bdelete hidden<CR>
+
+" Format selected code.
+xmap <leader>b  <Plug>(coc-format-selected)
 
 "hi Search cterm=NONE ctermfg=grey ctermbg=blue
 
 hi ctrlsfMatch cterm=NONE ctermfg=black ctermbg=blue
 
 " show hidden     whitespace
-highlight ExtraWhitespace ctermbg=red guibg=red 
+highlight ExtraWhitespace ctermbg=red guibg=red
 
-" Highlight self keyword in python 
+" Highlight self keyword in python
 :syn keyword pythonBuiltin self
 
 let mapleader = "\<Space>"
 
 " Fix zt an zb near edges
-set scrolloff=3 
+set scrolloff=3
 
 " Insert new lines without exit normal mode
 nmap oo o<esc>k
@@ -101,7 +133,7 @@ nmap OO O<esc>j
 " Set wait time between key strokes
 set timeoutlen=500
 
-" Prettify json 
+" Prettify json
 " --- backup and swap files ---
 " I save all the time, those are annoying and unnecessary...
 set nobackup
