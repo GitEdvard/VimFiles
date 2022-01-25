@@ -82,8 +82,11 @@ set secure " disable unsafe commands in local .vimrc files
 """"
 " Custom configuration begins
 """"
+
 " colorscheme vim-monokai-tasty
 colorscheme codedark
+
+let mapleader = "\<Space>"
 
 
 set cursorline
@@ -94,11 +97,18 @@ augroup illuminate_augroup
     autocmd VimEnter * hi link illuminatedWord CursorLine
 augroup END
 
+highlight CursorLine ctermbg=Yellow cterm=bold guibg=#2b2b2b
+
 " Retain selection when indenting blocks
 vmap > >gv
 vmap < <gv
 " Time in milliseconds (default 0)
 let g:Illuminate_delay = 700
+
+" Center when inserting
+"nmap i zzi
+"nmap o zzo
+"nmap O zzO
 
 " Last buffer
 nmap <leader>l :bp<CR>
@@ -109,11 +119,6 @@ inoremap jj <esc>
 " Swap colon and semicolon
 noremap ; :
 noremap , ;
-
-" Copy to system clipboard
-vmap <leader>c "+y
-" Quickly get rid of highlighting
-noremap <leader>h :noh<CR>
 
 " Delete buffers
 nmap BD :Bdelete hidden<CR>
@@ -131,7 +136,10 @@ highlight ExtraWhitespace ctermbg=red guibg=red
 " Highlight self keyword in python
 :syn keyword pythonBuiltin self
 
-let mapleader = "\<Space>"
+" Copy to system clipboard
+vmap <leader>c "+y
+" Quickly get rid of highlighting
+noremap <leader>h :noh<CR>
 
 " Fix zt an zb near edges
 set scrolloff=3
