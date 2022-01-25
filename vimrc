@@ -105,10 +105,14 @@ vmap < <gv
 " Time in milliseconds (default 0)
 let g:Illuminate_delay = 700
 
-" Center when inserting
-"nmap i zzi
-"nmap o zzo
-"nmap O zzO
+" Center screen when inserting
+nnoremap i zzi
+nnoremap o zzo
+nnoremap O zzO
+
+" center screen after search
+nnoremap n nzzzv
+nnoremap N Nzzzv
 
 " Last buffer
 nmap <leader>l :bp<CR>
