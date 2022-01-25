@@ -36,6 +36,8 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'RRethy/vim-illuminate'
 Plug 'patstockwell/vim-monokai-tasty'
 Plug 'tomasiser/vim-code-dark'
+Plug 'Yilin-Yang/vim-markbar'
+
 "Plug 'ctrlpvim/ctrlp.vim'
 
 " To install language servers, manually run:
