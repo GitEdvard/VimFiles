@@ -4,16 +4,6 @@ execute pathogen#infect()
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
-set incsearch
-set tabstop=2 shiftwidth=2 expandtab
-"Case insensitive search.
-set ic
-" Smart case searches
-set smartcase
-" Set this to enable lightline
-set laststatus=2
-" This is handled by lightline
-set noshowmode
 
 " https://github.com/junegunn/vim-plug
 call plug#begin('~/.vim/plugged')
@@ -84,15 +74,28 @@ set secure " disable unsafe commands in local .vimrc files
 """"
 " Custom configuration begins
 """"
+set incsearch
+"Case insensitive search.
+set ic
+" Smart case searches
+set smartcase
+" Set this to enable lightline
+set laststatus=2
+" This is handled by lightline
+set noshowmode
 
+set termguicolors
 " colorscheme vim-monokai-tasty
+" colorscheme peachpuff
+set bg=dark
 colorscheme codedark
 
 let mapleader = "\<Space>"
 
+set tabstop=4 shiftwidth=4 expandtab
+autocmd FileType yaml setlocal autoindent expandtab tabstop=2 shiftwidth=2 cursorcolumn
 
 set cursorline
-set termguicolors
 
 augroup illuminate_augroup
     autocmd!
