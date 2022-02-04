@@ -185,6 +185,7 @@ command! Reload execute "source ~/.vimrc"
 command! Longfile execute ":e ~/sources/test/dotfiles/.vimrc"
 command! Gitpush execute ":! git push origin develop"
 command! Gitpushforce execute ":! git push -f origin develop"
+command! Mksession execute ":mksession!"
 
 " Simple tab navigation with <C-h> and <C-l> to intuitively go left and right
 noremap <C-h> :tabp<CR>
