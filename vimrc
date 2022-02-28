@@ -27,7 +27,8 @@ Plug 'RRethy/vim-illuminate'
 Plug 'patstockwell/vim-monokai-tasty'
 Plug 'tomasiser/vim-code-dark'
 Plug 'Yilin-Yang/vim-markbar'
-
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 "Plug 'ctrlpvim/ctrlp.vim'
 
 " To install language servers, manually run:
@@ -318,6 +319,19 @@ endfunction
 " git commands
 nnoremap <silent> <leader>gg :LazyGit<CR>
 nnoremap <silent> <leader>gt :call Tig()<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" snippets
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
+" - https://github.com/Valloric/YouCompleteMe
+" - https://github.com/nvim-lua/completion-nvim
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BONUS SECTION!
