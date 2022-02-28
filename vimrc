@@ -101,6 +101,18 @@ nnoremap gf <C-w>v<C-w>Tgf
 " Open files in same tab
 nnoremap <leader>gf gf
 
+" Delete rest of the line
+nnoremap <leader>d d$
+
+" Reload current file
+nnoremap <leader>e :e!<CR>
+
+" Reload all buffers
+command! Reloadall execute ":bufdo e!"
+
+" Open current file in a new tab
+nnoremap <leader>t <C-w>v<C-w>T
+
 set cursorline
 
 augroup illuminate_augroup
