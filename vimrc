@@ -74,7 +74,7 @@ set secure " disable unsafe commands in local .vimrc files
 """"
 " Custom configuration begins
 """"
-abbr _bash #! bin/bash<CR>
+abbr _bash #! /bin/bash<CR>
 
 set incsearch
 "Case insensitive search.
