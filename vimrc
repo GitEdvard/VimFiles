@@ -224,6 +224,7 @@ function! LightlineFilename()
     return expand('%')
 endfunction
 
+autocmd FileType yaml setlocal autoindent expandtab tabstop=2 shiftwidth=2 cursorcolumn
 """
 " ansible-vim
 """
