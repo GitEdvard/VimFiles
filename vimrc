@@ -224,14 +224,6 @@ function! LightlineFilename()
     return expand('%')
 endfunction
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Python files
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-autocmd FileType python setlocal foldmethod=indent foldnestmax=2 autoindent expandtab tabstop=4 shiftwidth=4 cursorcolumn
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 """
 " ansible-vim
 """
