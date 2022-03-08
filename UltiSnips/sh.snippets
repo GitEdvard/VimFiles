@@ -3,7 +3,7 @@ snippet _usage "Print out usage statement if no arguments" b
 
 if [[ $# -eq 0 ]];then
     echo "Usage ${1:script name} ${2:arguments 1}"
-    return 1
+    exit 1
 fi
 
 endsnippet
