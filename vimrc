@@ -29,6 +29,9 @@ Plug 'tomasiser/vim-code-dark'
 Plug 'Yilin-Yang/vim-markbar'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+" To be able to copy current line with yil
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-line'
 "Plug 'ctrlpvim/ctrlp.vim'
 
 " To install language servers, manually run:
