@@ -32,6 +32,7 @@ Plug 'honza/vim-snippets'
 " To be able to copy current line with yil
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-line'
+Plug 'tpope/vim-commentary'
 "Plug 'ctrlpvim/ctrlp.vim'
 
 " To install language servers, manually run:
