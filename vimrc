@@ -156,7 +156,15 @@ noremap ; :
 noremap , ;
 
 " Delete buffers
-nmap BD :Bdelete hidden<CR>
+function DeleteHiddenBuffers()
+    let tpbl=[]
+    call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
+    for buf in filter(range(1, bufnr('$')), 'bufexists(v:val) && index(tpbl, v:val)==-1')
+        silent execute 'bwipeout' buf
+    endfor
+endfunction
+nmap BD :call DeleteHiddenBuffers()<CR>
+" nmap BD :Bdelete hidden<CR>
 
 " Format selected code.
 xmap <leader>b  <Plug>(coc-format-selected)
@@ -293,13 +301,17 @@ function! ToggleNERDTree()
 endfunction
 
 " Bind "<leader>n" to toggle NERDTree
-nmap <leader>nn :call ToggleNERDTree()<CR>
-nmap <leader>nf :NERDTreeFind<CR>
+nmap <leader>n :call ToggleNERDTree()<CR>
+nmap <leader>nn :NERDTreeFind<CR>
+au FileType nerdtree vert resize 50
+" let g:NERDTreeWinSize=50
+let NERDTreeIgnore = ['\.pyc$']
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 " Taglist
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <leader>m :TlistOpen<CR>
+let g:Tlist_WinWidth=50
 
 """
 " CtrlSF
