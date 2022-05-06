@@ -50,7 +50,7 @@ syntax on
 filetype plugin indent on
 set t_Co=256
 set encoding=utf-8
-set relativenumber
+set number relativenumber
 
 " To install language servers, manually run:
 "   :call InstallCocPlugins()
