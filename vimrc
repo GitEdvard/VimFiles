@@ -29,11 +29,12 @@ Plug 'tomasiser/vim-code-dark'
 Plug 'Yilin-Yang/vim-markbar'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'vim-scripts/taglist.vim'
 " To be able to copy current line with yil
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-line'
+"""
 Plug 'tpope/vim-commentary'
-"Plug 'ctrlpvim/ctrlp.vim'
 
 " To install language servers, manually run:
 "   :call InstallCocPlugins()
@@ -205,6 +206,7 @@ command! Longfile execute ":e ~/sources/test/dotfiles/.vimrc"
 command! Gitpush execute ":! git push origin develop"
 command! Gitpushforce execute ":! git push -f origin develop"
 command! Mksession execute ":mksession!"
+command! Ctags execute ":!ctags -R"
 
 " Simple tab navigation with <C-h> and <C-l> to intuitively go left and right
 noremap <C-h> :tabp<CR>
@@ -293,6 +295,11 @@ endfunction
 " Bind "<leader>n" to toggle NERDTree
 nmap <leader>nn :call ToggleNERDTree()<CR>
 nmap <leader>nf :NERDTreeFind<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Taglist
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <leader>m :TlistOpen<CR>
 
 """
 " CtrlSF
