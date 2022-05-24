@@ -82,6 +82,12 @@ set secure " disable unsafe commands in local .vimrc files
 """"
 abbr _bash #! /bin/bash<CR>
 
+" Autofill matching paranthesis, citations, etc.
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap { {}<left>
+
 set incsearch
 "Case insensitive search.
 set ic
@@ -301,8 +307,7 @@ function! ToggleNERDTree()
 endfunction
 
 " Bind "<leader>n" to toggle NERDTree
-nmap <leader>n :call ToggleNERDTree()<CR>
-nmap <leader>nn :NERDTreeFind<CR>
+nmap <leader>n :NERDTreeFind<CR>
 au FileType nerdtree vert resize 50
 " let g:NERDTreeWinSize=50
 let NERDTreeIgnore = ['\.pyc$']
