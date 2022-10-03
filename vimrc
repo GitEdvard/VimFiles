@@ -30,6 +30,8 @@ Plug 'Yilin-Yang/vim-markbar'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'vim-scripts/taglist.vim'
+" Debugger
+Plug 'puremourning/vimspector'
 " To be able to copy current line with yil
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-line'
@@ -150,9 +152,6 @@ nnoremap O zzO
 " center screen after search
 nnoremap n nzzzv
 nnoremap N Nzzzv
-
-" Last buffer
-nmap <leader>l :bp<CR>
 
 " Bind "jj" to <esc> to jump out of insert mode
 inoremap jj <esc>
@@ -294,6 +293,10 @@ nmap cc :Commands!<CR>
 
 " Shows Git history for the current buffer
 command! FileHistory execute ":BCommits"
+
+" Close other windows
+nmap <leader>q <C-w>o
+
 """
 " NERDTree
 """
@@ -378,5 +381,18 @@ noremap <C-h> :tabp<CR>
 noremap - :tabm -1<CR>
 noremap <C-l> :tabn<CR>
 noremap = :tabm +1<CR>
-noremap <C-j> :tabc<CR>
+noremap <C-j> :tabc<CR> :tabp<CR>
 noremap <C-k> :tabe <Bar> Startify<CR>
+
+" Vimspector, debugger
+nnoremap <Leader>dd :let $CURRENT_PY_PATH=substitute(expand('%:r'), '/', '.', 'g')<CR> :call vimspector#Launch()<CR>
+nnoremap <Leader>de :call vimspector#Reset()<CR>
+nnoremap <Leader>dc :call vimspector#Continue()<CR>
+
+nnoremap <Leader>dt :call vimspector#ToggleBreakpoint()<CR>
+nnoremap <Leader>dT :call vimspector#ClearBreakpoints()<CR>
+
+nmap <Leader>dk <Plug>VimspectorRestart
+nmap <Leader>dh <Plug>VimspectorStepOut
+nmap <Leader>dl <Plug>VimspectorStepInto
+nmap <Leader>dj <Plug>VimspectorStepOver
