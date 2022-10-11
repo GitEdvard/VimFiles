@@ -22,6 +22,7 @@ Plug 'stephpy/vim-yaml'
 Plug 'kdheepak/lazygit.nvim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'RRethy/vim-illuminate'
 Plug 'patstockwell/vim-monokai-tasty'
@@ -30,13 +31,16 @@ Plug 'Yilin-Yang/vim-markbar'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'vim-scripts/taglist.vim'
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'rhysd/vim-textobj-anyblock'
+Plug 'kana/vim-textobj-user'
+Plug 'bps/vim-textobj-python'
+Plug 'thinca/vim-textobj-between'
+Plug 'vim-scripts/ReplaceWithRegister'
+Plug 'kana/vim-textobj-line'
+Plug 'tpope/vim-commentary'
 " Debugger
 Plug 'puremourning/vimspector'
-" To be able to copy current line with yil
-Plug 'kana/vim-textobj-user'
-Plug 'kana/vim-textobj-line'
-"""
-Plug 'tpope/vim-commentary'
 
 " To install language servers, manually run:
 "   :call InstallCocPlugins()
@@ -314,6 +318,15 @@ nmap <leader>n :NERDTreeFind<CR>
 au FileType nerdtree vert resize 50
 " let g:NERDTreeWinSize=50
 let NERDTreeIgnore = ['\.pyc$']
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" textobj between
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:textobj_between_no_default_key_mappings=1
+
+omap id <Plug>(textobj-between-i)
+omap ad <Plug>(textobj-between-a)
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 " Taglist
