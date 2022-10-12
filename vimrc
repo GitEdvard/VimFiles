@@ -39,6 +39,7 @@ Plug 'thinca/vim-textobj-between'
 Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'kana/vim-textobj-line'
 Plug 'tpope/vim-commentary'
+Plug 'gaving/vim-textobj-argument'
 " Debugger
 Plug 'puremourning/vimspector'
 
@@ -57,6 +58,10 @@ filetype plugin indent on
 set t_Co=256
 set encoding=utf-8
 set number relativenumber
+
+" finding files
+set path+=**
+set wildmenu
 
 " To install language servers, manually run:
 "   :call InstallCocPlugins()
@@ -120,9 +125,6 @@ nnoremap gf <C-w>v<C-w>Tgf
 
 " Open files in same tab
 nnoremap <leader>gf gf
-
-" Delete rest of the line
-nnoremap <leader>d d$
 
 " Reload current file
 nnoremap <leader>e :e!<CR>
