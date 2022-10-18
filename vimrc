@@ -40,6 +40,7 @@ Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'kana/vim-textobj-line'
 Plug 'tpope/vim-commentary'
 Plug 'gaving/vim-textobj-argument'
+Plug 'vim-test/vim-test'
 " Debugger
 Plug 'puremourning/vimspector'
 
@@ -411,3 +412,18 @@ nmap <Leader>dk <Plug>VimspectorRestart
 nmap <Leader>dh <Plug>VimspectorStepOut
 nmap <Leader>dl <Plug>VimspectorStepInto
 nmap <Leader>dj <Plug>VimspectorStepOver
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-test
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <silent> <leader>tn :TestNearest<CR>
+nmap <silent> <leader>tf :TestFile<CR>
+nmap <silent> <leader>ta :TestSuite<CR>
+nmap <silent> <leader>tl :TestLast<CR>
+nmap <silent> <leader>tv :TestVisit<CR>
+
+let test#python#runner = 'pytest'
+let test#strategy = "basic"
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
