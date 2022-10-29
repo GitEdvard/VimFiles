@@ -101,6 +101,9 @@ inoremap ' ''<left>
 inoremap ( ()<left>
 inoremap { {}<left>
 
+" Open qickfix window
+nnoremap <leader>q :copen<cr> <c-w>L
+
 set incsearch
 "Case insensitive search.
 set ic
@@ -302,9 +305,6 @@ nmap cc :Commands!<CR>
 " Shows Git history for the current buffer
 command! FileHistory execute ":BCommits"
 
-" Close other windows
-nmap <leader>q <C-w>o
-
 """
 " NERDTree
 """
@@ -424,7 +424,7 @@ nmap <silent> <leader>tl :TestLast<CR>
 nmap <silent> <leader>tv :TestVisit<CR>
 
 let test#python#runner = 'pytest'
-let test#strategy = "dispatch"
+let test#strategy = "make"
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
