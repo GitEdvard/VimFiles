@@ -41,6 +41,7 @@ Plug 'kana/vim-textobj-line'
 Plug 'tpope/vim-commentary'
 Plug 'gaving/vim-textobj-argument'
 Plug 'vim-test/vim-test'
+Plug 'tpope/vim-dispatch'
 " Debugger
 Plug 'puremourning/vimspector'
 
@@ -423,7 +424,7 @@ nmap <silent> <leader>tl :TestLast<CR>
 nmap <silent> <leader>tv :TestVisit<CR>
 
 let test#python#runner = 'pytest'
-let test#strategy = "basic"
+let test#strategy = "dispatch"
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
