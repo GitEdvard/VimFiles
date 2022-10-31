@@ -41,8 +41,17 @@ Plug 'kana/vim-textobj-line'
 Plug 'tpope/vim-commentary'
 Plug 'gaving/vim-textobj-argument'
 Plug 'vim-test/vim-test'
+Plug 'tpope/vim-dispatch'
+
 " Debugger
 Plug 'puremourning/vimspector'
+
+" Telescope
+" Plug 'nvim-lua/plenary.nvim'
+" Plug 'BurntSushi/ripgrep'
+" Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+" Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+" Plug 'nvim-treesitter/nvim-treesitter'
 
 " To install language servers, manually run:
 "   :call InstallCocPlugins()
@@ -425,5 +434,13 @@ nmap <silent> <leader>tv :TestVisit<CR>
 let test#python#runner = 'pytest'
 let test#strategy = "basic"
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Telescope
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" nnoremap <leader>ff <cmd>Telescope find_files<cr>
+" nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+" nnoremap <leader>fb <cmd>Telescope buffers<cr>
+" nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
