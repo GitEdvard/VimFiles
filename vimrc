@@ -42,7 +42,6 @@ Plug 'tpope/vim-commentary'
 Plug 'gaving/vim-textobj-argument'
 Plug 'vim-test/vim-test'
 Plug 'tpope/vim-dispatch'
-
 " Debugger
 Plug 'puremourning/vimspector'
 
@@ -108,6 +107,9 @@ inoremap " ""<left>
 inoremap ' ''<left>
 inoremap ( ()<left>
 inoremap { {}<left>
+
+" Open qickfix window
+nnoremap <leader>q :copen<cr> <c-w>L
 
 set incsearch
 "Case insensitive search.
@@ -310,9 +312,6 @@ nmap cc :Commands!<CR>
 " Shows Git history for the current buffer
 command! FileHistory execute ":BCommits"
 
-" Close other windows
-nmap <leader>q <C-w>o
-
 """
 " NERDTree
 """
@@ -432,7 +431,7 @@ nmap <silent> <leader>tl :TestLast<CR>
 nmap <silent> <leader>tv :TestVisit<CR>
 
 let test#python#runner = 'pytest'
-let test#strategy = "basic"
+let test#strategy = "make"
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
