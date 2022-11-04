@@ -3,3 +3,5 @@ execute 'normal! zR'
 nnoremap <leader>j J
 nmap J ]pf
 nmap K [pf
+
+:set makeprg=pytest
