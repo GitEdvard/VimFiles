@@ -39,6 +39,7 @@ Plug 'thinca/vim-textobj-between'
 Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'kana/vim-textobj-line'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-unimpaired'
 Plug 'gaving/vim-textobj-argument'
 Plug 'vim-test/vim-test'
 Plug 'tpope/vim-dispatch'
@@ -102,15 +103,6 @@ set secure " disable unsafe commands in local .vimrc files
 """"
 abbr _bash #! /bin/bash<CR>
 
-" Autofill matching paranthesis, citations, etc.
-inoremap " ""<left>
-inoremap ' ''<left>
-inoremap ( ()<left>
-inoremap { {}<left>
-
-" Open qickfix window
-nnoremap <leader>q :copen<cr> <c-w>L
-
 set incsearch
 "Case insensitive search.
 set ic
@@ -167,12 +159,19 @@ nnoremap i zzi
 nnoremap o zzo
 nnoremap O zzO
 
+" Matching paranthesis etc.
+inoremap <c-f>" ""<Left>
+inoremap <c-f>' ''<Left>
+inoremap <c-f>[ []<Left>
+inoremap <c-f>( ()<Left>
+inoremap <c-f>{ {}<Left>
+
 " center screen after search
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
-" Bind "jj" to <esc> to jump out of insert mode
-inoremap jj <esc>
+" Bind "jk" to <esc> to jump out of insert mode
+inoremap jk <esc>
 
 " Swap colon and semicolon
 noremap ; :
@@ -209,10 +208,6 @@ noremap <leader>h :noh<CR>
 
 " Fix zt an zb near edges
 set scrolloff=3
-
-" Insert new lines without exit normal mode
-nmap oo o<esc>k
-nmap OO O<esc>j
 
 " Set wait time between key strokes
 set timeoutlen=500
@@ -261,6 +256,17 @@ function! LightlineFilename()
     return expand('%')
 endfunction
 
+" Move between windows in same tab
+noremap <A-l> <c-w>l
+noremap <A-h> <c-w>h
+noremap <A-j> <c-w>j
+noremap <A-k> <c-w>k
+
+" Resize with arrows
+noremap <c-Up> :resize -2<cr>
+noremap <c-Down> :resize +2<cr>
+noremap <c-Left> :vertical resize -2<cr>
+noremap <c-Right> :vertical resize +2<cr>
 """
 " ansible-vim
 """
@@ -443,3 +449,8 @@ let test#strategy = "make"
 " nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Open qickfix window
+" I have this last, the mapping disappears for some reason otherwise
+nnoremap <leader>q :copen<cr> <c-w>L
+
