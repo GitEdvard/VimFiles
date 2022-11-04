@@ -43,6 +43,9 @@ Plug 'tpope/vim-unimpaired'
 Plug 'gaving/vim-textobj-argument'
 Plug 'vim-test/vim-test'
 Plug 'tpope/vim-dispatch'
+" stackmap, for switch mappings in quickfix window
+Plug 'tjdevries/stackmap.nvim'
+
 " Debugger
 Plug 'puremourning/vimspector'
 
@@ -103,9 +106,6 @@ set secure " disable unsafe commands in local .vimrc files
 """"
 abbr _bash #! /bin/bash<CR>
 
-" Open qickfix window
-nnoremap <leader>q :copen<cr> <c-w>L
-
 set incsearch
 "Case insensitive search.
 set ic
@@ -149,6 +149,15 @@ augroup illuminate_augroup
     autocmd VimEnter * hi link illuminatedWord CursorLine
 augroup END
 
+" augroup my_quickfix_augroup
+"     autocmd!
+"     autocmd BufEnter * if &buftype == "quickfix" | stackmap.push("myquckfix", "n" {
+"             ["<c-k>"] = "echo 'up'",
+"             ["<c-j"] = "echo 'down'"
+"         } | endif
+"     autocmd BufLeave * if &buftype == 'quickfix' | echo "bye" | endif
+" augroup END
+
 highlight CursorLine ctermbg=Yellow cterm=bold guibg=#2b2b2b
 
 " Retain selection when indenting blocks
@@ -163,11 +172,11 @@ nnoremap o zzo
 nnoremap O zzO
 
 " Matching paranthesis etc.
-inoremap <leader>w" ""<Left>
-inoremap <leader>w' ''<Left>
-inoremap <leader>w[ []<Left>
-inoremap <leader>w( ()<Left>
-inoremap <leader>w{ {}<Left>
+inoremap <c-f>" ""<Left>
+inoremap <c-f>' ''<Left>
+inoremap <c-f>[ []<Left>
+inoremap <c-f>( ()<Left>
+inoremap <c-f>{ {}<Left>
 
 " center screen after search
 nnoremap n nzzzv
@@ -452,3 +461,8 @@ let test#strategy = "make"
 " nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Open qickfix window
+" I have this last, the mapping disappears for some reason otherwise
+nnoremap <leader>q :copen<cr> <c-w>L
+
