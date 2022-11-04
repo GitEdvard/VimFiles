@@ -43,6 +43,9 @@ Plug 'tpope/vim-unimpaired'
 Plug 'gaving/vim-textobj-argument'
 Plug 'vim-test/vim-test'
 Plug 'tpope/vim-dispatch'
+" stackmap, for switch mappings in quickfix window
+Plug 'tjdevries/stackmap.nvim'
+
 " Debugger
 Plug 'puremourning/vimspector'
 
@@ -145,6 +148,15 @@ augroup illuminate_augroup
     autocmd!
     autocmd VimEnter * hi link illuminatedWord CursorLine
 augroup END
+
+" augroup my_quickfix_augroup
+"     autocmd!
+"     autocmd BufEnter * if &buftype == "quickfix" | stackmap.push("myquckfix", "n" {
+"             ["<c-k>"] = "echo 'up'",
+"             ["<c-j"] = "echo 'down'"
+"         } | endif
+"     autocmd BufLeave * if &buftype == 'quickfix' | echo "bye" | endif
+" augroup END
 
 highlight CursorLine ctermbg=Yellow cterm=bold guibg=#2b2b2b
 
