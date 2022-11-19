@@ -5,6 +5,9 @@ execute pathogen#infect()
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
+" lua require('ensure_packer')
+" lua require('plugins')
+
 " https://github.com/junegunn/vim-plug
 call plug#begin('~/.vim/plugged')
 
@@ -66,15 +69,21 @@ call plug#end()
 """
 
 " Standard Vim configuration boilerplate
-syntax on
+" syntax on
 filetype plugin indent on
 set t_Co=256
 set encoding=utf-8
-set number relativenumber
+" set number relativenumber
 
+lua vim.opt.syntax = "on"
+lua vim.opt.number = true
+lua vim.opt.relativenumber = true
 " finding files
-set path+=**
-set wildmenu
+
+lua vim.opt.wildmenu = true
+lua vim.opt.path:append("**")
+" set path+=**
+" set wildmenu
 
 " To install language servers, manually run:
 "   :call InstallCocPlugins()
@@ -85,7 +94,8 @@ endfunction
 command! InstallCocPlugins execute ":call InstallCocPlugins()"
 
 " Get rid of pesky q:s
-set guicursor=
+" set guicursor=
+lua vim.opt.guicursor = ""
 " Workaround some broken plugins which set guicursor indiscriminately.
 autocmd OptionSet guicursor noautocmd set guicursor=
 
@@ -95,31 +105,43 @@ autocmd VimLeavePre * if get(g:, 'coc_process_pid', 0)
 
 " Make OS X play nicely with Vim
 " (Doesn't seem to work)
-set clipboard=unnamed
+" set clipboard=unnamed
 
 " http://damien.lespiau.name/blog/2009/03/18/per-project-vimrc/comment-page-1/
 " set exrc " enable per-directory .vimrc files
-set secure " disable unsafe commands in local .vimrc files
+" set secure " disable unsafe commands in local .vimrc files
 
+lua vim.opt.secure = true
 """"
 " Custom configuration begins
 """"
 abbr _bash #! /bin/bash<CR>
 
-set incsearch
+" set incsearch
+lua vim.opt.incsearch = true
 "Case insensitive search.
-set ic
-" Smart case searches
-set smartcase
-" Set this to enable lightline
-set laststatus=2
-" This is handled by lightline
-set noshowmode
+" set ic
+lua vim.opt.ic = true
 
-set termguicolors
+" Smart case searches
+" set smartcase
+lua vim.opt.smartcase = true
+
+" Set this to enable lightline
+" set laststatus=2
+lua vim.opt.laststatus = 2
+
+" This is handled by lightline
+" set noshowmode
+" lua vim.opt.noshowmode = true
+
+" set termguicolors
+lua vim.opt.termguicolors = true
+
 " colorscheme vim-monokai-tasty
 " colorscheme peachpuff
-set bg=dark
+" set bg=dark
+lua vim.opt.bg = dark
 colorscheme codedark
 
 let mapleader = "\<Space>"
@@ -316,7 +338,8 @@ nmap // :BLines!<CR>
 nmap ?? :Rg!<CR>
 
 " Bind "<leader>p" to a fzf-powered filename search
-nmap <leader>p :Files!<CR>
+nmap <leader>p :Telescope find_files<CR>
+" nmap <leader>p :Files!<CR>
 
 " Bind "<leader>b" to show buffers with contents
 nmap <leader>b :Buffers!<CR>
