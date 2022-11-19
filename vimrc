@@ -11,7 +11,7 @@ call plug#begin('~/.vim/plugged')
 " This is our list of plugins to install
 Plug 'chriskempson/base16-vim'
 Plug 'mhinz/vim-startify'
-Plug 'scrooloose/nerdtree'
+Plug 'preservim/nerdtree'
 Plug 'dyng/ctrlsf.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -347,6 +347,7 @@ nmap <leader>n :NERDTreeFind<CR>
 au FileType nerdtree vert resize 50
 " let g:NERDTreeWinSize=50
 let NERDTreeIgnore = ['\.pyc$']
+let g:NERDTreeMinimalMenu=1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 " textobj between
