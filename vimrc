@@ -66,9 +66,18 @@ Plug 'nvim-treesitter/nvim-treesitter'
 " Language server support
 Plug 'neovim/nvim-lspconfig'
 
+" Autocompletion
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer', {'do': 'make'}
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'quangnguyen30192/cmp-nvim-ultisnips'
+
 " To install language servers, manually run:
 "   :call InstallCocPlugins()
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+" Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 call plug#end()
 
 """
@@ -489,14 +498,23 @@ nnoremap <leader>q :copen<cr> <c-w>L
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 " Lsp
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
+set completeopt=menu,menuone,noselect
+
 lua << EOF
 local on_attach, lsp_flags = require('mylsp_settings')
+
+-- Set up lspconfig.
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 require('lspconfig')['pyright'].setup{
     on_attach = on_attach,
     flags = lsp_flags,
+    capabilities = capabilities
 }
+require('mycmp_settings')
 EOF
+
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 " Telescope
