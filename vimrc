@@ -67,13 +67,15 @@ Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'neovim/nvim-lspconfig'
 
 " Autocompletion
-Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer', {'do': 'make'}
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'quangnguyen30192/cmp-nvim-ultisnips'
+
+" csharp things
+Plug 'OmniSharp/omnisharp-vim'
 
 " To install language servers, manually run:
 "   :call InstallCocPlugins()
@@ -499,6 +501,7 @@ nnoremap <leader>q :copen<cr> <c-w>L
 " Lsp
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 set completeopt=menu,menuone,noselect
+" let g:OmniSharp_translate_cygwin_wsl = 1
 
 lua << EOF
 local on_attach, lsp_flags = require('mylsp_settings')
@@ -510,6 +513,15 @@ require('lspconfig')['pyright'].setup{
     on_attach = on_attach,
     flags = lsp_flags,
     capabilities = capabilities
+}
+local pid = vim.fn.getpid()
+local omnisharp_bin = "/home/edvard/.cache/omnisharp-vim/omnisharp-roslyn/run"
+-- local omnisharp_bin = "/mnt/c/Users/edeng655/AppData/Local/omnisharp-vim/omnisharp-rosly/OmniSharp.exe"
+require('lspconfig')['omnisharp'].setup{
+    on_attach = on_attach,
+    flags = lsp_flags,
+    capabilities = capabilities,
+    cmd = { omnisharp_bin, "--languageserver" , "--hostPID", tostring(pid) }
 }
 require('mycmp_settings')
 EOF
