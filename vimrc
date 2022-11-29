@@ -526,16 +526,19 @@ require('lspconfig')['omnisharp'].setup{
 require('mycmp_settings')
 EOF
 
-
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 " Telescope
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" nnoremap <leader>fs <cmd>Telescope grep_string<cr>
 nnoremap <leader>ff <cmd>Telescope git_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-nnoremap <leader>fs <cmd>Telescope grep_string<cr>
+nnoremap <leader>fd <cmd>Telescope diagnostics<cr>
+nnoremap <leader>fs :Telescope grep_string search=
+nnoremap <leader>fl <cmd>Telescope lsp_document_symbols<cr>
+
 
 lua << EOF
 -- You dont need to set any of these options. These are the default ones. Only
