@@ -56,6 +56,7 @@ Plug 'puremourning/vimspector'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'BurntSushi/ripgrep'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+Plug 'nvim-telescope/telescope-file-browser.nvim'
 " Note!!!! Go to directory where telescope-fzf-native is installed, and run
 " make clean && make
 " will take care of E5108: Error executing lua  'fzf' extension doesn't exist
@@ -538,6 +539,8 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>fd <cmd>Telescope diagnostics<cr>
 nnoremap <leader>fs :Telescope grep_string search=
 nnoremap <leader>fl <cmd>Telescope lsp_document_symbols<cr>
+nnoremap <leader>fr <cmd>Telescope file_browser<cr>
+nnoremap <leader>fc <cmd>Telescope current_buffer_fuzzy_find<cr>
 
 
 lua << EOF
@@ -565,7 +568,7 @@ require('telescope').setup {
 -- To get fzf loaded and working with telescope, you need to call
 -- load_extension, somewhere after setup function:
 require('telescope').load_extension('fzf')
-
+require("telescope").load_extension "file_browser"
 EOF
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
