@@ -124,7 +124,20 @@ autocmd VimLeavePre * if get(g:, 'coc_process_pid', 0)
 
 " Make OS X play nicely with Vim
 " (Doesn't seem to work)
-" set clipboard=unnamed
+" set clipboard=unnamedplus
+set clipboard+=unnamedplus
+let g:clipboard = {
+              \   'name': 'win32yank-wsl',
+          \   'copy': {
+              \      '+': 'win32yank.exe -i --crlf',
+          \      '*': 'win32yank.exe -i --crlf',
+          \    },
+          \   'paste': {
+              \      '+': 'win32yank.exe -o --lf',
+          \      '*': 'win32yank.exe -o --lf',
+          \   },
+          \   'cache_enabled': 0,
+          \ }
 
 " http://damien.lespiau.name/blog/2009/03/18/per-project-vimrc/comment-page-1/
 " set exrc " enable per-directory .vimrc files
