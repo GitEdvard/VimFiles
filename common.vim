@@ -263,7 +263,7 @@ noremap <leader>h :noh<CR>
 set scrolloff=3
 
 " Set wait time between key strokes
-set timeoutlen=500
+set timeoutlen=1000
 
 " Prettify json
 " --- backup and swap files ---
@@ -536,13 +536,15 @@ EOF
 nnoremap <leader>ff <cmd>Telescope git_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>fd <cmd>Telescope diagnostics<cr>
 nnoremap <leader>fs :Telescope grep_string search=
 nnoremap <leader>fl <cmd>Telescope lsp_document_symbols<cr>
 nnoremap <leader>fr <cmd>Telescope file_browser<cr>
 nnoremap <leader>fc <cmd>Telescope current_buffer_fuzzy_find<cr>
-
+nnoremap <leader>yk <cmd>Telescope keymaps<cr>
+nnoremap <leader>yr <cmd>Telescope registers<cr>
+nnoremap <leader>yc <cmd>Telescope command_history<cr>
+nnoremap <leader>yh <cmd>Telescope help_tags<cr>
 
 lua << EOF
 -- You dont need to set any of these options. These are the default ones. Only
