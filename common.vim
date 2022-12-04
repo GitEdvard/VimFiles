@@ -492,6 +492,7 @@ nmap <silent> <leader>tl :TestLast<CR>
 nmap <silent> <leader>tv :TestVisit<CR>
 
 let test#python#runner = 'pytest'
+let test#csharp#runner = 'dotnettest'
 let test#strategy = "make"
 
 " Open qickfix window
