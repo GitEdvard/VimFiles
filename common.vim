@@ -287,6 +287,9 @@ command! Gitpushforce execute ":! git push -f origin develop"
 command! Mksession execute ":mksession!"
 command! Ctags execute ":!ctags -R"
 
+command! Ostart execute ":OmniSharpStartServer"
+command! Ostop execute ":OmniSharpStopServer"
+
 " Simple tab navigation with <C-h> and <C-l> to intuitively go left and right
 noremap <C-h> :tabp<CR>
 noremap <C-l> :tabn<CR>
