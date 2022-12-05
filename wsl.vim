@@ -12,3 +12,4 @@ let g:clipboard = {
           \   'cache_enabled': 0,
           \ }
 
+command! Compile execute ":!/mnt/c/Program\\\ Files\\\ \\\(x86\\\)/Microsoft\\\ Visual\\\ Studio/2019/BuildTools/MSBuild/Current/Bin/MSBuild.exe /p:WarningLevel=0 /verbosity:minimal /p:Configuration=Release"
