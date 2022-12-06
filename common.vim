@@ -41,6 +41,7 @@ Plug 'bps/vim-textobj-python'
 Plug 'thinca/vim-textobj-between'
 Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'kana/vim-textobj-line'
+Plug 'kana/vim-textobj-entire'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-unimpaired'
 Plug 'gaving/vim-textobj-argument'
@@ -182,6 +183,9 @@ command! Reloadall execute ":bufdo e!"
 
 " Open current file in a new tab
 nnoremap <leader>t <C-w>v<C-w>T
+
+" Automatic indentation
+nnoremap <leader>= =
 
 set cursorline
 
