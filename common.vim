@@ -78,6 +78,7 @@ Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 
 " csharp things
 Plug 'OmniSharp/omnisharp-vim'
+Plug 'editorconfig/editorconfig-vim'
 
 " To install language servers, manually run:
 "   :call InstallCocPlugins()
@@ -477,17 +478,27 @@ noremap <C-j> :tabc<CR> :tabp<CR>
 noremap <C-k> :tabe <Bar> Startify<CR>
 
 " Vimspector, debugger
-nnoremap <Leader>dd :let $CURRENT_PY_PATH=substitute(expand('%:r'), '/', '.', 'g')<CR> :call vimspector#Launch()<CR>
-nnoremap <Leader>de :call vimspector#Reset()<CR>
-nnoremap <Leader>dc :call vimspector#Continue()<CR>
+" nnoremap <F5> :let $CURRENT_PY_PATH=substitute(expand('%:r'), '/', '.', 'g')<CR> :call vimspector#Launch()<CR>
+" Basically following the human mode settings, with exception leader is
+" replaced with shift
+nnoremap <F5> :call vimspector#Launch()<CR>
+nmap <Leader>di <Plug>VimspectorBalloonEval
+xmap <Leader>di <Plug>VimspectorBalloonEval
+nnoremap <F17> :call vimspector#Reset()<CR> " This is <s-f5>
+nnoremap <F5> :call vimspector#Continue()<CR>
+nnoremap <F3> :call vimspector#Stop()<CR>
+nnoremap <F4> <Plug>VimspectorRestart
+nnoremap <F6> <Plug>VimspectorPause
 
-nnoremap <Leader>dt :call vimspector#ToggleBreakpoint()<CR>
+nnoremap <F9> :call vimspector#ToggleBreakpoint()<CR>
+nnoremap <F21> <Plug>VimspectorToggleConditionalBreakpoint " this is <s-f9>
+nnoremap <F8> <Plug>VimspectorAddFunctionBreakpoint
+nnoremap <F20> <Plug>VimspectorRunToCursor " this is <s-f8>
 nnoremap <Leader>dT :call vimspector#ClearBreakpoints()<CR>
 
-nmap <Leader>dk <Plug>VimspectorRestart
-nmap <Leader>dh <Plug>VimspectorStepOut
-nmap <Leader>dl <Plug>VimspectorStepInto
-nmap <Leader>dj <Plug>VimspectorStepOver
+nmap <F23>dh <Plug>VimspectorStepOut " This is <s-f11>
+nmap <F11> <Plug>VimspectorStepInto
+nmap <F10> <Plug>VimspectorStepOver
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-test
