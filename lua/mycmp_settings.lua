@@ -1,6 +1,17 @@
 -- Set up nvim-cmp.
 local cmp = require'cmp'
 
+local ok, lspkind = pcall(require, "lspkind")
+if not ok then
+    return
+end
+
+lspkind.init {
+    symbol_map = {
+        Copilot = "",
+    },
+}
+
 cmp.setup({
     snippet = {
         -- REQUIRED - you must specify a snippet engine
@@ -31,6 +42,16 @@ cmp.setup({
     }, {
         { name = 'buffer', keyword_length=3 },
     }),
+    formatting = {
+        format = lspkind.cmp_format {
+            with_text = true,
+            menu = {
+                buffer = "[buf]",
+                nvim_lsp = "[LSP]",
+                ultisnips = "[snip]",
+            },
+        },
+    },
 })
 
 -- Set configuration for specific filetype.
