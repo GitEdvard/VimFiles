@@ -24,3 +24,11 @@ require('telescope').setup {
 require('telescope').load_extension('fzf')
 require("telescope").load_extension "file_browser"
 
+local M = {}
+function M.current_buffer_fuzzy_find()
+    local opts = {}
+    opts.prompt_prefix = '$ '
+    require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_ivy(opts))
+end
+local bufopts = { noremap=true, silent=true }
+vim.keymap.set('n', '<leader>fe', M.current_buffer_fuzzy_find, bufopts)

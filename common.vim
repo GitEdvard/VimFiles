@@ -559,7 +559,8 @@ nnoremap <leader>fd <cmd>Telescope diagnostics<cr>
 nnoremap <leader>fs :Telescope grep_string search=
 nnoremap <leader>fl <cmd>Telescope lsp_document_symbols<cr>
 nnoremap <leader>fr <cmd>Telescope file_browser<cr>
-nnoremap <leader>fc <cmd>Telescope current_buffer_fuzzy_find<cr>
+" nnoremap <leader>fc <cmd>Telescope current_buffer_fuzzy_find<cr>
+"
 nnoremap <leader>yk <cmd>Telescope keymaps<cr>
 nnoremap <leader>yr <cmd>Telescope registers<cr>
 nnoremap <leader>yc <cmd>Telescope command_history<cr>
@@ -567,5 +568,3 @@ nnoremap <leader>yh <cmd>Telescope help_tags<cr>
 
 lua require('mytelescope')
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
