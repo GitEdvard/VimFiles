@@ -39,6 +39,7 @@ cmp.setup({
         -- { name = 'luasnip' }, -- For luasnip users.
         { name = 'ultisnips' }, -- For ultisnips users.
         -- { name = 'snippy' }, -- For snippy users.
+        { name = 'nvim_lua' },
     }, {
         { name = 'buffer', keyword_length=3 },
     }),
@@ -46,9 +47,10 @@ cmp.setup({
         format = lspkind.cmp_format {
             with_text = true,
             menu = {
-                buffer = "[buf]",
+                buffer = "[BUF]",
                 nvim_lsp = "[LSP]",
-                ultisnips = "[snip]",
+                ultisnips = "[SNIP]",
+                nvim_lua = "[LUA]"
             },
         },
     },

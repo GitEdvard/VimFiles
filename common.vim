@@ -71,6 +71,7 @@ Plug 'neovim/nvim-lspconfig'
 " Autocompletion
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer', {'do': 'make'}
+Plug 'hrsh7th/cmp-nvim-lua'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
@@ -188,6 +189,9 @@ nnoremap <leader>t <C-w>v<C-w>T
 
 " Automatic indentation
 nnoremap <leader>= =
+
+" open file with default program
+nnoremap <leader>x :!xdg-open %<cr>
 
 set cursorline
 
