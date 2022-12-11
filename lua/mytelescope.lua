@@ -1,11 +1,17 @@
 -- You dont need to set any of these options. These are the default ones. Only
 -- the loading is important
+-- default keymaps are in
+-- ~/sources/admin/VimFiles/plugged/telescope.nvim/lua/telescope/mappings.lua
+local actions = require "telescope.actions"
+
 require('telescope').setup {
   defaults = {
       mappings = {
           i = {
-              ["<C-j>"] = require('telescope.actions').cycle_history_next,
-              ["<C-k>"] = require('telescope.actions').cycle_history_prev,
+              ["<C-j>"] = actions.move_selection_next,
+              ["<C-k>"] = actions.move_selection_previous,
+              ["<C-n>"] = require('telescope.actions').cycle_history_next,
+              ["<C-p>"] = require('telescope.actions').cycle_history_prev,
           }
       }
   },

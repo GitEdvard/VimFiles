@@ -397,12 +397,12 @@ function! ToggleNERDTree()
   silent NERDTreeMirror
 endfunction
 
-" Bind "<leader>n" to toggle NERDTree
 nmap <leader>n :NERDTreeFind<CR>
 au FileType nerdtree vert resize 50
 " let g:NERDTreeWinSize=50
 let NERDTreeIgnore = ['\.pyc$']
 let g:NERDTreeMinimalMenu=1
+let g:NERDTreeQuitOnOpen = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 " textobj between
