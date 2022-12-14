@@ -80,7 +80,8 @@ Plug 'onsails/lspkind.nvim'
 
 " csharp things
 Plug 'OmniSharp/omnisharp-vim'
-Plug 'editorconfig/editorconfig-vim'
+Plug 'gpanders/editorconfig.nvim'
+
 
 " To install language servers, manually run:
 "   :call InstallCocPlugins()
