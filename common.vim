@@ -194,6 +194,9 @@ nnoremap <leader>= =
 " open file with default program
 nnoremap <leader>x :!xdg-open %<cr>
 
+nnoremap <c-d> <c-d>zz
+nnoremap <c-u> <c-u>zz
+
 set cursorline
 
 augroup illuminate_augroup
@@ -534,6 +537,6 @@ lua require('mylsp_settings')
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 " Telescope
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
-"
 lua require('mytelescope')
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
