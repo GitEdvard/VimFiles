@@ -292,6 +292,7 @@ command! JsonPrettify execute ":r !xclip -selection clipboard -o | jsonlint"
 " configuration.
 " command! Config execute ":e $MYVIMRC"
 command! Config execute ":e ~/.vimrc"
+command! W execute ":w | source %"
 
 " Call ":Reload" to apply the latest .vimrc contents
 command! Reload execute "source ~/.vimrc"
