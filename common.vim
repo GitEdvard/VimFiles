@@ -63,7 +63,8 @@ Plug 'nvim-telescope/telescope-file-browser.nvim'
 " will take care of E5108: Error executing lua  'fzf' extension doesn't exist
 " or isn't installed"
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
-Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/playground'
 
 " Language server support
 Plug 'neovim/nvim-lspconfig'
@@ -237,6 +238,7 @@ inoremap <c-f>{ {}<Left>
 nnoremap n nzzzv
 nnoremap N Nzzzv
 
+nnoremap <c-w><c-o> :tab sp<cr>
 " Bind "jk" to <esc> to jump out of insert mode
 inoremap jk <esc>
 
@@ -541,3 +543,4 @@ lua require('mylsp_settings')
 lua require('mytelescope')
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
+lua require('mytreesitter')
