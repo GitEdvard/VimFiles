@@ -1,4 +1,4 @@
-local query = require'nvim-treesitter.query'
+local query = require'vim.treesitter.query'
 local ts_utils = require'nvim-treesitter.ts_utils'
 
 -- Trim spaces and opening brackets from end
@@ -16,7 +16,10 @@ local get_line_for_node = function(node, type_patterns, transform_fn)
         end
     end
     if not is_valid then return '' end
-    local line = transform_fn(vim.trim(ts_utils.get_node_text(node)[1] or ''))
+    -- print("node repr: " .. vim.inspect(vim.trim(node:field("type"))))
+    print("node repr: " .. vim.inspect(vim.trim(vim.inspect(node:field("name")))))
+    -- print("get_node_text: " .. vim.inspect(vim.trim(query.get_node_text(node, vim.api.nvim_get_current_buf()) or '')))
+    local line = transform_fn(vim.trim(query.get_node_text(node) or ''))
     -- Escape % to avoid statusline to evaluate content as expression
     return line:gsub('%%', '%%%%')
 end
@@ -35,6 +38,7 @@ function statusline()
     local expr = current_node
 
     while expr do
+        print("expr: " .. expr:type())
         local line = get_line_for_node(expr, type_patterns, transform_fn)
         if line ~= '' and not vim.tbl_contains(lines, line) then
             table.insert(lines, 1, line)
