@@ -24,13 +24,15 @@ name: (identifier) @name)
 local matches_pattern = function(node, type_patterns)
     local node_type = node:type()
     local is_valid = false
-    for _, rgx in ipairs(type_patterns) do
+    local matching_pattern = ""
+    for rgx in pairs(type_patterns) do
         if node_type:find(rgx) then
             is_valid = true
+            matching_pattern = rgx
             break
         end
     end
-    return is_valid
+    return is_valid, matching_pattern
 end
 
 local get_node_text = function(start_node, bufnr, query_string)
@@ -46,9 +48,11 @@ end
 function get_method_name(bufnr)
     local options = {}
     local indicator_size = 100
-    local type_patterns = {'class', 'method'}
+    local type_patterns = {
+        ['class'] = query_for_class,
+        ['method'] = query_for_method,
+    }
     local transform_fn = transform_line
-    local separator = ' -> '
 
     local current_node = ts_utils.get_node_at_cursor()
     if not current_node then return "" end
@@ -57,14 +61,16 @@ function get_method_name(bufnr)
     local expr = current_node
 
     while expr do
-        local matches = matches_pattern(expr, type_patterns)
+        local matches, matching_pattern = matches_pattern(expr, type_patterns)
         if matches then
-            break
+            local method_node = expr
+            local text = get_node_text(method_node, bufnr, type_patterns[matching_pattern])
+            table.insert(lines, 1, text)
         end
         expr = expr:parent()
     end
-    local method_node = expr
-    local text = get_node_text(method_node, bufnr, query_for_method)
+    table.insert(lines, 1, vim.fn.expand('%:t:r'))
+    text = table.concat(lines, ".")
     return text
 end
 
