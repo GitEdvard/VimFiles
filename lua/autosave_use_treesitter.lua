@@ -21,6 +21,13 @@ name: (identifier) @name)
 )
 ]]
 
+local query_for_namespace = [[
+(
+(file_scoped_namespace_declaration
+name: (identifier) @name)
+)
+]]
+
 local matches_pattern = function(node, type_patterns)
     local node_type = node:type()
     local is_valid = false
@@ -65,26 +72,25 @@ function get_unit_test_range(bufnr, type_patterns)
         end
         expr = expr:parent()
     end
-    table.insert(lines, 1, vim.fn.expand('%:t:r'))
     text = table.concat(lines, ".")
     return text
 end
 
 local group = vim.api.nvim_create_augroup("edvard-automagic", { clear = true })
 
+local type_patterns_base = {
+    ['namespace'] = query_for_namespace,
+    ['class'] = query_for_class,
+}
 local write_method = function(bufnr)
-            local type_patterns = {
-                ['class'] = query_for_class,
-                ['method'] = query_for_method,
-            }
+            local type_patterns = type_patterns_base
+            type_patterns['method'] = query_for_method
             local text = get_unit_test_range(bufnr, type_patterns)
             print(vim.inspect(text))
 end
 
 local write_class = function(bufnr)
-            local type_patterns = {
-                ['class'] = query_for_class,
-            }
+            local type_patterns = type_patterns_base
             local text = get_unit_test_range(bufnr, type_patterns)
             print(vim.inspect(text))
 end
@@ -94,7 +100,7 @@ local attach_to_buffer = function(bufnr)
         group = group,
         pattern = "*.cs",
         callback = function()
-            write_class(bufnr)
+            write_method(bufnr)
         end,
     } )
 end
