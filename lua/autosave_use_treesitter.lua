@@ -1,5 +1,6 @@
-local query = require'vim.treesitter.query'
+local query_module = require'vim.treesitter.query'
 local ts_utils = require'nvim-treesitter.ts_utils'
+local ts = require'vim.treesitter'
 
 -- Trim spaces and opening brackets from end
 local transform_line = function(line)
@@ -20,11 +21,45 @@ local get_line_for_node = function(node, type_patterns, transform_fn)
     print("node repr: " .. vim.inspect(vim.trim(vim.inspect(node:field("name")))))
     -- print("get_node_text: " .. vim.inspect(vim.trim(query.get_node_text(node, vim.api.nvim_get_current_buf()) or '')))
     local line = transform_fn(vim.trim(query.get_node_text(node) or ''))
-    -- Escape % to avoid statusline to evaluate content as expression
+    -- Escape % to avoid get_method_name to evaluate content as expression
     return line:gsub('%%', '%%%%')
 end
 
-function statusline()
+local matches_pattern = function(node, type_patterns)
+    local node_type = node:type()
+    local is_valid = false
+    for _, rgx in ipairs(type_patterns) do
+        if node_type:find(rgx) then
+            is_valid = true
+            break
+        end
+    end
+    return is_valid
+end
+
+local query_string = [[
+(
+(method_declaration
+name: (identifier) @name)
+)
+]]
+
+local find_position = function(start_node, bufnr, query_string)
+    local query = ts.parse_query("c_sharp", query_string)
+    for id, node in query:iter_captures(start_node, bufnr, 0, -1) do
+        if id == 1 then
+            local start = { node:start() }
+            local start_byte = start[3]
+            local end_ = { node:end_() }
+            local end_byte = end_[3]
+            -- return { start_byte, end_byte }
+            return query_module.get_node_text(node, bufnr)
+        end
+    end
+    return nil
+end
+
+function get_method_name(bufnr)
     local options = {}
     local indicator_size = 100
     local type_patterns = {'class', 'function', 'method'}
@@ -38,17 +73,17 @@ function statusline()
     local expr = current_node
 
     while expr do
-        print("expr: " .. expr:type())
-        local line = get_line_for_node(expr, type_patterns, transform_fn)
-        if line ~= '' and not vim.tbl_contains(lines, line) then
-            table.insert(lines, 1, line)
+        local matches = matches_pattern(expr, type_patterns)
+        if matches then
+            break
         end
         expr = expr:parent()
     end
-
-    local text = table.concat(lines, separator)
-    return text
+    local method_node = expr
+    local pos = find_position(method_node, bufnr, query_string)
+    return pos
 end
+
 local group = vim.api.nvim_create_augroup("edvard-automagic", { clear = true })
 
 local attach_to_buffer = function(bufnr)
@@ -56,8 +91,8 @@ local attach_to_buffer = function(bufnr)
         group = group,
         pattern = "*.cs",
         callback = function()
-            local text = statusline()
-            print(text)
+            local text = get_method_name(bufnr)
+            print(vim.inspect(text))
         end,
     } )
 end
