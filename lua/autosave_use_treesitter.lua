@@ -7,6 +7,20 @@ local transform_line = function(line)
     return line:gsub('%s*[%[%(%{]*%s*$', '')
 end
 
+local query_for_method = [[
+(
+(method_declaration
+name: (identifier) @name)
+)
+]]
+
+local query_for_class = [[
+(
+(class_declaration
+name: (identifier) @name)
+)
+]]
+
 local matches_pattern = function(node, type_patterns)
     local node_type = node:type()
     local is_valid = false
@@ -18,13 +32,6 @@ local matches_pattern = function(node, type_patterns)
     end
     return is_valid
 end
-
-local query_string = [[
-(
-(method_declaration
-name: (identifier) @name)
-)
-]]
 
 local get_node_text = function(start_node, bufnr, query_string)
     local query = ts.parse_query("c_sharp", query_string)
@@ -57,7 +64,7 @@ function get_method_name(bufnr)
         expr = expr:parent()
     end
     local method_node = expr
-    local text = get_node_text(method_node, bufnr, query_string)
+    local text = get_node_text(method_node, bufnr, query_for_method)
     return text
 end
 
