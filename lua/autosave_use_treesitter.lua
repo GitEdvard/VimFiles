@@ -45,13 +45,9 @@ local get_node_text = function(start_node, bufnr, query_string)
     return nil
 end
 
-function get_method_name(bufnr)
+function get_unit_test_range(bufnr, type_patterns)
     local options = {}
     local indicator_size = 100
-    local type_patterns = {
-        ['class'] = query_for_class,
-        ['method'] = query_for_method,
-    }
     local transform_fn = transform_line
 
     local current_node = ts_utils.get_node_at_cursor()
@@ -76,13 +72,29 @@ end
 
 local group = vim.api.nvim_create_augroup("edvard-automagic", { clear = true })
 
+local write_method = function(bufnr)
+            local type_patterns = {
+                ['class'] = query_for_class,
+                ['method'] = query_for_method,
+            }
+            local text = get_unit_test_range(bufnr, type_patterns)
+            print(vim.inspect(text))
+end
+
+local write_class = function(bufnr)
+            local type_patterns = {
+                ['class'] = query_for_class,
+            }
+            local text = get_unit_test_range(bufnr, type_patterns)
+            print(vim.inspect(text))
+end
+
 local attach_to_buffer = function(bufnr)
     vim.api.nvim_create_autocmd("BufWritePost", {
         group = group,
         pattern = "*.cs",
         callback = function()
-            local text = get_method_name(bufnr)
-            print(vim.inspect(text))
+            write_class(bufnr)
         end,
     } )
 end
