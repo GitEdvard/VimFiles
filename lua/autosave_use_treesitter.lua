@@ -76,36 +76,43 @@ function get_unit_test_range(bufnr, type_patterns)
     return text
 end
 
-local group = vim.api.nvim_create_augroup("edvard-automagic", { clear = true })
-
-local type_patterns_base = {
-    ['namespace'] = query_for_namespace,
-    ['class'] = query_for_class,
-}
 local write_method = function(bufnr)
-            local type_patterns = type_patterns_base
-            type_patterns['method'] = query_for_method
-            local text = get_unit_test_range(bufnr, type_patterns)
-            print(vim.inspect(text))
+    local type_patterns = {
+        ['namespace'] = query_for_namespace,
+        ['class'] = query_for_class,
+        ['method'] = query_for_method,
+    }
+    local text = get_unit_test_range(bufnr, type_patterns)
+    print(vim.inspect(text))
 end
 
 local write_class = function(bufnr)
-            local type_patterns = type_patterns_base
-            local text = get_unit_test_range(bufnr, type_patterns)
-            print(vim.inspect(text))
+    local type_patterns = {
+        ['namespace'] = query_for_namespace,
+        ['class'] = query_for_class,
+    }
+    local text = get_unit_test_range(bufnr, type_patterns)
+    print(vim.inspect(text))
 end
 
-local attach_to_buffer = function(bufnr)
+local group = vim.api.nvim_create_augroup("edvard-automagic", { clear = true })
+
+local attach_test_range = function(bufnr, write_range_fnc)
+    vim.api.nvim_clear_autocmds({ group = "edvard-automagic" })
     vim.api.nvim_create_autocmd("BufWritePost", {
         group = group,
         pattern = "*.cs",
         callback = function()
-            write_method(bufnr)
+            write_range_fnc(bufnr)
         end,
     } )
 end
 
-vim.api.nvim_create_user_command("GenerateTestArguments", function()
-    attach_to_buffer(vim.api.nvim_get_current_buf())
+vim.api.nvim_create_user_command("AttachTestMethod", function()
+    attach_test_range(vim.api.nvim_get_current_buf(), write_method)
+end, {})
+
+vim.api.nvim_create_user_command("AttachTestClass", function()
+    attach_test_range(vim.api.nvim_get_current_buf(), write_class)
 end, {})
 
