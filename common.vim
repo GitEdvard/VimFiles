@@ -187,7 +187,7 @@ nnoremap <leader>e :e!<CR>
 command! Reloadall execute ":bufdo e!"
 
 " Open current file in a new tab
-nnoremap <leader>t <C-w>v<C-w>T
+nnoremap <leader>r <C-w>v<C-w>T
 
 " Automatic indentation
 nnoremap <leader>= =
@@ -544,3 +544,8 @@ lua require('mytelescope')
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 lua require('mytreesitter')
+
+lua require('autosave_use_treesitter')
+nnoremap <leader>tt :AttachTestMethod<cr>
+nnoremap <leader>tc :AttachTestClass<cr>
+lua vim.keymap.set('n', '<leader>tr', function() vim.api.nvim_clear_autocmds({ group = "edvard-automagic" }) end, {noremap = true, silent = true})
