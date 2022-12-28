@@ -455,8 +455,7 @@ function! Tig()
 endfunction
 
 " git commands
-nnoremap <silent> <leader>gg :LazyGit<CR>
-nnoremap <silent> <leader>gt :call Tig()<CR>
+nnoremap <silent> <leader>g :LazyGit<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " snippets
