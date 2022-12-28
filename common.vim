@@ -83,6 +83,8 @@ Plug 'onsails/lspkind.nvim'
 Plug 'OmniSharp/omnisharp-vim'
 Plug 'gpanders/editorconfig.nvim'
 
+" My plugins
+Plug '/home/edvard/sources/admin/VimPlugins/test-on-save.nvim'
 
 " To install language servers, manually run:
 "   :call InstallCocPlugins()
@@ -545,7 +547,7 @@ lua require('mytelescope')
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 lua require('mytreesitter')
 
-lua require('autosave_use_treesitter')
+lua require('test-on-save')
 nnoremap <leader>tt :AttachTestMethod<cr>
 nnoremap <leader>tc :AttachTestClass<cr>
 lua vim.keymap.set('n', '<leader>tr', function() vim.api.nvim_clear_autocmds({ group = "edvard-automagic" }) end, {noremap = true, silent = true})
