@@ -180,7 +180,7 @@ autocmd FileType yaml setlocal autoindent expandtab tabstop=2 shiftwidth=2 curso
 nnoremap gf <C-w>v<C-w>Tgf
 
 " Open files in same tab
-nnoremap <leader>gf gf
+" nnoremap <leader>gf gf
 
 " Reload current file
 nnoremap <leader>e :e!<CR>
