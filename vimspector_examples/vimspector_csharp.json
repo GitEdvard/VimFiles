@@ -1,0 +1,16 @@
+{
+    "configurations": {
+    "launch - netcoredbg": {
+      "adapter": "netcoredbg",
+      "filetypes": [ "cs" ], // optional
+      "configuration": {
+          "request": "launch",
+          "program": "${workspaceRoot}/bin/Debug/net6.0/csharp.dll",
+          "args": [],
+          "stopAtEntry": true,
+          "cwd": "${workspaceRoot}",
+          "env": {}
+            }
+        }
+    }
+}
