@@ -4,4 +4,5 @@ nnoremap <leader>j J
 nmap J ]pf
 nmap K [pf
 
+:set errorformat=%f:%l:\ %m
 :set makeprg=pytest
