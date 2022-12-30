@@ -47,6 +47,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'gaving/vim-textobj-argument'
 Plug 'vim-test/vim-test'
 Plug 'tpope/vim-dispatch'
+Plug 'mbbill/undotree'
 " stackmap, for switch mappings in quickfix window
 Plug 'tjdevries/stackmap.nvim'
 
@@ -176,12 +177,14 @@ let mapleader = "\<Space>"
 set tabstop=4 shiftwidth=4 expandtab
 autocmd FileType yaml setlocal autoindent expandtab tabstop=2 shiftwidth=2 cursorcolumn
 
+" Keymaps
 " Open files in a new tab
 nnoremap gf <C-w>v<C-w>Tgf
 
 " Open files in same tab
 " nnoremap <leader>gf gf
 
+nnoremap <leader>k :UndotreeShow<cr> :UndotreeFocus<cr>
 " Reload current file
 nnoremap <leader>e :e!<CR>
 
