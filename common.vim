@@ -494,7 +494,9 @@ noremap <C-j> :tabc<CR> :tabp<CR>
 noremap <C-k> :tabe <Bar> Startify<CR>
 
 " Vimspector, debugger
-" nnoremap <F5> :let $CURRENT_PY_PATH=substitute(expand('%:r'), '/', '.', 'g')<CR> :call vimspector#Launch()<CR>
+" nnoremap <leader>l :!export $CURRENT_PY_PATH=substitute(expand('%:r'), '/', '.', 'g')<CR> :echo $CURRENT_PY_PATH<cr>
+nnoremap <leader>l :let myvar=substitute(expand('%:r'), '/', '.', 'g')<CR> :call vimspector#LaunchWithSettings( #{ CURRENT_PY_PATH: myvar })<CR>
+
 " Basically following the human mode settings, with exception leader is
 " replaced with shift
 nnoremap <F5> :call vimspector#Launch()<CR>
