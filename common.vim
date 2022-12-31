@@ -500,6 +500,7 @@ nnoremap <leader>l :let myvar=substitute(expand('%:r'), '/', '.', 'g')<CR> :call
 " Basically following the human mode settings, with exception leader is
 " replaced with shift
 nnoremap <F5> :call vimspector#Launch()<CR>
+nnoremap <F29> :OmniSharpDebugTest<CR> " This is <c-f5>
 nmap <Leader>di <Plug>VimspectorBalloonEval
 xmap <Leader>di <Plug>VimspectorBalloonEval
 nnoremap <F17> :call vimspector#Reset()<CR> " This is <s-f5>
@@ -514,7 +515,7 @@ nnoremap <F8> <Plug>VimspectorAddFunctionBreakpoint
 nnoremap <F20> <Plug>VimspectorRunToCursor " this is <s-f8>
 nnoremap <Leader>dT :call vimspector#ClearBreakpoints()<CR>
 
-nmap <F23>dh <Plug>VimspectorStepOut " This is <s-f11>
+nmap <F23> <Plug>VimspectorStepOut " This is <s-f11>
 nmap <F11> <Plug>VimspectorStepInto
 nmap <F10> <Plug>VimspectorStepOver
 
