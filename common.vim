@@ -497,27 +497,8 @@ noremap <C-k> :tabe <Bar> Startify<CR>
 " nnoremap <leader>l :!export $CURRENT_PY_PATH=substitute(expand('%:r'), '/', '.', 'g')<CR> :echo $CURRENT_PY_PATH<cr>
 nnoremap <leader>l :let myvar=substitute(expand('%:r'), '/', '.', 'g')<CR> :call vimspector#LaunchWithSettings( #{ CURRENT_PY_PATH: myvar })<CR>
 
-" Basically following the human mode settings, with exception leader is
-" replaced with shift
-nnoremap <F5> :call vimspector#Launch()<CR>
-nnoremap <F29> :OmniSharpDebugTest<CR> " This is <c-f5>
-nmap <Leader>di <Plug>VimspectorBalloonEval
-xmap <Leader>di <Plug>VimspectorBalloonEval
-nnoremap <F17> :call vimspector#Reset()<CR> " This is <s-f5>
-nnoremap <F5> :call vimspector#Continue()<CR>
-nnoremap <F3> :call vimspector#Stop()<CR>
-nnoremap <F4> <Plug>VimspectorRestart
-nnoremap <F6> <Plug>VimspectorPause
+" source ~/.vim/myscripts/vimspector_settings.vim
 
-nnoremap <F9> :call vimspector#ToggleBreakpoint()<CR>
-nnoremap <F21> <Plug>VimspectorToggleConditionalBreakpoint " this is <s-f9>
-nnoremap <F8> <Plug>VimspectorAddFunctionBreakpoint
-nnoremap <F20> <Plug>VimspectorRunToCursor " this is <s-f8>
-nnoremap <Leader>dT :call vimspector#ClearBreakpoints()<CR>
-
-nmap <F23> <Plug>VimspectorStepOut " This is <s-f11>
-nmap <F11> <Plug>VimspectorStepInto
-nmap <F10> <Plug>VimspectorStepOver
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-test
