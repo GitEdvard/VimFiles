@@ -53,6 +53,10 @@ Plug 'tjdevries/stackmap.nvim'
 
 " Debugger
 Plug 'puremourning/vimspector'
+Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
+Plug 'mfussenegger/nvim-dap-python'
+Plug 'theHamsta/nvim-dap-virtual-text'
 
 " Telescope
 Plug 'nvim-lua/plenary.nvim'
@@ -64,6 +68,7 @@ Plug 'nvim-telescope/telescope-file-browser.nvim'
 " will take care of E5108: Error executing lua  'fzf' extension doesn't exist
 " or isn't installed"
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
+Plug 'nvim-telescope/telescope-dap.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
 
@@ -499,6 +504,7 @@ nnoremap <leader>l :let myvar=substitute(expand('%:r'), '/', '.', 'g')<CR> :call
 
 " source ~/.vim/myscripts/vimspector_settings.vim
 
+lua require('mydap_settings')
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-test
@@ -537,3 +543,4 @@ lua require('globals')
 nnoremap <leader>tt :AttachTestMethod<cr>
 nnoremap <leader>tc :AttachTestClass<cr>
 lua vim.keymap.set('n', '<leader>tr', function() vim.api.nvim_clear_autocmds({ group = "edvard-automagic" }) end, {noremap = true, silent = true})
+let g:python3_host_prog = '/home/edvard/.virtualenvs/pynvim/bin/python3'
