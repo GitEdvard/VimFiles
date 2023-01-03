@@ -22,5 +22,12 @@ vim.keymap.set("n", "<leader>db", "<cmd>Telescope dap list_breakpoints<cr>", opt
 require('dapui').setup()
 require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')
 require("nvim-dap-virtual-text").setup()
--- require("examples.clarity_dap")
-require("examples.stockwinners_dap")
+
+local dap_config = require'read-settings'.read_json(".dapsettings.json")
+if dap_config ~= nil then
+    require'dap'.configurations.python = dap_config
+end
+
+-- example of how to trigger clarity debugger
+-- vim.keymap.set("n", "<F5>", ":let $CURRENT_PY_PATH=substitute(expand('%:r'), '/', '.', 'g')<CR> :lua require'dap'.continue()<cr>", opts)
+

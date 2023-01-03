@@ -1,0 +1,7 @@
+{
+    "type": "python",
+    "request": "launch",
+    "name": "Launch clarity",
+    "program": "${workspaceFolder}/clarity-ext/clarity_ext/cli.py",
+    "args": [ "--level", "INFO", "extension", "--cache", "False", "clarity_ext_scripts.dilution.dna_dilution_start", "test" ]
+}

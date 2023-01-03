@@ -91,6 +91,7 @@ Plug 'gpanders/editorconfig.nvim'
 
 " My plugins
 Plug '/home/edvard/sources/admin/VimPlugins/test-on-save.nvim'
+Plug '/home/edvard/sources/admin/VimPlugins/read-settings.nvim'
 
 " To install language servers, manually run:
 "   :call InstallCocPlugins()
