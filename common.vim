@@ -74,6 +74,7 @@ Plug 'nvim-treesitter/playground'
 
 " Language server support
 Plug 'neovim/nvim-lspconfig'
+Plug 'mfussenegger/nvim-lint'
 
 " Autocompletion
 Plug 'hrsh7th/cmp-nvim-lsp'

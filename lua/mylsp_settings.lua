@@ -54,3 +54,13 @@ require('lspconfig')['omnisharp'].setup{
     cmd = { omnisharp_bin, "--languageserver" , "--hostPID", tostring(pid) }
 }
 require('mycmp_settings')
+
+require('lint').linters_by_ft = {
+    python = {'pylint',}
+}
+
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+    callback = function()
+        require("lint").try_lint()
+    end,
+})
