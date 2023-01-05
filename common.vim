@@ -93,6 +93,7 @@ Plug 'gpanders/editorconfig.nvim'
 " My plugins
 Plug '/home/edvard/sources/admin/VimPlugins/test-on-save.nvim'
 Plug '/home/edvard/sources/admin/VimPlugins/read-settings.nvim'
+Plug '/home/edvard/sources/admin/VimPlugins/trigger-commands.nvim'
 
 " To install language servers, manually run:
 "   :call InstallCocPlugins()
@@ -323,9 +324,6 @@ command! Ostop execute ":OmniSharpStopServer"
 noremap <C-h> :tabp<CR>
 noremap <C-l> :tabn<CR>
 
-" Close the tab with <C-j>
-noremap <C-J> :tabc<CR>
-
 " Be kind to ourselves and enable the mouse
 " Updated by EE, add '-' to prevent visual mode on selection
 if has('mouse')
@@ -541,6 +539,7 @@ lua require('mytelescope')
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 lua require('mytreesitter')
 lua require('globals')
+lua require('mytriggercommands')
 
 nnoremap <leader>tt :AttachTestMethod<cr>
 nnoremap <leader>tc :AttachTestClass<cr>

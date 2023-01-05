@@ -4,4 +4,5 @@ nmap J ]pf
 nmap K [pf
 
 :set errorformat=%f:%l:\ %m
+:set errorformat+=%.%#File\ \"%f\"\\,\ line\ %l\\,\ in\ %m
 :set makeprg=pytest
