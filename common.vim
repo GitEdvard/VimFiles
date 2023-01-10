@@ -371,6 +371,11 @@ au BufRead,BufNewFile */miarka-provision/*.yml vnoremap <leader>r <C-w>v<C-w>T:c
 
 au BufRead,BufNewFile */ansible/*.yml nnoremap <leader>r <C-w>v<C-w>T:call FindAnsibleRoleUnderCursor()<CR>
 au BufRead,BufNewFile */ansible/*.yml vnoremap <leader>r <C-w>v<C-w>T:call FindAnsibleRoleUnderCursor()<CR>
+
+augroup json_augroup
+    autocmd!
+    autocmd FileType json setlocal shiftwidth=2 tabstop=2
+augroup END
 """
 " FZF
 """
