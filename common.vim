@@ -12,7 +12,9 @@ set nocompatible
 call plug#begin('~/.vim/plugged')
 
 " This is our list of plugins to install
-Plug 'chriskempson/base16-vim'
+" Plug 'chriskempson/base16-vim'
+source ~/.vim/myplugfiles/base16-vim.vim
+source ~/.vim/myplugfiles/ansible-vim.vim
 Plug 'mhinz/vim-startify'
 Plug 'preservim/nerdtree'
 Plug 'dyng/ctrlsf.vim'
@@ -20,7 +22,6 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'itchyny/lightline.vim'
-Plug 'pearofducks/ansible-vim'
 Plug 'stephpy/vim-yaml'
 Plug 'kdheepak/lazygit.nvim'
 Plug 'tpope/vim-fugitive'
@@ -95,11 +96,9 @@ Plug '/home/edvard/sources/admin/VimPlugins/test-on-save.nvim'
 Plug '/home/edvard/sources/admin/VimPlugins/read-settings.nvim'
 Plug '/home/edvard/sources/admin/VimPlugins/trigger-commands.nvim'
 
-" To install language servers, manually run:
-"   :call InstallCocPlugins()
-" Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 call plug#end()
 
+doautocmd User plug-event
 """
 " Basic config setup
 """
@@ -350,17 +349,6 @@ noremap <c-Up> :resize -2<cr>
 noremap <c-Down> :resize +2<cr>
 noremap <c-Left> :vertical resize -2<cr>
 noremap <c-Right> :vertical resize +2<cr>
-"""
-" ansible-vim
-"""
-source ~/.vim/myscripts/find_ansible_role.vim
-let g:ansible_unindent_after_newline = 1
-let g:ansible_name_highlight = 'd'
-let g:ansible_extra_keywords_highlight = 1
-let g:ansible_extra_keywords_highlight_group = 'Statement'
-let g:ansible_normal_keywords_highlight = 'Constant'
-let g:ansible_template_syntaxes = { '*.rb.j2': 'ruby' }
-let g:ansible_ftdetect_filename_regex = '\v(playbook|site|main|local|requirements)\.ya?ml$'
 
 " Open role under cursor. First open current buffer in a new tab.
 au BufRead,BufNewFile */system-management/snpseq/*.yml nnoremap <leader>r <C-w>v<C-w>T:call FindAnsibleRoleUnderCursor()<CR>
