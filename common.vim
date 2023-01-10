@@ -120,31 +120,11 @@ lua vim.opt.path:append("**")
 " set path+=**
 " set wildmenu
 
-" To install language servers, manually run:
-"   :call InstallCocPlugins()
-function InstallCocPlugins()
-  CocInstall coc-pyright
-  source ~/.vim/myscripts/coc-settings.vim
-endfunction
-command! InstallCocPlugins execute ":call InstallCocPlugins()"
-
 " Get rid of pesky q:s
 " set guicursor=
 lua vim.opt.guicursor = ""
 " Workaround some broken plugins which set guicursor indiscriminately.
 autocmd OptionSet guicursor noautocmd set guicursor=
-
-" https://github.com/neoclide/coc.nvim/issues/3312
-autocmd VimLeavePre * if get(g:, 'coc_process_pid', 0)
-  \	| call system('kill -9 '.g:coc_process_pid) | endif
-
-" Make OS X play nicely with Vim
-" (Doesn't seem to work)
-" set clipboard=unnamedplus
-
-" http://damien.lespiau.name/blog/2009/03/18/per-project-vimrc/comment-page-1/
-" set exrc " enable per-directory .vimrc files
-" set secure " disable unsafe commands in local .vimrc files
 
 lua vim.opt.secure = true
 """"
@@ -268,9 +248,6 @@ function DeleteHiddenBuffers()
 endfunction
 nmap BD :call DeleteHiddenBuffers()<CR>
 " nmap BD :Bdelete hidden<CR>
-
-" Format selected code.
-xmap <leader>b  <Plug>(coc-format-selected)
 
 "hi Search cterm=NONE ctermfg=grey ctermbg=blue
 
