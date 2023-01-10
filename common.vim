@@ -117,14 +117,10 @@ lua vim.opt.relativenumber = true
 
 lua vim.opt.wildmenu = true
 lua vim.opt.path:append("**")
-" set path+=**
-" set wildmenu
 
 " Get rid of pesky q:s
 " set guicursor=
 lua vim.opt.guicursor = ""
-" Workaround some broken plugins which set guicursor indiscriminately.
-autocmd OptionSet guicursor noautocmd set guicursor=
 
 lua vim.opt.secure = true
 """"
@@ -135,15 +131,12 @@ abbr _bash #! /bin/bash<CR>
 " set incsearch
 lua vim.opt.incsearch = true
 "Case insensitive search.
-" set ic
 lua vim.opt.ic = true
 
 " Smart case searches
-" set smartcase
 lua vim.opt.smartcase = true
 
 " Set this to enable lightline
-" set laststatus=2
 lua vim.opt.laststatus = 2
 
 " This is handled by lightline
@@ -162,7 +155,6 @@ colorscheme codedark
 let mapleader = "\<Space>"
 
 set tabstop=4 shiftwidth=4 expandtab
-autocmd FileType yaml setlocal autoindent expandtab tabstop=2 shiftwidth=2 cursorcolumn
 
 " Keymaps
 " Open files in a new tab
@@ -191,20 +183,6 @@ nnoremap <c-d> <c-d>zz
 nnoremap <c-u> <c-u>zz
 
 set cursorline
-
-augroup illuminate_augroup
-    autocmd!
-    autocmd VimEnter * hi link illuminatedWord CursorLine
-augroup END
-
-" augroup my_quickfix_augroup
-"     autocmd!
-"     autocmd BufEnter * if &buftype == "quickfix" | stackmap.push("myquckfix", "n" {
-"             ["<c-k>"] = "echo 'up'",
-"             ["<c-j"] = "echo 'down'"
-"         } | endif
-"     autocmd BufLeave * if &buftype == 'quickfix' | echo "bye" | endif
-" augroup END
 
 highlight CursorLine ctermbg=Yellow cterm=bold guibg=#2b2b2b
 
@@ -327,7 +305,29 @@ noremap <c-Down> :resize +2<cr>
 noremap <c-Left> :vertical resize -2<cr>
 noremap <c-Right> :vertical resize +2<cr>
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Autocommand autocmd
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+augroup json_augroup
+    autocmd!
+    autocmd FileType json setlocal shiftwidth=2 tabstop=2
+augroup END
+
+augroup illuminate_augroup
+    autocmd!
+    autocmd VimEnter * hi link illuminatedWord CursorLine
+augroup END
+
+augroup ansible_augroup
+    autocmd!
+    autocmd FileType yaml setlocal autoindent expandtab tabstop=2 shiftwidth=2 cursorcolumn
+augroup END
+
+" Workaround some broken plugins which set guicursor indiscriminately.
+autocmd OptionSet guicursor noautocmd set guicursor=
+
 " Open role under cursor. First open current buffer in a new tab.
+" snpseq ansible stuff
 au BufRead,BufNewFile */system-management/snpseq/*.yml nnoremap <leader>r <C-w>v<C-w>T:call FindAnsibleRoleUnderCursor()<CR>
 au BufRead,BufNewFile */system-management/snpseq/*.yml vnoremap <leader>r <C-w>v<C-w>T:call FindAnsibleRoleUnderCursor()<CR>
 
@@ -337,10 +337,8 @@ au BufRead,BufNewFile */miarka-provision/*.yml vnoremap <leader>r <C-w>v<C-w>T:c
 au BufRead,BufNewFile */ansible/*.yml nnoremap <leader>r <C-w>v<C-w>T:call FindAnsibleRoleUnderCursor()<CR>
 au BufRead,BufNewFile */ansible/*.yml vnoremap <leader>r <C-w>v<C-w>T:call FindAnsibleRoleUnderCursor()<CR>
 
-augroup json_augroup
-    autocmd!
-    autocmd FileType json setlocal shiftwidth=2 tabstop=2
-augroup END
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 """
 " FZF
 """
