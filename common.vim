@@ -16,10 +16,9 @@ call plug#begin('~/.vim/plugged')
 source ~/.vim/myplugfiles/base16-vim.vim
 source ~/.vim/myplugfiles/ansible-vim.vim
 Plug 'mhinz/vim-startify'
-Plug 'preservim/nerdtree'
+source ~/.vim/myplugfiles/nerdtree.vim
 Plug 'dyng/ctrlsf.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+source ~/.vim/myplugfiles/fzf.vim
 Plug 'jlanzarotta/bufexplorer'
 source ~/.vim/myplugfiles/lightline.vim
 Plug 'stephpy/vim-yaml'
@@ -252,6 +251,7 @@ command! Mksession execute ":mksession!"
 command! Ctags execute ":!ctags -R"
 command! Ostart execute ":OmniSharpStartServer"
 command! Ostop execute ":OmniSharpStopServer"
+command! FileHistory execute ":BCommits"
 
 "---------------------------------------------------
 " Autocommand autocmd
@@ -284,58 +284,6 @@ au BufRead,BufNewFile */miarka-provision/*.yml vnoremap <leader>r <C-w>v<C-w>T:c
 
 au BufRead,BufNewFile */ansible/*.yml nnoremap <leader>r <C-w>v<C-w>T:call FindAnsibleRoleUnderCursor()<CR>
 au BufRead,BufNewFile */ansible/*.yml vnoremap <leader>r <C-w>v<C-w>T:call FindAnsibleRoleUnderCursor()<CR>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""
-" FZF
-"""
-
-" https://github.com/junegunn/fzf.vim
-
-" Let The :Files command show all files in the repo (including dotfiles)
-let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --glob "!.git/*"'
-
-" Bind "//" to a fzf-powered buffer search
-nmap // :BLines!<CR>
-
-" Bind "??" to a fzf-powered project search
-nmap ?? :Rg!<CR>
-
-" Bind "<leader>p" to a fzf-powered filename search
-nmap <leader>p :Telescope find_files<CR>
-" nmap <leader>p :Files!<CR>
-
-" Bind "<leader>b" to show buffers with contents
-nmap <leader>b :Buffers!<CR>
-
-" Bind "<leader>bb" to show buffers without contents
-nmap <leader>bb :call fzf#vim#buffers()<CR>
-
-" Bind "cc" to a fzf-powered command search
-nmap cc :Commands!<CR>
-
-" Shows Git history for the current buffer
-command! FileHistory execute ":BCommits"
-
-"""
-" NERDTree
-"""
-
-let NERDTreeShowHidden=1
-
-function! ToggleNERDTree()
-  NERDTreeToggle
-  " Set NERDTree instances to be mirrored
-  silent NERDTreeMirror
-endfunction
-
-nmap <leader>n :NERDTreeFind<CR>
-au FileType nerdtree vert resize 50
-" let g:NERDTreeWinSize=50
-let NERDTreeIgnore = ['\.pyc$']
-let g:NERDTreeMinimalMenu=1
-let g:NERDTreeQuitOnOpen = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 " textobj between
