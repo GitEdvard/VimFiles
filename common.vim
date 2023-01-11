@@ -21,7 +21,7 @@ Plug 'dyng/ctrlsf.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'jlanzarotta/bufexplorer'
-Plug 'itchyny/lightline.vim'
+source ~/.vim/myplugfiles/lightline.vim
 Plug 'stephpy/vim-yaml'
 Plug 'kdheepak/lazygit.nvim'
 Plug 'tpope/vim-fugitive'
@@ -99,21 +99,18 @@ Plug '/home/edvard/sources/admin/VimPlugins/trigger-commands.nvim'
 call plug#end()
 
 doautocmd User plug-event
-"""
-" Basic config setup
-"""
 
-" Standard Vim configuration boilerplate
-" syntax on
+"---------------------------------------------------
+" Basic config
+"---------------------------------------------------
+abbr _bash #! /bin/bash<CR>
 filetype plugin indent on
 set t_Co=256
 set encoding=utf-8
-" set number relativenumber
 
 lua vim.opt.syntax = "on"
 lua vim.opt.number = true
 lua vim.opt.relativenumber = true
-" finding files
 
 lua vim.opt.wildmenu = true
 lua vim.opt.path:append("**")
@@ -123,32 +120,14 @@ lua vim.opt.path:append("**")
 lua vim.opt.guicursor = ""
 
 lua vim.opt.secure = true
-""""
-" Custom configuration begins
-""""
-abbr _bash #! /bin/bash<CR>
 
-" set incsearch
 lua vim.opt.incsearch = true
-"Case insensitive search.
 lua vim.opt.ic = true
 
-" Smart case searches
 lua vim.opt.smartcase = true
 
-" Set this to enable lightline
-lua vim.opt.laststatus = 2
-
-" This is handled by lightline
-" set noshowmode
-" lua vim.opt.noshowmode = true
-
-" set termguicolors
 lua vim.opt.termguicolors = true
 
-" colorscheme vim-monokai-tasty
-" colorscheme peachpuff
-" set bg=dark
 lua vim.opt.bg = dark
 colorscheme codedark
 
@@ -156,15 +135,34 @@ let mapleader = "\<Space>"
 
 set tabstop=4 shiftwidth=4 expandtab
 
+hi ctrlsfMatch cterm=NONE ctermfg=black ctermbg=blue
+
+highlight ExtraWhitespace ctermbg=red guibg=red
+
+" Set wait time between key strokes
+set timeoutlen=1000
+
+set nobackup
+set nowritebackup
+set noswapfile
+
+" Fix zt an zb near edges
+set scrolloff=3
+
+" Be kind to ourselves and enable the mouse
+if has('mouse')
+  set mouse-=a
+endif
+
+"---------------------------------------------------
 " Keymaps
+"---------------------------------------------------
 nnoremap gf <C-w>v<C-w>T:e <cfile><CR>
 
 nnoremap <leader>k :UndotreeShow<cr> :UndotreeFocus<cr>
 " Reload current file
 nnoremap <leader>e :e!<CR>
 
-" Reload all buffers
-command! Reloadall execute ":bufdo e!"
 
 " Open current file in a new tab
 nnoremap <leader>r <C-w>v<C-w>T
@@ -212,7 +210,6 @@ inoremap jk <esc>
 noremap ; :
 noremap , ;
 
-" Delete buffers
 function DeleteHiddenBuffers()
     let tpbl=[]
     call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
@@ -221,73 +218,15 @@ function DeleteHiddenBuffers()
     endfor
 endfunction
 nmap BD :call DeleteHiddenBuffers()<CR>
-" nmap BD :Bdelete hidden<CR>
-
-"hi Search cterm=NONE ctermfg=grey ctermbg=blue
-
-hi ctrlsfMatch cterm=NONE ctermfg=black ctermbg=blue
-
-" show hidden     whitespace
-highlight ExtraWhitespace ctermbg=red guibg=red
-
-" Highlight self keyword in python
-:syn keyword pythonBuiltin self
 
 " Copy to system clipboard
 vmap <leader>c "+y
 " Quickly get rid of highlighting
 noremap <leader>h :noh<CR>
 
-" Fix zt an zb near edges
-set scrolloff=3
-
-" Set wait time between key strokes
-set timeoutlen=1000
-
-" Prettify json
-" --- backup and swap files ---
-" I save all the time, those are annoying and unnecessary...
-set nobackup
-set nowritebackup
-set noswapfile
-
-command! JsonPrettify execute ":r !xclip -selection clipboard -o | jsonlint"
-
-" With this, you can enter ":Config" in normal mode to open the Vim
-" configuration.
-" command! Config execute ":e $MYVIMRC"
-command! Config execute ":e ~/.vimrc"
-command! W execute ":w | source %"
-
-" Call ":Reload" to apply the latest .vimrc contents
-command! Reload execute "source ~/.vimrc"
-command! Longfile execute ":e ~/sources/test/dotfiles/.vimrc"
-command! Gitpush execute ":! git push origin develop"
-command! Gitpushforce execute ":! git push -f origin develop"
-command! Mksession execute ":mksession!"
-command! Ctags execute ":!ctags -R"
-
-command! Ostart execute ":OmniSharpStartServer"
-command! Ostop execute ":OmniSharpStopServer"
-
 " Simple tab navigation with <C-h> and <C-l> to intuitively go left and right
 noremap <C-h> :tabp<CR>
 noremap <C-l> :tabn<CR>
-
-" Be kind to ourselves and enable the mouse
-" Updated by EE, add '-' to prevent visual mode on selection
-if has('mouse')
-  set mouse-=a
-endif
-
-let g:lightline = {
-      \ 'component_function': {
-      \   'filename': 'LightlineFilename'
-      \ }
-      \ }
-function! LightlineFilename()
-    return expand('%')
-endfunction
 
 " Move between windows in same tab
 noremap <A-l> <c-w>l
@@ -301,9 +240,22 @@ noremap <c-Down> :resize +2<cr>
 noremap <c-Left> :vertical resize -2<cr>
 noremap <c-Right> :vertical resize +2<cr>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
+command! Reloadall execute ":bufdo e!"
+command! JsonPrettify execute ":r !xclip -selection clipboard -o | jsonlint"
+command! Config execute ":e ~/.vimrc"
+command! W execute ":w | source %"
+command! Reload execute "source ~/.vimrc"
+command! Longfile execute ":e ~/sources/test/dotfiles/.vimrc"
+command! Gitpush execute ":! git push origin develop"
+command! Gitpushforce execute ":! git push -f origin develop"
+command! Mksession execute ":mksession!"
+command! Ctags execute ":!ctags -R"
+command! Ostart execute ":OmniSharpStartServer"
+command! Ostop execute ":OmniSharpStopServer"
+
+"---------------------------------------------------
 " Autocommand autocmd
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"---------------------------------------------------
 augroup json_augroup
     autocmd!
     autocmd FileType json setlocal shiftwidth=2 tabstop=2
