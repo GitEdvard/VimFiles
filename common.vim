@@ -157,11 +157,7 @@ let mapleader = "\<Space>"
 set tabstop=4 shiftwidth=4 expandtab
 
 " Keymaps
-" Open files in a new tab
-nnoremap gf <C-w>v<C-w>Tgf
-
-" Open files in same tab
-" nnoremap <leader>gf gf
+nnoremap gf <C-w>v<C-w>T:e <cfile><CR>
 
 nnoremap <leader>k :UndotreeShow<cr> :UndotreeFocus<cr>
 " Reload current file
