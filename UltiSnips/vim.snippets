@@ -4,3 +4,10 @@ snippet _caption "Print out caption in vimrc file" b
 " ${1:Caption}
 "---------------------------------------------------
 endsnippet
+
+snippet _plugevent "Create augroup in a plug install file"
+augroup ${1:group_name}
+    autocmd!
+	autocmd User plug-event ${2:delayed-cmd}
+augroup END
+endsnippet
