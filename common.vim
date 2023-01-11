@@ -17,7 +17,7 @@ source ~/.vim/myplugfiles/base16-vim.vim
 source ~/.vim/myplugfiles/ansible-vim.vim
 Plug 'mhinz/vim-startify'
 source ~/.vim/myplugfiles/nerdtree.vim
-Plug 'dyng/ctrlsf.vim'
+source ~/.vim/myplugfiles/ctrlsf.vim
 source ~/.vim/myplugfiles/fzf.vim
 Plug 'jlanzarotta/bufexplorer'
 source ~/.vim/myplugfiles/lightline.vim
@@ -33,12 +33,12 @@ Plug 'tomasiser/vim-code-dark'
 Plug 'Yilin-Yang/vim-markbar'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'vim-scripts/taglist.vim'
+source ~/.vim/myplugfiles/taglist.vim
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'rhysd/vim-textobj-anyblock'
 Plug 'kana/vim-textobj-user'
 Plug 'bps/vim-textobj-python'
-Plug 'thinca/vim-textobj-between'
+source ~/.vim/myplugfiles/textobj-between.vim
 Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-entire'
@@ -97,6 +97,7 @@ Plug '/home/edvard/sources/admin/VimPlugins/trigger-commands.nvim'
 
 call plug#end()
 
+let mapleader = "\<Space>"
 doautocmd User plug-event
 
 "---------------------------------------------------
@@ -129,8 +130,6 @@ lua vim.opt.termguicolors = true
 
 lua vim.opt.bg = dark
 colorscheme codedark
-
-let mapleader = "\<Space>"
 
 set tabstop=4 shiftwidth=4 expandtab
 
@@ -233,11 +232,15 @@ noremap <A-h> <c-w>h
 noremap <A-j> <c-w>j
 noremap <A-k> <c-w>k
 
+nmap <leader>s :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
+
 " Resize with arrows
 noremap <c-Up> :resize -2<cr>
 noremap <c-Down> :resize +2<cr>
 noremap <c-Left> :vertical resize -2<cr>
 noremap <c-Right> :vertical resize +2<cr>
+
+nnoremap <silent> <leader>g :LazyGit<CR>
 
 command! Reloadall execute ":bufdo e!"
 command! JsonPrettify execute ":r !xclip -selection clipboard -o | jsonlint"
@@ -285,49 +288,11 @@ au BufRead,BufNewFile */miarka-provision/*.yml vnoremap <leader>r <C-w>v<C-w>T:c
 au BufRead,BufNewFile */ansible/*.yml nnoremap <leader>r <C-w>v<C-w>T:call FindAnsibleRoleUnderCursor()<CR>
 au BufRead,BufNewFile */ansible/*.yml vnoremap <leader>r <C-w>v<C-w>T:call FindAnsibleRoleUnderCursor()<CR>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" textobj between
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:textobj_between_no_default_key_mappings=1
-
-omap id <Plug>(textobj-between-i)
-omap ad <Plug>(textobj-between-a)
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Taglist
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <leader>m :TlistOpen<CR>
-let g:Tlist_WinWidth=50
-
-"""
-" CtrlSF
-"""
-
-" https://github.com/dyng/ctrlsf.vim
-
-" Set "<leader>s" to substitute the word under the cursor. Works great with
-" CtrlSF!
-nmap <leader>s :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
-
-" Set up some handy CtrlSF bindings
-"nmap <leader>a :CtrlSF -R ""<Left>
-nmap <leader>a <Plug>CtrlSFCwordPath -W<CR>:CtrlSFFocus<CR>
-nmap <leader>A <Plug>CtrlSFCwordPath
-
-nmap <leader>c :CtrlSFFocus<CR>
-nmap <leader>C :CtrlSFToggle<CR>
-
-" Use Ripgrep with CtrlSF for performance
-let g:ctrlsf_ackprg = '/usr/bin/rg'
 
 function! Tig()
   !tig status
   redraw!
 endfunction
-
-" git commands
-nnoremap <silent> <leader>g :LazyGit<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " snippets
