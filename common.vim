@@ -31,7 +31,7 @@ Plug 'RRethy/vim-illuminate'
 Plug 'patstockwell/vim-monokai-tasty'
 Plug 'tomasiser/vim-code-dark'
 Plug 'Yilin-Yang/vim-markbar'
-Plug 'SirVer/ultisnips'
+source ~/.vim/myplugfiles/ultisnips.vim
 Plug 'honza/vim-snippets'
 source ~/.vim/myplugfiles/taglist.vim
 Plug 'michaeljsmith/vim-indent-object'
@@ -45,7 +45,7 @@ Plug 'kana/vim-textobj-entire'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-unimpaired'
 Plug 'gaving/vim-textobj-argument'
-Plug 'vim-test/vim-test'
+source ~/.vim/myplugfiles/vimtest.vim
 Plug 'tpope/vim-dispatch'
 Plug 'mbbill/undotree'
 " stackmap, for switch mappings in quickfix window
@@ -242,6 +242,17 @@ noremap <c-Right> :vertical resize +2<cr>
 
 nnoremap <silent> <leader>g :LazyGit<CR>
 
+noremap <C-h> :tabp<CR>
+noremap - :tabm -1<CR>
+noremap <C-l> :tabn<CR>
+noremap = :tabm +1<CR>
+noremap <C-j> :tabc<CR> :tabp<CR>
+noremap <C-k> :tabe <Bar> Startify<CR>
+
+nnoremap <leader>q :copen<cr> <c-w>L
+
+" nnoremap <leader>l :let myvar=substitute(expand('%:r'), '/', '.', 'g')<CR> :call vimspector#LaunchWithSettings( #{ CURRENT_PY_PATH: myvar })<CR>
+
 command! Reloadall execute ":bufdo e!"
 command! JsonPrettify execute ":r !xclip -selection clipboard -o | jsonlint"
 command! Config execute ":e ~/.vimrc"
@@ -277,80 +288,13 @@ augroup END
 " Workaround some broken plugins which set guicursor indiscriminately.
 autocmd OptionSet guicursor noautocmd set guicursor=
 
-" Open role under cursor. First open current buffer in a new tab.
-" snpseq ansible stuff
-au BufRead,BufNewFile */system-management/snpseq/*.yml nnoremap <leader>r <C-w>v<C-w>T:call FindAnsibleRoleUnderCursor()<CR>
-au BufRead,BufNewFile */system-management/snpseq/*.yml vnoremap <leader>r <C-w>v<C-w>T:call FindAnsibleRoleUnderCursor()<CR>
-
-au BufRead,BufNewFile */miarka-provision/*.yml nnoremap <leader>r <C-w>v<C-w>T:call FindAnsibleRoleUnderCursor()<CR>
-au BufRead,BufNewFile */miarka-provision/*.yml vnoremap <leader>r <C-w>v<C-w>T:call FindAnsibleRoleUnderCursor()<CR>
-
-au BufRead,BufNewFile */ansible/*.yml nnoremap <leader>r <C-w>v<C-w>T:call FindAnsibleRoleUnderCursor()<CR>
-au BufRead,BufNewFile */ansible/*.yml vnoremap <leader>r <C-w>v<C-w>T:call FindAnsibleRoleUnderCursor()<CR>
-
 
 function! Tig()
   !tig status
   redraw!
 endfunction
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" snippets
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Trigger configuration. You need to change this to something other than <tab> if you use one of the following:
-" - https://github.com/Valloric/YouCompleteMe
-" - https://github.com/nvim-lua/completion-nvim
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" BONUS SECTION!
-"
-" You can easily open external interactive command line tools from within Vim.
-" This isn't for everyone, but it's a convenient way to quickly open a non-Vim
-" tool that you frequently use briefly. These examples open htop or lazygit in
-" a Vim term tab.  As soon as the interactive tool's session exits, the term
-" tab is closed.
-"
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" term variants of the tab navigation bindings from above to make the
-" interactive command line tools easier to work with
-noremap <C-h> :tabp<CR>
-noremap - :tabm -1<CR>
-noremap <C-l> :tabn<CR>
-noremap = :tabm +1<CR>
-noremap <C-j> :tabc<CR> :tabp<CR>
-noremap <C-k> :tabe <Bar> Startify<CR>
-
-" Vimspector, debugger
-" nnoremap <leader>l :!export $CURRENT_PY_PATH=substitute(expand('%:r'), '/', '.', 'g')<CR> :echo $CURRENT_PY_PATH<cr>
-nnoremap <leader>l :let myvar=substitute(expand('%:r'), '/', '.', 'g')<CR> :call vimspector#LaunchWithSettings( #{ CURRENT_PY_PATH: myvar })<CR>
-
-" source ~/.vim/myscripts/vimspector_settings.vim
-
 lua require('mydap_settings')
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-test
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <silent> <leader>tn :TestNearest<CR>
-nmap <silent> <leader>tf :TestFile<CR>
-nmap <silent> <leader>ta :TestSuite<CR>
-nmap <silent> <leader>tl :TestLast<CR>
-nmap <silent> <leader>tv :TestVisit<CR>
-
-let test#python#runner = 'pytest'
-let test#csharp#runner = 'dotnettest'
-let test#strategy = "make"
-
-" Open qickfix window
-" I have this last, the mapping disappears for some reason otherwise
-nnoremap <leader>q :copen<cr> <c-w>L
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 " Lsp
