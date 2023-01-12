@@ -25,7 +25,7 @@ require("nvim-dap-virtual-text").setup()
 
 local dap_config = require'read-settings'.read_json(".dapsettings.json")
 if dap_config ~= nil then
-    require'dap'.configurations.python = dap_config
+    require'dap'.configurations.python = {dap_config}
 end
 
 -- example of how to trigger clarity debugger

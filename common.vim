@@ -51,13 +51,6 @@ Plug 'mbbill/undotree'
 " stackmap, for switch mappings in quickfix window
 Plug 'tjdevries/stackmap.nvim'
 
-" Debugger
-Plug 'puremourning/vimspector'
-Plug 'mfussenegger/nvim-dap'
-Plug 'rcarriga/nvim-dap-ui'
-Plug 'mfussenegger/nvim-dap-python'
-Plug 'theHamsta/nvim-dap-virtual-text'
-
 " Telescope
 Plug 'nvim-lua/plenary.nvim'
 Plug 'BurntSushi/ripgrep'
@@ -68,13 +61,13 @@ Plug 'nvim-telescope/telescope-file-browser.nvim'
 " will take care of E5108: Error executing lua  'fzf' extension doesn't exist
 " or isn't installed"
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
-Plug 'nvim-telescope/telescope-dap.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
 
-" Language server support
-Plug 'neovim/nvim-lspconfig'
-Plug 'mfussenegger/nvim-lint'
+" Plug 'puremourning/vimspector'
+source ~/.vim/myplugfiles/debugger.vim
+
+source ~/.vim/myplugfiles/lsp.vim
 
 " Autocompletion
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -152,6 +145,7 @@ if has('mouse')
   set mouse-=a
 endif
 
+let g:python3_host_prog = '/home/edvard/.virtualenvs/pynvim/bin/python3'
 "---------------------------------------------------
 " Keymaps
 "---------------------------------------------------
@@ -294,22 +288,10 @@ function! Tig()
   redraw!
 endfunction
 
-lua require('mydap_settings')
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Lsp
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set completeopt=menu,menuone,noselect
-" let g:OmniSharp_translate_cygwin_wsl = 1
-
 lua require('mylsp_settings')
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Telescope
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
 lua require('mytelescope')
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
 lua require('mytreesitter')
 lua require('globals')
 lua require('mytriggercommands')
@@ -317,4 +299,3 @@ lua require('mytriggercommands')
 nnoremap <leader>tt :AttachTestMethod<cr>
 nnoremap <leader>tc :AttachTestClass<cr>
 lua vim.keymap.set('n', '<leader>tr', function() vim.api.nvim_clear_autocmds({ group = "edvard-automagic" }) end, {noremap = true, silent = true})
-let g:python3_host_prog = '/home/edvard/.virtualenvs/pynvim/bin/python3'
