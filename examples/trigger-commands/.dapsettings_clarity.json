@@ -1,0 +1,7 @@
+{
+    "type": "python",
+    "request": "launch",
+    "name": "Run clarity",
+    "program": "${workspaceFolder}/clarity-ext/clarity_ext/cli.py",
+    "args": [ "--level", "INFO", "extension", "--cache", "False", "${env:CURRENT_PY_PATH}", "test" ]
+}
