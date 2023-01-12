@@ -54,30 +54,12 @@ Plug 'tjdevries/stackmap.nvim'
 " Telescope
 Plug 'nvim-lua/plenary.nvim'
 Plug 'BurntSushi/ripgrep'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
-Plug 'nvim-telescope/telescope-file-browser.nvim'
-" Note!!!! Go to directory where telescope-fzf-native is installed, and run
-" make clean && make
-" will take care of E5108: Error executing lua  'fzf' extension doesn't exist
-" or isn't installed"
-Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'nvim-treesitter/playground'
-
+source ~/.vim/myplugfiles/telescope.vim
+source ~/.vim/myplugfiles/treesitter.vim
 " Plug 'puremourning/vimspector'
 source ~/.vim/myplugfiles/debugger.vim
 
 source ~/.vim/myplugfiles/lsp.vim
-
-" Autocompletion
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-buffer', {'do': 'make'}
-Plug 'hrsh7th/cmp-nvim-lua'
-Plug 'hrsh7th/cmp-path'
-" Plug 'hrsh7th/cmp-cmdline'
-Plug 'hrsh7th/nvim-cmp'
-Plug 'quangnguyen30192/cmp-nvim-ultisnips'
-Plug 'onsails/lspkind.nvim'
 
 " csharp things
 Plug 'OmniSharp/omnisharp-vim'
@@ -288,11 +270,6 @@ function! Tig()
   redraw!
 endfunction
 
-lua require('mylsp_settings')
-
-lua require('mytelescope')
-
-lua require('mytreesitter')
 lua require('globals')
 lua require('mytriggercommands')
 
