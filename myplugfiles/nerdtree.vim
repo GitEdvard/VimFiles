@@ -13,7 +13,4 @@ let NERDTreeIgnore = ['\.pyc$']
 let g:NERDTreeMinimalMenu=1
 let g:NERDTreeQuitOnOpen = 1
 
-augroup nerdtree-setup
-    autocmd!
-    autocmd User plug-event nmap <leader>n :NERDTreeFind<CR>
-augroup END
+nmap <leader>n :NERDTreeFind<CR>
