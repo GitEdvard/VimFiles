@@ -66,9 +66,9 @@ Plug 'OmniSharp/omnisharp-vim'
 Plug 'gpanders/editorconfig.nvim'
 
 " My plugins
-Plug '/home/edvard/sources/admin/VimPlugins/test-on-save.nvim'
+source ~/.vim/myplugfiles/test-on-save.vim
 Plug '/home/edvard/sources/admin/VimPlugins/read-settings.nvim'
-Plug '/home/edvard/sources/admin/VimPlugins/trigger-commands.nvim'
+source ~/.vim/myplugfiles/trigger-commands.vim
 
 call plug#end()
 
@@ -128,6 +128,7 @@ if has('mouse')
 endif
 
 let g:python3_host_prog = '/home/edvard/.virtualenvs/pynvim/bin/python3'
+lua require('globals')
 "---------------------------------------------------
 " Keymaps
 "---------------------------------------------------
@@ -269,10 +270,3 @@ function! Tig()
   !tig status
   redraw!
 endfunction
-
-lua require('globals')
-lua require('mytriggercommands')
-
-nnoremap <leader>tt :AttachTestMethod<cr>
-nnoremap <leader>tc :AttachTestClass<cr>
-lua vim.keymap.set('n', '<leader>tr', function() vim.api.nvim_clear_autocmds({ group = "edvard-automagic" }) end, {noremap = true, silent = true})
