@@ -5,6 +5,7 @@ execute pathogen#infect()
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
+let mapleader = "\<Space>"
 " lua require('ensure_packer')
 " lua require('plugins')
 
@@ -72,7 +73,6 @@ source ~/.vim/myplugfiles/trigger-commands.vim
 
 call plug#end()
 
-let mapleader = "\<Space>"
 doautocmd User plug-event
 
 "---------------------------------------------------
