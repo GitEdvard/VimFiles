@@ -6,14 +6,10 @@ execute pathogen#infect()
 set nocompatible
 
 let mapleader = "\<Space>"
-" lua require('ensure_packer')
-" lua require('plugins')
 
 " https://github.com/junegunn/vim-plug
 call plug#begin('~/.vim/plugged')
 
-" This is our list of plugins to install
-" Plug 'chriskempson/base16-vim'
 source ~/.vim/myplugfiles/base16-vim.vim
 source ~/.vim/myplugfiles/ansible-vim.vim
 Plug 'mhinz/vim-startify'
