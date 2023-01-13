@@ -27,7 +27,6 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'RRethy/vim-illuminate'
 Plug 'patstockwell/vim-monokai-tasty'
 Plug 'tomasiser/vim-code-dark'
-Plug 'Yilin-Yang/vim-markbar'
 source ~/.vim/myplugfiles/ultisnips.vim
 Plug 'honza/vim-snippets'
 source ~/.vim/myplugfiles/taglist.vim
