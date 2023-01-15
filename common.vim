@@ -23,7 +23,6 @@ Plug 'kdheepak/lazygit.nvim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-Plug 'ntpeters/vim-better-whitespace'
 Plug 'RRethy/vim-illuminate'
 Plug 'patstockwell/vim-monokai-tasty'
 Plug 'tomasiser/vim-code-dark'
@@ -35,6 +34,7 @@ Plug 'rhysd/vim-textobj-anyblock'
 Plug 'kana/vim-textobj-user'
 Plug 'bps/vim-textobj-python'
 source ~/.vim/myplugfiles/textobj-between.vim
+Plug 'glts/vim-textobj-comment'
 Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-entire'
@@ -66,6 +66,10 @@ source ~/.vim/myplugfiles/test-on-save.vim
 Plug '/home/edvard/sources/admin/VimPlugins/read-settings.nvim'
 source ~/.vim/myplugfiles/trigger-commands.vim
 
+" Experimental
+" Plug 'tpope/vim-projectionist'
+" https://www.youtube.com/watch?v=434tljD-5C8
+" Plug 'vim-airline/vim-airline'
 call plug#end()
 
 doautocmd User plug-event
@@ -77,11 +81,12 @@ abbr _bash #! /bin/bash<CR>
 filetype plugin indent on
 set t_Co=256
 set encoding=utf-8
-
+set hidden
 lua vim.opt.syntax = "on"
 lua vim.opt.number = true
 lua vim.opt.relativenumber = true
-
+set list
+set listchars:trail:.
 lua vim.opt.wildmenu = true
 lua vim.opt.path:append("**")
 
@@ -105,7 +110,7 @@ set tabstop=4 shiftwidth=4 expandtab
 
 hi ctrlsfMatch cterm=NONE ctermfg=black ctermbg=blue
 
-highlight ExtraWhitespace ctermbg=red guibg=red
+" highlight ExtraWhitespace ctermbg=red guibg=red
 
 " Set wait time between key strokes
 set timeoutlen=1000
@@ -132,7 +137,11 @@ nnoremap gf <C-w>v<C-w>T:e <cfile><CR>
 nnoremap <leader>k :UndotreeShow<cr> :UndotreeFocus<cr>
 " Reload current file
 nnoremap <leader>e :e!<CR>
+nnoremap <leader>Q :bufdo bdelete<cr>
 
+" easy insertion of ; or , in insert mode
+imap ;; <esc>A;<esc>
+imap ,, <esc>A,<esc>
 
 " Open current file in a new tab
 nnoremap <leader>r <C-w>v<C-w>T
