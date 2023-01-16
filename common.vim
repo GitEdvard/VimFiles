@@ -67,9 +67,10 @@ Plug '/home/edvard/sources/admin/VimPlugins/read-settings.nvim'
 source ~/.vim/myplugfiles/trigger-commands.vim
 
 " Experimental
-" Plug 'tpope/vim-projectionist'
+Plug 'tpope/vim-projectionist'
 " https://www.youtube.com/watch?v=434tljD-5C8
 " Plug 'vim-airline/vim-airline'
+Plug 'whatyouhide/vim-textobj-xmlattr'
 call plug#end()
 
 doautocmd User plug-event

@@ -1,0 +1,10 @@
+{
+  "stock_winners/*.py":{
+    "alternate": "tests/test_{}.py",
+    "type": "source"
+  },
+  "tests/test_*.py": {
+    "alternate": "stock_winners/{}.py",
+    "type": "test"
+  }
+}
