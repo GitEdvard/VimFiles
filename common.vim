@@ -16,7 +16,6 @@ Plug 'mhinz/vim-startify'
 source ~/.vim/myplugfiles/nerdtree.vim
 source ~/.vim/myplugfiles/ctrlsf.vim
 source ~/.vim/myplugfiles/fzf.vim
-Plug 'jlanzarotta/bufexplorer' 
 Plug 'stephpy/vim-yaml'
 Plug 'kdheepak/lazygit.nvim'
 source ~/.vim/myplugfiles/fugitive.vim
