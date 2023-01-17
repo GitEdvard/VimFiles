@@ -16,8 +16,7 @@ Plug 'mhinz/vim-startify'
 source ~/.vim/myplugfiles/nerdtree.vim
 source ~/.vim/myplugfiles/ctrlsf.vim
 source ~/.vim/myplugfiles/fzf.vim
-Plug 'jlanzarotta/bufexplorer'
-" source ~/.vim/myplugfiles/lightline.vim
+Plug 'jlanzarotta/bufexplorer' 
 Plug 'stephpy/vim-yaml'
 Plug 'kdheepak/lazygit.nvim'
 Plug 'tpope/vim-fugitive'
@@ -69,7 +68,9 @@ source ~/.vim/myplugfiles/trigger-commands.vim
 " Experimental
 Plug 'tpope/vim-projectionist'
 " https://www.youtube.com/watch?v=434tljD-5C8
-Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
+source ~/.vim/myplugfiles/lightline.vim
 Plug 'whatyouhide/vim-textobj-xmlattr'
 call plug#end()
 
@@ -90,6 +91,8 @@ set list
 set listchars:trail:.
 lua vim.opt.wildmenu = true
 lua vim.opt.path:append("**")
+
+" let g:airline_powerline_fonts = 1
 
 " Get rid of pesky q:s
 " set guicursor=
