@@ -19,7 +19,7 @@ source ~/.vim/myplugfiles/fzf.vim
 Plug 'jlanzarotta/bufexplorer' 
 Plug 'stephpy/vim-yaml'
 Plug 'kdheepak/lazygit.nvim'
-Plug 'tpope/vim-fugitive'
+source ~/.vim/myplugfiles/fugitive.vim
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'RRethy/vim-illuminate'
