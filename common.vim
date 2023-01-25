@@ -259,6 +259,11 @@ augroup json_augroup
     autocmd FileType json setlocal shiftwidth=2 tabstop=2
 augroup END
 
+augroup txt_augroup
+    autocmd!
+    autocmd FileType text setlocal shiftwidth=2 tabstop=2
+augroup END
+
 augroup illuminate_augroup
     autocmd!
     autocmd VimEnter * hi link illuminatedWord CursorLine
