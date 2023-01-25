@@ -59,6 +59,7 @@ source ~/.vim/myplugfiles/lsp.vim
 Plug 'OmniSharp/omnisharp-vim'
 Plug 'gpanders/editorconfig.nvim'
 
+Plug 'ionide/Ionide-vim'
 " My plugins
 source ~/.vim/myplugfiles/test-on-save.vim
 Plug '/home/edvard/sources/admin/VimPlugins/read-settings.nvim'
