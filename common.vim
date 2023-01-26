@@ -57,6 +57,7 @@ source ~/.vim/myplugfiles/lsp.vim
 
 " csharp things
 Plug 'OmniSharp/omnisharp-vim'
+let g:OmniSharp_loglevel = "debug"
 Plug 'gpanders/editorconfig.nvim'
 
 Plug 'ionide/Ionide-vim'
