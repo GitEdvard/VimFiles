@@ -56,11 +56,11 @@ source ~/.vim/myplugfiles/debugger.vim
 source ~/.vim/myplugfiles/lsp.vim
 
 " csharp things
-Plug 'OmniSharp/omnisharp-vim'
+" Plug 'OmniSharp/omnisharp-vim'
 let g:OmniSharp_loglevel = "debug"
 Plug 'gpanders/editorconfig.nvim'
 
-Plug 'ionide/Ionide-vim'
+" Plug 'ionide/Ionide-vim'
 " My plugins
 source ~/.vim/myplugfiles/test-on-save.vim
 Plug '/home/edvard/sources/admin/VimPlugins/read-settings.nvim'
