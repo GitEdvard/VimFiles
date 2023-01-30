@@ -45,7 +45,7 @@ require('lspconfig')['pyright'].setup{
     capabilities = capabilities
 }
 local pid = vim.fn.getpid()
-local omnisharp_bin = "/home/edvard/.cache/omnisharp-vim/omnisharp-roslyn/run"
+local omnisharp_bin = "/home/edvard/.cache/omnisharp/OmniSharp"
 -- local omnisharp_bin = "/mnt/c/Users/edeng655/AppData/Local/omnisharp-vim/omnisharp-rosly/OmniSharp.exe"
 require('lspconfig')['omnisharp'].setup{
     on_attach = on_attach,
