@@ -23,9 +23,15 @@ require('dapui').setup()
 require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')
 require("nvim-dap-virtual-text").setup()
 
+require'dap'.adapters.coreclr = {
+    type = 'executable',
+    command = '/home/edvard/.cache/netcoredbg/netcoredbg',
+    args = {'--interpreter=vscode'}
+}
+
 local dap_config = require'read-settings'.read_json(".dapsettings.json")
 if dap_config ~= nil then
-    require'dap'.configurations.python = {dap_config}
+    require'dap'.configurations.cs = {dap_config}
 end
 
 -- example of how to trigger clarity debugger

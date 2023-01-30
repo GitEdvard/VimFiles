@@ -1,0 +1,6 @@
+{
+  "type": "coreclr",
+  "request": "launch",
+  "name": "launch csharp",
+  "program": "${workspaceFolder}/project/bin/Debug/net7.0/project.dll"
+}
