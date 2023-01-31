@@ -256,14 +256,9 @@ command! FileHistory execute ":BCommits"
 "---------------------------------------------------
 " Autocommand autocmd
 "---------------------------------------------------
-augroup json_augroup
+augroup indent2_augroup
     autocmd!
-    autocmd FileType json setlocal shiftwidth=2 tabstop=2
-augroup END
-
-augroup txt_augroup
-    autocmd!
-    autocmd FileType text setlocal shiftwidth=2 tabstop=2
+    autocmd FileType json,typescript,text,css setlocal shiftwidth=2 tabstop=2
 augroup END
 
 augroup illuminate_augroup
