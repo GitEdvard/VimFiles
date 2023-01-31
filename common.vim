@@ -42,6 +42,7 @@ Plug 'gaving/vim-textobj-argument'
 source ~/.vim/myplugfiles/vimtest.vim
 Plug 'tpope/vim-dispatch'
 Plug 'mbbill/undotree'
+source ~/.vim/myplugfiles/markdown-preview.vim
 " stackmap, for switch mappings in quickfix window
 Plug 'tjdevries/stackmap.nvim'
 
