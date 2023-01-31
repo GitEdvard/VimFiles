@@ -202,7 +202,7 @@ function DeleteHiddenBuffers()
         silent execute 'bwipeout' buf
     endfor
 endfunction
-nmap BD :call DeleteHiddenBuffers()<CR>
+nmap <leader>D :call DeleteHiddenBuffers()<CR>
 
 " Copy to system clipboard
 vmap <leader>c "+y
