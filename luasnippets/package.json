@@ -1,0 +1,14 @@
+{
+  "contributes": {
+    "snippets": [
+      {
+        "language": "html",
+        "path": "./html.json"
+      },
+      {
+        "language": "typescript",
+        "path": "./html.json"
+      }
+    ]
+  }
+}

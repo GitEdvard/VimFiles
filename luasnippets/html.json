@@ -1,0 +1,20 @@
+{
+  "divc": {
+    "prefix": "divc",
+    "body": [
+      "<div class=\"$1\">",
+      "\t$0",
+      "</div>"
+    ],
+    "description": "HTML - Defines a section with class",
+    "scope": "text.html"
+  },
+  "divi": {
+    "prefix": "divi",
+    "body": [
+      "<div>$0</div>"
+    ],
+    "description": "HTML - inline div",
+    "scope": "text.html"
+  }
+}
