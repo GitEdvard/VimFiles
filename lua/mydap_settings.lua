@@ -29,9 +29,17 @@ require'dap'.adapters.coreclr = {
     args = {'--interpreter=vscode'}
 }
 
+-- require'setup_csharp'
+
+local conf_mapping = {
+    ['coreclr'] = 'cs',
+    ['python'] = 'python'
+}
+
 local dap_config = require'read-settings'.read_json(".dapsettings.json")
 if dap_config ~= nil then
-    require'dap'.configurations.cs = {dap_config}
+    local filetype = conf_mapping[dap_config['type']]
+    require'dap'.configurations[filetype] = {dap_config}
 end
 
 -- example of how to trigger clarity debugger

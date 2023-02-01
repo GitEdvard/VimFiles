@@ -7,6 +7,7 @@ set nocompatible
 
 let mapleader = "\<Space>"
 
+lua require('globals')
 " https://github.com/junegunn/vim-plug
 call plug#begin('~/.vim/plugged')
 
@@ -66,9 +67,9 @@ Plug 'gpanders/editorconfig.nvim'
 source ~/.vim/myplugfiles/test-on-save.vim
 Plug '/home/edvard/sources/admin/VimPlugins/read-settings.nvim'
 source ~/.vim/myplugfiles/trigger-commands.vim
+Plug 'tpope/vim-projectionist'
 
 " Experimental
-Plug 'tpope/vim-projectionist'
 " https://www.youtube.com/watch?v=434tljD-5C8
 " Plug 'vim-airline/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
@@ -134,7 +135,6 @@ if has('mouse')
 endif
 
 let g:python3_host_prog = '/home/edvard/.virtualenvs/pynvim/bin/python3'
-lua require('globals')
 "---------------------------------------------------
 " Keymaps
 "---------------------------------------------------
