@@ -1,0 +1,7 @@
+Plug 'L3MON4D3/LuaSnip'
+Plug 'capaj/vscode-standardjs-snippets'
+
+augroup luasnip-plug-event
+    autocmd!
+    autocmd User plug-event lua require('myluasnip_settings')
+augroup END

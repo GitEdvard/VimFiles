@@ -25,7 +25,7 @@ Plug 'tpope/vim-repeat'
 Plug 'RRethy/vim-illuminate'
 Plug 'patstockwell/vim-monokai-tasty'
 Plug 'tomasiser/vim-code-dark'
-source ~/.vim/myplugfiles/ultisnips.vim
+" source ~/.vim/myplugfiles/ultisnips.vim
 Plug 'honza/vim-snippets'
 source ~/.vim/myplugfiles/taglist.vim
 Plug 'michaeljsmith/vim-indent-object'
@@ -56,6 +56,7 @@ source ~/.vim/myplugfiles/treesitter.vim
 source ~/.vim/myplugfiles/debugger.vim
 
 source ~/.vim/myplugfiles/lsp.vim
+source ~/.vim/myplugfiles/luasnip.vim
 
 " csharp things
 " Plug 'OmniSharp/omnisharp-vim'
@@ -259,7 +260,7 @@ command! FileHistory execute ":BCommits"
 "---------------------------------------------------
 augroup indent2_augroup
     autocmd!
-    autocmd FileType json,typescript,text,css setlocal shiftwidth=2 tabstop=2
+    autocmd FileType json,typescript,text,css,lua,html setlocal shiftwidth=2 tabstop=2
 augroup END
 
 augroup illuminate_augroup
