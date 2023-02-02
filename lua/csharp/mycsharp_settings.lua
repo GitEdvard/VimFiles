@@ -1,5 +1,5 @@
 local build = function()
-  require'csharp_build'.build()
+  require'csharp.csharp_build'.build()
 end
 
 local opts = { noremap = true, silent = true }

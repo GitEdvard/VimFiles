@@ -268,7 +268,7 @@ augroup END
 
 augroup csharp_augroup
     autocmd!
-    autocmd FileType cs lua require('mycsharp_settings')
+    autocmd FileType cs lua require('csharp.mycsharp_settings')
 augroup END
 
 augroup illuminate_augroup
