@@ -178,11 +178,11 @@ nnoremap o zzo
 nnoremap O zzO
 
 " Matching paranthesis etc.
-inoremap <c-f>" ""<Left>
-inoremap <c-f>' ''<Left>
-inoremap <c-f>[ []<Left>
-inoremap <c-f>( ()<Left>
-inoremap <c-f>{ {}<Left>
+inoremap " ""<Left>
+inoremap ' ''<Left>
+inoremap [ []<Left>
+inoremap ( ()<Left>
+inoremap { {}<Left>
 
 " center screen after search
 nnoremap n nzzzv
