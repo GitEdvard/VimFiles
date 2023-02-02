@@ -5,5 +5,5 @@ Plug 'johnpapa/vscode-angular-snippets'
 
 augroup luasnip-plug-event
     autocmd!
-    autocmd User plug-event lua require('myluasnip_settings')
+    autocmd User plug-event lua require('luasnip.myluasnip_settings')
 augroup END
