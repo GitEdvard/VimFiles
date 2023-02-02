@@ -254,6 +254,9 @@ command! Ctags execute ":!ctags -R"
 command! Ostart execute ":OmniSharpStartServer"
 command! Ostop execute ":OmniSharpStopServer"
 command! FileHistory execute ":BCommits"
+" command! AppendClipboard execute ":!win32yank.exe -o >> % <bar> :e! <bar> :%s/\r/"
+command! AppendClipboard execute ":!win32yank.exe -o >> %"
+command! RemoveWindowEndings execute ":%s/\r/"
 
 "---------------------------------------------------
 " Autocommand autocmd
@@ -261,6 +264,11 @@ command! FileHistory execute ":BCommits"
 augroup indent2_augroup
     autocmd!
     autocmd FileType json,typescript,text,css,lua,html setlocal shiftwidth=2 tabstop=2
+augroup END
+
+augroup csharp_augroup
+    autocmd!
+    autocmd FileType cs lua require('mycsharp_settings')
 augroup END
 
 augroup illuminate_augroup
