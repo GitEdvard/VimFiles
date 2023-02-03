@@ -52,15 +52,14 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'BurntSushi/ripgrep'
 source ~/.vim/myplugfiles/telescope.vim
 source ~/.vim/myplugfiles/treesitter.vim
-Plug 'puremourning/vimspector'
-source ~/.vim/myplugfiles/debugger.vim
 
 source ~/.vim/myplugfiles/lsp.vim
 source ~/.vim/myplugfiles/luasnip.vim
 
 " csharp things
-Plug 'OmniSharp/omnisharp-vim'
-let g:OmniSharp_loglevel = "debug"
+source ~/.vim/myplugfiles/vimspector.vim
+" source ~/.vim/myplugfiles/debugger.vim
+source ~/.vim/myplugfiles/omnisharp-vim.vim
 Plug 'gpanders/editorconfig.nvim'
 
 " Plug 'ionide/Ionide-vim'
