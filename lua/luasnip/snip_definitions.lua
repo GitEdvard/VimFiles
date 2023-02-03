@@ -1,8 +1,23 @@
 local ls = require'luasnip'
+local s, i, t = ls.s, ls.insert_node, ls.text_node
+local fmt = require("luasnip.extras.fmt").fmt
+local rep = require("luasnip.extras").rep
+local c = ls.choice_node
+local f = ls.function_node
+local sn = ls.sn
+local d = ls.dynamic_node
+
+local same = function(index)
+  return f(function(arg)
+    return arg[1]
+  end, { index })
+end
+
 
 ls.add_snippets("all", {
     ls.parser.parse_snippet("exp", "-- this is what got expanded"),
     ls.parser.parse_snippet("lf", "local $1 = function($2)\n  $0\nend"),
+    s("sametest", fmt([[example: {}, function: {}]], { i(1), same(1) })),
 }, {
     key = "all",
 })
@@ -23,7 +38,19 @@ augroup END
 ls.add_snippets("typescript", {
   ls.parser.parse_snippet("import", "import { $1 } from '$2'"),
   ls.parser.parse_snippet("butt", "<button class=\"btn btn-primary\" (click) = \"$1\">$2</button>"),
+  s(">", fmt(">\n\t{}\n\n", { i(0) })),
+  s("[", fmt("[\n\t{}\n\n", { i(0) })),
+  s("{", fmt("{{\n\t{}\n\n", { i(0) })),
 }, {
   key = "typescript",
+})
+
+ls.add_snippets("html", {
+  s(">", fmt(">\n\t{}\n\n", { i(0) })),
+})
+
+ls.add_snippets("cs", {
+  s("{", fmt("{{\n\t{}\n\n", { i(0) })),
+  s("[", fmt("[\n\t{}\n\n", { i(0) })),
 })
 

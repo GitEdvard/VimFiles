@@ -183,6 +183,7 @@ inoremap ' ''<Left>
 inoremap [ []<Left>
 inoremap ( ()<Left>
 inoremap { {}<Left>
+inoremap <c-f><space> <space><space><Left>
 
 " center screen after search
 nnoremap n nzzzv
