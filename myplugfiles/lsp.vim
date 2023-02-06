@@ -14,5 +14,5 @@ set completeopt=menu,menuone,noselect
 
 augroup lsp-plug-event
     autocmd!
-    autocmd User plug-event lua require('mylsp_settings')
+    autocmd User plug-event lua require('lsp.mylsp_settings')
 augroup END
