@@ -9,7 +9,6 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'onsails/lspkind.nvim'
 
-
 set completeopt=menu,menuone,noselect
 
 augroup lsp-plug-event

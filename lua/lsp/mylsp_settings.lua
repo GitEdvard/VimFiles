@@ -39,21 +39,10 @@ local lsp_flags = {
 -- Set up lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-require('lspconfig')['pyright'].setup{
-    on_attach = on_attach,
-    flags = lsp_flags,
-    capabilities = capabilities
-}
-local pid = vim.fn.getpid()
-local omnisharp_bin = "/home/edvard/.cache/omnisharp/OmniSharp"
--- local omnisharp_bin = "/mnt/c/Users/edeng655/AppData/Local/omnisharp-vim/omnisharp-rosly/OmniSharp.exe"
-require('lspconfig')['omnisharp'].setup{
-    on_attach = on_attach,
-    flags = lsp_flags,
-    capabilities = capabilities,
-    cmd = { omnisharp_bin, "--languageserver" , "--hostPID", tostring(pid) }
-}
 require('mycmp_settings')
+require'lsp.angular'
+require'lsp.csharp'.setup(lsp_flags, capabilities, on_attach)
+require'lsp.python'.setup(lsp_flags, capabilities, on_attach)
 
 require('lint').linters_by_ft = {
     python = {'pylint',}
@@ -64,26 +53,3 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
         require("lint").try_lint()
     end,
 })
-
-local cwd = vim.fn.getcwd()
-local project_library_path = cwd .. "/node_modules"
-
-local cmd = {
-    cwd .. "/node_modules/@angular/language-server/bin/ngserver",
-    "--ngProbeLocations",
-    project_library_path,
-    "--tsProbeLocations",
-    project_library_path ,
-    "--stdio",
-}
-
-require'lspconfig'.angularls.setup{
-    cmd = cmd,
-    on_new_config = function(new_config, new_root_dir)
-        new_config.cmd = cmd
-    end
-}
-
--- require'lspconfig'.tsserver.setup{
---     cmd = { "node /home/edvard/.nvm/versions/node/v14.16.0/lib/node_modules/typescript/bin/tsserver"}
--- }
