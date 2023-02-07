@@ -43,6 +43,7 @@ require('mycmp_settings')
 require'lsp.angular'
 require'lsp.csharp'.setup(lsp_flags, capabilities, on_attach)
 require'lsp.python'.setup(lsp_flags, capabilities, on_attach)
+require'lsp.java_lspconfig'.setup(lsp_flags, capabilities, on_attach)
 
 require('lint').linters_by_ft = {
     python = {'pylint',}

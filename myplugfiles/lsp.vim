@@ -8,6 +8,7 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'onsails/lspkind.nvim'
+Plug 'williamboman/nvim-lsp-installer'
 
 set completeopt=menu,menuone,noselect
 

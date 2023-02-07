@@ -62,6 +62,9 @@ source ~/.vim/myplugfiles/vimspector.vim
 source ~/.vim/myplugfiles/omnisharp-vim.vim
 Plug 'gpanders/editorconfig.nvim'
 
+" java language server
+Plug 'mfussenegger/nvim-jdtls'
+
 " Plug 'ionide/Ionide-vim'
 " My plugins
 source ~/.vim/myplugfiles/test-on-save.vim
@@ -256,7 +259,7 @@ command! Ostop execute ":OmniSharpStopServer"
 command! FileHistory execute ":BCommits"
 " command! AppendClipboard execute ":!win32yank.exe -o >> % <bar> :e! <bar> :%s/\r/"
 command! AppendClipboard execute ":!win32yank.exe -o >> %"
-command! RemoveWindowEndings execute ":%s/\r/"
+command! PurgeWindowEndings execute ":%s/\r/"
 
 "---------------------------------------------------
 " Autocommand autocmd
