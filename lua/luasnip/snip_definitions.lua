@@ -54,3 +54,19 @@ ls.add_snippets("cs", {
   s("[", fmt("[\n\t{}\n\n", { i(0) })),
 })
 
+ls.add_snippets("java", {
+  s("{", fmt("{{\n\t{}\n\n", { i(0) })),
+  s("[", fmt("[\n\t{}\n\n", { i(0) })),
+  s("smeth", fmt([[
+  {} static {} {}({}) {{
+      {}
+  }}
+  ]], { 
+    c(1, { t "public", t "private" }),
+    i(2, "void"),
+    i(3, "name"),
+    i(4, "args"),
+    i(0),
+  }))
+})
+
