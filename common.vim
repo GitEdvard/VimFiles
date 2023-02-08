@@ -64,6 +64,7 @@ Plug 'gpanders/editorconfig.nvim'
 
 " java language server
 Plug 'mfussenegger/nvim-jdtls'
+Plug 'sukima/xmledit'
 
 " Plug 'ionide/Ionide-vim'
 " My plugins
@@ -143,7 +144,7 @@ let g:python3_host_prog = '/home/edvard/.virtualenvs/pynvim/bin/python3'
 "---------------------------------------------------
 nnoremap gf <C-w>v<C-w>T:e <cfile><CR>
 
-nnoremap <leader>k :UndotreeShow<cr> :UndotreeFocus<cr>
+nnoremap <leader>j :UndotreeShow<cr> :UndotreeFocus<cr>
 " Reload current file
 nnoremap <leader>e :e!<CR>
 nnoremap <leader>Q :bufdo bdelete<cr>
@@ -266,7 +267,7 @@ command! PurgeWindowEndings execute ":%s/\r/"
 "---------------------------------------------------
 augroup indent2_augroup
     autocmd!
-    autocmd FileType json,typescript,text,css,lua,html setlocal shiftwidth=2 tabstop=2
+    autocmd FileType json,typescript,text,css,lua,html,xml setlocal shiftwidth=2 tabstop=2
 augroup END
 
 augroup csharp_augroup

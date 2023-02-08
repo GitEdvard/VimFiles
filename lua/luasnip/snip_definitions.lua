@@ -49,6 +49,10 @@ ls.add_snippets("html", {
   s(">", fmt(">\n\t{}\n\n", { i(0) })),
 })
 
+ls.add_snippets("xml", {
+  s(">", fmt(">\n\t{}\n\n", { i(0) })),
+})
+
 ls.add_snippets("cs", {
   s("{", fmt("{{\n\t{}\n\n", { i(0) })),
   s("[", fmt("[\n\t{}\n\n", { i(0) })),
