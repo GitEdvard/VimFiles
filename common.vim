@@ -142,6 +142,7 @@ let g:python3_host_prog = '/home/edvard/.virtualenvs/pynvim/bin/python3'
 "---------------------------------------------------
 " Keymaps
 "---------------------------------------------------
+nnoremap <c-g><c-f> <C-w>v<C-w>Tgf
 nnoremap gf <C-w>v<C-w>T:e <cfile><CR>
 
 nnoremap <leader>j :UndotreeShow<cr> :UndotreeFocus<cr>
