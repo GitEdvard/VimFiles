@@ -25,8 +25,7 @@ local show_errors = function(build_output)
     vim.cmd { cmd = 'cgetexpr', args = {vim_script_arr} }
 end
 
-M.build = function()
-  local command = "dotnet build"
+M.build = function(command)
   local build_output = {}
   vim.fn.jobstart(command, {
     stdout_buffered = true,

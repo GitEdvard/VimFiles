@@ -1,5 +1,5 @@
 local build = function()
-  require'csharp.csharp_build'.build()
+  require'build'.build("dotnet build")
 end
 
 local opts = { noremap = true, silent = true }
