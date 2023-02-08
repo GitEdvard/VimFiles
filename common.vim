@@ -275,6 +275,11 @@ augroup csharp_augroup
     autocmd FileType cs lua require('csharp.mycsharp_settings')
 augroup END
 
+augroup java_augroup
+    autocmd!
+    autocmd FileType java lua require('java.myjava_settings')
+augroup END
+
 augroup illuminate_augroup
     autocmd!
     autocmd VimEnter * hi link illuminatedWord CursorLine
