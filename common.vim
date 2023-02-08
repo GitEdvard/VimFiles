@@ -145,6 +145,8 @@ let g:python3_host_prog = '/home/edvard/.virtualenvs/pynvim/bin/python3'
 nnoremap gf <C-w>v<C-w>T:e <cfile><CR>
 
 nnoremap <leader>j :UndotreeShow<cr> :UndotreeFocus<cr>
+nnoremap <leader>k i<cr><esc>O
+inoremap <leader>k <cr><esc>O
 " Reload current file
 nnoremap <leader>e :e!<CR>
 nnoremap <leader>Q :bufdo bdelete<cr>
