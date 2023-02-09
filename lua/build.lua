@@ -25,7 +25,12 @@ local show_errors = function(build_output)
     vim.cmd { cmd = 'cgetexpr', args = {vim_script_arr} }
 end
 
-M.build = function(command)
+M.build = function(input)
+  setmetatable(input, {__index={succeed_string = "Build succeeded!", failed_string = "Build failed. "}})
+  local command, succeed_string, failed_string =
+    input[1] or input.command,
+    input[2] or input.succeed_string,
+    input[3] or input.failed_string
   local build_output = {}
   vim.fn.jobstart(command, {
     stdout_buffered = true,
@@ -37,10 +42,10 @@ M.build = function(command)
     end,
     on_exit = function(_, exit_code, _)
       if exit_code ~= 0 then
-        print("Build failed. Errors written to quickfix")
+        print(failed_string .. "Errors written to quickfix")
         show_errors(build_output)
       else
-        print("Build succeeded!")
+        print(succeed_string)
       end
     end
   })

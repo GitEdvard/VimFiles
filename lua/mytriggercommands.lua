@@ -15,9 +15,14 @@ local reset = function()
     package.loaded['trigger-commands'] = nil
     package.loaded['mytriggercommands'] = nil
 end
+local push = function()
+  require'build'.build{ 'git push --force', 'Changes pushed to remote!', 'Git push failed. ' }
+end
+
 vim.keymap.set('n', '<leader>us', trigger_command_single, opts)
 vim.keymap.set('n', '<leader>ur', trigger_command_rest, opts)
 vim.keymap.set('n', '<leader>uc', reset)
+vim.keymap.set('n', '<leader>up', push)
 
 -- local hello = function()
 --     print('hello')

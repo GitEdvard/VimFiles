@@ -1,5 +1,5 @@
 local build = function()
-  require'build'.build("mvn compile")
+  require'build'.build{ "mvn compile" }
 end
 
 local opts = { noremap = true, silent = true }
