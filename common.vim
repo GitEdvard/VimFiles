@@ -57,8 +57,8 @@ source ~/.vim/myplugfiles/lsp.vim
 source ~/.vim/myplugfiles/luasnip.vim
 
 " csharp things
-source ~/.vim/myplugfiles/vimspector.vim
-" source ~/.vim/myplugfiles/debugger.vim
+" source ~/.vim/myplugfiles/vimspector.vim
+source ~/.vim/myplugfiles/debugger.vim
 source ~/.vim/myplugfiles/omnisharp-vim.vim
 Plug 'gpanders/editorconfig.nvim'
 

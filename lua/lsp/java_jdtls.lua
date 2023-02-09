@@ -1,5 +1,17 @@
 local M = {}
-local on_attach = require'lsp.on_attach'.keymaps
+local on_attach_base = require'lsp.on_attach'.keymaps
+local on_attach = function(client, bufnr)
+  on_attach_base(client, bufnr)
+  -- With `hotcodereplace = 'auto' the debug adapter will try to apply code changes
+  -- you make during a debug session immediately.
+  -- Remove the option if you do not want that.
+  require('jdtls').setup_dap({ hotcodereplace = 'auto' })
+end
+
+require('dap.ext.vscode').load_launchjs()
+local bundles = {
+  vim.fn.glob('/home/edvard/.cache/nvim/com.microsoft.java.debug.plugin-0.44.0.jar')
+}
 M.setup = function()
   local config = {
     -- cmd = {'/home/edvard/bin/jdt-language-server-latest/bin/jdtls'},
@@ -20,7 +32,10 @@ M.setup = function()
       '-data', '/home/edvard/java_files'
     },
     root_dir = vim.fs.dirname(vim.fs.find({'.gradlew', '.git', 'mvnw'}, { upward = true })[1]),
-    on_attach = on_attach
+    on_attach = on_attach,
+    init_options = {
+      bundles = bundles
+    }
   }
   require('jdtls').start_or_attach(config)
 end
