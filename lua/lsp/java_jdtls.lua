@@ -1,4 +1,5 @@
 local M = {}
+local on_attach = require'lsp.on_attach'.keymaps
 M.setup = function()
   local config = {
     -- cmd = {'/home/edvard/bin/jdt-language-server-latest/bin/jdtls'},
@@ -19,6 +20,7 @@ M.setup = function()
       '-data', '/home/edvard/java_files'
     },
     root_dir = vim.fs.dirname(vim.fs.find({'.gradlew', '.git', 'mvnw'}, { upward = true })[1]),
+    on_attach = on_attach
   }
   require('jdtls').start_or_attach(config)
 end
