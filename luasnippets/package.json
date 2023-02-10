@@ -8,6 +8,10 @@
       {
         "language": "typescript",
         "path": "./html.json"
+      },
+      {
+        "language": "sh",
+        "path": "./sh.json"
       }
     ]
   }

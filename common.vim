@@ -86,7 +86,6 @@ doautocmd User plug-event
 "---------------------------------------------------
 " Basic config
 "---------------------------------------------------
-abbr _bash #! /bin/bash<CR>
 filetype plugin indent on
 set t_Co=256
 set encoding=utf-8
@@ -142,6 +141,7 @@ let g:python3_host_prog = '/home/edvard/.virtualenvs/pynvim/bin/python3'
 "---------------------------------------------------
 " Keymaps
 "---------------------------------------------------
+nnoremap dd A<bs><esc>
 nnoremap <c-g><c-f> <C-w>v<C-w>Tgf
 nnoremap gf <C-w>v<C-w>T:e <cfile><CR>
 

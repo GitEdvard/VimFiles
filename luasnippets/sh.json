@@ -1,0 +1,22 @@
+{
+  "usage": {
+    "prefix": "_usage",
+    "body": [
+      "#! /bin/bash",
+      "",
+      "if [[ $# -eq 0 ]];then",
+      "\techo \"Usage ${1:script name} ${2:arguments 1}\"",
+      "exit 1",
+      "fi"
+    ]
+  },
+  "bash": {
+    "prefix": "_bash",
+    "body": [
+      "#! /bin/bash",
+      "",
+      "$0"
+    ]
+  }
+}
+
