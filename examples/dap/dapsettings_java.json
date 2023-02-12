@@ -1,0 +1,13 @@
+{
+  "classPaths": [ "/home/edvard/sources/dev/java-playground/target/classes" ],
+  "console": "integratedTerminal",
+  "cwd": "/home/edvard/sources/dev/java-playground",
+  "javaExec": "/home/edvard/bin/jdk-17.0.6/bin/java",
+  "mainClass": "Main",
+  "modulePaths": [],
+  "name": "Launch HelloWorld: Main",
+  "projectName": "HelloWorld",
+  "request": "launch",
+  "type": "java"
+}
+

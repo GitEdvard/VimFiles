@@ -33,6 +33,7 @@ require'dap'.adapters.coreclr = {
 -- require'setup_csharp'
 
 local conf_mapping = {
+    ['java'] = 'java',
     ['coreclr'] = 'cs',
     ['python'] = 'python'
 }
