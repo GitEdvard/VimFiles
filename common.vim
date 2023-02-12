@@ -95,7 +95,7 @@ lua vim.opt.syntax = "on"
 lua vim.opt.number = true
 lua vim.opt.relativenumber = true
 set list
-set listchars:trail:.
+set list lcs=trail:·,tab:»·
 lua vim.opt.wildmenu = true
 lua vim.opt.path:append("**")
 
@@ -145,6 +145,7 @@ let g:python3_host_prog = '/home/edvard/.virtualenvs/pynvim/bin/python3'
 nnoremap dd A<bs><esc>
 nnoremap <c-g><c-f> <C-w>v<C-w>Tgf
 nnoremap gf <C-w>v<C-w>T:e <cfile><CR>
+nnoremap <leader>ut :retab<cr>
 
 nnoremap <leader>j :UndotreeShow<cr> :UndotreeFocus<cr>
 nnoremap <leader>k i<cr><esc>O
@@ -265,6 +266,7 @@ command! FileHistory execute ":BCommits"
 " command! AppendClipboard execute ":!win32yank.exe -o >> % <bar> :e! <bar> :%s/\r/"
 command! AppendClipboard execute ":!win32yank.exe -o >> %"
 command! PurgeWindowEndings execute ":%s/\r/"
+command! ShowAscii execute ":set statusline=%<%f%h%m%r%=%b\ 0x%B\ \ %l,%c%V\ %P"
 
 "---------------------------------------------------
 " Autocommand autocmd
