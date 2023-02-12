@@ -3,7 +3,7 @@ local build = function()
 end
 
 local package = function()
-  require'build'.build{ "mvn clean package" }
+  require'build'.build{ "mvn clean package; shutdown.sh; startup.sh" }
 end
 
 local opts = { noremap = true, silent = true }
