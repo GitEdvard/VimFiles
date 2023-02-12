@@ -65,6 +65,7 @@ Plug 'gpanders/editorconfig.nvim'
 " java language server
 Plug 'mfussenegger/nvim-jdtls'
 Plug 'sukima/xmledit'
+source ~/.vim/myplugfiles/closetag.vim
 
 " Plug 'ionide/Ionide-vim'
 " My plugins
