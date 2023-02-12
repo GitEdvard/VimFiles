@@ -273,7 +273,7 @@ command! ShowAscii execute ":set statusline=%<%f%h%m%r%=%b\ 0x%B\ \ %l,%c%V\ %P"
 "---------------------------------------------------
 augroup indent2_augroup
     autocmd!
-    autocmd FileType json,typescript,text,css,lua,html,xml setlocal shiftwidth=2 tabstop=2
+    autocmd FileType json,typescript,text,css,lua,html,xml,jsp setlocal shiftwidth=2 tabstop=2
 augroup END
 
 augroup csharp_augroup
