@@ -31,6 +31,7 @@ M.build = function(input)
     input[1] or input.command,
     input[2] or input.succeed_string,
     input[3] or input.failed_string
+  print("Starting...")
   local build_output = {}
   vim.fn.jobstart(command, {
     stdout_buffered = true,
