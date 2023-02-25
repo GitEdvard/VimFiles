@@ -139,7 +139,7 @@ if has('mouse')
   set mouse-=a
 endif
 
-let g:python3_host_prog = '/home/edvard/.virtualenvs/pynvim/bin/python3'
+let g:python3_host_prog = '~/.virtualenvs/pynvim/bin/python3'
 "---------------------------------------------------
 " Keymaps
 "---------------------------------------------------

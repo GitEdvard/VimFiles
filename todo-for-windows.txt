@@ -1,0 +1,39 @@
+How to install neovim on windows, without wsl
+* Download zip from https://github.com/neovim/neovim
+* Extract
+  > We can now run newvim by doubleclick nvim.exe, or nvim-qt.exe
+  > Add to task bar
+* Download and extract code in VimRoot, note the extracted director
+  > It should be the "windows" branch
+* In nvim, run :h vimrc, this should show where init.vim should be placed
+  > C:\Users\46709\AppData\Local\nvim
+* Create the file init.vim in above directory. The content should be something similar to
+
+set runtimepath^=C:\EdvardsProgram\HOME\.vim
+let &packpath = &runtimepath
+source C:\EdvardsProgram\VimRoot-wsl\VimRoot-wsl\vimrc
+
+* The source row should match with the VimRoot directory
+* Create a HOME environment variable, create a corresponding directory
+* In HOME directory, create directories
+  > .vim
+  > .virtualenvs
+* Download and extract VimFiles from github
+  > Find directory containing common.vim, cut&paste everything into the .vim directory
+* Open Microsoft Store, install python
+* Open cmd, go to .virtualenvs, then
+  > python -m venv ./pynvim
+  > run activate.bat in Scripts/
+  > pip install pynvim
+* Fix libfzf.dll
+  > Alt 1. Copy libfzf.dll from other place, and place it in the telescope-native-fzf.nvim/build directory
+  > Alt 2. Install cmake and Msys2, including c compiler
+    > (Msys2) https://code.visualstudio.com/docs/cpp/config-mingw
+  > Run make commands, 3 different, taken from the "do" clause in telescope.vim in VimFiles
+  > Add -G "MinGW Makefiles", from https://stackoverflow.com/questions/69338088/error-while-configuring-cmake-project-running-nmake-failed
+  > cmake -G "MinGW Makefiles" -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build
+* Portable git bash
+  > https://git-scm.com/download/win
+  > Choose portable version
+* Create folder "java_files" in HOME
+* Ensure that all file references in java_jdtls.lua is correct
