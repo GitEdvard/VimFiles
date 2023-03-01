@@ -37,3 +37,4 @@ source C:\EdvardsProgram\VimRoot-wsl\VimRoot-wsl\vimrc
   > Choose portable version
 * Create folder "java_files" in HOME
 * Ensure that all file references in java_jdtls.lua is correct
+* Download and unpack ripgrep, add to path
