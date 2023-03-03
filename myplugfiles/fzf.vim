@@ -8,7 +8,7 @@ nmap // :BLines!<CR>
 nmap ?? :Rg!<CR>
 nmap <leader>p :Telescope find_files<CR>
 nmap <leader>b :call fzf#vim#buffers()<CR>
-nmap cc :Commands!<CR>
+" nmap cc :Commands!<CR>
 
 " Customize the Files command to use rg which respects .gitignore files 
 command! -bang -nargs=? -complete=dir Files
