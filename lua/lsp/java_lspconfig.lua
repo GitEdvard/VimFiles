@@ -1,3 +1,4 @@
+-- This is not used
 local M = {}
 local pid = vim.fn.getpid()
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
