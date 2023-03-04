@@ -43,7 +43,7 @@ function M.start_file_browser()
     require'telescope'.extensions.file_browser.file_browser(opts)
 end
 local bufopts = { noremap=true, silent=true }
-vim.keymap.set('n', '<leader>fe', M.current_buffer_fuzzy_find, bufopts)
+vim.keymap.set('n', 'cd', M.current_buffer_fuzzy_find, bufopts)
 vim.keymap.set('n', '<leader>ff', "<cmd>Telescope git_files<cr>", bufopts)
 vim.keymap.set('n', '<leader>fg', "<cmd>Telescope live_grep<cr>", bufopts)
 vim.keymap.set('n', '<leader>fb', "<cmd>Telescope buffers<cr>", bufopts)
@@ -51,7 +51,7 @@ vim.keymap.set('n', '<leader>fd', "<cmd>Telescope diagnostics<cr>", bufopts)
 vim.keymap.set('n', '<leader>fs', ":Telescope grep_string search=", bufopts)
 vim.keymap.set('n', '<leader>fl', "<cmd>Telescope lsp_document_symbols<cr>", bufopts)
 -- vim.keymap.set('n', '<leader>fh', "<cmd>Telescope file_browser cwd=" .. vim.fn.getcwd() .. "/" .. vim.fn.expand('%:h') .. "<cr>", bufopts)
-vim.keymap.set('n', '<leader>fr', M.start_file_browser, bufopts)
+vim.keymap.set('n', 'cx', M.start_file_browser, bufopts)
 
 vim.keymap.set('n', '<leader>yk', "<cmd>Telescope keymaps<cr>", bufopts)
 vim.keymap.set('n', '<leader>yr', "<cmd>Telescope registers<cr>", bufopts)
