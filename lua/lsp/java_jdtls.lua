@@ -14,6 +14,8 @@ local bundles = {
 }
 -- I dont think these bundles are really neccesary
 -- vim.list_extend(bundles, vim.split(vim.fn.glob("~/.cache/nvim/vscode-java-test/server/*.jar", 1), "\n"))
+local root_dir = vim.fn.getcwd()
+local project_name  = vim.fn.fnamemodify(root_dir, ':t')
 M.setup = function()
   local config = {
     -- cmd = {'/home/edvard/bin/jdt-language-server-latest/bin/jdtls'},
@@ -30,9 +32,9 @@ M.setup = function()
       '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
       '-jar', vim.g.jdtls_jar,
       '-configuration', vim.g.jdtls_config,
-      '-data', 'java_files'
+      '-data', '/home/edvard/java_files/' .. project_name
     },
-    root_dir = vim.fs.dirname(vim.fs.find({'.gradlew', '.git', 'mvnw'}, { upward = true })[1]),
+    root_dir = root_dir,
     on_attach = on_attach,
     init_options = {
       bundles = bundles
