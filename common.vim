@@ -42,7 +42,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'gaving/vim-textobj-argument'
 source ~/.vim/myplugfiles/vimtest.vim
 Plug 'tpope/vim-dispatch'
-Plug 'mbbill/undotree'
+source ~/.vim/myplugfiles/undotree.vim
 source ~/.vim/myplugfiles/markdown-preview.vim
 " stackmap, for switch mappings in quickfix window
 Plug 'tjdevries/stackmap.nvim'
@@ -147,7 +147,6 @@ nnoremap <c-g><c-f> <C-w>v<C-w>Tgf
 nnoremap gf <C-w>v<C-w>T:e <cfile><CR>
 nnoremap <leader>ut :retab<cr>
 
-nnoremap <leader>j :UndotreeShow<cr> :UndotreeFocus<cr>
 nnoremap <leader>k i<cr><esc>O
 inoremap <c-k> <cr><esc>O
 " Reload current file
