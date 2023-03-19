@@ -5,6 +5,7 @@ let g:jdtls_config = '/home/edvard/bin/jdt-language-server-latest/config_linux'
 let g:ctrlsf_ackprg = '/usr/bin/rg'
 let b:node_dir = '/home/edvard/.nvm/versions/node/v14.16.0/bin/'
 let g:node_host_prog = b:node_dir . 'node'
+let g:java_files_base = '/home/edvard/java_files/'
 let $PATH = b:node_dir . ':' . $PATH
 set clipboard+=unnamedplus
 let g:clipboard = {

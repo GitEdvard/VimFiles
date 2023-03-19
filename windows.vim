@@ -4,3 +4,4 @@ let g:java_exe = 'C:\EdvardsProgram\HOME\bin\jdk-17_windows-x64_bin\jdk-17.0.6\b
 let g:jdtls_jar = 'C:\EdvardsProgram\HOME\bin\jdt-language-server-1.19\plugins\org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar'
 let g:jdtls_config = 'C:\EdvardsProgram\HOME\bin\jdt-language-server-1.19\config_win'
 let g:ctrlsf_ackprg = 'rg.exe' " the path where rg.exe is located must be in the PATH environment variable!
+let g:java_files_base = 'C:\EdvardsProgram\HOME\java_files\'

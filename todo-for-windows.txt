@@ -49,3 +49,8 @@ source C:\EdvardsProgram\VimRoot-wsl\VimRoot-wsl\vimrc
   > https://download.eclipse.org/jdtls/snapshots/?d
   > jdt-language-server-1.19.0-202301171536.tar.gz (not latest!)
   > unpack the tar.gz file with tar -xvzf in windows 
+
+Sandvik fixes
+* On sandvik computer, find out which commands are issued when running launch configurations
+  > https://stackoverflow.com/questions/1989419/eclipse-is-there-a-way-to-get-eclipse-to-output-the-commands-given-to-run-your
+
