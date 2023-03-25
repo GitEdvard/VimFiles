@@ -147,8 +147,6 @@ nnoremap <c-g><c-f> <C-w>v<C-w>Tgf
 nnoremap gf <C-w>v<C-w>T:e <cfile><CR>
 nnoremap <leader>ut :retab<cr>
 
-nnoremap <leader>k i<cr><esc>O
-inoremap <c-k> <cr><esc>O
 " Reload current file
 nnoremap <leader>e :e!<CR>
 nnoremap <leader>Q :bufdo bdelete<cr>
@@ -262,9 +260,6 @@ command! Ctags execute ":!ctags -R"
 command! Ostart execute ":OmniSharpStartServer"
 command! Ostop execute ":OmniSharpStopServer"
 command! FileHistory execute ":BCommits"
-" command! AppendClipboard execute ":!win32yank.exe -o >> % <bar> :e! <bar> :%s/\r/"
-command! AppendClipboard execute ":!win32yank.exe -o >> %"
-command! PurgeWindowEndings execute ":%s/\r/"
 command! ShowAscii execute ":set statusline=%<%f%h%m%r%=%b\ 0x%B\ \ %l,%c%V\ %P"
 
 "---------------------------------------------------
