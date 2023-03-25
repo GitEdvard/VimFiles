@@ -17,33 +17,3 @@ vim.keymap.set("n", "<leader>dh", "<cmd>Telescope dap commands<cr>", opts)
 vim.keymap.set("n", "<leader>df", "<cmd>Telescope dap frames<cr>", opts)
 vim.keymap.set("n", "<leader>dq", "<cmd>Telescope dap configurations<cr>", opts)
 vim.keymap.set("n", "<leader>db", "<cmd>Telescope dap list_breakpoints<cr>", opts)
-
-
-require('dapui').setup()
-require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')
-require("nvim-dap-virtual-text").setup()
-require('telescope').load_extension('dap')
-
-require'dap'.adapters.coreclr = {
-    type = 'executable',
-    command = '/home/edvard/.cache/netcoredbg/netcoredbg',
-    args = {'--interpreter=vscode'}
-}
-
--- require'setup_csharp'
-
-local conf_mapping = {
-    ['java'] = 'java',
-    ['coreclr'] = 'cs',
-    ['python'] = 'python'
-}
-
-local dap_config = require'read-settings'.read_json(".dapsettings.json")
-if dap_config ~= nil then
-    local filetype = conf_mapping[dap_config['type']]
-    require'dap'.configurations[filetype] = {dap_config}
-end
-
--- example of how to trigger clarity debugger
--- vim.keymap.set("n", "<F5>", ":let $CURRENT_PY_PATH=substitute(expand('%:r'), '/', '.', 'g')<CR> :lua require'dap'.continue()<cr>", opts)
-
