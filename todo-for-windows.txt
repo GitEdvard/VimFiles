@@ -55,4 +55,8 @@ source C:\EdvardsProgram\VimRoot-wsl\VimRoot-wsl\vimrc
 Sandvik fixes
 * On sandvik computer, find out which commands are issued when running launch configurations
   > https://stackoverflow.com/questions/1989419/eclipse-is-there-a-way-to-get-eclipse-to-output-the-commands-given-to-run-your
+* Pluginstall, in git bash give these commands
+  > git config --global http.sslBackend schannel
+  > git config --global http.sslcainfo "/c/Users/yh6032/HOME/bin/PortableGit/mingw64/ssl/certs"
+  > Adjust path above for whereever the git bash is installed
 
