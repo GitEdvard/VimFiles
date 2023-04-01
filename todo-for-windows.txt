@@ -13,44 +13,47 @@ set runtimepath^=C:\EdvardsProgram\HOME\.vim
 let &packpath = &runtimepath
 source C:\EdvardsProgram\VimRoot-wsl\VimRoot-wsl\vimrc
 
-x The source row should match with the VimRoot directory
-x Create a HOME environment variable, create a corresponding directory
-x In HOME directory, create directories
+* The source row should match with the VimRoot directory
+* Create a HOME environment variable, create a corresponding directory
+* In HOME directory, create directories
   > .vim
   > .virtualenvs
-x Download and extract VimFiles from github
+* Download and extract VimFiles from github
   > Find directory containing common.vim, cut&paste everything into the .vim directory
-x Open Microsoft Store, install python
-x Open cmd, go to .virtualenvs, then
+* Open Microsoft Store, install python
+* Open cmd, go to .virtualenvs, then
   > python -m venv ./pynvim
   > run activate.bat in Scripts/
   > pip install pynvim
-x Fix libfzf.dll
+* Fix libfzf.dll
   > Alt 1. Copy libfzf.dll from other place, and place it in the telescope-native-fzf.nvim/build directory
   > Alt 2. Install cmake and Msys2, including c compiler
     > (Msys2) https://code.visualstudio.com/docs/cpp/config-mingw
   > Run make commands, 3 different, taken from the "do" clause in telescope.vim in VimFiles
   > Add -G "MinGW Makefiles", from https://stackoverflow.com/questions/69338088/error-while-configuring-cmake-project-running-nmake-failed
   > cmake -G "MinGW Makefiles" -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build
-x Portable git bash
+* Portable git bash
   > https://git-scm.com/download/win
   > Choose portable version
-x Create folder "java_files" in HOME
-* Ensure that all file references in java_jdtls.lua is correct
-* Download and unpack ripgrep, add to path
-  > https://github.com/BurntSushi/ripgrep/releases
-  > Locate path to rg.exe, add to path env variable
-* Create directory ~\.cache\nvim\
-* download debug java bundle
-  > https://repo1.maven.org/maven2/com/microsoft/java/com.microsoft.java.debug.plugin/0.44.0/
-  > put it in ~\.cachec\nvim
-* Download vscode-java-test
-  > https://github.com/microsoft/vscode-java-test
-  > put it in ~\.cachec\nvim
+* Create folder "java_files" in HOME
+* Download and install java-sdk 17
+  > https://www.oracle.com/java/technologies/downloads/#jdk17-windows
 * Download java language server, jdtls
   > https://download.eclipse.org/jdtls/snapshots/?d
   > jdt-language-server-1.19.0-202301171536.tar.gz (not latest!)
   > unpack the tar.gz file with tar -xvzf in windows 
+* Download and unpack ripgrep, add to path
+  > https://github.com/BurntSushi/ripgrep/releases
+  > Locate path to rg.exe, add to path env variable
+* Ensure that all file references in java_jdtls.lua is correct
+* Create directory ~\.cache\nvim\
+* download debug java bundle
+  > https://repo1.maven.org/maven2/com/microsoft/java/com.microsoft.java.debug.plugin/0.44.0/
+  > file: com.microsoft.java.debug.plugin-0.44.0.jar
+  > put it in ~\.cachec\nvim
+* Download vscode-java-test
+  > https://github.com/microsoft/vscode-java-test
+  > put it in ~\.cachec\nvim
 
 Sandvik fixes
 * On sandvik computer, find out which commands are issued when running launch configurations
