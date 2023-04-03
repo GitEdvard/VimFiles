@@ -80,7 +80,7 @@ lua vim.opt.termguicolors = true
 lua vim.opt.bg = dark
 colorscheme codedark
 
-set tabstop=4 shiftwidth=4 expandtab
+set tabstop=4 shiftwidth=4
 
 hi ctrlsfMatch cterm=NONE ctermfg=black ctermbg=blue
 
@@ -203,7 +203,7 @@ noremap - :tabm -1<CR>
 noremap <C-l> :tabn<CR>
 noremap = :tabm +1<CR>
 noremap <C-j> :tabc<CR> :tabp<CR>
-noremap <C-k> :tabe <Bar> Startify<CR>
+noremap <C-k> :tabe
 
 nnoremap <leader>q :copen<cr> <c-w>L
 
@@ -213,7 +213,7 @@ command! Reloadall execute ":bufdo e!"
 command! JsonPrettify execute ":r !xclip -selection clipboard -o | jsonlint"
 command! Config execute ":e ~/.vimrc"
 command! W execute ":w | source %"
-command! Reload execute "source ~/.vimrc"
+command! Reload execute "source ~/myvim/VimRoot/vimrc"
 command! Longfile execute ":e ~/sources/test/dotfiles/.vimrc"
 command! Gitpush execute ":! git push origin develop"
 command! Gitpushforce execute ":! git push -f origin develop"
@@ -234,4 +234,9 @@ augroup END
 augroup java_augroup
     autocmd!
     autocmd FileType java lua require('java.myjava_settings')
+augroup END
+
+augroup expand_tab_augroup
+    autocmd!
+    autocmd FileType text setlocal expandtab
 augroup END
