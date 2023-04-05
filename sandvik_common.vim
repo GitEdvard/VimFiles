@@ -13,7 +13,7 @@ call plug#begin('~/.vim/plugged')
 
 source ~/.vim/myplugfiles/nerdtree.vim
 source ~/.vim/myplugfiles/ctrlsf.vim
-source ~/.vim/myplugfiles/fzf.vim
+" source ~/.vim/myplugfiles/fzf.vim
 source ~/.vim/myplugfiles/fugitive.vim
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
@@ -27,7 +27,7 @@ Plug 'tpope/vim-unimpaired'
 source ~/.vim/myplugfiles/undotree.vim
 Plug 'nvim-lua/plenary.nvim'
 Plug 'BurntSushi/ripgrep'
-source ~/.vim/myplugfiles/telescope.vim
+" source ~/.vim/myplugfiles/telescope.vim
 source ~/.vim/myplugfiles/treesitter.vim
 source ~/.vim/myplugfiles/lsp.vim
 source ~/.vim/myplugfiles/luasnip.vim

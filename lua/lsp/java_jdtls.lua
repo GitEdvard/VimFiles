@@ -36,6 +36,15 @@ M.setup = function()
     },
     root_dir = root_dir,
     on_attach = on_attach,
+    settings = {
+        java = {
+            project = {
+                referencedLibraries = {
+                    'C:/Users/yh6032/yappclipse/plugins/yapp.cad_7.95.0.202302220822.jar',
+                }
+            }
+        }
+    },
     init_options = {
       bundles = bundles
     }
