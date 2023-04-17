@@ -21,6 +21,7 @@ ls.add_snippets("all", {
 }, {
     key = "all",
 })
+
 ls.add_snippets("vim", {
   ls.parser.parse_snippet("_caption",[[
 "-------------------------------------------------------------
@@ -45,6 +46,15 @@ ls.add_snippets("typescript", {
   key = "typescript",
 })
 
+ls.add_snippets("text", {
+  ls.parser.parse_snippet("_newday",[[
+$1 $2/$3 2023
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+Idag:
+* $0
+
+]])
+})
 ls.add_snippets("html", {
   s(">", fmt(">\n\t{}\n\n", { i(0) })),
 })
