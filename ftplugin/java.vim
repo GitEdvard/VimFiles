@@ -1,4 +1,4 @@
-lua require'lsp.java_jdtls'.setup()
+" lua require'lsp.java_jdtls'.setup()
 set errorformat=\[ERROR\]\ %f:\[%l\\\,%c\]\ %m
 set errorformat+=%.%#at\ %.%#\(%f:%l\)
 set errorformat+=at\ %f\ \(%l\)
