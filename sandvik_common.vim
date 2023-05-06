@@ -196,7 +196,7 @@ noremap <c-Down> :resize +2<cr>
 noremap <c-Left> :vertical resize -2<cr>
 noremap <c-Right> :vertical resize +2<cr>
 
-nnoremap <silent> <leader>g :LazyGit<CR>
+nnoremap <silent> <leader>g :tabe <bar> G<CR> <c-w>o
 
 noremap <C-h> :tabp<CR>
 noremap - :tabm -1<CR>
