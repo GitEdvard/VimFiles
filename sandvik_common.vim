@@ -231,10 +231,12 @@ augroup indent2_augroup
     autocmd FileType json,typescript,text,css,lua,html,xml,jsp setlocal shiftwidth=2 tabstop=2
 augroup END
 
-augroup java_augroup
-    autocmd!
-    autocmd FileType java lua require('java.myjava_settings')
-augroup END
+lua require('java.mysandvik_settings')
+
+" augroup java_augroup
+"     autocmd!
+"     autocmd FileType java lua require('java.mysandvik_settings')
+" augroup END
 
 augroup expand_tab_augroup
     autocmd!
