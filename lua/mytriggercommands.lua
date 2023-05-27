@@ -2,7 +2,8 @@
 local run_settings = require'read-settings'.read_json('.runsettings.json')
 local trigger_command_single = function()
     vim.cmd("let $CURRENT_PY_PATH = substitute(expand('%:r'), '/', '.', 'g')")
-    require'trigger-commands'.run_single(run_settings)
+    local cmd = require'trigger-commands'.generate_command(run_settings)
+    require'trigger-commands'.run_single(cmd)
 end
 local opts = { noremap = true, silent = true }
 
