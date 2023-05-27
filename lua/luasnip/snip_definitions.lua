@@ -13,13 +13,18 @@ local same = function(index)
   end, { index })
 end
 
-
 ls.add_snippets("all", {
     ls.parser.parse_snippet("exp", "-- this is what got expanded"),
     ls.parser.parse_snippet("lf", "local $1 = function($2)\n  $0\nend"),
-    s("sametest", fmt([[example: {}, function: {}]], { i(1), same(1) })),
+    s("sametest", fmt([[example: {}, function: {}]], { i(1), same(1) }))
 }, {
     key = "all",
+})
+
+ls.add_snippets("dosbatch", {
+    s("_echo", fmt([[echo {} = %{}%]], {i(1), same(1)}))
+}, {
+    key = "dosbatch"
 })
 
 ls.add_snippets("vim", {
