@@ -213,6 +213,7 @@ command! Reloadall execute ":bufdo e!"
 command! JsonPrettify execute ":r !xclip -selection clipboard -o | jsonlint"
 command! Config execute ":e ~/.vimrc"
 command! W execute ":w | source %"
+command! E execute ":w!"
 command! Reload execute "source ~/myvim/VimRoot/vimrc"
 command! Longfile execute ":e ~/sources/test/dotfiles/.vimrc"
 command! Gitpush execute ":! git push origin develop"
@@ -223,6 +224,7 @@ command! Ostart execute ":OmniSharpStartServer"
 command! Ostop execute ":OmniSharpStopServer"
 command! FileHistory execute ":BCommits"
 command! ShowAscii execute ":set statusline=%<%f%h%m%r%=%b\ 0x%B\ \ %l,%c%V\ %P"
+command! AppendClipboard execute ":!win32yank.exe -o >> %"
 "---------------------------------------------------
 " Autocommand autocmd
 "---------------------------------------------------
@@ -233,10 +235,10 @@ augroup END
 
 lua require('java.mysandvik_settings')
 
-" augroup java_augroup
-"     autocmd!
-"     autocmd FileType java lua require('java.mysandvik_settings')
-" augroup END
+augroup java_augroup
+    autocmd!
+    autocmd FileType java lua require('java.mysandvik_settings')
+augroup END
 
 augroup expand_tab_augroup
     autocmd!
