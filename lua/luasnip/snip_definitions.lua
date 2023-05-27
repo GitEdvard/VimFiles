@@ -89,3 +89,6 @@ ls.add_snippets("java", {
   }))
 })
 
+ls.add_snippets("python", {
+  s("_pension_entry", fmt([[self.{} = config_dict["{}"{}]], { i(1), rep(1), t("]") })),
+})
