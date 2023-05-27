@@ -6,3 +6,5 @@ let g:jdtls_jar = 'C:\Users\yh6032\HOME\bin\jdtls\plugins\org.eclipse.equinox.la
 let g:jdtls_config = 'C:\Users\yh6032\HOME\bin\jdtls\config_win'
 let g:ctrlsf_ackprg = 'rg.exe' " the path where rg.exe is located must be in the PATH environment variable!
 let g:java_files_base = 'C:\Users\yh6032\HOME\java_files'
+
+let $UG_VERSION = 'NX12'
