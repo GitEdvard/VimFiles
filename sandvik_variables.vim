@@ -8,3 +8,10 @@ let g:ctrlsf_ackprg = 'rg.exe' " the path where rg.exe is located must be in the
 let g:java_files_base = 'C:\Users\yh6032\HOME\java_files'
 
 let $UG_VERSION = 'NX12'
+let $ENG_BASE_SERVER = 'Segisrvp19203.production.coromant.sandvik.com'
+let $ENG_LOCATION = 'SEGI' 
+let $UG_FILE_SERVER = ''
+let $CMD_FILE_DIR = 'C:\ProgramData\NX_BASE\NX12\'
+let $NX_BASE_DIR = 'C:\ProgramData\NX_BASE\NX12'
+let $ENG_BASE_DIR = 'C:\ProgramData\NX_BASE'
+let $EXE_DIR = 'C:\ProgramData\NX_BASE\UTILS\BIN'
