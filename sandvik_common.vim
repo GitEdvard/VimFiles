@@ -32,6 +32,7 @@ source ~/.vim/myplugfiles/treesitter.vim
 source ~/.vim/myplugfiles/lsp.vim
 source ~/.vim/myplugfiles/luasnip.vim
 source ~/.vim/myplugfiles/debugger-sandvik.vim
+Plug 'bps/vim-textobj-python'
 Plug 'gpanders/editorconfig.nvim'
 Plug 'mfussenegger/nvim-jdtls'
 Plug 'sukima/xmledit'
