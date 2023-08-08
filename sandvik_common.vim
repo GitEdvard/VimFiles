@@ -205,7 +205,7 @@ noremap - :tabm -1<CR>
 noremap <C-l> :tabn<CR>
 noremap = :tabm +1<CR>
 noremap <C-j> :tabc<CR> :tabp<CR>
-noremap <C-k> :tabe
+noremap <C-k> :tabe<CR>
 
 nnoremap <leader>q :copen<cr> <c-w>L
 
@@ -227,6 +227,9 @@ command! Ostop execute ":OmniSharpStopServer"
 command! FileHistory execute ":BCommits"
 command! ShowAscii execute ":set statusline=%<%f%h%m%r%=%b\ 0x%B\ \ %l,%c%V\ %P"
 command! AppendClipboard execute ":!win32yank.exe -o >> %"
+command! Glog execute ":Gclog" | call feedkeys("<a-j><c-w>L")
+command! Glogg execute ":Gclog -- %" | call feedkeys("<a-j><c-w>L")
+
 "---------------------------------------------------
 " Autocommand autocmd
 "---------------------------------------------------
