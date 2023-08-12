@@ -12,6 +12,11 @@ C:\Users\yh6032\yappclipse\yapp.exe -debug -consoleLog
   ]]
   require'trigger-commands'.run_single( cmd_yapp )
 end
+
+local M = require'java.prepare_jdtls'
 local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<leader>uy', start_yapp, opts)
 vim.keymap.set('n', '<leader>ub', build, opts)
+vim.keymap.set('n', '<leader>uh', M.hide_jdtls_files, opts)
+vim.keymap.set('n', '<leader>uu', M.unhide_jdtls_files, opts)
+vim.keymap.set('n', '<leader>ut', M.test, opts)
