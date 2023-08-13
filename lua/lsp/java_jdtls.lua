@@ -32,7 +32,7 @@ M.setup = function()
       '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
       '-jar', vim.g.jdtls_jar,
       '-configuration', vim.g.jdtls_config,
-      '-data', vim.g.java_files_base .. '/' .. project_name
+      '-data', vim.g.java_files_base .. "\\" .. project_name
     },
     on_attach = on_attach,
     root_dir = root_dir,
