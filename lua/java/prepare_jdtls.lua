@@ -48,11 +48,11 @@ end
 M.hide_jdtls_files = function()
   print("Prepare to use jdtls server ...")
   vim.cmd("Git update-index --assume-unchanged .project")
-  vim.cmd("!move /y pom.xml pom.xmlX")
   vim.cmd("Git update-index --assume-unchanged pom.xml")
+  vim.cmd("!copy /y effective_pom.xml pom.xml")
+  vim.cmd("!copy /y i290.cmm/effective_pom.xml i290.cmm/pom.xml")
   expand_execute("Git update-index --assume-unchanged {}", "*/.project")
   expand_execute("Git update-index --assume-unchanged {}", "*/pom.xml")
-  expand_execute("!move /y {} {}X", "*/pom.xml")
   print("Done")
 end
 
