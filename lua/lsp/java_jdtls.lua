@@ -37,7 +37,14 @@ M.setup = function()
     on_attach = on_attach,
     root_dir = root_dir,
     settings = {
+<<<<<<< HEAD
         java = {}
+=======
+        java = {
+            project = {
+            }
+        }
+>>>>>>> bd88fb4 (Save command for root dir in comment)
     },
     init_options = {
       bundles = bundles
