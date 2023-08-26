@@ -86,7 +86,14 @@ ls.add_snippets("java", {
     i(3, "name"),
     i(4, "args"),
     i(0),
-  }))
+  })),
+  s("_create", fmt([[
+  public static {} create({}, Injector injector) {{
+    {} x = new {}({});
+    injector.injectMembers(x);
+    return x;
+  }}
+  ]], { i(1), i(2), rep(1), rep(1), i(3)} ))
 })
 
 ls.add_snippets("python", {

@@ -14,7 +14,9 @@ local bundles = {
 }
 -- I dont think these bundles are really neccesary
 -- vim.list_extend(bundles, vim.split(vim.fn.glob("~/.cache/nvim/vscode-java-test/server/*.jar", 1), "\n"))
-local root_dir = require('jdtls.setup').find_root({'.git', 'mvnw', 'gradlew'})
+-- local root_dir = vim.fn.getcwd()
+local root_dir = require('jdtls.setup').find_root({'.git' })
+-- local root_dir = "C:\\Users\\yh6032\\git\\i290.manufacturing\\i290.manufacturing\\i290.cmm"
 local project_name  = vim.fn.fnamemodify(root_dir, ':t')
 M.setup = function()
   local config = {
