@@ -21,6 +21,9 @@ require('mycmp_settings')
 require'lsp.angular'
 require'lsp.csharp'.setup(lsp_flags, capabilities, on_attach)
 require'lsp.python'.setup(lsp_flags, capabilities, on_attach)
+vim.diagnostic.config({
+
+})
 -- require'lsp.java_lspconfig'.setup(lsp_flags, capabilities, on_attach)
 
 require('lint').linters_by_ft = {
@@ -32,3 +35,14 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
         require("lint").try_lint()
     end,
 })
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    signs = {
+      severity_limit = "Warning",
+    },
+    virtual_text = {
+      severity_limit = "Warning",
+    },
+  }
+)

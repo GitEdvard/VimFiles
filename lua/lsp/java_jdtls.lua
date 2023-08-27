@@ -14,7 +14,7 @@ local bundles = {
 }
 -- I dont think these bundles are really neccesary
 -- vim.list_extend(bundles, vim.split(vim.fn.glob("~/.cache/nvim/vscode-java-test/server/*.jar", 1), "\n"))
-local root_dir = vim.fn.getcwd()
+local root_dir = require('jdtls.setup').find_root({'.git', 'mvnw', 'gradlew'})
 local project_name  = vim.fn.fnamemodify(root_dir, ':t')
 M.setup = function()
   local config = {
@@ -32,18 +32,12 @@ M.setup = function()
       '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
       '-jar', vim.g.jdtls_jar,
       '-configuration', vim.g.jdtls_config,
-      '-data', vim.g.java_files_base .. project_name
+      '-data', vim.g.java_files_base .. '/' .. project_name
     },
-    root_dir = root_dir,
     on_attach = on_attach,
+    root_dir = root_dir,
     settings = {
-        java = {
-            project = {
-                referencedLibraries = {
-                    'C:/Users/yh6032/yappclipse/plugins/yapp.cad_7.95.0.202302220822.jar',
-                }
-            }
-        }
+        java = {}
     },
     init_options = {
       bundles = bundles
