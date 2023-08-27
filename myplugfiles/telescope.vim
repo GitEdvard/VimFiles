@@ -5,6 +5,7 @@ Plug 'nvim-telescope/telescope-file-browser.nvim'
 " will take care of E5108: Error executing lua  'fzf' extension doesn't exist
 " or isn't installed"
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
+Plug 'nvim-telescope/telescope-ui-select.nvim'
 
 augroup telescope-plug-event
     autocmd!
