@@ -11,15 +11,10 @@ local transpose2 = function (aStr, injectStr, secondArg)
   return ret
 end
 
-local expand_execute = function (command, strToExpand, replaceFrom, replaceTo)
-  replaceFrom = replaceFrom or nil
-  replaceTo = replaceTo or nil
+local expand_execute = function (command, strToExpand)
   local expandedStr = vim.fn.expand(strToExpand)
   local lines = mysplit(expandedStr, "\n")
   for _, v in ipairs(lines) do
-    if not (replaceFrom == nil) then
-      v, _  = v:gsub(replaceFrom, replaceTo)
-    end
     vim.cmd(transpose(command, v))
   end
 end
@@ -60,9 +55,9 @@ end
 M.unhide_jdtls_files = function()
   print("Restore files after jdtls usage ...")
   expand_execute("Git update-index --no-assume-unchanged {}", "*/.project")
-  expand_execute("Git update-index --no-assume-unchanged {}", "*/pom.xmlX", "pom.xmlX", "pom.xml")
+  expand_execute("Git update-index --no-assume-unchanged {}", "*/pom.xml")
   expand_execute("Git checkout HEAD -- {}", "*/.project")
-  expand_execute("Git checkout HEAD -- {}", "*/pom.xmlX", "pom.xmlX", "pom.xml")
+  expand_execute("Git checkout HEAD -- {}", "*/pom.xml")
   vim.cmd("Git update-index --no-assume-unchanged .project")
   vim.cmd("Git checkout HEAD -- .project")
   vim.cmd("Git checkout HEAD -- pom.xml")
