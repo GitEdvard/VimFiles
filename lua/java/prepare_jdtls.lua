@@ -32,8 +32,8 @@ local expand_execute_mult = function (command, strToExpand, secondArg)
     local parts = mysplit(v, "\\")
     table.remove(parts, #parts)
     local folder = table.concat(parts, "\\")
-    secondArg = folder .. "\\".. secondArg
-    vim.cmd(transpose2(command, v, secondArg))
+    local destPath = folder .. "\\".. secondArg
+    vim.cmd(transpose2(command, v, destPath))
   end
 end
 
@@ -50,10 +50,10 @@ M.hide_jdtls_files = function()
   vim.cmd("Git update-index --assume-unchanged .project")
   vim.cmd("Git update-index --assume-unchanged pom.xml")
   -- vim.cmd("!copy /y i290.cmm\\homemade_pom.xml i290.cmm\\pom.xml")
-  vim.cmd("!copy /y i290.cmm\\effective_pom.xml i290.cmm\\pom.xml")
-  vim.cmd("!copy /y effective_pom.xml pom.xml")
   expand_execute("Git update-index --assume-unchanged {}", "*/.project")
   expand_execute("Git update-index --assume-unchanged {}", "*/pom.xml")
+  vim.cmd("!copy /y homemade_pom.xml pom.xml")
+  expand_execute_mult("!copy /y {} {}", "*/homemade_pom.xml", "pom.xml")
   print("Done")
 end
 
