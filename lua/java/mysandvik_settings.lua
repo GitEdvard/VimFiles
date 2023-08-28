@@ -17,6 +17,6 @@ local M = require'java.prepare_jdtls'
 local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<leader>uy', start_yapp, opts)
 vim.keymap.set('n', '<leader>ub', build, opts)
-vim.keymap.set('n', '<leader>uh', M.hide_jdtls_files, opts)
-vim.keymap.set('n', '<leader>uu', M.unhide_jdtls_files, opts)
+vim.keymap.set('n', '<leader>uh', M.hide_jdtls_files_sync, opts)
+vim.keymap.set('n', '<leader>uu', M.unhide_jdtls_files_sync, opts)
 vim.keymap.set('n', '<leader>ut', M.test_multi_line, opts)
