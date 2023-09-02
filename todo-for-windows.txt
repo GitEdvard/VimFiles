@@ -63,3 +63,21 @@ Sandvik fixes
   > git config --global http.sslcainfo "/c/Users/yh6032/HOME/bin/PortableGit/mingw64/ssl/certs"
   > Adjust path above for whereever the git bash is installed
 
+Running jdtls on Sandvik
+* Commands for updating pom structure and other files
+  > hide_jdtls_files
+  > unhide_jdtls_files
+* Install Ant
+  > Download from apache website, unpack
+  > Set ANT_HOME, to directory above the bin directory
+  > Add to path, %ANT_HOME%\bin
+  > JAVA_HOME need to be defined, as an entry on the PATH, including %JAVA_HOME%\bin
+* Run build command
+  > From yappclipse, expert a Ant build file
+    - go to a project
+    - File/Export ...
+    - General/Ant buildfile
+  > From command line (as far as I have reached for the moment), ...
+  > ant init-eclipse-compiler
+  > ant build-eclipse-compiler
+

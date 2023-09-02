@@ -56,11 +56,10 @@ local expand_execute_mult = function (command, strToExpand, secondArg, commands)
 end
 
 M.test = function()
-  -- expand_execute("Git update-index --assume-unchanged {}", "*/.project")
-  -- local cmd = "mycommand {}"
-  -- print(transpose(cmd, "hej"))
-  -- local cmd2 = "cmd2 {} middle {}"
-  -- print(transpose(cmd2, "hejdaa"))
+  print("Prepare to use jdtls server ...")
+  local bufnr, promptnr = require'trigger-commands'.spawn_scratch()
+  local a = require'trigger-commands'.run_single
+  a("git update-index --assume-unchanged */.project", bufnr, promptnr)
 end
 
 M.test_multi_line = function()
@@ -106,14 +105,13 @@ M.hide_jdtls_files = function()
   table.insert(commands, "git update-index --assume-unchanged .project")
   table.insert(commands, "git update-index --assume-unchanged pom.xml")
   -- vim.cmd("!copy /y i290.cmm\\tom.xml i290.cmm\\pom.xml")
-  table.insert(commands, "git update-index --assume-unchanged */.project")
-  table.insert(commands, "git update-index --assume-unchanged */pom.xml")
-  table.insert(commands, "git update-index --assume-unchanged */.classpath")
-  table.insert(commands, "git update-index --assume-unchanged */.settings/org.eclipse.jdt.core.prefs")
+  commands = expand_execute("git update-index --assume-unchanged {}", "*/.project", commands)
+  commands = expand_execute("git update-index --assume-unchanged {}", "*/pom.xml", commands)
+  commands = expand_execute("git update-index --assume-unchanged {}", "*/.classpath", commands)
+  commands = expand_execute("git update-index --assume-unchanged {}", "*/.settings/org.eclipse.jdt.core.prefs", commands)
   table.insert(commands, "copy /y tom.xml pom.xml")
   commands = expand_execute_mult("copy /y {} {}", "*/tom.xml", "pom.xml", commands)
-  commands = table.concat(commands, "\n")
-  require'trigger-commands'.run_single_windows( commands )
+  require'trigger-commands'.run_multi( commands )
   print("Done")
 end
 
@@ -132,8 +130,7 @@ M.unhide_jdtls_files = function()
   table.insert(commands, "git checkout HEAD -- .project")
   table.insert(commands, "git update-index --no-assume-unchanged pom.xml")
   table.insert(commands, "git checkout HEAD -- pom.xml")
-  commands = table.concat(commands, ";")
-  require'trigger-commands'.run_single_windows( commands )
+  require'trigger-commands'.run_multi( commands )
   print("Done")
 end
 
