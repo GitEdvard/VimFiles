@@ -56,10 +56,12 @@ local expand_execute_mult = function (command, strToExpand, secondArg, commands)
 end
 
 M.test = function()
-  print("Prepare to use jdtls server ...")
-  local bufnr, promptnr = require'trigger-commands'.spawn_scratch()
-  local a = require'trigger-commands'.run_single
-  a("git update-index --assume-unchanged */.project", bufnr, promptnr)
+  local find_res = vim.fs.find(
+  {'build.xml'}, 
+  { upward = true, path = vim.fs.dirname(vim.api.nvim_buf_get_name(0)) })
+  local project_dir = vim.fs.dirname(find_res[1])
+  local build_path = project_dir .. "/" .. "build.xml"
+  P(build_path)
 end
 
 M.test_multi_line = function()
@@ -132,6 +134,17 @@ M.unhide_jdtls_files = function()
   table.insert(commands, "git checkout HEAD -- pom.xml")
   require'trigger-commands'.run_multi( commands )
   print("Done")
+end
+
+M.build = function()
+  local commands = {}
+  local build_path = vim.fs.find(
+  {'build.xml'}, 
+  { upward = true, path = vim.fs.dirname(vim.api.nvim_buf_get_name(0)) })
+  build_path = build_path[1]
+  P(build_path)
+  local cmd = "ant build-eclipse-compiler -f " .. build_path
+  require'build'.build{ cmd }
 end
 
 function mysplit (inputstr, sep)

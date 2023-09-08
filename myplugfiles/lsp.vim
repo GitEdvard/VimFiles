@@ -12,7 +12,12 @@ Plug 'williamboman/nvim-lsp-installer'
 
 set completeopt=menu,menuone,noselect
 
+function! Run_lsp()
+    lua require('lsp.mylsp_settings')
+    nnoremap gs gszz
+endfunction
+
 augroup lsp-plug-event
     autocmd!
-    autocmd User plug-event lua require('lsp.mylsp_settings')
+    autocmd User plug-event :call Run_lsp()
 augroup END
