@@ -17,7 +17,7 @@ local reset = function()
     package.loaded['mytriggercommands'] = nil
 end
 local push = function()
-  require'build'.build{ 'git push --force', 'Changes pushed to remote!', 'Git push failed. ' }
+  require'trigger-commands'.run_silent{ 'git push --force', 'Changes pushed to remote!', 'Git push failed. ' }
 end
 
 vim.keymap.set('n', '<leader>us', trigger_command_single, opts)

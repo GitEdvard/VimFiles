@@ -11,6 +11,17 @@ local transpose2 = function (aStr, injectStr, secondArg)
   return ret
 end
 
+function mysplit (inputstr, sep)
+  if sep == nil then
+          sep = "%s"
+  end
+  local t={}
+  for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
+          table.insert(t, str)
+  end
+  return t
+end
+
 local expand_execute_sync = function (command, strToExpand)
   local expandedStr = vim.fn.expand(strToExpand)
   local lines = mysplit(expandedStr, "\n")
@@ -144,19 +155,32 @@ M.build = function()
   build_path = build_path[1]
   P(build_path)
   local cmd = "ant build-eclipse-compiler -f " .. build_path
-  require'build'.build{ cmd }
+  require'trigger-commands'.run_silent{cmd}
 end
 
-function mysplit (inputstr, sep)
-  if sep == nil then
-          sep = "%s"
-  end
-  local t={}
-  for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
-          table.insert(t, str)
-  end
-  return t
+local gather_output = function(data, build_output)
+    if not data then
+        return build_output
+    end
+    for _, row in ipairs(data) do
+        table.insert(build_output, row)
+    end
+    return build_output
+end
+
+local to_vim_script_arr = function(lua_table)
+    -- lua table contains strings only. Escape each single quote in it
+    local escaped_table = {}
+    for _, v in ipairs(lua_table) do
+        local row = string.gsub(v, "'", "''")
+        table.insert(escaped_table, row)
+    end
+    return '[\'' .. table.concat(escaped_table, '\',\'') .. '\']'
+end
+
+local show_errors = function(build_output)
+    local vim_script_arr = to_vim_script_arr(build_output)
+    vim.cmd { cmd = 'cgetexpr', args = {vim_script_arr} }
 end
 
 return M
-

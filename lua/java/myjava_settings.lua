@@ -1,9 +1,9 @@
 local build = function()
-  require'build'.build{ "mvn compile" }
+  require'trigger-commands'.run_silent{ "mvn compile" }
 end
 
 local package = function()
-  require'build'.build{ "mvn clean package; shutdown.sh; startup.sh" }
+  require'trigger-commands'.run_silent{ "mvn clean package; shutdown.sh; startup.sh" }
 end
 
 local opts = { noremap = true, silent = true }
