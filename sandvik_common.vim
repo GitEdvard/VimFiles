@@ -111,7 +111,7 @@ nnoremap <c-i> <c-i>zz
 nnoremap dd A<bs><esc>
 nnoremap <c-g><c-f> <C-w>v<C-w>Tgf
 nnoremap gf <C-w>v<C-w>T:e <cfile><CR>
-nnoremap <leader>ut :retab<cr>
+" nnoremap <leader>ut :retab<cr>
 nnoremap <leader>J J
 
 " Reload current file
@@ -121,6 +121,8 @@ nnoremap <leader>Q :bufdo bdelete<cr>
 " easy insertion of ; or , in insert mode
 imap ;; <esc>A;<esc>
 imap ,, <esc>A,<esc>
+inoremap {{ <esc>A {<c-m>}<esc>
+inoremap jp <esc>la.
 
 " Open current file in a new tab
 nnoremap <leader>r <C-w>v<C-w>T
@@ -154,7 +156,7 @@ inoremap " ""<Left>
 inoremap ' ''<Left>
 inoremap [ []<Left>
 inoremap ( ()<Left>
-inoremap { {}<Left>
+" inoremap { {}<Left>
 inoremap <c-f><space> <space><space><Left>
 
 " center screen after search

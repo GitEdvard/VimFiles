@@ -67,12 +67,25 @@ local expand_execute_mult = function (command, strToExpand, secondArg, commands)
 end
 
 M.test = function()
-  local find_res = vim.fs.find(
+  local commands = {}
+  local build_path = vim.fs.find(
   {'build.xml'}, 
   { upward = true, path = vim.fs.dirname(vim.api.nvim_buf_get_name(0)) })
-  local project_dir = vim.fs.dirname(find_res[1])
-  local build_path = project_dir .. "/" .. "build.xml"
+  build_path = build_path[1]
   P(build_path)
+  local cmd = "ant build-refprojects -f " .. build_path
+  require'trigger-commands'.run_silent{cmd}
+end
+
+M.clean = function()
+  local commands = {}
+  local build_path = vim.fs.find(
+  {'build.xml'}, 
+  { upward = true, path = vim.fs.dirname(vim.api.nvim_buf_get_name(0)) })
+  build_path = build_path[1]
+  P(build_path)
+  local cmd = "ant clean -f " .. build_path
+  require'trigger-commands'.run_silent{cmd, "Clean completed", "Clean failed"}
 end
 
 M.test_multi_line = function()
@@ -147,6 +160,30 @@ M.unhide_jdtls_files = function()
   print("Done")
 end
 
+M.hide_jdtls_files_new = function()
+  print("Prepare to use jdtls server ...")
+  local commands = {}
+  -- vim.cmd("!copy /y i290.cmm\\tom.xml i290.cmm\\pom.xml")
+  table.insert(commands, "copy /y tom.xml pom.xml")
+  commands = expand_execute_mult("copy /y {} {}", "*/tom.xml", "pom.xml", commands)
+  require'trigger-commands'.run_multi( commands )
+  print("Done")
+end
+
+M.unhide_jdtls_files_new = function()
+  -- currently only works after removing corresponding entries in the exclude file
+  print("Restore files after jdtls usage ...")
+  local commands = {}
+  commands = expand_execute("git checkout HEAD -- {}", "*/.project", commands)
+  commands = expand_execute("git checkout HEAD -- {}", "*/.classpath", commands)
+  commands = expand_execute("git checkout HEAD -- {}", "*/.settings/org.eclipse.jdt.core.prefs", commands)
+  commands = expand_execute("git checkout HEAD -- {}", "*/pom.xml", commands)
+  table.insert(commands, "git checkout HEAD -- .project")
+  table.insert(commands, "git checkout HEAD -- pom.xml")
+  require'trigger-commands'.run_multi( commands )
+  print("Done")
+end
+
 M.build = function()
   local commands = {}
   local build_path = vim.fs.find(
@@ -156,6 +193,11 @@ M.build = function()
   P(build_path)
   local cmd = "ant build-eclipse-compiler -f " .. build_path
   require'trigger-commands'.run_silent{cmd}
+end
+
+M.delete_java_files = function ()
+  local cmd = "ant delete-java-files"
+  require'trigger-commands'.run_silent{cmd, "Deleting java_files dir completed", "Deleteing java_files dir failed"}
 end
 
 local gather_output = function(data, build_output)

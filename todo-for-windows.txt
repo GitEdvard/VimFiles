@@ -78,6 +78,8 @@ Running jdtls on Sandvik
     - File/Export ...
     - General/Ant buildfile
     - The original pom.xml files must be active, hide_jdtls should not be triggered
+    - Paths to projects in same parent project has to be updated (refer to the project's bin dir)
+    - Paths to jar files that resides in my personal repo has to be updated. (insert.manufacturing.util)
   > From command line (as far as I have reached for the moment), ...
   > ant init-eclipse-compiler
   > ant build-eclipse-compiler
