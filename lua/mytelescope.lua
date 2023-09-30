@@ -59,7 +59,7 @@ vim.keymap.set('n', 'cx', M.start_file_browser, bufopts)
 
 vim.keymap.set('n', '<leader>yk', "<cmd>Telescope keymaps<cr>", bufopts)
 vim.keymap.set('n', '<leader>yr', "<cmd>Telescope registers<cr>", bufopts)
-vim.keymap.set('n', '<leader>yc', "<cmd>Telescope command_history<cr>", bufopts)
+vim.keymap.set('n', '<leader>yq', "<cmd>Telescope command_history<cr>", bufopts)
 vim.keymap.set('n', '<leader>yh', "<cmd>Telescope help_tags<cr>", bufopts)
 vim.keymap.set('n', '<leader>yi', "<cmd>Telescope git_commits<cr>", bufopts)
 vim.keymap.set('n', '<leader>yb', "<cmd>Telescope git_bcommits<cr>", bufopts)

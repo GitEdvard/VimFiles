@@ -43,6 +43,7 @@ source ~/.vim/myplugfiles/trigger-commands.vim
 Plug 'tpope/vim-projectionist'
 source ~/.vim/myplugfiles/lightline.vim
 Plug 'tomasiser/vim-code-dark'
+source ~/.vim/myplugfiles/git-worktree.vim
 
 call plug#end()
 
@@ -122,7 +123,7 @@ nnoremap <leader>Q :bufdo bdelete<cr>
 imap ;; <esc>A;<esc>
 imap ,, <esc>A,<esc>
 inoremap {{ <esc>A {<c-m>}<esc>
-inoremap jp <esc>la.
+inoremap jp <esc>la
 
 " Open current file in a new tab
 nnoremap <leader>r <C-w>v<C-w>T
@@ -232,8 +233,20 @@ command! Ostop execute ":OmniSharpStopServer"
 command! FileHistory execute ":BCommits"
 command! ShowAscii execute ":set statusline=%<%f%h%m%r%=%b\ 0x%B\ \ %l,%c%V\ %P"
 command! AppendClipboard execute ":!win32yank.exe -o >> %"
+command! PurgeWindowEndings execute ":%s/\r/"
 command! Glog execute ":Gclog" | call feedkeys("<a-j><c-w>L")
 command! Glogg execute ":Gclog -- %" | call feedkeys("<a-j><c-w>L")
+
+function Recordfilepath_internal()
+    set cmdheight=2
+    redir @a
+    let myoutput = feedkeys("1<c-G>")
+    redir END
+    set cmdheight=1
+    return myoutput
+endfunction
+
+command! Recordfilepath call Recordfilepath_internal()<cr>
 
 "---------------------------------------------------
 " Autocommand autocmd
