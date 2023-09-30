@@ -130,11 +130,25 @@ M.hide_jdtls_files = function()
   local commands = {}
   table.insert(commands, "git update-index --assume-unchanged .project")
   table.insert(commands, "git update-index --assume-unchanged pom.xml")
-  -- vim.cmd("!copy /y i290.cmm\\tom.xml i290.cmm\\pom.xml")
   commands = expand_execute("git update-index --assume-unchanged {}", "*/.project", commands)
   commands = expand_execute("git update-index --assume-unchanged {}", "*/pom.xml", commands)
   commands = expand_execute("git update-index --assume-unchanged {}", "*/.classpath", commands)
   commands = expand_execute("git update-index --assume-unchanged {}", "*/.settings/org.eclipse.jdt.core.prefs", commands)
+  table.insert(commands, "copy /y tom.xml pom.xml")
+  commands = expand_execute_mult("copy /y {} {}", "*/tom.xml", "pom.xml", commands)
+  require'trigger-commands'.run_multi( commands )
+  print("Done")
+end
+
+M.hide_jdtls_files_new = function()
+  print("Prepare to use jdtls server ...")
+  local commands = {}
+  table.insert(commands, "git update-index --skip-worktree .project")
+  table.insert(commands, "git update-index --skip-worktree pom.xml")
+  commands = expand_execute("git update-index --skip-worktree {}", "*/.project", commands)
+  commands = expand_execute("git update-index --skip-worktree {}", "*/pom.xml", commands)
+  commands = expand_execute("git update-index --skip-worktree {}", "*/.classpath", commands)
+  commands = expand_execute("git update-index --skip-worktree {}", "*/.settings/org.eclipse.jdt.core.prefs", commands)
   table.insert(commands, "copy /y tom.xml pom.xml")
   commands = expand_execute_mult("copy /y {} {}", "*/tom.xml", "pom.xml", commands)
   require'trigger-commands'.run_multi( commands )
@@ -160,25 +174,20 @@ M.unhide_jdtls_files = function()
   print("Done")
 end
 
-M.hide_jdtls_files_new = function()
-  print("Prepare to use jdtls server ...")
-  local commands = {}
-  -- vim.cmd("!copy /y i290.cmm\\tom.xml i290.cmm\\pom.xml")
-  table.insert(commands, "copy /y tom.xml pom.xml")
-  commands = expand_execute_mult("copy /y {} {}", "*/tom.xml", "pom.xml", commands)
-  require'trigger-commands'.run_multi( commands )
-  print("Done")
-end
-
 M.unhide_jdtls_files_new = function()
-  -- currently only works after removing corresponding entries in the exclude file
   print("Restore files after jdtls usage ...")
   local commands = {}
+  commands = expand_execute("git update-index --no-skip-worktree {}", "*/.project", commands)
+  commands = expand_execute("git update-index --no-skip-worktree {}", "*/pom.xml", commands)
+  commands = expand_execute("git update-index --no-skip-worktree {}", "*/.classpath", commands)
+  commands = expand_execute("git update-index --no-skip-worktree {}", "*/.settings/org.eclipse.jdt.core.prefs", commands)
   commands = expand_execute("git checkout HEAD -- {}", "*/.project", commands)
   commands = expand_execute("git checkout HEAD -- {}", "*/.classpath", commands)
   commands = expand_execute("git checkout HEAD -- {}", "*/.settings/org.eclipse.jdt.core.prefs", commands)
   commands = expand_execute("git checkout HEAD -- {}", "*/pom.xml", commands)
+  table.insert(commands, "git update-index --no-skip-worktree .project")
   table.insert(commands, "git checkout HEAD -- .project")
+  table.insert(commands, "git update-index --no-skip-worktree pom.xml")
   table.insert(commands, "git checkout HEAD -- pom.xml")
   require'trigger-commands'.run_multi( commands )
   print("Done")
@@ -195,9 +204,35 @@ M.build = function()
   require'trigger-commands'.run_silent{cmd}
 end
 
+M.build_all = function()
+  local cmd = "ant build-all"
+  require'trigger-commands'.run_silent{cmd, "build all completed", "build all failed, errors written to quickfix"}
+end
+
+M.clean_all = function()
+  local cmd = "ant clean-all"
+  require'trigger-commands'.run_silent{cmd, "clean all completed", "clean all failed"}
+end
+
 M.delete_java_files = function ()
   local cmd = "ant delete-java-files"
   require'trigger-commands'.run_silent{cmd, "Deleting java_files dir completed", "Deleteing java_files dir failed"}
+end
+
+M.no_assume_unchanged = function ()
+  local cmd = "ant no-assume-unchanged"
+  require'trigger-commands'.run_silent{cmd, "git no-assume-unchanged completed", "git no-assume-unchanged failed"}
+end
+
+M.assume_unchanged = function ()
+  local cmd = "ant assume-unchanged"
+  require'trigger-commands'.run_silent{cmd, "git assume-unchanged completed", "git assume-unchanged failed"}
+end
+
+M.reset = function()
+    package.loaded['java.mysandvik_settings'] = nil
+    package.loaded['java.prepare_jdtls'] = nil
+    print("mysandvik_settings and prepare_jdtls has been reset!")
 end
 
 local gather_output = function(data, build_output)
