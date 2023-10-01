@@ -1,3 +1,4 @@
+local Job = require("plenary.job")
 local M = {}
 
 local transpose = function (aStr, injectStr)
@@ -9,17 +10,6 @@ local transpose2 = function (aStr, injectStr, secondArg)
   local first, _ = string.gsub(aStr, "{}", injectStr, 1)
   local ret, _ = string.gsub(first, "{}", secondArg)
   return ret
-end
-
-function mysplit (inputstr, sep)
-  if sep == nil then
-          sep = "%s"
-  end
-  local t={}
-  for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
-          table.insert(t, str)
-  end
-  return t
 end
 
 local expand_execute_sync = function (command, strToExpand)
@@ -75,6 +65,15 @@ M.test = function()
   P(build_path)
   local cmd = "ant build-refprojects -f " .. build_path
   require'trigger-commands'.run_silent{cmd}
+end
+
+M.update_branch = function(new_branch)
+  local pwd = vim.fn.getcwd()
+  if pwd:find(vim.g.i290_wt_keyword) then
+    print("update branch: " .. new_branch)
+    local cmd = "ant -f " .. vim.g.nvim_adapt_root .. "/build.xml deploy-target-branch -Dtarget_branch=" .. new_branch
+    require'trigger-commands'.run_silent{ cmd, "Deploy nvim adaptation finished", "Deploy nvim adaptation failed"}
+  end
 end
 
 M.clean = function()

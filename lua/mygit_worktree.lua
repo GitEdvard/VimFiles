@@ -22,6 +22,17 @@ Worktree.on_tree_change(function(op, metadata)
   if op == Worktree.Operations.Switch then
     print("Switched from " .. metadata.prev_path .. " to " .. metadata.path)
   end
+  if op == Worktree.Operations.Create then
+    print("Creating new worktree branch")
+    print("create: path: " .. metadata.path)
+    require'java.prepare_jdtls'.update_branch(metadata.branch)
+  end
+  if op == Worktree.Operations.Delete then
+    local split_path = mysplit(metadata.path, "/")
+    local branch = split_path[#split_path]
+    vim.cmd("Git br -D " .. branch)
+    print("deleted branch path: " .. metadata.path)
+  end
 end)
 
 local reset = function()
