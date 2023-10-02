@@ -39,6 +39,12 @@ C:\Users\yh6032\yappclipse\yapp.exe -debug -consoleLog
 end
 
 local M = require'java.prepare_jdtls'
+
+local update_branch = function()
+  vim.cmd("let g:fugitive_response = FugitiveHead()")
+  M.update_branch(vim.g.fugitive_response)
+end
+
 local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<leader>uy', start_yapp, opts)
 vim.keymap.set('n', '<leader>ul', launch, opts)
@@ -55,3 +61,4 @@ vim.keymap.set('n', '<leader>uq', M.clean_all, opts)
 vim.keymap.set('n', '<leader>uw', M.build_all, opts)
 vim.keymap.set('n', '<leader>uh', M.hide_jdtls_files_new, opts)
 vim.keymap.set('n', '<leader>uu', M.unhide_jdtls_files_new, opts)
+vim.keymap.set('n', '<leader>uz', update_branch, opts)

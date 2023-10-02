@@ -70,8 +70,10 @@ end
 M.update_branch = function(new_branch)
   local pwd = vim.fn.getcwd()
   if pwd:find(vim.g.i290_wt_keyword) then
-    print("update branch: " .. new_branch)
     local cmd = "ant -f " .. vim.g.nvim_adapt_root .. "/build.xml deploy-target-branch -Dtarget_branch=" .. new_branch
+    require'trigger-commands'.run_silent{ cmd, "Deploy nvim adaptation finished", "Deploy nvim adaptation failed"}
+  else
+    local cmd = "ant -f " .. vim.g.nvim_adapt_root .. "/build.xml deploy"
     require'trigger-commands'.run_silent{ cmd, "Deploy nvim adaptation finished", "Deploy nvim adaptation failed"}
   end
 end
@@ -214,7 +216,13 @@ M.clean_all = function()
 end
 
 M.delete_java_files = function ()
-  local cmd = "ant delete-java-files"
+  local pwd = vim.fn.getcwd()
+  if pwd:find(vim.g.i290_wt_keyword) then
+    local cmd = "ant delete-wt-java-files -D" .. vim.cmd("echo FugitiveHead()")
+    print("cmd: " .. cmd)
+  else
+    local cmd = "ant delete-java-files"
+  end
   require'trigger-commands'.run_silent{cmd, "Deleting java_files dir completed", "Deleteing java_files dir failed"}
 end
 
