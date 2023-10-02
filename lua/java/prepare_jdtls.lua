@@ -217,11 +217,13 @@ end
 
 M.delete_java_files = function ()
   local pwd = vim.fn.getcwd()
+  local cmd = ""
   if pwd:find(vim.g.i290_wt_keyword) then
-    local cmd = "ant delete-wt-java-files -D" .. vim.cmd("echo FugitiveHead()")
+    vim.cmd("let g:fugitive_response = FugitiveHead()")
+    cmd = "ant delete-wt-java-files -Dcurrent_branch=" .. vim.g.fugitive_response .. " -Djava_files=" .. vim.g.java_files_base
     print("cmd: " .. cmd)
   else
-    local cmd = "ant delete-java-files"
+    cmd = "ant delete-java-files"
   end
   require'trigger-commands'.run_silent{cmd, "Deleting java_files dir completed", "Deleteing java_files dir failed"}
 end
