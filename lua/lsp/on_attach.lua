@@ -9,6 +9,7 @@ M.keymaps = function(client, bufnr)
   local bufopts = { noremap=true, silent=true, buffer=bufnr }
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   vim.keymap.set('n', 'gs', vim.lsp.buf.definition, bufopts)
+  vim.keymap.set('n', 'gt', '<cmd>tab split | lua vim.lsp.buf.definition()<cr>', bufopts)
   vim.keymap.set('n', '<leader>ih', vim.lsp.buf.hover, bufopts)
   vim.keymap.set('n', '<leader>ii', vim.lsp.buf.implementation, bufopts)
   vim.keymap.set('n', '<leader>is', vim.lsp.buf.signature_help, bufopts)
