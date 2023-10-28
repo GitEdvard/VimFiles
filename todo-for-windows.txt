@@ -95,3 +95,22 @@ Running jdtls on Sandvik
 
   > Refer to insert.measuring.util_4.0.0.jar in build.xml for my project
 
+The nvim-adapt repo
+* Contains a copy of the file structure as in i290.manufacturing
+* Contains modified pom.xml files for parent and all sub-projects
+  > They are called tom.xml
+  > There is a command in .vim that overwrites all pom.xml to the contents of tom.xml
+* Contains ant build.xml files for parent and all sub-projects
+  > They contains targets for compiling the projects
+  > First they were generated from yappclipse, but are later modified
+  > Targets for copy and modifiy run-configurations
+  > Targets for self-deploy nvim-adapt --> target branch
+  > Targets for back-deploy from target branch --> nvim-adapt
+* All files from nvim-adapt that are copied to i290.manufacturing are hidden, 
+  > Added to global gitignore
+
+Procedure to adapt to language server
+* "Infect" with files from nvim-adapt
+  > in prepare_jdtls.lua, call update_branch, binding is defined in mysandvik_settings.lua
+* Call hide_jdtls_files, binding is defined in mysanvik_settings.lua
+* Delete java_files entry, binding is defined in mysanvik_settings.lua

@@ -78,17 +78,6 @@ M.update_branch = function(new_branch)
   end
 end
 
-M.clean = function()
-  local commands = {}
-  local build_path = vim.fs.find(
-  {'build.xml'}, 
-  { upward = true, path = vim.fs.dirname(vim.api.nvim_buf_get_name(0)) })
-  build_path = build_path[1]
-  P(build_path)
-  local cmd = "ant clean -f " .. build_path
-  require'trigger-commands'.run_silent{cmd, "Clean completed", "Clean failed"}
-end
-
 M.test_multi_line = function()
   local cmd = [[echo "hello1"
   echo "hello2"]]
@@ -192,27 +181,6 @@ M.unhide_jdtls_files_new = function()
   table.insert(commands, "git checkout HEAD -- pom.xml")
   require'trigger-commands'.run_multi( commands )
   print("Done")
-end
-
-M.build = function()
-  local commands = {}
-  local build_path = vim.fs.find(
-  {'build.xml'}, 
-  { upward = true, path = vim.fs.dirname(vim.api.nvim_buf_get_name(0)) })
-  build_path = build_path[1]
-  P(build_path)
-  local cmd = "ant build-eclipse-compiler -f " .. build_path
-  require'trigger-commands'.run_silent{cmd}
-end
-
-M.build_all = function()
-  local cmd = "ant build-all"
-  require'trigger-commands'.run_silent{cmd, "build all completed", "build all failed, errors written to quickfix"}
-end
-
-M.clean_all = function()
-  local cmd = "ant clean-all"
-  require'trigger-commands'.run_silent{cmd, "clean all completed", "clean all failed"}
 end
 
 M.delete_java_files = function ()
