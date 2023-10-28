@@ -124,6 +124,7 @@ imap ;; <esc>A;<esc>
 imap ,, <esc>A,<esc>
 inoremap {{ <esc>A {<c-m>}<esc>
 inoremap jp <esc>la
+inoremap <c-d> <esc>lxi
 
 " Open current file in a new tab
 nnoremap <leader>r <C-w>v<C-w>T
