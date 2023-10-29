@@ -50,12 +50,17 @@ local launch_internal = function(project_name, pfile, runner_name, mc, op)
   launch_cmd = launch_cmd:gsub("${MC}", mc)
   launch_cmd = launch_cmd:gsub("${OP}", op)
   M.create_new_run_dir()
+  local instruction1 = { "silent", "ant clean-all", "clean all completed", "clean all failed" }
+  local instruction2 = { "silent", "ant build-all", "build all completed", "build all failed" }
   local cmd = "cd " .. get_run_dir() .. " && " .. launch_cmd
-  require'trigger-commands'.run_single( cmd )
+  -- local instruction3 = { "hidden-scratch", "echo hello2" .. vim.fn.strftime("%FT%T%z"), "xxx", "hidden scratch succeded", "hidden scratch failed" }
+  local instruction3 = { "hidden-scratch", cmd,{ "YappException", "RuntimeException"}, "Launching succeeded", "Launching failed" }
+  local instructions = { instruction1, instruction2, instruction3 }
+  require'trigger-commands'.run_poly( instructions )
 end
 
 M.launch = function()
-  launch_internal("i290.cmm", "gge-mea.indata", "Application-Runner-edvard2-cmm", "Zeiss_Fortis_Calypso_2023", "GGE")
+  launch_internal("i290.cmm", "edvard2-cmm.indata", "Application-Runner-edvard2-cmm", "Zeiss_Fortis_Calypso_2023", "GIF")
 end
 
 M.create_new_run_dir = function()

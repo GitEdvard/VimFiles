@@ -57,14 +57,14 @@ local expand_execute_mult = function (command, strToExpand, secondArg, commands)
 end
 
 M.test = function()
-  local commands = {}
-  local build_path = vim.fs.find(
-  {'build.xml'}, 
-  { upward = true, path = vim.fs.dirname(vim.api.nvim_buf_get_name(0)) })
-  build_path = build_path[1]
-  P(build_path)
-  local cmd = "ant build-refprojects -f " .. build_path
-  require'trigger-commands'.run_silent{cmd}
+  local instruction1 = { "silent", "echo hello", "first succeded", "first failed" }
+  local instruction2 = { "hidden-scratch", "echo hello2" .. vim.fn.strftime("%FT%T%z"),{ "yyy", "xxx" }, "hidden scratch succeded", "hidden scratch failed" }
+  local instructions = { instruction1, instruction2 }
+  require'trigger-commands'.run_poly( instructions )
+end
+
+M.test_simple = function()
+  require'trigger-commands'.run_launcher{"echo hello " .. vim.fn.strftime("%FT%T%z"), "xxx"}
 end
 
 M.update_branch = function(new_branch)
