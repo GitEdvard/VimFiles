@@ -30,7 +30,10 @@ local get_run_dir = function()
 end
 
 local launch_internal = function(project_name, pfile, runner_name, mc, op)
-  local pfile_path = "C:/Users/yh6032/HOME/git_me/i290.manufacturing/i290.cmm/parameter-files/" .. pfile
+  -- local pfile_path = "C:/Users/yh6032/HOME/git_me/i290.manufacturing/i290.cmm/parameter-files/" .. pfile
+  local parameter_files = find_project_path() .. "\\parameter-files\\"
+  parameter_files = string.gsub(parameter_files, "\\", "/")
+  local pfile_path = parameter_files .. pfile
   local cfile_path = "C:/Users/yh6032/HOME/java_files/launcher-dir/"  .. runner_name .. "/"
   local dev_file = cfile_path .. "dev.properties"
   local class = project_name .. ".Application"
