@@ -56,17 +56,6 @@ local expand_execute_mult = function (command, strToExpand, secondArg, commands)
   return commands
 end
 
-M.test = function()
-  local cmd = "echo hello " .. vim.fn.strftime("%FT%T%z")
-  local instruction = {"hidden-scratch", cmd, {"xxx"}, "succeeded", "failed"}
-  local instructions = {instruction}
-  require'trigger-commands'.run_poly( instructions )
-end
-
-M.test_simple = function()
-  require'trigger-commands'.run_launcher{"echo hello " .. vim.fn.strftime("%FT%T%z"), "xxx"}
-end
-
 M.update_branch = function(new_branch)
   local pwd = vim.fn.getcwd()
   if pwd:find(vim.g.i290_wt_keyword) then
@@ -76,12 +65,6 @@ M.update_branch = function(new_branch)
     local cmd = "ant -f " .. vim.g.nvim_adapt_root .. "/build.xml deploy"
     require'trigger-commands'.run_silent{ cmd, "Deploy nvim adaptation finished", "Deploy nvim adaptation failed"}
   end
-end
-
-M.test_multi_line = function()
-  local cmd = [[echo "hello1"
-  echo "hello2"]]
-  require'trigger-commands'.run_single( cmd )
 end
 
 M.hide_jdtls_files_sync = function()

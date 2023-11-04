@@ -63,7 +63,13 @@ local launch_internal = function(project_name, pfile, runner_name, mc, op)
 end
 
 M.launch = function()
-  launch_internal("i290.cmm", "gge-mea.indata", "Application-Runner-edvard2-cmm", "Zeiss_Fortis_Calypso_2023", "GGE")
+  local run_config = require'read-settings'.read_json('run-configs/gge-mea.json')
+  -- launch_internal("i290.cmm", "gge-mea.indata", "Application-Runner-edvard2-cmm", "Zeiss_Fortis_Calypso_2023", "GGE")
+  launch_internal(run_config.project, run_config.pfile, "Application-Runner-edvard2-cmm", run_config.mc, run_config.op)
+end
+
+local trigger_command_rest = function()
+    require'trigger-commands'.run_rest_call(run_settings)
 end
 
 M.create_new_run_dir = function()
