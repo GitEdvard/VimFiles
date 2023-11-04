@@ -1,8 +1,7 @@
 local M = {}
 
 M.test = function()
-  local run_config = require'read-settings'.read_json('run-configs/gge-mea.json')
-  P(run_config.mc)
+  for dir in io.popen([[dir "run-configs" /b]]):lines() do print(dir) end
 end
 
 M.test_simple = function()
