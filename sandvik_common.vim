@@ -44,6 +44,7 @@ Plug 'tpope/vim-projectionist'
 source ~/.vim/myplugfiles/lightline.vim
 Plug 'tomasiser/vim-code-dark'
 source ~/.vim/myplugfiles/git-worktree.vim
+source ~/.vim/myplugfiles/my-hello-telescope.vim
 
 call plug#end()
 
@@ -267,5 +268,5 @@ augroup END
 
 augroup expand_tab_augroup
     autocmd!
-    autocmd FileType text setlocal expandtab
+    autocmd FileType text,json setlocal expandtab
 augroup END
