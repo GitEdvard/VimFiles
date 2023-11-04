@@ -20,7 +20,7 @@ M.keymaps = function(client, bufnr)
   end, bufopts)
   vim.keymap.set('n', '<leader>iD', vim.lsp.buf.type_definition, bufopts)
   vim.keymap.set('n', '<leader>in', vim.lsp.buf.rename, bufopts)
-  vim.keymap.set('n', '<leader>ia', vim.lsp.buf.code_action, bufopts)
+  vim.keymap.set('n', '<a-i><a-h>', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', '<leader>ir', vim.lsp.buf.references, bufopts)
   vim.keymap.set('n', '<leader>if', function() vim.lsp.buf.format { async = true } end, bufopts)
 end

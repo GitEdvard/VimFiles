@@ -57,6 +57,10 @@ local expand_execute_mult = function (command, strToExpand, secondArg, commands)
 end
 
 M.test = function()
+  local cmd = "echo hello " .. vim.fn.strftime("%FT%T%z")
+  local instruction = {"hidden-scratch", cmd, {"xxx"}, "succeeded", "failed"}
+  local instructions = {instruction}
+  require'trigger-commands'.run_poly( instructions )
 end
 
 M.test_simple = function()

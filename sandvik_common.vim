@@ -5,7 +5,7 @@ execute pathogen#infect()
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
-let mapleader = "\<Space>"
+let mapleader = "f"
 
 lua require('globals')
 " https://github.com/junegunn/vim-plug
@@ -106,6 +106,7 @@ endif
 "---------------------------------------------------
 " Keymaps
 "---------------------------------------------------
+nnoremap <space> f
 nnoremap <c-o> <c-o>zz
 nnoremap <c-t> <c-t>zz
 nnoremap <c-i> <c-i>zz

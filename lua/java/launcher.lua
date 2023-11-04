@@ -63,7 +63,7 @@ local launch_internal = function(project_name, pfile, runner_name, mc, op)
 end
 
 M.launch = function()
-  launch_internal("i290.cmm", "edvard2-cmm.indata", "Application-Runner-edvard2-cmm", "Zeiss_Fortis_Calypso_2023", "GIF")
+  launch_internal("i290.cmm", "gge-mea.indata", "Application-Runner-edvard2-cmm", "Zeiss_Fortis_Calypso_2023", "GGE")
 end
 
 M.create_new_run_dir = function()
