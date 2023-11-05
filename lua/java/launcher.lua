@@ -62,9 +62,8 @@ local launch_internal = function(project_name, pfile, runner_name, mc, op)
   require'trigger-commands'.run_poly( instructions )
 end
 
-M.launch = function()
-  local run_config = require'read-settings'.read_json('run-configs/gge-mea.json')
-  -- launch_internal("i290.cmm", "gge-mea.indata", "Application-Runner-edvard2-cmm", "Zeiss_Fortis_Calypso_2023", "GGE")
+M.launch = function(settings_file)
+  local run_config = require'read-settings'.read_json(settings_file)
   launch_internal(run_config.project, run_config.pfile, "Application-Runner-edvard2-cmm", run_config.mc, run_config.op)
 end
 

@@ -114,3 +114,10 @@ Procedure to adapt to language server
   > in prepare_jdtls.lua, call update_branch, binding is defined in mysandvik_settings.lua
 * Call hide_jdtls_files, binding is defined in mysanvik_settings.lua
 * Delete java_files entry, binding is defined in mysanvik_settings.lua
+
+Usage of git worktree
+# Motive
+When adapting to the language server, the pom.xml files are adapted, and then marked temporarily by git to not trace changes. This works well as long as I don't change branch, and the original poms are updated in the other branch. I.e. there has been an "update version" commit. Then I have to first un-hide the pom, switch branch, and the hide the poms again, which is overly cumbersome for just switching a branch. This problem is circurvented by using git worktree.
+
+# nvim implementation
+I use ThePrimeagen/git-worktree.nvim for handling git worktrees in vim. However, this code cant handle windows file paths. Therefore I have hacked this code, residing in GitEdvard/git-worktree.windows.nvim.

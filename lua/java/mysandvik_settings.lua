@@ -7,8 +7,12 @@ local update_branch = function()
   M.update_branch(vim.g.fugitive_response)
 end
 
+local launch = function()
+  L.launch("run-configs/gge-mea.json")
+end
+
 local opts = { noremap = true, silent = true }
-vim.keymap.set('n', '<leader>ul', L.launch, opts)
+vim.keymap.set('n', '<leader>ul', launch, opts)
 vim.keymap.set('n', '<leader>ub', L.build, opts)
 vim.keymap.set('n', '<leader>uo', M.hide_jdtls_files, opts)
 vim.keymap.set('n', '<leader>up', M.unhide_jdtls_files, opts)
