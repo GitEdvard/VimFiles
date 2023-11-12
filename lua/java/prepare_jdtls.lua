@@ -98,21 +98,6 @@ M.unhide_jdtls_files_sync = function()
   print("Done")
 end
 
-M.hide_jdtls_files = function()
-  print("Prepare to use jdtls server ...")
-  local commands = {}
-  table.insert(commands, "git update-index --assume-unchanged .project")
-  table.insert(commands, "git update-index --assume-unchanged pom.xml")
-  commands = expand_execute("git update-index --assume-unchanged {}", "*/.project", commands)
-  commands = expand_execute("git update-index --assume-unchanged {}", "*/pom.xml", commands)
-  commands = expand_execute("git update-index --assume-unchanged {}", "*/.classpath", commands)
-  commands = expand_execute("git update-index --assume-unchanged {}", "*/.settings/org.eclipse.jdt.core.prefs", commands)
-  table.insert(commands, "copy /y tom.xml pom.xml")
-  commands = expand_execute_mult("copy /y {} {}", "*/tom.xml", "pom.xml", commands)
-  require'trigger-commands'.run_multi( commands )
-  print("Done")
-end
-
 M.hide_jdtls_files_new = function()
   print("Prepare to use jdtls server ...")
   local commands = {}
@@ -124,25 +109,6 @@ M.hide_jdtls_files_new = function()
   commands = expand_execute("git update-index --skip-worktree {}", "*/.settings/org.eclipse.jdt.core.prefs", commands)
   table.insert(commands, "copy /y tom.xml pom.xml")
   commands = expand_execute_mult("copy /y {} {}", "*/tom.xml", "pom.xml", commands)
-  require'trigger-commands'.run_multi( commands )
-  print("Done")
-end
-
-M.unhide_jdtls_files = function()
-  print("Restore files after jdtls usage ...")
-  local commands = {}
-  commands = expand_execute("git update-index --no-assume-unchanged {}", "*/.project", commands)
-  commands = expand_execute("git update-index --no-assume-unchanged {}", "*/pom.xml", commands)
-  commands = expand_execute("git update-index --no-assume-unchanged {}", "*/.classpath", commands)
-  commands = expand_execute("git update-index --no-assume-unchanged {}", "*/.settings/org.eclipse.jdt.core.prefs", commands)
-  commands = expand_execute("git checkout HEAD -- {}", "*/.project", commands)
-  commands = expand_execute("git checkout HEAD -- {}", "*/.classpath", commands)
-  commands = expand_execute("git checkout HEAD -- {}", "*/.settings/org.eclipse.jdt.core.prefs", commands)
-  commands = expand_execute("git checkout HEAD -- {}", "*/pom.xml", commands)
-  table.insert(commands, "git update-index --no-assume-unchanged .project")
-  table.insert(commands, "git checkout HEAD -- .project")
-  table.insert(commands, "git update-index --no-assume-unchanged pom.xml")
-  table.insert(commands, "git checkout HEAD -- pom.xml")
   require'trigger-commands'.run_multi( commands )
   print("Done")
 end

@@ -46,6 +46,7 @@ Plug 'tomasiser/vim-code-dark'
 source ~/.vim/myplugfiles/git-worktree.vim
 source ~/.vim/myplugfiles/my-hello-telescope.vim
 source ~/.vim/myplugfiles/run-configs.vim
+source ~/.vim/myplugfiles/formatter.vim
 
 call plug#end()
 
