@@ -74,8 +74,6 @@ ls.add_snippets("cs", {
 })
 
 ls.add_snippets("java", {
-  s("{", fmt("{{\n\t{}\n\n", { i(0) })),
-  s("[", fmt("[\n\t{}\n\n", { i(0) })),
   s("smeth", fmt([[
   {} static {} {}({}) {{
       {}
@@ -90,10 +88,13 @@ ls.add_snippets("java", {
   s("_create", fmt([[
   public {} create{}({}) {{
   {}{} x = new {}();
-  {}injector.injectMembers(x);
+  {}inject.injectMembers(x);
   {}return x;
   }}
-  ]], { i(1), rep(1), i(0), t("\t"), rep(1), rep(1), t("\t"), t("\t")} ))
+  ]], { i(1), rep(1), i(0), t("\t"), rep(1), rep(1), t("\t"), t("\t")} )),
+  s("_print", fmt([[
+  System.out.println("{}: " + {});
+  ]], { i(1), rep(1) }))
 })
 
 ls.add_snippets("python", {
