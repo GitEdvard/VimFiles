@@ -1,7 +1,8 @@
 local M = {}
 
 M.test = function()
-  for dir in io.popen([[dir "run-configs" /b]]):lines() do print(dir) end
+  local util = require'formatter.util'
+  print(util.escape_path(util.get_current_buffer_file_name()))
 end
 
 M.test_simple = function()
