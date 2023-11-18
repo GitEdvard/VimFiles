@@ -18,7 +18,7 @@ ls.config.set_config {
   },
 }
 
-vim.keymap.set({ 'i', 's' }, '<c-u>', function()
+vim.keymap.set({ 'i', 's' }, '<c-j>', function()
   if ls.expand_or_jumpable() then
     ls.expand_or_jump()
   end

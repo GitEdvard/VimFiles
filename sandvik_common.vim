@@ -110,6 +110,7 @@ endif
 " Keymaps
 "---------------------------------------------------
 nnoremap <space> f
+nnoremap s f
 nnoremap <c-o> <c-o>zz
 nnoremap <c-t> <c-t>zz
 nnoremap <c-i> <c-i>zz
@@ -132,6 +133,10 @@ inoremap <c-d> <esc>lxi
 
 " Open current file in a new tab
 nnoremap <leader>r <C-w>v<C-w>T
+" substitute
+nnoremap <leader>v s
+" Capitalize word to the left
+inoremap jc <esc>bgUlea
 
 " Automatic indentation
 nnoremap <leader>= =
@@ -176,6 +181,8 @@ inoremap jk <esc>
 " Swap colon and semicolon
 noremap ; :
 noremap , ;
+" Find next backward
+nnoremap <leader>, ,
 
 function DeleteHiddenBuffers()
     let tpbl=[]
