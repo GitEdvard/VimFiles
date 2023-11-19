@@ -1,4 +1,4 @@
-Plug 'mhartington/formatter.nvim/'
+Plug 'GitEdvard/formatter.nvim'
 
 augroup formatter-plug-egent
     autocmd!
