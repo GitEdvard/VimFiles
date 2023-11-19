@@ -109,7 +109,7 @@ endif
 "---------------------------------------------------
 " Keymaps
 "---------------------------------------------------
-nnoremap <space> f
+nnoremap <space> i<space><esc>l
 nnoremap s f
 nnoremap <c-o> <c-o>zz
 nnoremap <c-t> <c-t>zz
@@ -232,8 +232,9 @@ nnoremap <leader>q :copen<cr> <c-w>L
 command! Reloadall execute ":bufdo e!"
 command! JsonPrettify execute ":r !xclip -selection clipboard -o | jsonlint"
 command! Config execute ":e ~/.vimrc"
-command! W execute ":w | source %"
-command! E execute ":w!"
+command! W execute ":w!"
+command! E execute ":noautocmd w!"
+command! T execute ":w | source %"
 command! Reload execute "source ~/myvim/VimRoot/vimrc"
 command! Longfile execute ":e ~/sources/test/dotfiles/.vimrc"
 command! Gitpush execute ":! git push origin develop"
@@ -273,6 +274,11 @@ lua require('java.mysandvik_settings')
 augroup java_augroup
     autocmd!
     autocmd FileType java lua require('java.mysandvik_settings')
+augroup END
+
+augroup format_java_augroup
+    autocmd!
+    autocmd BufWritePost *.java FormatWrite
 augroup END
 
 augroup expand_tab_augroup
