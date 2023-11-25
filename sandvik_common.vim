@@ -129,6 +129,9 @@ imap ;; <esc>A;<esc>
 imap ,, <esc>A,<esc>
 inoremap {{ <esc>A {<c-m>}<esc>
 inoremap jp <esc>la
+inoremap j; ();<esc>
+inoremap j, (),
+inoremap j. ().
 inoremap <c-d> <esc>lxi
 
 " Open current file in a new tab
@@ -278,7 +281,13 @@ augroup END
 
 augroup format_java_augroup
     autocmd!
-    autocmd BufWritePost *.java FormatWrite
+    autocmd BufWritePost *.java Format
+augroup END
+
+augroup FormatAutogroup
+  autocmd!
+  " autocmd User FormatterPre :setlocal autoread
+  autocmd User FormatterPost :e!
 augroup END
 
 augroup expand_tab_augroup
