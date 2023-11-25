@@ -9,6 +9,10 @@ M.test_simple = function()
   require'trigger-commands'.run_launcher{"echo hello " .. vim.fn.strftime("%FT%T%z"), "xxx"}
 end
 
+local print_dir_contents = function()
+  for dir in io.popen([[dir "run-configs" /b]]):lines() do print(dir) end
+end
+
 M.test_multi_line = function()
   local cmd = [[echo "hello1"
   echo "hello2"]]
