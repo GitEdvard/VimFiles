@@ -121,3 +121,15 @@ When adapting to the language server, the pom.xml files are adapted, and then ma
 
 # nvim implementation
 I use ThePrimeagen/git-worktree.nvim for handling git worktrees in vim. However, this code cant handle windows file paths. Therefore I have hacked this code, residing in GitEdvard/git-worktree.windows.nvim.
+
+About formatting
+* In yappclipse, go to preferences/java/Code style/Formatter
+  > Click button "Export all"
+* The exported file is in xml format. You have to make it in ini-format instead
+  > copy the XML file into a ini file
+  > remove all lines not starting with <setting
+  > convert the content using a regular expression
+    - <setting id="([^"]*)" value="([^"]*)"/>
+    - $1=$2
+* This file is then referenced in myformatter.lua
+

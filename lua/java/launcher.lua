@@ -1,5 +1,7 @@
 local M = {}
 
+local latest_run_dir = ""
+
 local find_project_path = function()
   local build_path = vim.fs.find(
   {'build.xml'}, 
@@ -26,7 +28,8 @@ end
 
 local get_run_dir = function()
     local project_path = find_project_path()
-    return  project_path .. "\\" .. "run" .. "\\" .. os.date("%Y%m%d-%H%M%S")
+    local run_dir = project_path .. "\\" .. "run" .. "\\" .. os.date("%Y%m%d-%H%M%S")
+    return run_dir
 end
 
 local launch_internal = function(project_name, pfile, runner_name, mc, op)
@@ -55,8 +58,7 @@ local launch_internal = function(project_name, pfile, runner_name, mc, op)
   M.create_new_run_dir()
   local instruction1 = { "silent", "ant clean-all", "clean all completed", "clean all failed" }
   local instruction2 = { "silent", "ant build-all", "build all completed", "build all failed" }
-  local cmd = "cd " .. get_run_dir() .. " && " .. launch_cmd
-  -- local instruction3 = { "hidden-scratch", "echo hello2" .. vim.fn.strftime("%FT%T%z"), "xxx", "hidden scratch succeded", "hidden scratch failed" }
+  local cmd = "cd " .. latest_run_dir .. " && " .. launch_cmd
   local instruction3 = { "hidden-scratch", cmd,{ "YappException", "RuntimeException"}, "Launching succeeded", "Launching failed" }
   local instructions = { instruction1, instruction2, instruction3 }
   require'trigger-commands'.run_poly( instructions )
@@ -67,12 +69,17 @@ M.launch = function(settings_file)
   launch_internal(run_config.project, run_config.pfile, "Application-Runner-edvard2-cmm", run_config.mc, run_config.op)
 end
 
+M.get_latest_run_dir = function()
+  return latest_run_dir
+end
+
 local trigger_command_rest = function()
     require'trigger-commands'.run_rest_call(run_settings)
 end
 
 M.create_new_run_dir = function()
     local new_run_dir = get_run_dir()
+    latest_run_dir = new_run_dir
     vim.cmd("silent !mkdir " .. new_run_dir)
 end
 
