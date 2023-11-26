@@ -67,6 +67,17 @@ M.update_branch = function(new_branch)
   end
 end
 
+M.generate_update_branch_command = function(new_branch)
+  local pwd = vim.fn.getcwd()
+  local cmd = ""
+  if pwd:find(vim.g.i290_wt_keyword) then
+    cmd = "ant -f " .. vim.g.nvim_adapt_root .. "/build.xml deploy-target-branch -Dtarget_branch=" .. new_branch
+  else
+    cmd = "ant -f " .. vim.g.nvim_adapt_root .. "/build.xml deploy"
+  end
+  return cmd
+end
+
 M.hide_jdtls_files_sync = function()
   print("Prepare to use jdtls server ...")
   vim.cmd("Git update-index --assume-unchanged .project")
@@ -111,6 +122,29 @@ M.hide_jdtls_files_new = function()
   commands = expand_execute_mult("copy /y {} {}", "*/tom.xml", "pom.xml", commands)
   require'trigger-commands'.run_multi( commands )
   print("Done")
+end
+
+local generate_hide_commands = function()
+  local commands = {}
+  table.insert(commands, "git update-index --skip-worktree .project")
+  table.insert(commands, "git update-index --skip-worktree pom.xml")
+  commands = expand_execute("git update-index --skip-worktree {}", "*/.project", commands)
+  commands = expand_execute("git update-index --skip-worktree {}", "*/pom.xml", commands)
+  commands = expand_execute("git update-index --skip-worktree {}", "*/.classpath", commands)
+  commands = expand_execute("git update-index --skip-worktree {}", "*/.settings/org.eclipse.jdt.core.prefs", commands)
+  table.insert(commands, "copy /y tom.xml pom.xml")
+  commands = expand_execute_mult("copy /y {} {}", "*/tom.xml", "pom.xml", commands)
+  return commands
+end
+
+M.generate_hide_commands_poly = function()
+  local bare_commands = generate_hide_commands()
+  local poly_commands ={}
+  for _, cmd in pairs(bare_commands) do
+    local instruction = {"silent", cmd, "copy tom and update index"}
+    table.insert(poly_commands, instruction)
+  end
+  return poly_commands
 end
 
 M.unhide_jdtls_files_new = function()
