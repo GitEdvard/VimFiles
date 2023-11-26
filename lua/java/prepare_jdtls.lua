@@ -132,13 +132,12 @@ M.unhide_jdtls_files_new = function()
   print("Done")
 end
 
-M.delete_java_files = function()
+M.delete_java_files = function(branch)
   local pwd = vim.fn.getcwd()
   local cmd = ""
   if pwd:find(vim.g.i290_wt_keyword) then
-    local split_path = mysplit(pwd, "\\")
-    local branch = split_path[#split_path]
     cmd = "ant delete-wt-java-files -Dcurrent_branch=" .. branch .. " -Djava_files=" .. vim.g.java_files_base
+    print("deleted branch: " .. branch)
     print("cmd: " .. cmd)
   else
     cmd = "ant delete-java-files"

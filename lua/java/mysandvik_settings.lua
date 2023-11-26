@@ -12,12 +12,17 @@ local launch = function()
   L.launch("run-configs/gge-mea.json")
 end
 
+local delete_java_files = function()
+  vim.cmd("let g:fugitive_response = FugitiveHead()")
+  M.delete_java_files(vim.g.fugitive_response)
+end
+
 local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<leader>ul', launch, opts)
 vim.keymap.set('n', '<leader>ub', L.build, opts)
 -- vim.keymap.set('n', '<leader>ut', T.test, opts)
 vim.keymap.set('n', '<leader>uc', L.clean, opts)
-vim.keymap.set('n', '<leader>ud', M.delete_java_files, opts)
+vim.keymap.set('n', '<leader>ud', delete_java_files, opts)
 vim.keymap.set('n', '<leader>ux', M.reset, opts)
 vim.keymap.set('n', '<leader>uq', L.clean_all, opts)
 vim.keymap.set('n', '<leader>uw', L.build_all, opts)

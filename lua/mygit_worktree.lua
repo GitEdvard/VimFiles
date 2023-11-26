@@ -32,7 +32,7 @@ Worktree.on_tree_change(function(op, metadata)
   if op == Worktree.Operations.Delete then
     local split_path = mysplit(metadata.path, "/")
     local branch = split_path[#split_path]
-    require'java.prepare_jdtls'.delete_java_files()
+    require'java.prepare_jdtls'.delete_java_files(branch)
     vim.cmd("Git br -D " .. branch)
     print("deleted branch path: " .. metadata.path)
   end
