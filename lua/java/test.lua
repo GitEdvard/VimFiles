@@ -1,8 +1,10 @@
 local M = {}
 
 M.test = function()
-  local util = require'formatter.util'
-  print(util.escape_path(util.get_current_buffer_file_name()))
+  local instruction1 = { "silent", "ant clean-all", "clean all" }
+  local instruction2 = { "silent", "ant build-all", "build all" }
+  local instructions = { instruction1, instruction2 }
+  require'trigger-commands'.run_poly( instructions )
 end
 
 M.test_simple = function()

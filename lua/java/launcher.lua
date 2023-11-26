@@ -56,10 +56,10 @@ local launch_internal = function(project_name, pfile, runner_name, mc, op)
   launch_cmd = launch_cmd:gsub("${MC}", mc)
   launch_cmd = launch_cmd:gsub("${OP}", op)
   M.create_new_run_dir()
-  local instruction1 = { "silent", "ant clean-all", "clean all completed", "clean all failed" }
-  local instruction2 = { "silent", "ant build-all", "build all completed", "build all failed" }
+  local instruction1 = { "silent", "ant clean-all", "clean all" }
+  local instruction2 = { "silent", "ant build-all", "build all" }
   local cmd = "cd " .. latest_run_dir .. " && " .. launch_cmd
-  local instruction3 = { "hidden-scratch", cmd,{ "YappException", "RuntimeException"}, "Launching succeeded", "Launching failed" }
+  local instruction3 = { "hidden-scratch", cmd, { "YappException", "RuntimeException"}, "Launching" }
   local instructions = { instruction1, instruction2, instruction3 }
   require'trigger-commands'.run_poly( instructions )
 end
