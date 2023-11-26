@@ -99,20 +99,11 @@ M.build_all = function()
   require'trigger-commands'.run_silent{cmd, "build all completed", "build all failed, errors written to quickfix"}
 end
 
-M.clean_all = function()
-  local cmd = "ant clean-all"
-  require'trigger-commands'.run_silent{cmd, "clean all completed", "clean all failed"}
-end
-
-M.clean = function()
-  local commands = {}
-  local build_path = vim.fs.find(
-  {'build.xml'}, 
-  { upward = true, path = vim.fs.dirname(vim.api.nvim_buf_get_name(0)) })
-  build_path = build_path[1]
-  P(build_path)
-  local cmd = "ant clean -f " .. build_path
-  require'trigger-commands'.run_silent{cmd, "Clean completed", "Clean failed"}
+M.clean_and_build_all = function()
+  local instruction1 = { "silent", "ant clean-all", "clean all" }
+  local instruction2 = { "silent", "ant build-all", "build all" }
+  local instructions = { instruction1, instruction2 }
+  require'trigger-commands'.run_poly( instructions )
 end
 
 return M
