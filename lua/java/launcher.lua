@@ -1,6 +1,6 @@
 local M = {}
 
-local latest_run_dir = ""
+local latest_run_dir = "i290.cmm\\run\\20231126-144722"
 
 local find_project_path = function()
   local build_path = vim.fs.find(
@@ -59,9 +59,23 @@ local launch_internal = function(project_name, pfile, runner_name, mc, op)
   local instruction1 = { "silent", "ant clean-all", "clean all" }
   local instruction2 = { "silent", "ant build-all", "build all" }
   local cmd = "cd " .. latest_run_dir .. " && " .. launch_cmd
-  local instruction3 = { "hidden-scratch", cmd, { "YappException", "RuntimeException"}, "Launching" }
+  local instruction3 = { "hidden-scratch", cmd, { "YappException", "RuntimeException"}, "Launch" }
   local instructions = { instruction1, instruction2, instruction3 }
   require'trigger-commands'.run_poly( instructions )
+end
+
+M.open_prt = function()
+  print("start")
+  P(latest_run_dir)
+  for file in io.popen("dir " .. latest_run_dir .. [[/b]]):lines() do 
+    if string.find(file, ".prt") then
+      local path = latest_run_dir .. "\\" .. file
+      print('path')
+      print(path)
+      local cmd = "ugs_router.exe -ug -use_file_dir " .. path
+      require'trigger-commands'.run_silent{cmd, "Open prt succeeded", "Open prt failed"}
+    end
+  end
 end
 
 M.launch = function(settings_file)
