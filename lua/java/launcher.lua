@@ -1,6 +1,6 @@
 local M = {}
 
-local latest_run_dir = "i290.cmm\\run\\20231126-144722"
+local latest_run_dir = ""
 
 local find_project_path = function()
   local build_path = vim.fs.find(
@@ -66,12 +66,9 @@ end
 
 M.open_prt = function()
   print("start")
-  P(latest_run_dir)
   for file in io.popen("dir " .. latest_run_dir .. [[/b]]):lines() do 
     if string.find(file, ".prt") then
       local path = latest_run_dir .. "\\" .. file
-      print('path')
-      print(path)
       local cmd = "ugs_router.exe -ug -use_file_dir " .. path
       require'trigger-commands'.run_silent{cmd, "Open prt succeeded", "Open prt failed"}
     end

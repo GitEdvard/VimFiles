@@ -117,6 +117,7 @@ nnoremap <c-i> <c-i>zz
 nnoremap dd A<bs><esc>
 nnoremap <c-g><c-f> <C-w>v<C-w>Tgf
 nnoremap gf <C-w>v<C-w>T:e <cfile><CR>
+nnoremap fo :!Git add .<cr>
 " nnoremap <leader>ut :retab<cr>
 nnoremap <leader>J J
 
@@ -180,6 +181,7 @@ nnoremap N Nzzzv
 nnoremap <c-w><c-o> :tab sp<cr>
 " Bind "jk" to <esc> to jump out of insert mode
 inoremap jk <esc>
+inoremap jl <esc>l
 
 " Swap colon and semicolon
 noremap ; :
@@ -279,16 +281,16 @@ augroup java_augroup
     autocmd FileType java lua require('java.mysandvik_settings')
 augroup END
 
-augroup format_java_augroup
-    autocmd!
-    autocmd BufWritePost *.java Format
-augroup END
+" augroup format_java_augroup
+"     autocmd!
+"     autocmd BufWritePost *.java Format
+" augroup END
 
-augroup FormatAutogroup
-  autocmd!
-  " autocmd User FormatterPre :setlocal autoread
-  autocmd User FormatterPost :e!
-augroup END
+" augroup FormatAutogroup
+"   autocmd!
+"   " autocmd User FormatterPre :setlocal autoread
+"   autocmd User FormatterPost :e!
+" augroup END
 
 augroup expand_tab_augroup
     autocmd!
