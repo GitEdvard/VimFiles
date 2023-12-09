@@ -71,7 +71,17 @@ local launch_internal = function(project_name, pfile, runner_name, mc, op)
   local instruction2 = { "silent", "ant build-all", "build all" }
   local cmd = "cd " .. latest_run_dir .. " && " .. launch_cmd
   local instruction3 = { "hidden-scratch", cmd, { "YappException", "RuntimeException"}, "Launch" }
-  local instructions = { instruction1, instruction2, instruction3 }
+  local latest_run_catalog = vim.fs.basename(latest_run_dir)
+  local instruction4 = { "silent", "ant copy-run-output -Dproject=" .. project_name .. " -Drun_catalog=" .. latest_run_catalog, "copy run to eclipse"}
+  local instructions = { instruction1, instruction2, instruction3, instruction4 }
+  require'trigger-commands'.run_poly( instructions )
+end
+
+M.test_copy = function(settings_file)
+  local run_config = require'read-settings'.read_json(settings_file)
+  local latest_run_catalog = vim.fs.basename(latest_run_dir)
+  local instruction4 = { "silent", "ant copy-run-output -Dproject=" .. run_config.project .. " -Drun_catalog=" .. latest_run_catalog, "copy run to eclipse"}
+  local instructions = { instruction4 }
   require'trigger-commands'.run_poly( instructions )
 end
 
