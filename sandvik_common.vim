@@ -140,7 +140,7 @@ nnoremap <leader>r <C-w>v<C-w>T
 " substitute
 nnoremap <leader>v s
 " Capitalize word to the left
-inoremap jc <esc>bgUlea
+inoremap jc <esc>bgUllgueea
 
 " Automatic indentation
 nnoremap <leader>= =
