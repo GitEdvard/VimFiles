@@ -10,6 +10,15 @@ local find_project_path = function()
   return vim.fs.dirname(build_path)
 end
 
+local find_root_path = function()
+  local build_path = vim.fs.find(
+  {'build.xml'}, 
+  { upward = true, path = vim.fs.dirname(vim.api.nvim_buf_get_name(0)) })
+  build_path = build_path[1]
+  local project_path = vim.fs.dirname(build_path)
+  return vim.fs.dirname(project_path)
+end
+
 local get_version = function()
   local project_path = find_project_path()
   local manifest_file = project_path .. "\\" .. "META-INF" .. "\\" .. "MANIFEST.MF"
@@ -26,15 +35,17 @@ local get_version = function()
 end
 
 
-local get_run_dir = function()
-    local project_path = find_project_path()
+local get_run_dir = function(project_name)
+    -- local project_path = find_project_path()
+    local project_path = find_root_path() .. "\\" .. project_name
     local run_dir = project_path .. "\\" .. "run" .. "\\" .. os.date("%Y%m%d-%H%M%S")
     return run_dir
 end
 
 local launch_internal = function(project_name, pfile, runner_name, mc, op)
   -- local pfile_path = "C:/Users/yh6032/HOME/git_me/i290.manufacturing/i290.cmm/parameter-files/" .. pfile
-  local parameter_files = find_project_path() .. "\\parameter-files\\"
+  -- local parameter_files = find_project_path() .. "\\parameter-files\\"
+  local parameter_files = find_root_path() .. "\\" .. project_name .. "\\parameter-files\\"
   parameter_files = string.gsub(parameter_files, "\\", "/")
   local pfile_path = parameter_files .. pfile
   local cfile_path = "C:/Users/yh6032/HOME/java_files/launcher-dir/"  .. runner_name .. "/"
@@ -55,7 +66,7 @@ local launch_internal = function(project_name, pfile, runner_name, mc, op)
   launch_cmd = launch_cmd:gsub("${version}", version)
   launch_cmd = launch_cmd:gsub("${MC}", mc)
   launch_cmd = launch_cmd:gsub("${OP}", op)
-  M.create_new_run_dir()
+  M.create_new_run_dir(project_name)
   local instruction1 = { "silent", "ant clean-all", "clean all" }
   local instruction2 = { "silent", "ant build-all", "build all" }
   local cmd = "cd " .. latest_run_dir .. " && " .. launch_cmd
@@ -88,8 +99,8 @@ local trigger_command_rest = function()
     require'trigger-commands'.run_rest_call(run_settings)
 end
 
-M.create_new_run_dir = function()
-    local new_run_dir = get_run_dir()
+M.create_new_run_dir = function(project_name)
+    local new_run_dir = get_run_dir(project_name)
     latest_run_dir = new_run_dir
     vim.cmd("silent !mkdir " .. new_run_dir)
 end
