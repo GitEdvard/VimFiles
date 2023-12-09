@@ -94,7 +94,23 @@ ls.add_snippets("java", {
   ]], { i(1), rep(1), i(0), t("\t"), rep(1), rep(1), t("\t"), t("\t")} )),
   s("_print", fmt([[
   System.out.println("{}: " + {});
-  ]], { i(1), rep(1) }))
+  ]], { i(1), rep(1) })),
+  s("_bgpair", fmt([[
+  {} {{
+  {}@Override
+  {}public FacePairBg getPair() {{
+  {}{}return new FacePairBg(CadFaceBg.{}_1, CadFaceBg.{}_2);
+  {}}}
+  }},
+  ]], { i(1), t("\t"), t("\t"), t("\t"), t("\t"), rep(1), rep(1), t("\t") })),
+  s("_ggepair", fmt([[
+  {} {{
+  {}@Override
+  {}public FacePairGge getPair() {{
+  {}{}return new FacePairGge(CadFaceGge.{}_1, CadFaceGge.{}_2);
+  {}}}
+  }},
+  ]], { i(1), t("\t"), t("\t"), t("\t"), t("\t"), rep(1), rep(1), t("\t") }))
 })
 
 ls.add_snippets("python", {
