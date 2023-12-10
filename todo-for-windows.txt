@@ -72,6 +72,9 @@ Running jdtls on Sandvik
   > Set ANT_HOME, to directory above the bin directory
   > Add to path, %ANT_HOME%\bin
   > JAVA_HOME need to be defined, as an entry on the PATH, including %JAVA_HOME%\bin
+  > Install ant-contrib, used for <foreach> commands i build.xml files. I dont remember the details ...
+    - search for ant-contrib
+    - I can see that I have ant-contrib-1.0b3.jar in the ant-folder in "lib"
 * Run build command
   > From yappclipse, export a Ant build file
     - go to a project

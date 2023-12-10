@@ -25,7 +25,7 @@ local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<leader>ul', launch, opts)
 vim.keymap.set('n', '<leader>ut', T.test, opts)
 vim.keymap.set('n', '<leader>ub', L.build, opts)
-vim.keymap.set('n', '<leader>ut', test_copy, opts)
+-- vim.keymap.set('n', '<leader>ut', test_copy, opts)
 vim.keymap.set('n', '<leader>uo', L.open_prt, opts)
 vim.keymap.set('n', '<leader>ud', delete_java_files, opts)
 vim.keymap.set('n', '<leader>ux', M.reset, opts)

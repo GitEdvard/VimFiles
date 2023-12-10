@@ -3,6 +3,13 @@ P = function(v)
     return v
 end
 
+local clock = os.clock
+function sleep(n)  -- seconds
+   local t0 = clock()
+   while clock() - t0 <= n do
+   end
+end
+
 mysplit = function (inputstr, sep)
   if sep == nil then
           sep = "%s"
