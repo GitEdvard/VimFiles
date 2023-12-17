@@ -2,6 +2,7 @@ local M = require'java.prepare_jdtls'
 local L = require'java.launcher'
 local T = require'java.test'
 local R = require'myrun_configs'
+local V = require'java.update_version'
 
 local update_branch = function()
   vim.cmd("let g:fugitive_response = FugitiveHead()")
@@ -35,4 +36,5 @@ vim.keymap.set('n', '<leader>uh', M.hide_jdtls_files_new, opts)
 vim.keymap.set('n', '<leader>uu', M.unhide_jdtls_files_new, opts)
 vim.keymap.set('n', '<leader>uz', update_branch, opts)
 vim.keymap.set('n', '<leader>ur', R.list_configs, bufopts)
+vim.keymap.set('n', '<leader>uv', V.update_version, bufopts)
 -- vim.keymap.set('n', '<leader>ut', "<cmd>lua require('telescope').extensions.hello_telescope.hello_telescope()<cr>", bufopts)

@@ -3,6 +3,15 @@ P = function(v)
     return v
 end
 
+find_root_path = function()
+  local build_path = vim.fs.find(
+  {'build.xml'}, 
+  { upward = true, path = vim.fs.dirname(vim.api.nvim_buf_get_name(0)) })
+  build_path = build_path[1]
+  local project_path = vim.fs.dirname(build_path)
+  return vim.fs.dirname(project_path)
+end
+
 local clock = os.clock
 function sleep(n)  -- seconds
    local t0 = clock()
