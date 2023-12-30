@@ -95,6 +95,9 @@ ls.add_snippets("java", {
   s("_print", fmt([[
   System.out.println("{}: " + {});
   ]], { i(1), rep(1) })),
+  s("_printsize", fmt([[
+  System.out.println("{} size: " + {}.size());
+  ]], { i(1), rep(1) })),
   s("_bgpair", fmt([[
   {} {{
   {}@Override
