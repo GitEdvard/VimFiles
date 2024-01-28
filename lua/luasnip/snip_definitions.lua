@@ -53,7 +53,7 @@ ls.add_snippets("typescript", {
 
 ls.add_snippets("text", {
   ls.parser.parse_snippet("_newday",[[
-$1 $2/$3 2023
+$1 $2/$3 2024
 &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 Idag:
 * $0

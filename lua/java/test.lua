@@ -1,14 +1,12 @@
 local M = {}
 
 M.test = function()
-  local clock = os.clock
-  function sleep(n)  -- seconds
-     local t0 = clock()
-     while clock() - t0 <= n do
-     end
-  end
-  sleep(2)
-  print("ready")
+  local timestamp = os.time()
+  local numberdays = 3
+  local seconds_per_day = 60 * 60 * 24
+  local timediff = numberdays * seconds_per_day
+  local treashold_time = timestamp - timediff
+  print(os.date("date: %m/%d/%Y %I:%M %p", treashold_time))
 end
 
 M.test_simple = function()
