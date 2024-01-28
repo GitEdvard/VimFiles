@@ -77,6 +77,11 @@ local launch_internal = function(project_name, pfile, runner_name, mc, op)
   require'trigger-commands'.run_poly( instructions )
 end
 
+M.delete_old_run_catalogs = function()
+  local instruction = { "silent" , "ant delete-old-run-catalogs"}
+  require'trigger-commands'.run_poly( instruction )
+end
+
 M.test_copy = function(settings_file)
   local run_config = require'read-settings'.read_json(settings_file)
   local latest_run_catalog = vim.fs.basename(latest_run_dir)

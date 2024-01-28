@@ -1,5 +1,6 @@
 require("telescope").load_extension("git_worktree")
 local R = require("java.prepare_jdtls")
+local L = require("java.launcher")
 
 -- <Enter> - switches to that worktree
 -- <c-d> - deletes that worktree
@@ -55,6 +56,7 @@ Worktree.on_tree_change(function(op, metadata)
     require'java.prepare_jdtls'.delete_java_files(branch)
     vim.cmd("Git br -D " .. branch)
     print("deleted branch path: " .. metadata.path)
+    L.delete_old_run_catalogs()
   end
 end)
 
