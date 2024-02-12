@@ -72,14 +72,16 @@ local launch_internal = function(project_name, pfile, runner_name, mc, op)
   local cmd = "cd " .. latest_run_dir .. " && " .. launch_cmd
   local instruction3 = { "hidden-scratch", cmd, { "YappException", "RuntimeException"}, "Launch" }
   local latest_run_catalog = vim.fs.basename(latest_run_dir)
+  P(latest_run_catalog)
   local instruction4 = { "silent", "ant copy-run-output -Dproject=" .. project_name .. " -Drun_catalog=" .. latest_run_catalog, "copy run to eclipse"}
   local instructions = { instruction1, instruction2, instruction3, instruction4 }
   require'trigger-commands'.run_poly( instructions )
 end
 
 M.delete_old_run_catalogs = function()
-  local instruction = { "silent" , "ant delete-old-run-catalogs"}
-  require'trigger-commands'.run_poly( instruction )
+  local instruction = { "silent" , "ant delete-old-run-catalogs" , "delete old catalogs" }
+  local instructions = { instruction }
+  require'trigger-commands'.run_poly( instructions )
 end
 
 M.test_copy = function(settings_file)

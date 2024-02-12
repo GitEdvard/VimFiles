@@ -170,7 +170,7 @@ M.delete_java_files = function(branch)
   local pwd = vim.fn.getcwd()
   local cmd = ""
   if pwd:find(vim.g.i290_wt_keyword) then
-    cmd = "ant delete-wt-java-files -Dcurrent_branch=" .. branch .. " -Djava_files=" .. vim.g.java_files_base
+    cmd = "ant delete-wt-java-files -f " .. vim.g.nvim_adapt_root .. "/root/build.xml -Dcurrent_branch=" .. branch .. " -Djava_files=" .. vim.g.java_files_base
     print("deleted branch: " .. branch)
     print("cmd: " .. cmd)
   else
@@ -193,6 +193,11 @@ M.reset = function()
     package.loaded['java.mysandvik_settings'] = nil
     package.loaded['java.prepare_jdtls'] = nil
     print("mysandvik_settings and prepare_jdtls has been reset!")
+end
+
+M.copy_reference_files = function()
+  local cmd = "ant -f i290.family.test/maintenence/copy_reference_files.xml"
+  require'trigger-commands'.run_silent{cmd, "copy_reference_files completed", "copy_reference_files failed"}
 end
 
 return M
