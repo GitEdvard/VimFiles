@@ -106,6 +106,8 @@ if has('mouse')
   set mouse-=a
 endif
 
+lua vim.filetype.add({ extension = { concept = 'concept' } })
+
 "---------------------------------------------------
 " Keymaps
 "---------------------------------------------------
@@ -291,6 +293,11 @@ augroup END
 "   " autocmd User FormatterPre :setlocal autoread
 "   autocmd User FormatterPost :e!
 " augroup END
+
+augroup concept_comment_augroup
+    autocmd!
+    autocmd FileType concept setlocal commentstring=//%s
+augroup END
 
 augroup expand_tab_augroup
     autocmd!
