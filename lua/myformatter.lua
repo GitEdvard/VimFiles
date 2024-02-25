@@ -9,7 +9,7 @@ require'formatter'.setup({
         return {
           exe = "eclipsec.exe",
           -- Formatter uses '-' as stdin
-          args = { "-noSplash", "-vm", "C:\\ProgramData\\NX_BASE\\NX12\\GLOBAL\\APPS\\YAPP\\jre8\\bin\\javaw.exe", "-data", "C:\\Users\\yh6032\\HOME\\java_files\\tmp", "-application", "org.eclipse.jdt.core.JavaCodeFormatter", "-config", "C:\\Users\\yh6032\\HOME\\git_me\\nvim-adapt\\yapp_format.ini", util.get_current_buffer_file_path()},
+          args = { "-noSplash", "-vm", vim.g.java_vm, "-data", vim.g.java_files_tmp, "-application", "org.eclipse.jdt.core.JavaCodeFormatter", "-config", vim.g.java_format_config },
           stdin = false
         }
       end,
