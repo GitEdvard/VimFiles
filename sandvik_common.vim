@@ -107,6 +107,7 @@ if has('mouse')
 endif
 
 lua vim.filetype.add({ extension = { concept = 'concept' } })
+lua vim.filetype.add({ extension = { workflow = 'workflow' } })
 
 "---------------------------------------------------
 " Keymaps
@@ -283,10 +284,10 @@ augroup java_augroup
     autocmd FileType java lua require('java.mysandvik_settings')
 augroup END
 
-" augroup format_java_augroup
-"     autocmd!
-"     autocmd BufWritePost *.java Format
-" augroup END
+augroup format_java_augroup
+    autocmd!
+    autocmd BufWritePost *.java Format
+augroup END
 
 " augroup FormatAutogroup
 "   autocmd!
@@ -297,6 +298,11 @@ augroup END
 augroup concept_comment_augroup
     autocmd!
     autocmd FileType concept setlocal commentstring=//%s
+augroup END
+
+augroup concept_comment_augroup
+    autocmd!
+    autocmd FileType workflow setlocal commentstring=//%s
 augroup END
 
 augroup expand_tab_augroup
