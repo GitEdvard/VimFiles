@@ -3,6 +3,7 @@ local L = require'java.launcher'
 local T = require'java.test'
 local R = require'myrun_configs'
 local V = require'java.update_version'
+local U = require'java.unittestlauncher'
 
 local update_branch = function()
   vim.cmd("let g:fugitive_response = FugitiveHead()")
@@ -10,7 +11,7 @@ local update_branch = function()
 end
 
 local launch = function()
-  L.launch("run-configs/gge-mea.json")
+  L.launch("run-configs/gge.json")
 end
 
 local delete_java_files = function()
@@ -19,12 +20,12 @@ local delete_java_files = function()
 end
 
 local test_copy = function()
-  L.test_copy("run-configs/gge-mea.json")
+  L.test_copy("run-configs/gif-mea.json")
 end
 
 local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<leader>ul', launch, opts)
-vim.keymap.set('n', '<leader>ut', T.test, opts)
+vim.keymap.set('n', '<leader>ut', U.launch, opts)
 vim.keymap.set('n', '<leader>ub', L.build, opts)
 -- vim.keymap.set('n', '<leader>ut', test_copy, opts)
 vim.keymap.set('n', '<leader>uo', L.open_prt, opts)
