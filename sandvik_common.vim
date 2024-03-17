@@ -112,6 +112,8 @@ lua vim.filetype.add({ extension = { workflow = 'workflow' } })
 "---------------------------------------------------
 " Keymaps
 "---------------------------------------------------
+" Remove "create" in auto generated veriables
+nnoremap <leader>kc ebd/\u<cr>gul:noh<cr>
 nnoremap <space> i<space><esc>l
 nnoremap s f
 nnoremap <c-o> <c-o>zz

@@ -79,7 +79,7 @@ local launch_internal = function(project_name, pfile, runner_name, mc, op)
 end
 
 M.delete_old_run_catalogs = function()
-  local cmd = "ant -f " .. vim.g.nvim_adapt_root .. "/root/build.xml delete_old_run_catalogs"
+  local cmd = "ant -f " .. vim.g.nvim_adapt_root .. "/root/build.xml delete-old-run-catalogs"
   local instruction = { "silent" , cmd, "delete old catalogs" }
   local instructions = { instruction }
   require'trigger-commands'.run_poly( instructions )
