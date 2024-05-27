@@ -11,7 +11,7 @@ local update_branch = function()
 end
 
 local launch = function()
-  L.launch("run-configs/gge.json")
+  L.launch("run-configs/gge-mea.json")
 end
 
 local delete_java_files = function()
@@ -20,7 +20,7 @@ local delete_java_files = function()
 end
 
 local test_copy = function()
-  L.test_copy("run-configs/gif-mea.json")
+  L.test_copy("run-configs/gge-mea.json")
 end
 
 local opts = { noremap = true, silent = true }
