@@ -92,6 +92,21 @@ ls.add_snippets("java", {
   {}return x;
   }}
   ]], { i(1), rep(1), i(0), t("\t"), rep(1), rep(1), t("\t"), t("\t")} )),
+  s("_createwithconcept", fmt([[
+  public {}Base create{}({}) {{
+  {}String concept = inputParameters.getParameter("CONCEPT");
+  {}{}Base x = null;
+  {}if (concept.startsWith("DE10")) {{
+  {}{}x = new {}Athena();
+  {}{}inject.injectMembers(x);
+  {}}}
+  {}if (concept.startsWith("DE20")) {{
+  {}{}x = new {}Atlas();
+  {}{}inject.injectMembers(x);
+  {}}}
+  {}return x;
+  }}
+  ]], { i(1), rep(1), i(0), t("\t"), t("\t"), rep(1), t("\t"), t("\t"), t("\t"), rep(1), t("\t"), t("\t"), t("\t"), t("\t"), t("\t"), t("\t"), rep(1), t("\t"), t("\t"), t("\t"), t("\t")} )),
   s("_print", fmt([[
   System.out.println("{}: " + {});
   ]], { i(1), rep(1) })),
@@ -119,3 +134,5 @@ ls.add_snippets("java", {
 ls.add_snippets("python", {
   s("_pension_entry", fmt([[self.{} = config_dict["{}"{}]], { i(1), rep(1), t("]") })),
 })
+
+  -- i1, r1, i0, t, t, i1, t, t, t, i1, t, t, t, t, t, t, i1, t, t, t, t
