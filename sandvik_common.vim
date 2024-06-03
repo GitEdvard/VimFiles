@@ -31,6 +31,7 @@ source ~/.vim/myplugfiles/telescope.vim
 source ~/.vim/myplugfiles/treesitter.vim
 source ~/.vim/myplugfiles/lsp.vim
 source ~/.vim/myplugfiles/luasnip.vim
+" I want keymaps for <leader>d for deleting...
 source ~/.vim/myplugfiles/debugger-sandvik.vim
 Plug 'bps/vim-textobj-python'
 Plug 'gpanders/editorconfig.nvim'
@@ -108,12 +109,19 @@ endif
 
 lua vim.filetype.add({ extension = { concept = 'concept' } })
 lua vim.filetype.add({ extension = { workflow = 'workflow' } })
+lua vim.filetype.add({ extension = { module = 'module' } })
 
 "---------------------------------------------------
 " Keymaps
 "---------------------------------------------------
 " Remove "create" in auto generated veriables
+" nnoremap <leader>d "_d
+nnoremap <leader>x "_x
+nnoremap <leader>k1 :s/2/1/g <cr>
+nnoremap <leader>k2 :s/1/2/g <cr>
+nnoremap <leader>k3 :s/1/3/g <cr>
 nnoremap <leader>kc ebd/\u<cr>gul:noh<cr>
+nnoremap <leader>kd <c-w>h:diffthis<cr><c-w>l:diffthis<cr>
 nnoremap <space> i<space><esc>l
 nnoremap s f
 nnoremap <c-o> <c-o>zz
@@ -145,13 +153,14 @@ nnoremap <leader>r <C-w>v<C-w>T
 " substitute
 nnoremap <leader>v s
 " Capitalize word to the left
-inoremap jc <esc>bgUllgueea
+inoremap jC <esc>bgUllgueeA
+inoremap jc <esc>bgulleA
 
 " Automatic indentation
 nnoremap <leader>= =
 
 " open file with default program
-nnoremap <leader>x :!xdg-open %<cr>
+" nnoremap <leader>x :!xdg-open %<cr>
 
 nnoremap <c-d> <c-d>zz
 nnoremap <c-u> <c-u>zz
@@ -302,9 +311,14 @@ augroup concept_comment_augroup
     autocmd FileType concept setlocal commentstring=//%s
 augroup END
 
-augroup concept_comment_augroup
+augroup workflow_comment_augroup
     autocmd!
     autocmd FileType workflow setlocal commentstring=//%s
+augroup END
+
+augroup module_comment_augroup
+    autocmd!
+    autocmd FileType module setlocal commentstring=//%s
 augroup END
 
 augroup expand_tab_augroup

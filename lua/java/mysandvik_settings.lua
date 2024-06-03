@@ -11,7 +11,7 @@ local update_branch = function()
 end
 
 local launch = function()
-  L.launch("run-configs/gge-mea.json")
+  L.launch("run-configs/gif-mea-atlas.json")
 end
 
 local delete_java_files = function()
