@@ -15,6 +15,11 @@ require('telescope').setup {
           }
       }
   },
+  pickers = {
+    git_bcommits = {
+      use_git_root = false,
+    }
+  },
   extensions = {
     fzf = {
       fuzzy = true,                    -- false will only do exact matching
