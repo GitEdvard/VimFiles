@@ -104,6 +104,27 @@ M.open_prt = function()
   end
 end
 
+M.open_xml = function()
+  print("start")
+  for file in io.popen("dir " .. latest_run_dir .. [[/b]]):lines() do 
+    if string.find(file, ".xml") then
+      local path = latest_run_dir .. "\\" .. file
+      vim.cmd('e ' .. path)
+    end
+  end
+end
+
+M.open_json = function()
+  print("start")
+  for file in io.popen("dir " .. latest_run_dir .. [[/b]]):lines() do 
+    if string.find(file, ".json") and not string.find(file, "order_information") then
+      local path = latest_run_dir .. "\\" .. file
+      vim.cmd('e ' .. path)
+    end
+  end
+end
+
+
 M.launch = function(settings_file)
   local run_config = require'read-settings'.read_json(settings_file)
   launch_internal(run_config.project, run_config.pfile, "Application-Runner-edvard2-cmm", run_config.mc, run_config.op)

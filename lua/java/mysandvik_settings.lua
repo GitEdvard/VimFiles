@@ -11,7 +11,7 @@ local update_branch = function()
 end
 
 local launch = function()
-  L.launch("run-configs/gif-mea-atlas.json")
+  L.launch("run-configs/gge-mea-atlas.json")
 end
 
 local delete_java_files = function()
@@ -20,7 +20,7 @@ local delete_java_files = function()
 end
 
 local test_copy = function()
-  L.test_copy("run-configs/gge-mea.json")
+  L.test_copy("run-configs/marking.json")
 end
 
 local opts = { noremap = true, silent = true }
@@ -29,6 +29,8 @@ vim.keymap.set('n', '<leader>ut', U.launch, opts)
 vim.keymap.set('n', '<leader>ub', L.build, opts)
 -- vim.keymap.set('n', '<leader>ut', test_copy, opts)
 vim.keymap.set('n', '<leader>uo', L.open_prt, opts)
+vim.keymap.set('n', '<leader>u[', L.open_xml, opts)
+vim.keymap.set('n', '<leader>up', L.open_json, opts)
 vim.keymap.set('n', '<leader>ud', delete_java_files, opts)
 vim.keymap.set('n', '<leader>ux', M.reset, opts)
 vim.keymap.set('n', '<leader>uq', L.build_all, opts)
