@@ -51,6 +51,10 @@ function M.start_file_browser()
     opts.cwd = cwd
     require'telescope'.extensions.file_browser.file_browser(opts)
 end
+function M.find_files_on_current()
+  local current = vim.fn.expand("<cword>")
+  require('telescope.builtin').find_files({search_file=current})
+end
 local bufopts = { noremap=true, silent=true }
 vim.keymap.set('n', 'cd', M.current_buffer_fuzzy_find, bufopts)
 vim.keymap.set('n', '<leader>ff', "<cmd>Telescope git_files<cr>", bufopts)
@@ -63,6 +67,7 @@ vim.keymap.set('n', '<leader>fl', "<cmd>Telescope lsp_document_symbols<cr>", buf
 vim.keymap.set('n', 'cx', M.start_file_browser, bufopts)
 
 vim.keymap.set('n', '<leader>yk', "<cmd>Telescope keymaps<cr>", bufopts)
+vim.keymap.set('n', '<leader>yp', M.find_files_on_current, bufopts)
 vim.keymap.set('n', '<leader>yr', "<cmd>Telescope registers<cr>", bufopts)
 vim.keymap.set('n', '<leader>yq', "<cmd>Telescope command_history<cr>", bufopts)
 vim.keymap.set('n', '<leader>yh', "<cmd>Telescope help_tags<cr>", bufopts)
