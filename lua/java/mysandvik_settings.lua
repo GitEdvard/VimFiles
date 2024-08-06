@@ -24,7 +24,8 @@ local test_copy = function()
 end
 
 local opts = { noremap = true, silent = true }
-vim.keymap.set('n', '<leader>ul', launch, opts)
+-- vim.keymap.set('n', '<leader>ul', launch, opts)
+vim.keymap.set('n', '<leader>ul', L.launch_latest, opts)
 vim.keymap.set('n', '<leader>ut', U.launch, opts)
 vim.keymap.set('n', '<leader>ub', L.build, opts)
 -- vim.keymap.set('n', '<leader>ut', test_copy, opts)

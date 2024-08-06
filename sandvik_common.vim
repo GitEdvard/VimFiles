@@ -116,6 +116,7 @@ lua vim.filetype.add({ extension = { module = 'module' } })
 "---------------------------------------------------
 " Remove "create" in auto generated veriables
 " nnoremap <leader>d "_d
+set switchbuf+=usetab,newtab " open quickfix links in new tabs
 nnoremap <leader>x "_x
 nnoremap <leader>k1 :s/2/1/g <cr>
 nnoremap <leader>k2 :s/1/2/g <cr>

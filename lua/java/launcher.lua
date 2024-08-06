@@ -1,6 +1,7 @@
 local M = {}
 
 local latest_run_dir = ""
+local latest_run_setting = ""
 
 local find_project_path = function()
   local build_path = vim.fs.find(
@@ -127,7 +128,16 @@ end
 
 M.launch = function(settings_file)
   local run_config = require'read-settings'.read_json(settings_file)
+  latest_run_setting = settings_file
   launch_internal(run_config.project, run_config.pfile, "Application-Runner-edvard2-cmm", run_config.mc, run_config.op)
+end
+
+M.launch_latest = function()
+  if latest_run_setting == "" then
+    print("No latest run setting available, you have to choose a single run first!")
+    return
+  end
+  M.launch(latest_run_setting)
 end
 
 M.get_latest_run_dir = function()
