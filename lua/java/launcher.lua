@@ -71,7 +71,7 @@ local launch_internal = function(project_name, pfile, runner_name, mc, op)
   local instruction1 = { "silent", "ant clean-all", "clean all" }
   local instruction2 = { "silent", "ant build-all", "build all" }
   local cmd = "cd " .. latest_run_dir .. " && " .. launch_cmd
-  local instruction3 = { "hidden-scratch", cmd, { "YappException", "RuntimeException"}, "Launch" }
+  local instruction3 = { "hidden-scratch", cmd, { "YappException", "RuntimeException"}, "Launch", latest_run_dir }
   local latest_run_catalog = vim.fs.basename(latest_run_dir)
   P(latest_run_catalog)
   local instruction4 = { "silent", "ant copy-run-output -Dproject=" .. project_name .. " -Drun_catalog=" .. latest_run_catalog, "copy run to eclipse"}
@@ -86,8 +86,8 @@ M.delete_old_run_catalogs = function()
   require'trigger-commands'.run_poly( instructions )
 end
 
-M.test_copy = function(settings_file)
-  local run_config = require'read-settings'.read_json(settings_file)
+M.test_copy = function(run_config)
+  local run_config = require'read-settings'.read_json(run_config)
   local latest_run_catalog = vim.fs.basename(latest_run_dir)
   local instruction4 = { "silent", "ant copy-run-output -Dproject=" .. run_config.project .. " -Drun_catalog=" .. latest_run_catalog, "copy run to eclipse"}
   local instructions = { instruction4 }
@@ -126,16 +126,20 @@ M.open_json = function()
 end
 
 
-M.launch = function(settings_file)
-  local run_config = require'read-settings'.read_json(settings_file)
-  latest_run_setting = settings_file
+M.launch = function(run_config_file)
+  local run_config = require'read-settings'.read_json(run_config_file)
+  latest_run_setting = run_config_file
   launch_internal(run_config.project, run_config.pfile, "Application-Runner-edvard2-cmm", run_config.mc, run_config.op)
 end
 
 M.launch_latest = function()
   if latest_run_setting == "" then
-    print("No latest run setting available, you have to choose a single run first!")
-    return
+    local settings_table = require'read-settings'.read_json(vim.g.vim_settings_file) or {}
+    latest_run_setting = settings_table[vim.g.vim_settings_config_entry] or ""
+    if latest_run_setting == "" then
+      print("No latest run setting available, you have to choose a single run first!")
+      return
+    end
   end
   M.launch(latest_run_setting)
 end

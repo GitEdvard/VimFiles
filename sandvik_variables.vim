@@ -11,5 +11,7 @@ let g:i290_wt_keyword = 'i290.manufacturing.wt'
 let g:java_vm = 'C:\ProgramData\NX_BASE\NX12\GLOBAL\APPS\YAPP\jre8\bin\javaw.exe'
 let g:java_files_tmp = 'C:\Users\yh6032\HOME\java_files\tmp'
 let g:java_format_config ='C:\Users\yh6032\HOME\git_me\nvim-adapt\yapp_format.ini'
+let g:vim_settings_file = '.vimsettings.json'
+let g:vim_settings_config_entry = 'config-file'
 let g:run_ls = $RUN_LS
 " source ~/.vim/yappclipse.vim

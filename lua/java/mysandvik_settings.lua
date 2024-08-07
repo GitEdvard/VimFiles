@@ -23,10 +23,14 @@ local test_copy = function()
   L.test_copy("run-configs/marking.json")
 end
 
+local test_save = function()
+  R.save_run_config("config-path")
+end
+
 local opts = { noremap = true, silent = true }
 -- vim.keymap.set('n', '<leader>ul', launch, opts)
 vim.keymap.set('n', '<leader>ul', L.launch_latest, opts)
-vim.keymap.set('n', '<leader>ut', U.launch, opts)
+vim.keymap.set('n', '<leader>ut', test_save, opts)
 vim.keymap.set('n', '<leader>ub', L.build, opts)
 -- vim.keymap.set('n', '<leader>ut', test_copy, opts)
 vim.keymap.set('n', '<leader>uo', L.open_prt, opts)
