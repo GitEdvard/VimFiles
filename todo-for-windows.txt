@@ -117,6 +117,16 @@ The nvim-adapt repo
 * All files from nvim-adapt that are copied to i290.manufacturing are hidden, 
   > Added to global gitignore
 
+How to setup launcher
+* In yappclipse, make sure you have made at least one run on the cmm project
+* Go to "yapp" directory, find the folder matching the current workspace
+* go to .metadata/.plugins/org.eclipse.pde.core
+* find folder matching with the run-configuration name for cmm project
+* copy that folder to the java_files/launcher-dir (hardcoded path found in my .vim scriptfiles)
+* the file bundles.info is automatically updated by my scripts
+* make sure all projects I want to run is present in the dev.properties file
+  > eg. i290.cmm=bin
+
 Procedure to adapt to language server
 * "Infect" with files from nvim-adapt
   > in prepare_jdtls.lua, call update_branch, binding is defined in mysandvik_settings.lua
