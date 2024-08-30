@@ -115,6 +115,16 @@ M.open_xml = function()
   end
 end
 
+M.open_job = function()
+  print("start")
+  for file in io.popen("dir " .. latest_run_dir .. [[/b]]):lines() do 
+    if string.find(file, ".job") then
+      local path = latest_run_dir .. "\\" .. file
+      vim.cmd('e ' .. path)
+    end
+  end
+end
+
 M.open_json = function()
   print("start")
   for file in io.popen("dir " .. latest_run_dir .. [[/b]]):lines() do 
