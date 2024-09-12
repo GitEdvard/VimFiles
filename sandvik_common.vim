@@ -150,7 +150,7 @@ inoremap j. ().
 inoremap <c-d> <esc>lxi
 
 " Open current file in a new tab
-nnoremap <leader>r <C-w>v<C-w>T
+nnoremap <leader>rr <C-w>v<C-w>T
 " substitute
 nnoremap <leader>v s
 " Capitalize word to the left
@@ -289,11 +289,11 @@ augroup indent2_augroup
     autocmd FileType json,typescript,text,css,lua,html,xml,jsp setlocal shiftwidth=2 tabstop=2
 augroup END
 
-lua require('java.mysandvik_settings')
+lua require('mysandvik_settings')
 
 augroup java_augroup
     autocmd!
-    autocmd FileType java lua require('java.mysandvik_settings')
+    autocmd FileType java lua require('mysandvik_settings')
 augroup END
 
 augroup format_java_augroup
