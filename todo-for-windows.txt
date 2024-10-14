@@ -55,6 +55,10 @@ source C:\EdvardsProgram\VimRoot-wsl\VimRoot-wsl\vimrc
   > https://github.com/microsoft/vscode-java-test
   > put it in ~\.cachec\nvim
 
+Unpack jar file:
+* jar -xf <jarfile>
+
+
 Sandvik fixes
 * On sandvik computer, find out which commands are issued when running launch configurations
   > https://stackoverflow.com/questions/1989419/eclipse-is-there-a-way-to-get-eclipse-to-output-the-commands-given-to-run-your

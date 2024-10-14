@@ -123,6 +123,8 @@ nnoremap <leader>k2 :s/1/2/g <cr>
 nnoremap <leader>k3 :s/1/3/g <cr>
 nnoremap <leader>kc ebd/\u<cr>gul:noh<cr>
 nnoremap <leader>kd <c-w>h:diffthis<cr><c-w>l:diffthis<cr>
+nnoremap <leader>kg :tabe <cr>:Glog<cr>
+nnoremap <leader>kl <c-^>
 nnoremap <space> i<space><esc>l
 nnoremap s f
 nnoremap <c-o> <c-o>zz

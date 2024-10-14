@@ -135,4 +135,7 @@ ls.add_snippets("python", {
   s("_pension_entry", fmt([[self.{} = config_dict["{}"{}]], { i(1), rep(1), t("]") })),
 })
 
-  -- i1, r1, i0, t, t, i1, t, t, t, i1, t, t, t, t, t, t, i1, t, t, t, t
+ls.add_snippets("concept", {
+  s("_textAbove", fmt([[{} = if (showNames) {}Base => [ textAbove = {}.replace('_', ' ') ] else {}Base]], { i(1), rep(1), i(2), rep(1) }))
+})
+

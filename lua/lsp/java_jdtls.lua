@@ -39,7 +39,9 @@ M.setup = function()
     on_attach = on_attach,
     root_dir = root_dir,
     settings = {
-        java = {}
+        java = {
+          signatureHelp = { enable = true }
+        }
     },
     init_options = {
       bundles = bundles

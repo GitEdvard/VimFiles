@@ -20,4 +20,8 @@ M.switch_recent = function()
   vim.cmd("Git co -")
 end
 
+M.reset_hard = function()
+  vim.cmd("Git reset --hard")
+end
+
 return M
