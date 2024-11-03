@@ -51,10 +51,17 @@ function M.start_file_browser()
     opts.cwd = cwd
     require'telescope'.extensions.file_browser.file_browser(opts)
 end
+
+local function firstToUpper(str)
+      return (str:gsub("^%l", string.upper))
+end
+
 function M.find_files_on_current()
   local current = vim.fn.expand("<cword>")
+  current = firstToUpper(current)
   require('telescope.builtin').find_files({search_file=current})
 end
+
 local bufopts = { noremap=true, silent=true }
 vim.keymap.set('n', 'cd', M.current_buffer_fuzzy_find, bufopts)
 vim.keymap.set('n', '<leader>ff', "<cmd>Telescope git_files<cr>", bufopts)
