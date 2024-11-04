@@ -72,8 +72,6 @@ M.generate_update_branch_command = function(new_branch)
   local cmd = ""
   if pwd:find(vim.g.i290_wt_keyword) then
     cmd = "ant -f " .. vim.g.nvim_adapt_root .. "/build.xml deploy-target-branch -Dtarget_branch=" .. new_branch
-  else
-    cmd = "ant -f " .. vim.g.nvim_adapt_root .. "/build.xml deploy"
   end
   return cmd
 end
@@ -107,6 +105,11 @@ M.unhide_jdtls_files_sync = function()
   vim.cmd("Git update-index --no-assume-unchanged pom.xml")
   vim.cmd("Git checkout HEAD -- pom.xml")
   print("Done")
+end
+
+M.deploy_to_origin_repo = function()
+  local cmd = "ant -f " .. vim.g.nvim_adapt_root .. "/build.xml deploy-origin"
+  require'trigger-commands'.run_silent{cmd, "Deploy projections completed", "Deploy projections failed"}
 end
 
 M.hide_jdtls_files_new = function()
