@@ -20,8 +20,16 @@ M.switch_recent = function()
   vim.cmd("Git co -")
 end
 
+M.switch_rc_dev_master = function()
+  vim.cmd("Git co rc/dev-master")
+end
+
 M.reset_hard = function()
   vim.cmd("Git reset --hard")
+end
+
+M.create_backup = function()
+  vim.cmd("Git br -D backup || Git co -b backup")
 end
 
 return M

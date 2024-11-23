@@ -143,6 +143,7 @@ ls.add_snippets("python", {
 })
 
 ls.add_snippets("concept", {
-  s("_textAbove", fmt([[{} = if (showNames) {}Base => [ textAbove = {}.replace('_', ' ') ] else {}Base]], { i(1), rep(1), i(2), rep(1) }))
+  s("_textAbove", fmt([[{} = if (showNames) {}Base => [ textAbove = {}.replace('_', ' ') ] else {}Base]], { i(1), rep(1), i(2), rep(1) })),
+  s("_attributeFace", fmt([[.attributeFace({})]], { i(0) }))
 })
 
