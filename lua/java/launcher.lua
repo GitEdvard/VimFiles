@@ -5,7 +5,7 @@ local latest_run_setting = ""
 
 local find_project_path = function()
   local build_path = vim.fs.find(
-  {'build.xml'}, 
+  {'build.properties'}, 
   { upward = true, path = vim.fs.dirname(vim.api.nvim_buf_get_name(0)) })
   build_path = build_path[1]
   return vim.fs.dirname(build_path)
@@ -13,11 +13,60 @@ end
 
 local find_root_path = function()
   local build_path = vim.fs.find(
-  {'build.xml'}, 
+  {'build.properties'}, 
   { upward = true, path = vim.fs.dirname(vim.api.nvim_buf_get_name(0)) })
-  build_path = build_path[1]
+  local build_path = build_path[1]
   local project_path = vim.fs.dirname(build_path)
-  return vim.fs.dirname(project_path)
+  local root_path = vim.fs.dirname(project_path)
+  return root_path
+end
+
+local find_project_path_tweaked = function()
+  local current_file = vim.api.nvim_buf_get_name(0)
+  if current_file:find("concept$") or current_file:find("workflow$") or current_file:find("module$") then
+    local desagn_project_path = find_root_path() .. "\\" .. "i290.manufacturing.desagn"
+    return desagn_project_path
+  end
+  return find_project_path()
+end
+
+-- Lua implementation of PHP scandir function
+local scandir = function(directory)
+    local i, t, popen = 0, {}, io.popen
+    local pfile = popen('dir "'..directory..'" /b /ad')
+    for filename in pfile:lines() do
+        i = i + 1
+        t[i] = filename
+    end
+    pfile:close()
+    return t
+end
+
+local filter = function(a_table, pattern)
+  local out = {}
+  for k, v in ipairs(a_table) do
+    if v ~= nil and v:find(pattern) then
+      table.insert(out, v)
+    end
+  end
+  return out
+end
+
+local find_latest_run_dir_from_current = function()
+  local project_path = find_project_path_tweaked()
+  local run_root_dir = project_path .. "\\" .. "run"
+  local run_dirs = scandir(run_root_dir)
+  local date_pattern = "%d-%d"
+  run_dirs = filter(run_dirs, date_pattern)
+  table.sort(run_dirs, function(a, b) return a > b end) -- reversed sorting
+  return run_root_dir .. "\\" .. run_dirs[1]
+end
+
+local find_latest_run_dir = function()
+  if #latest_run_dir == 0 then
+    return find_latest_run_dir_from_current()
+  end
+  return latest_run_dir
 end
 
 local get_version = function()
@@ -36,7 +85,7 @@ local get_version = function()
 end
 
 
-local get_run_dir = function(project_name)
+local get_new_run_dir_name = function(project_name)
     -- local project_path = find_project_path()
     local project_path = find_root_path() .. "\\" .. project_name
     local run_dir = project_path .. "\\" .. "run" .. "\\" .. os.date("%Y%m%d-%H%M%S")
@@ -96,9 +145,9 @@ end
 
 M.open_prt = function()
   print("start")
-  for file in io.popen("dir " .. latest_run_dir .. [[/b]]):lines() do 
-    if string.find(file, ".prt") and not string.find(file, "DA_MANU_") then
-      local path = latest_run_dir .. "\\" .. file
+  for file in io.popen("dir " .. find_latest_run_dir() .. [[/b]]):lines() do 
+    if string.find(file, ".prt") and not string.find(file, "DA_MANU_") and not string.find(file, "^FP.*NC") then
+      local path = find_latest_run_dir() .. "\\" .. file
       local cmd = "ugs_router.exe -ug -use_file_dir " .. path
       require'trigger-commands'.run_silent{cmd, "Open prt succeeded", "Open prt failed"}
     end
@@ -163,7 +212,7 @@ local trigger_command_rest = function()
 end
 
 M.create_new_run_dir = function(project_name)
-    local new_run_dir = get_run_dir(project_name)
+    local new_run_dir = get_new_run_dir_name(project_name)
     latest_run_dir = new_run_dir
     vim.cmd("silent !mkdir " .. new_run_dir)
 end
