@@ -116,6 +116,7 @@ lua vim.filetype.add({ extension = { module = 'module' } })
 " Remove "create" in auto generated veriables
 " nnoremap <leader>d "_d
 set switchbuf+=usetab,newtab " open quickfix links in new tabs
+nnoremap <leader>kr <c-w>v:Gedit rc/dev-master:%<cr>
 nnoremap <leader>x "_x
 nnoremap <leader>k1 :s/2/1/g <cr>
 nnoremap <leader>k2 :s/1/2/g <cr>
@@ -229,7 +230,6 @@ noremap <A-j> <c-w>j
 noremap <A-k> <c-w>k
 
 nmap <leader>s :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
-" I save this as an example how to do
 nmap <leader>ks :%s/\<<C-r><C-w>\>/<C-r><C-w><C-f>bgUliface<esc>A <esc><C-c>/gI<Left><Left><Left>
 
 " Resize with arrows
