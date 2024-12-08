@@ -32,4 +32,8 @@ M.create_backup = function()
   vim.cmd("Git br -D backup || Git co -b backup")
 end
 
+M.rebase_rc_dev = function()
+  vim.cmd("Git rebase rc/dev-master")
+end
+
 return M

@@ -6,7 +6,6 @@ execute pathogen#infect()
 set nocompatible
 
 let mapleader = "f"
-
 lua require('globals')
 " https://github.com/junegunn/vim-plug
 call plug#begin('~/.vim/plugged')
@@ -185,7 +184,6 @@ nnoremap O zzO
 
 " Matching paranthesis etc.
 inoremap " ""<Left>
-inoremap ' ''<Left>
 inoremap [ []<Left>
 inoremap ( ()<Left>
 " inoremap { {}<Left>
@@ -231,6 +229,8 @@ noremap <A-j> <c-w>j
 noremap <A-k> <c-w>k
 
 nmap <leader>s :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
+" I save this as an example how to do
+nmap <leader>ks :%s/\<<C-r><C-w>\>/<C-r><C-w><C-f>bgUliface<esc>A <esc><C-c>/gI<Left><Left><Left>
 
 " Resize with arrows
 noremap <c-Up> :resize -2<cr>
