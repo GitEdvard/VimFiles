@@ -1,4 +1,4 @@
-Plug 'C:\Users\yh6032\HOME\git_me\simple-picker'
+Plug 'C:\Users\yh6032\HOME\git_me\pickers\simple-picker'
 
 augroup myrun-config-plug-event
     autocmd!
