@@ -120,7 +120,8 @@ local launch_internal = function(project_name, pfile, runner_name, mc, op)
   local instruction1 = { "silent", "ant clean-all", "clean all" }
   local instruction2 = { "silent", "ant build-all", "build all" }
   local cmd = "cd " .. latest_run_dir .. " && " .. launch_cmd
-  local instruction3 = { "hidden-scratch", cmd, { "YappException", "RuntimeException"}, "Launch", latest_run_dir }
+  local launch_text = "Launch " .. pfile
+  local instruction3 = { "hidden-scratch", cmd, { "YappException", "RuntimeException"}, launch_text, latest_run_dir }
   local latest_run_catalog = vim.fs.basename(latest_run_dir)
   P(latest_run_catalog)
   local instruction4 = { "silent", "ant copy-run-output -Dproject=" .. project_name .. " -Drun_catalog=" .. latest_run_catalog, "copy run to eclipse"}
