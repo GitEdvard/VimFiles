@@ -135,7 +135,8 @@ ls.add_snippets("java", {
   {}{}return new FacePairGge(CadFaceGge.{}_1, CadFaceGge.{}_2);
   {}}}
   }},
-  ]], { i(1), t("\t"), t("\t"), t("\t"), t("\t"), rep(1), rep(1), t("\t") }))
+  ]], { i(1), t("\t"), t("\t"), t("\t"), t("\t"), rep(1), rep(1), t("\t") })),
+  s("_img", fmt([[<img src="doc=files/{}.png" alt="image not found"><br>]], { i(1) }))
 })
 
 ls.add_snippets("python", {
