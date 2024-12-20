@@ -13,11 +13,14 @@ require('telescope').setup {
               ["<C-n>"] = require('telescope.actions').cycle_history_next,
               ["<C-p>"] = require('telescope.actions').cycle_history_prev,
           }
-      }
+      },
   },
   pickers = {
     git_bcommits = {
       use_git_root = false,
+    },
+    find_files = {
+      find_command = {"rg", "--files", "--iglob", "!*.png" }
     }
   },
   extensions = {
