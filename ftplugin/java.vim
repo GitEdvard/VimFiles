@@ -5,6 +5,7 @@ if g:run_ls == "yes"
   execute StartJavaLsp()
 endif
 " set errorformat=\[ERROR\]\ %f:\[%l\\\,%c\]\ %m
+setlocal noexpandtab
 set errorformat+=%.%#att\ %f\(%l\)
 set errorformat+=%.%#at\ %.%#\(%f:%l\)
 set errorformat+=at\ %f\ \(%l\)
