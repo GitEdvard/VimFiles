@@ -231,6 +231,7 @@ noremap <A-k> <c-w>k
 
 nmap <leader>s :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 nmap <leader>ks :%s/\<<C-r><C-w>\>/<C-r><C-w><C-f>bgUliface<esc>A <esc><C-c>/gI<Left><Left><Left>
+nmap <leader>kf :v/java/s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 
 " Resize with arrows
 noremap <c-Up> :resize -2<cr>
