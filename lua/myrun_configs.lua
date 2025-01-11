@@ -1,8 +1,8 @@
 local M = {}
-require("telescope").load_extension("simple_picker")
+require("telescope").load_extension("config_picker")
 local L = require'java.launcher'
 
-local simple_picker = require("simple-picker")
+local config_picker = require("config-picker")
 
 M.list_configs = function()
   local opts = { entries = {} }
@@ -10,10 +10,10 @@ M.list_configs = function()
     table.insert(opts.entries, file) 
   end
   opts.title = "Run configurations"
-  require('telescope').extensions.simple_picker.simple_picker(opts)
+  require('telescope').extensions.config_picker.config_picker(opts)
 end
 
-simple_picker.on_config_selected(function(metadata)
+config_picker.on_config_selected(function(metadata)
   local save_run_config = function(config_file)
     local settings_table = require'read-settings'.read_json(vim.g.vim_settings_file) or {}
     file = io.open(vim.g.vim_settings_file, "w")
