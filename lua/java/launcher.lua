@@ -2,6 +2,7 @@ local M = {}
 
 local latest_run_dir = ""
 local latest_run_setting = ""
+local yapp_paths = require("java.yapp_paths")
 
 local find_project_path = function()
   local build_path = vim.fs.find(
@@ -11,20 +12,10 @@ local find_project_path = function()
   return vim.fs.dirname(build_path)
 end
 
-local find_root_path = function()
-  local build_path = vim.fs.find(
-  {'build.properties'}, 
-  { upward = true, path = vim.fs.dirname(vim.api.nvim_buf_get_name(0)) })
-  local build_path = build_path[1]
-  local project_path = vim.fs.dirname(build_path)
-  local root_path = vim.fs.dirname(project_path)
-  return root_path
-end
-
 local find_project_path_tweaked = function()
   local current_file = vim.api.nvim_buf_get_name(0)
   if current_file:find("concept$") or current_file:find("workflow$") or current_file:find("module$") then
-    local desagn_project_path = find_root_path() .. "\\" .. "i290.manufacturing.desagn"
+    local desagn_project_path = yapp_paths.find_root_path() .. "\\" .. "i290.manufacturing.desagn"
     return desagn_project_path
   end
   return find_project_path()
@@ -87,7 +78,7 @@ end
 
 local get_new_run_dir_name = function(project_name)
     -- local project_path = find_project_path()
-    local project_path = find_root_path() .. "\\" .. project_name
+    local project_path = yapp_paths.find_root_path() .. "\\" .. project_name
     local run_dir = project_path .. "\\" .. "run" .. "\\" .. os.date("%Y%m%d-%H%M%S")
     return run_dir
 end
@@ -95,7 +86,7 @@ end
 local launch_internal = function(project_name, pfile, runner_name, mc, op)
   -- local pfile_path = "C:/Users/yh6032/HOME/git_me/i290.manufacturing/i290.cmm/parameter-files/" .. pfile
   -- local parameter_files = find_project_path() .. "\\parameter-files\\"
-  local parameter_files = find_root_path() .. "\\" .. project_name .. "\\parameter-files\\"
+  local parameter_files = yapp_paths.find_root_path() .. "\\" .. project_name .. "\\parameter-files\\"
   parameter_files = string.gsub(parameter_files, "\\", "/")
   local pfile_path = parameter_files .. pfile
   local cfile_path = "C:/Users/yh6032/HOME/java_files/launcher-dir/"  .. runner_name .. "/"
