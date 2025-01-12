@@ -183,7 +183,7 @@ M.launch = function(run_config_file)
   launch_internal(run_config.project, run_config.pfile, "Application-Runner-edvard2-cmm", run_config.mc, run_config.op)
 end
 
-M.launch_latest = function()
+local fetch_latest_run_setting = function()
   if latest_run_setting == "" then
     local settings_table = require'read-settings'.read_json(vim.g.vim_settings_file) or {}
     latest_run_setting = settings_table[vim.g.vim_settings_config_entry] or ""
@@ -192,7 +192,24 @@ M.launch_latest = function()
       return
     end
   end
+end
+
+M.launch_latest = function()
+  fetch_latest_run_setting()
   M.launch(latest_run_setting)
+end
+
+M.open_indata = function(config_file_path)
+  local config_table = require'read-settings'.read_json(config_file_path)
+  local project_name = config_table.project
+  local parameter_files = vim.fn.getcwd() .. "\\" .. project_name .. "\\parameter-files\\"
+  local indata_path = parameter_files .. config_table.pfile
+  vim.cmd('tabe ' .. indata_path)
+end
+
+M.open_latest_indata = function()
+  fetch_latest_run_setting()
+  M.open_indata(latest_run_setting)
 end
 
 M.get_latest_run_dir = function()
