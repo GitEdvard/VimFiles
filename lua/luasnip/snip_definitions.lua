@@ -143,8 +143,30 @@ ls.add_snippets("python", {
   s("_pension_entry", fmt([[self.{} = config_dict["{}"{}]], { i(1), rep(1), t("]") })),
 })
 
+local namespace = function(index)
+  return f(function(arg)
+    local current_wd_backslash = vim.fn.getcwd()
+    print(current_wd_backslash)
+    local filepath = vim.api.nvim_buf_get_name(0)
+    print("get name:")
+    print(filepath)
+    local filepath2 = vim.fn.expand("%")
+    print(filepath2)
+    local file_subpath = string.sub(filepath, #current_wd_backslash)
+    local wd_table = mysplit(file_subpath, "\\")
+    local namespace_str = table.concat(wd_table, ".")
+    return namespace_str
+  end, { index })
+end
+
 ls.add_snippets("concept", {
   s("_textAbove", fmt([[{} = if (showNames) {}Base => [ textAbove = {}.replace('_', ' ') ] else {}Base]], { i(1), rep(1), i(2), rep(1) })),
-  s("_attributeFace", fmt([[.attributeFace({})]], { i(0) }))
+  s("_attributeFace", fmt([[.attributeFace({})]], { i(0) })),
+  -- Doesn't work
+  s("_create", fmt([[namespace {}
+
+concept {}  {{
+}}
+]], { namespace(1), i(2) }))
 })
 

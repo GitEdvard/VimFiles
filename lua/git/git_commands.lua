@@ -34,6 +34,7 @@ end
 
 M.rebase_rc_dev = function()
   vim.cmd("Git rebase rc/dev-master")
+  print("Current branch rebased upon rc/dev-master")
 end
 
 return M

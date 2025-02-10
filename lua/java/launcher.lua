@@ -200,6 +200,7 @@ M.launch_latest = function()
 end
 
 M.open_indata = function(config_file_path)
+  latest_run_setting = config_file_path
   local config_table = require'read-settings'.read_json(config_file_path)
   local project_name = config_table.project
   local parameter_files = vim.fn.getcwd() .. "\\" .. project_name .. "\\parameter-files\\"

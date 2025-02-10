@@ -30,6 +30,14 @@ mysplit = function (inputstr, sep)
   return t
 end
 
+-- Get the root catalog name if you are in a git-worktree
+get_root_from_worktree = function()
+  local current_wd = vim.fn.getcwd()
+  local wd_table = mysplit(current_wd, "\\")
+  local root = wd_table[#wd_table - 1]
+  return root
+end
+
 -- see if the file exists
 function file_exists(file)
   local f = io.open(file, "rb")

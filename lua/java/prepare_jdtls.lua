@@ -68,11 +68,12 @@ M.update_branch = function(new_branch)
 end
 
 M.generate_update_branch_command = function(new_branch)
-  local pwd = vim.fn.getcwd()
   local cmd = ""
-  if pwd:find(vim.g.i290_wt_keyword) then
-    cmd = "ant -f " .. vim.g.nvim_adapt_root .. "/build.xml deploy-target-branch -Dtarget_branch=" .. new_branch
-  end
+  local current_wd_backslash = vim.fn.getcwd()
+  local current_wd = string.gsub(current_wd_backslash, "\\", "/")
+  local wd_table = mysplit(current_wd, "/")
+  local root = wd_table[#wd_table - 1]
+  cmd = "ant -f " .. vim.g.nvim_adapt_root .. "/build.xml deploy-target-branch -Dtarget_branch=" .. current_wd .. " -Droot = " .. root
   return cmd
 end
 
@@ -172,8 +173,9 @@ end
 M.delete_java_files = function(branch)
   local pwd = vim.fn.getcwd()
   local cmd = ""
+  local root = get_root_from_worktree()
   if pwd:find(vim.g.i290_wt_keyword) then
-    cmd = "ant delete-wt-java-files -f " .. vim.g.nvim_adapt_root .. "/root/build.xml -Dcurrent_branch=" .. branch .. " -Djava_files=" .. vim.g.java_files_base
+    cmd = "ant delete-wt-java-files -f " .. vim.g.nvim_adapt_root .. "/" .. root .. "/build.xml -Dcurrent_branch=" .. branch .. " -Djava_files=" .. vim.g.java_files_base
     print("deleted branch: " .. branch)
     print("cmd: " .. cmd)
   else
