@@ -51,7 +51,7 @@ Plug 'tjdevries/stackmap.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'BurntSushi/ripgrep'
 source ~/.vim/myplugfiles/telescope.vim
-source ~/.vim/myplugfiles/treesitter.vim
+source ~/.vim/myplugfiles/treesitter_latest.vim
 
 source ~/.vim/myplugfiles/lsp.vim
 source ~/.vim/myplugfiles/luasnip.vim
