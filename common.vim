@@ -142,6 +142,18 @@ endif
 "---------------------------------------------------
 " Keymaps
 "---------------------------------------------------
+" Remove "create" in auto generated veriables
+" nnoremap <leader>d "_d
+set switchbuf+=usetab,newtab " open quickfix links in new tabs
+nnoremap <leader>kr <c-w>v:Gedit rc/dev-master:%<cr>
+nnoremap <leader>x "_x
+nnoremap <leader>k1 :s/2/1/g <cr>
+nnoremap <leader>k2 :s/1/2/g <cr>
+nnoremap <leader>k3 :s/1/3/g <cr>
+nnoremap <leader>kc ebd/\u<cr>gul:noh<cr>
+nnoremap <leader>kd <c-w>h:diffthis<cr><c-w>l:diffthis<cr>
+nnoremap <leader>kg :tabe <cr>:Glog<cr>
+nnoremap <leader>kl <c-^>
 nnoremap <space> i<space><esc>l
 nnoremap s f
 nnoremap <c-o> <c-o>zz
@@ -150,7 +162,8 @@ nnoremap <c-i> <c-i>zz
 nnoremap dd A<bs><esc>
 nnoremap <c-g><c-f> <C-w>v<C-w>Tgf
 nnoremap gf <C-w>v<C-w>T:e <cfile><CR>
-nnoremap <leader>ut :retab<cr>
+nnoremap fo :!Git add .<cr>
+" nnoremap <leader>ut :retab<cr>
 nnoremap <leader>J J
 
 " Reload current file
@@ -168,17 +181,18 @@ inoremap j. ().
 inoremap <c-d> <esc>lxi
 
 " Open current file in a new tab
-nnoremap <leader>r <C-w>v<C-w>T
+nnoremap <leader>rr <C-w>v<C-w>T
 " substitute
 nnoremap <leader>v s
 " Capitalize word to the left
-inoremap jc <esc>bgUllgueea
+inoremap jC <esc>bgUllgueeA
+inoremap jc <esc>bgulleA
 
 " Automatic indentation
 nnoremap <leader>= =
 
 " open file with default program
-nnoremap <leader>x :!xdg-open %<cr>
+" nnoremap <leader>x :!xdg-open %<cr>
 
 nnoremap <c-d> <c-d>zz
 nnoremap <c-u> <c-u>zz
@@ -200,10 +214,9 @@ nnoremap O zzO
 
 " Matching paranthesis etc.
 inoremap " ""<Left>
-inoremap ' ''<Left>
 inoremap [ []<Left>
 inoremap ( ()<Left>
-inoremap { {}<Left>
+" inoremap { {}<Left>
 inoremap <c-f><space> <space><space><Left>
 
 " center screen after search
@@ -246,6 +259,8 @@ noremap <A-j> <c-w>j
 noremap <A-k> <c-w>k
 
 nmap <leader>s :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
+nmap <leader>ks :%s/\<<C-r><C-w>\>/<C-r><C-w><C-f>bgUliface<esc>A <esc><C-c>/gI<Left><Left><Left>
+nmap <leader>kf :v/java/s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 
 " Resize with arrows
 noremap <c-Up> :resize -2<cr>
@@ -254,18 +269,15 @@ noremap <c-Left> :vertical resize -2<cr>
 noremap <c-Right> :vertical resize +2<cr>
 
 nnoremap <silent> <leader>g :tabe <bar> G<CR> <c-w>o
-" nnoremap <silent> <leader>g :LazyGit<CR>
 
 noremap <C-h> :tabp<CR>
 noremap - :tabm -1<CR>
 noremap <C-l> :tabn<CR>
 noremap = :tabm +1<CR>
 noremap <C-j> :tabc<CR> :tabp<CR>
-noremap <C-k> :tabe <Bar> Startify<CR>
+noremap <C-k> :tabe<CR>
 
 nnoremap <leader>q :copen<cr> <c-w>L
-
-" nnoremap <leader>l :let myvar=substitute(expand('%:r'), '/', '.', 'g')<CR> :call vimspector#LaunchWithSettings( #{ CURRENT_PY_PATH: myvar })<CR>
 
 command! Reloadall execute ":bufdo e!"
 command! JsonPrettify execute ":r !xclip -selection clipboard -o | jsonlint"
