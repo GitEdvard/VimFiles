@@ -19,6 +19,8 @@ local on_attach = require'lsp.on_attach'.keymaps
 
 require('mycmp_settings')
 require'lsp.angular'
+require'lsp.gopls'.setup(lsp_flags, capabilities, on_attach)
+-- require'lspconfig'.gopls.setup{}
 require'lsp.csharp'.setup(lsp_flags, capabilities, on_attach)
 require'lsp.python'.setup(lsp_flags, capabilities, on_attach)
 vim.diagnostic.config({
