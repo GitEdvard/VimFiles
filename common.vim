@@ -5,7 +5,7 @@ execute pathogen#infect()
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
-let mapleader = "\<Space>"
+let mapleader = "f"
 
 lua require('globals')
 " https://github.com/junegunn/vim-plug
@@ -51,7 +51,7 @@ Plug 'tjdevries/stackmap.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'BurntSushi/ripgrep'
 source ~/.vim/myplugfiles/telescope.vim
-source ~/.vim/myplugfiles/treesitter.vim
+source ~/.vim/myplugfiles/treesitter_latest.vim
 
 source ~/.vim/myplugfiles/lsp.vim
 source ~/.vim/myplugfiles/luasnip.vim
@@ -70,8 +70,8 @@ source ~/.vim/myplugfiles/closetag.vim
 " Plug 'ionide/Ionide-vim'
 " My plugins
 source ~/.vim/myplugfiles/test-on-save.vim
-" Plug '/home/edvard/sources/admin/VimPlugins/read-settings.nvim'
-Plug 'GitEdvard/read-settings.nvim'
+Plug '/home/edvard/sources/admin/VimPlugins/read-settings.nvim'
+" Plug 'GitEdvard/read-settings.nvim'
 source ~/.vim/myplugfiles/trigger-commands.vim
 Plug 'tpope/vim-projectionist'
 
@@ -142,6 +142,8 @@ endif
 "---------------------------------------------------
 " Keymaps
 "---------------------------------------------------
+nnoremap <space> i<space><esc>l
+nnoremap s f
 nnoremap <c-o> <c-o>zz
 nnoremap <c-t> <c-t>zz
 nnoremap <c-i> <c-i>zz
@@ -149,6 +151,7 @@ nnoremap dd A<bs><esc>
 nnoremap <c-g><c-f> <C-w>v<C-w>Tgf
 nnoremap gf <C-w>v<C-w>T:e <cfile><CR>
 nnoremap <leader>ut :retab<cr>
+nnoremap <leader>J J
 
 " Reload current file
 nnoremap <leader>e :e!<CR>
@@ -157,9 +160,19 @@ nnoremap <leader>Q :bufdo bdelete<cr>
 " easy insertion of ; or , in insert mode
 imap ;; <esc>A;<esc>
 imap ,, <esc>A,<esc>
+inoremap {{ <esc>A {<c-m>}<esc>
+inoremap jp <esc>la
+inoremap j; ();<esc>
+inoremap j, (),
+inoremap j. ().
+inoremap <c-d> <esc>lxi
 
 " Open current file in a new tab
 nnoremap <leader>r <C-w>v<C-w>T
+" substitute
+nnoremap <leader>v s
+" Capitalize word to the left
+inoremap jc <esc>bgUllgueea
 
 " Automatic indentation
 nnoremap <leader>= =
@@ -200,10 +213,13 @@ nnoremap N Nzzzv
 nnoremap <c-w><c-o> :tab sp<cr>
 " Bind "jk" to <esc> to jump out of insert mode
 inoremap jk <esc>
+inoremap jl <esc>l
 
 " Swap colon and semicolon
 noremap ; :
 noremap , ;
+" Find next backward
+nnoremap <leader>, ,
 
 function DeleteHiddenBuffers()
     let tpbl=[]
@@ -237,7 +253,8 @@ noremap <c-Down> :resize +2<cr>
 noremap <c-Left> :vertical resize -2<cr>
 noremap <c-Right> :vertical resize +2<cr>
 
-nnoremap <silent> <leader>g :LazyGit<CR>
+nnoremap <silent> <leader>g :tabe <bar> G<CR> <c-w>o
+" nnoremap <silent> <leader>g :LazyGit<CR>
 
 noremap <C-h> :tabp<CR>
 noremap - :tabm -1<CR>
