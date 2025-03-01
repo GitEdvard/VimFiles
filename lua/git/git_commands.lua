@@ -37,4 +37,10 @@ M.rebase_rc_dev = function()
   print("Current branch rebased upon rc/dev-master")
 end
 
+M.create_merge_master = function()
+  vim.cmd("Git br -D merge-master")
+  vim.cmd("Git co -b merge-master")
+  print("Deleted and created a new merge-master from current branch")
+end
+
 return M
