@@ -39,7 +39,7 @@ Plug 'sukima/xmledit'
 source ~/.vim/myplugfiles/closetag.vim
 source ~/.vim/myplugfiles/test-on-save.vim
 Plug 'GitEdvard/read-settings.nvim'
-source ~/.vim/myplugfiles/trigger-commands.vim
+source ~/.vim/myplugfiles/trigger-commands-sandvik.vim
 Plug 'tpope/vim-projectionist'
 source ~/.vim/myplugfiles/lightline.vim
 Plug 'tomasiser/vim-code-dark'
