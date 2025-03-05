@@ -72,7 +72,7 @@ source ~/.vim/myplugfiles/closetag.vim
 source ~/.vim/myplugfiles/test-on-save.vim
 Plug '/home/edvard/sources/admin/VimPlugins/read-settings.nvim'
 " Plug 'GitEdvard/read-settings.nvim'
-source ~/.vim/myplugfiles/trigger-commands.vim
+source ~/.vim/myplugfiles/trigger-commands-home.vim
 Plug 'tpope/vim-projectionist'
 
 " Experimental
