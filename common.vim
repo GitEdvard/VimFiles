@@ -81,6 +81,7 @@ Plug 'tpope/vim-projectionist'
 " Plug 'vim-airline/vim-airline-themes'
 source ~/.vim/myplugfiles/lightline.vim
 Plug 'whatyouhide/vim-textobj-xmlattr'
+Plug 'nvim-neotest/nvim-nio'
 call plug#end()
 
 doautocmd User plug-event
