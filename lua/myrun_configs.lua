@@ -14,6 +14,11 @@ local open_indata = function(selection)
   L.open_indata(file_path)
 end
 
+local open_config_file = function(selection)
+  local config_file_path = 'run-configs/' .. selection
+  vim.cmd('tabe ' .. config_file_path)
+end
+
 M.list_configs = function()
   local opts = { entries = {} }
   for file in io.popen([[dir "run-configs" /b]]):lines() do 
@@ -22,7 +27,8 @@ M.list_configs = function()
   opts.title = "Run configurations"
   opts.mappings = {
     i = {
-      ['<c-i>'] = open_indata
+      ['<c-i>'] = open_indata,
+      ['<c-o>'] = open_config_file
     }
   }
   require('telescope').extensions.simple_picker.simple_picker(opts)

@@ -39,7 +39,7 @@ Plug 'sukima/xmledit'
 source ~/.vim/myplugfiles/closetag.vim
 source ~/.vim/myplugfiles/test-on-save.vim
 Plug 'GitEdvard/read-settings.nvim'
-source ~/.vim/myplugfiles/trigger-commands.vim
+source ~/.vim/myplugfiles/trigger-commands-sandvik.vim
 Plug 'tpope/vim-projectionist'
 source ~/.vim/myplugfiles/lightline.vim
 Plug 'tomasiser/vim-code-dark'
@@ -97,6 +97,9 @@ set timeoutlen=1000
 set nobackup
 set nowritebackup
 set noswapfile
+set cursorline
+
+highlight CursorLine ctermbg=Yellow cterm=bold guibg=#2b2b2b
 
 " Fix zt an zb near edges
 set scrolloff=3
@@ -141,16 +144,6 @@ nnoremap <leader>J J
 nnoremap <leader>e :e!<CR>
 nnoremap <leader>Q :bufdo bdelete<cr>
 
-" easy insertion of ; or , in insert mode
-imap ;; <esc>A;<esc>
-imap ,, <esc>A,<esc>
-inoremap {{ <esc>A {<c-m>}<esc>
-inoremap jp <esc>la
-inoremap j; ();<esc>
-inoremap j, (),
-inoremap j. ().
-inoremap <c-d> <esc>lxi
-
 " Open current file in a new tab
 nnoremap <leader>rr <C-w>v<C-w>T
 " substitute
@@ -168,33 +161,22 @@ nnoremap <leader>= =
 nnoremap <c-d> <c-d>zz
 nnoremap <c-u> <c-u>zz
 
-set cursorline
-
-highlight CursorLine ctermbg=Yellow cterm=bold guibg=#2b2b2b
-
-" Retain selection when indenting blocks
-vmap > >gv
-vmap < <gv
-" Time in milliseconds (default 0)
-let g:Illuminate_delay = 700
-
 " Center screen when inserting
 nnoremap i zzi
 nnoremap o zzo
 nnoremap O zzO
 
-" Matching paranthesis etc.
-inoremap " ""<Left>
-inoremap [ []<Left>
-inoremap ( ()<Left>
-" inoremap { {}<Left>
-inoremap <c-f><space> <space><space><Left>
-
 " center screen after search
 nnoremap n nzzzv
 nnoremap N Nzzzv
-
 nnoremap <c-w><c-o> :tab sp<cr>
+
+" Find next backward
+nnoremap <leader>, ,
+
+" Time in milliseconds (default 0)
+let g:Illuminate_delay = 700
+
 " Bind "jk" to <esc> to jump out of insert mode
 inoremap jk <esc>
 inoremap jl <esc>l
@@ -202,8 +184,7 @@ inoremap jl <esc>l
 " Swap colon and semicolon
 noremap ; :
 noremap , ;
-" Find next backward
-nnoremap <leader>, ,
+
 
 function DeleteHiddenBuffers()
     let tpbl=[]
@@ -214,8 +195,6 @@ function DeleteHiddenBuffers()
 endfunction
 nmap <leader>D :call DeleteHiddenBuffers()<CR>
 
-" Copy to system clipboard
-vmap <leader>c "+y
 " Quickly get rid of highlighting
 noremap <leader>h :noh<CR>
 
@@ -251,6 +230,30 @@ noremap <C-k> :tabe<CR>
 nnoremap <leader>q :copen<cr> <c-w>L
 
 " nnoremap <leader>l :let myvar=substitute(expand('%:r'), '/', '.', 'g')<CR> :call vimspector#LaunchWithSettings( #{ CURRENT_PY_PATH: myvar })<CR>
+
+" easy insertion of ; or , in insert mode
+imap ;; <esc>A;<esc>
+imap ,, <esc>A,<esc>
+inoremap {{ <esc>A {<c-m>}<esc>
+inoremap jp <esc>la
+inoremap j; ();<esc>
+inoremap j, (),
+inoremap j. ().
+inoremap <c-d> <esc>lxi
+" Matching paranthesis etc.
+inoremap " ""<Left>
+inoremap [ []<Left>
+inoremap ( ()<Left>
+" inoremap { {}<Left>
+inoremap <c-f><space> <space><space><Left>
+
+" Copy to system clipboard
+vmap <leader>c "+y
+" Retain selection when indenting blocks
+vmap > >gv
+vmap < <gv
+
+vnoremap <leader>dp :diffput<cr>
 
 command! Reloadall execute ":bufdo e!"
 command! JsonPrettify execute ":r !xclip -selection clipboard -o | jsonlint"
