@@ -148,4 +148,4 @@ command! Ostart execute ":OmniSharpStartServer"
 command! Ostop execute ":OmniSharpStopServer"
 command! FileHistory execute ":BCommits"
 command! ShowAscii execute ":set statusline=%<%f%h%m%r%=%b\ 0x%B\ \ %l,%c%V\ %P"
-
+lua require('git_keybindings')
