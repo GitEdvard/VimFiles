@@ -164,7 +164,7 @@ nnoremap <c-i> <c-i>zz
 nnoremap dd A<bs><esc>
 nnoremap <c-g><c-f> <C-w>v<C-w>Tgf
 nnoremap gf <C-w>v<C-w>T:e <cfile><CR>
-nnoremap fo :!Git add .<cr>
+nnoremap <leader>o :Git add .<cr>
 " nnoremap <leader>ut :retab<cr>
 nnoremap <leader>J J
 

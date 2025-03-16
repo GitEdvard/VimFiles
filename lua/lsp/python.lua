@@ -1,10 +1,21 @@
 local M = {}
 
 M.setup = function(lsp_flags, capabilities, on_attach)
-  require('lspconfig')['pyright'].setup{
+  require('lspconfig')['pylsp'].setup{
     on_attach = on_attach,
     flags = lsp_flags,
-    capabilities = capabilities
+    capabilities = capabilities,
+    settings = {
+      pylsp = {
+        plugins = {
+          flake8 = {enabled = true},
+          pycodestyle = {enabled = false},
+          pyflakes = {enabled = false},
+          pylint = {enabled = true},
+          mccabe = {enabled = false},
+        }
+      }
+    }
   }
 end
 
