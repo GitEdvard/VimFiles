@@ -8,9 +8,9 @@ M.setup = function(lsp_flags, capabilities, on_attach)
     settings = {
       pylsp = {
         plugins = {
-          flake8 = {enabled = false},
+          flake8 = {enabled = true},
           pycodestyle = {enabled = false},
-          pyflakes = {enabled = true},
+          pyflakes = {enabled = false},
           pylint = {enabled = true},
           mccabe = {enabled = false},
         }

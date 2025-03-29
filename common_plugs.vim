@@ -34,7 +34,7 @@ Plug 'tpope/vim-dispatch'
 source ~/.vim/myplugfiles/undotree.vim
 source ~/.vim/myplugfiles/markdown-preview.vim
 " stackmap, for switch mappings in quickfix window
-Plug 'tjdevries/stackmap.nvim'
+" Plug 'tjdevries/stackmap.nvim'
 
 " Telescope
 Plug 'nvim-lua/plenary.nvim'
@@ -52,7 +52,7 @@ source ~/.vim/myplugfiles/omnisharp-vim.vim
 Plug 'gpanders/editorconfig.nvim'
 
 " java language server
-Plug 'mfussenegger/nvim-jdtls'
+" Plug 'mfussenegger/nvim-jdtls'
 Plug 'sukima/xmledit'
 source ~/.vim/myplugfiles/closetag.vim
 
