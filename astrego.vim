@@ -15,16 +15,6 @@ runtime ./common_basic_config.vim
 runtime ./common_keymaps.vim
 runtime ./common_autocommand.vim
 
-let g:jedi#goto_command = ""
-let g:jedi#goto_assignments_command = ""
-let g:jedi#goto_stubs_command = ""
-let g:jedi#goto_definitions_command = ""
-let g:jedi#documentation_command = ""
-let g:jedi#usages_command = ""
-let g:jedi#completions_command = ""
-let g:jedi#rename_command = ""
-let g:jedi#rename_command_keep_name = ""
-
 function! Tig()
   !tig status
   redraw!
