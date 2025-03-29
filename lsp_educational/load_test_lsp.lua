@@ -1,3 +1,4 @@
+-- put in folder after/plugin to make effect
 local client = vim.lsp.start_client {
   name = "educationallps",
   cmd =  { "/home/edvard/sources/dev/go/educationallps/educationallsp" },
