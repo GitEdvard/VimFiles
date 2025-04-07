@@ -7,19 +7,19 @@ let b:node_dir = '/home/edvard/.nvm/versions/node/v14.16.0/bin/'
 let g:node_host_prog = b:node_dir . 'node'
 let g:java_files_base = '/home/edvard/java_files/'
 let $PATH = b:node_dir . ':' . $PATH
-set clipboard+=unnamedplus
-let g:clipboard = {
-              \   'name': 'win32yank-wsl',
-          \   'copy': {
-              \      '+': 'win32yank.exe -i --crlf',
-          \      '*': 'win32yank.exe -i --crlf',
-          \    },
-          \   'paste': {
-              \      '+': 'win32yank.exe -o --lf',
-          \      '*': 'win32yank.exe -o --lf',
-          \   },
-          \   'cache_enabled': 0,
-          \ }
+" set clipboard+=unnamedplus
+" let g:clipboard = {
+"               \   'name': 'win32yank-wsl',
+"           \   'copy': {
+"               \      '+': 'win32yank.exe -i --crlf',
+"           \      '*': 'win32yank.exe -i --crlf',
+"           \    },
+"           \   'paste': {
+"               \      '+': 'win32yank.exe -o --lf',
+"           \      '*': 'win32yank.exe -o --lf',
+"           \   },
+"           \   'cache_enabled': 0,
+"           \ }
 
 command! Compile execute ":!/mnt/c/Program\\\ Files\\\ \\\(x86\\\)/Microsoft\\\ Visual\\\ Studio/2019/BuildTools/MSBuild/Current/Bin/MSBuild.exe /p:WarningLevel=0 /verbosity:minimal /p:Configuration=Release"
 command! AppendClipboard execute ":!win32yank.exe -o >> %"
