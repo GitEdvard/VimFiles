@@ -3,7 +3,15 @@ How to install neovim on windows, without wsl
 * Extract
   > We can now run newvim by doubleclick nvim.exe, or nvim-qt.exe
   > Add to task bar
-* Download and extract code in VimRoot, note the extracted director
+* Create a HOME directory
+  > Create environt variable HOME, reference the HOME directory
+  > In HOME directory, create .ssh dir, and go to .ssh dir
+  > Create ssh key and add to github
+    - ssh-keygen -t ed25519
+  > Start git
+    - eval $(ssh-agent -s)
+    - ssh-add <name of public key file>
+* Download VimRoot repository
   > It should be the "windows" branch
 * In nvim, run :h vimrc, this should show where init.vim should be placed
   > C:\Users\46709\AppData\Local\nvim
@@ -14,24 +22,29 @@ let &packpath = &runtimepath
 source C:\EdvardsProgram\VimRoot-wsl\VimRoot-wsl\vimrc
 
 * The source row should match with the VimRoot directory
-* Create a HOME environment variable, create a corresponding directory
 * In HOME directory, create directories
   > .vim
   > .virtualenvs
 * Download and extract VimFiles from github
   > Find directory containing common.vim, cut&paste everything into the .vim directory
+  > Now you can delete the original VimFiles directory!
 * Open Microsoft Store, install python
 * Open cmd, go to .virtualenvs, then
   > python -m venv ./pynvim
   > run activate.bat in Scripts/
   > pip install pynvim
+* Go to the .vim directory, open nvim (explorer, write cmd in the search field, in cmd, write nvim)
+  > Give command :PlugInstall
 * Fix libfzf.dll
   > Alt 1. Copy libfzf.dll from other place, and place it in the telescope-native-fzf.nvim/build directory
   > Alt 2. Install cmake and Msys2, including c compiler
     > (Msys2) https://code.visualstudio.com/docs/cpp/config-mingw
-  > Run make commands, 3 different, taken from the "do" clause in telescope.vim in VimFiles
-  > Add -G "MinGW Makefiles", from https://stackoverflow.com/questions/69338088/error-while-configuring-cmake-project-running-nmake-failed
-  > cmake -G "MinGW Makefiles" -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build
+    > In Msys2 ucrt64 console, install cmake with "pacman -S cmake"
+  > Run make commands, 2 different, taken from the "do" clause in telescope.vim in VimFiles
+    - 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release'
+    - If you have run the command previously and failed, you must delete the folder "build" first!
+  > Run make commands, 2 different, taken from the "do" clause in telescope.vim in VimFiles
+    - 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release'
 * Portable git bash
   > https://git-scm.com/download/win
   > Choose portable version
