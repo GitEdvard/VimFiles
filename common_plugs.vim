@@ -72,6 +72,8 @@ source ~/.vim/myplugfiles/lightline.vim
 Plug 'whatyouhide/vim-textobj-xmlattr'
 Plug 'nvim-neotest/nvim-nio'
 Plug 'davidhalter/jedi-vim'
+Plug 'idanarye/vim-merginal'
+Plug 'tjdevries/apyrori.nvim'
 call plug#end()
 
 doautocmd User plug-event

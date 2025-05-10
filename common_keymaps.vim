@@ -4,6 +4,8 @@
 " Remove "create" in auto generated veriables
 " nnoremap <leader>d "_d
 set switchbuf+=usetab,newtab " open quickfix links in new tabs
+nnoremap <leader>kt ysi}<c-j>=ie
+nnoremap <leader>km <c-w><bar><c-w>_
 nnoremap <leader>kr <c-w>v:Gedit rc/dev-master:%<cr>
 nnoremap <leader>x "_x
 nnoremap <leader>k1 :s/2/1/g <cr>
@@ -11,7 +13,7 @@ nnoremap <leader>k2 :s/1/2/g <cr>
 nnoremap <leader>k3 :s/1/3/g <cr>
 nnoremap <leader>kc ebd/\u<cr>gul:noh<cr>
 nnoremap <leader>kd <c-w>h:diffthis<cr><c-w>l:diffthis<cr>
-nnoremap <leader>kg :tabe <cr>:Glog<cr>
+nnoremap <leader>kg :tabe <cr>:Gclog<cr>
 nnoremap <leader>kl <c-^>
 nnoremap <space> i<space><esc>l
 nnoremap s f
@@ -40,7 +42,7 @@ inoremap j. ().
 inoremap <c-d> <esc>lxi
 
 " Open current file in a new tab
-nnoremap <leader>rr <C-w>v<C-w>T
+nnoremap <leader>tr <C-w>v<C-w>T
 " substitute
 nnoremap <leader>v s
 " Capitalize word to the left
@@ -124,6 +126,7 @@ noremap <c-Left> :vertical resize -2<cr>
 noremap <c-Right> :vertical resize +2<cr>
 
 nnoremap <silent> <leader>g :tabe <bar> G<CR> <c-w>o
+nnoremap <silent> <leader>G :tabe <bar> Merginal<CR> <c-w>o
 
 noremap <C-h> :tabp<CR>
 noremap - :tabm -1<CR>
@@ -131,6 +134,7 @@ noremap <C-l> :tabn<CR>
 noremap = :tabm +1<CR>
 noremap <C-j> :tabc<CR> :tabp<CR>
 noremap <C-k> :tabe<CR>
+nnoremap <buffer><silent> <leader>iv <cmd>call Black()<cr>
 
 nnoremap <leader>q :copen<cr> <c-w>L
 

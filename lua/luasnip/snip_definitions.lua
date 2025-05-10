@@ -141,6 +141,9 @@ ls.add_snippets("java", {
 
 ls.add_snippets("python", {
   s("_pension_entry", fmt([[self.{} = config_dict["{}"{}]], { i(1), rep(1), t("]") })),
+  s("_print", fmt([[
+  print(f"{}: {{{}}}")
+  ]], { i(1), rep(1) })),
 })
 
 local namespace = function(index)

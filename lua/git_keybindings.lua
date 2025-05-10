@@ -12,13 +12,12 @@ local test_save = function()
 end
 
 local opts = { noremap = true, silent = true }
-vim.keymap.set('n', '<leader>uz', update_branch, opts)
-vim.keymap.set('n', '<leader>rw', G.push_wt, bufopts)
 vim.keymap.set('n', '<leader>ro', G.push_origin, bufopts)
+vim.keymap.set('n', '<leader>rO', G.push_origin_hard, bufopts)
 vim.keymap.set('n', '<leader>rl', G.lg1, bufopts)
 vim.keymap.set('n', '<leader>rs', G.switch_recent, bufopts)
-vim.keymap.set('n', '<leader>rd', G.switch_rc_dev_master, bufopts)
-vim.keymap.set('n', '<leader>rmm', G.rebase_rc_dev, bufopts)
 vim.keymap.set('n', '<leader>rb', G.create_backup, bufopts)
 vim.keymap.set('n', '<leader>rhh', G.reset_hard, bufopts)
-vim.keymap.set('n', '<leader>rp', G.create_merge_master, bufopts)
+
+vim.keymap.set('n', '<leader>rp', G.reset_previous, bufopts)
+vim.keymap.set('n', '<leader>rr', G.commit_reuse_message, bufopts)

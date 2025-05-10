@@ -12,6 +12,12 @@ M.push_origin = function()
   vim.cmd(cmd)
 end
 
+M.push_origin_hard = function()
+  vim.cmd("let g:fugitive_response = FugitiveHead()")
+  local cmd = "Git push origin " .. vim.g.fugitive_response .. " -f"
+  vim.cmd(cmd)
+end
+
 M.lg1 = function()
   vim.cmd("Git lg1")
 end
@@ -26,6 +32,14 @@ end
 
 M.reset_hard = function()
   vim.cmd("Git reset --hard")
+end
+
+M.reset_previous = function()
+  vim.cmd("Git reset @~1")
+end
+
+M.commit_reuse_message = function()
+  vim.cmd("Git commit --reuse-message=HEAD@{1}")
 end
 
 M.create_backup = function()
