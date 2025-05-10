@@ -5,4 +5,4 @@ nnoremap <leader>tt :AttachTestMethod<cr>
 nnoremap <leader>tc :AttachTestClass<cr>
 nnoremap <leader>tm :RunTestMethod<cr>
 nnoremap <leader>tf :RunTestClass<cr>
-lua vim.keymap.set('n', '<leader>tq', function() vim.api.nvim_clear_autocmds({ group = "edvard-automagic" }) end, {noremap = true})
+nnoremap <leader>tq :DetachTestRange<cr>
