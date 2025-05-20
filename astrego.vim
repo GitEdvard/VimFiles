@@ -10,6 +10,7 @@ let mapleader = "f"
 lua require('globals')
 " https://github.com/junegunn/vim-plug
 
+runtime ./astrego_variables.vim
 runtime ./common_plugs.vim
 runtime ./common_basic_config.vim
 runtime ./common_keymaps.vim

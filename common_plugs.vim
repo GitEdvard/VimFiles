@@ -74,6 +74,7 @@ Plug 'nvim-neotest/nvim-nio'
 Plug 'davidhalter/jedi-vim'
 Plug 'idanarye/vim-merginal'
 Plug 'tjdevries/apyrori.nvim'
+source ~/.vim/myplugfiles/dadbod.vim
 call plug#end()
 
 doautocmd User plug-event
