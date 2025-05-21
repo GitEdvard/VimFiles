@@ -71,8 +71,24 @@ ls.add_snippets("json", {
   s("_projection", fmt([[
   "{}":  {{
   {}"type": "{}"
-  }}
-  ]], { i(1), t("\t"), i(0) }))
+  }},
+  ]], { i(1), t("\t"), i(0) })),
+  s("_projregion", fmt([[
+  "{}_us/{}_us/*_u0502.py": {{
+  {}"alternate": "{}_eu/{}_eu/{{}}_u0501.py"
+  }},
+  "{}_eu/{}_eu/*_u0501.py": {{
+  {}"alternate": "{}_us/{}_us/{{}}_u0502.py"
+  }},
+  ]], { i(1), i(2), t("\t"), same(1), same(2), same(1), same(2), t("\t"), same(1), same(2) })),
+  s("_projregion_plain", fmt([[
+  "{}/{}/*_u0502.py": {{
+  {}"alternate": "{}/{}/{{}}_u0501.py"
+  }},
+  "{}/{}/*_u0501.py": {{
+  {}"alternate": "{}/{}/{{}}_u0502.py"
+  }},
+  ]], { i(1), i(2), t("\t"), same(1), same(2), same(1), same(2), t("\t"), same(1), same(2) }))
 })
 
 ls.add_snippets("cs", {
