@@ -1,10 +1,8 @@
-call plug#begin('~/.vim/plugged')
-
 source ~/.vim/myplugfiles/base16-vim.vim
 source ~/.vim/myplugfiles/ansible-vim.vim
 Plug 'mhinz/vim-startify'
 source ~/.vim/myplugfiles/nerdtree.vim
-source ~/.vim/myplugfiles/ctrlsf.vim
+" source ~/.vim/myplugfiles/ctrlsf.vim
 source ~/.vim/myplugfiles/fzf.vim
 Plug 'stephpy/vim-yaml'
 Plug 'kdheepak/lazygit.nvim'
@@ -74,8 +72,4 @@ Plug 'nvim-neotest/nvim-nio'
 Plug 'davidhalter/jedi-vim'
 Plug 'idanarye/vim-merginal'
 Plug 'tjdevries/apyrori.nvim'
-source ~/.vim/myplugfiles/dadbod.vim
-call plug#end()
-
-doautocmd User plug-event
-
+source ~/.vim/myplugfiles/linediff.vim
