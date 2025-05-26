@@ -70,6 +70,6 @@ source ~/.vim/myplugfiles/lightline.vim
 Plug 'whatyouhide/vim-textobj-xmlattr'
 Plug 'nvim-neotest/nvim-nio'
 Plug 'davidhalter/jedi-vim'
-Plug 'idanarye/vim-merginal'
+source ~/.vim/myplugfiles/merginal.vim
 Plug 'tjdevries/apyrori.nvim'
 source ~/.vim/myplugfiles/linediff.vim
