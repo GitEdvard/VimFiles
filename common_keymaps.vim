@@ -8,9 +8,6 @@ nnoremap <leader>kt ysi}<c-j>=ie
 nnoremap <leader>km <c-w><bar><c-w>_
 nnoremap <leader>kr <c-w>v:Gedit rc/dev-master:%<cr>
 nnoremap <leader>x "_x
-nnoremap <leader>k1 :s/2/1/g <cr>
-nnoremap <leader>k2 :s/1/2/g <cr>
-nnoremap <leader>k3 :s/1/3/g <cr>
 nnoremap <leader>kc ebd/\u<cr>gul:noh<cr>
 nnoremap <leader>kd <c-w>h:diffthis<cr><c-w>l:diffthis<cr>
 nnoremap <leader>kg :tabe <cr>:Gclog<cr>
@@ -116,7 +113,6 @@ noremap <A-j> <c-w>j
 noremap <A-k> <c-w>k
 
 nmap <leader>s :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
-nmap <leader>ks :%s/\<<C-r><C-w>\>/<C-r><C-w><C-f>bgUliface<esc>A <esc><C-c>/gI<Left><Left><Left>
 nmap <leader>kf :v/java/s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 
 " Resize with arrows

@@ -19,7 +19,10 @@ doautocmd User plug-event
 
 runtime ./common_basic_config.vim
 runtime ./common_keymaps.vim
+runtime ./astrego_keymaps.vim
 runtime ./common_autocommand.vim
+
+lua require("myastrego_settings")
 
 function! Tig()
   !tig status
