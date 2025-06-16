@@ -1,19 +1,55 @@
 require("telescope").load_extension("simple_picker")
+local Job = require("plenary.job")
 local M = {}
 local L = require'python.launch_post_analysis'
 
 local simple_picker = require("simple-picker")
 
-local open_config_file = function(selection)
-  local config_file_path = '.run-config/' .. selection
-  vim.cmd('tabe ' .. config_file_path)
+
+
+-- Lua implementation of PHP scandir function
+local scandir = function(directory)
+  local i, t, popen = 0, {}, io.popen
+  local inside_worktree_job = Job:new({
+    'ls', directory,
+    cwd = cwd,
+  })
+  local stdout, code = inside_worktree_job:sync()
+  return stdout
+end
+
+local filter = function(a_table, pattern)
+  local out = {}
+  for k, v in ipairs(a_table) do
+    if v ~= nil and v:find(pattern) then
+      table.insert(out, v)
+    end
+  end
+  return out
+end
+
+local find_latest_run_dir = function(dataanalyst_dir)
+  local run_dirs = scandir(dataanalyst_dir)
+  local date_pattern = "^%d+[-]%d+[-]%d+[_]%d+$"
+  run_dirs = filter(run_dirs, date_pattern)
+  table.sort(run_dirs, function(a, b) return a > b end) -- reversed sorting
+  return run_dirs[1]
 end
 
 local copy_path_clipboard = function(selection)
   local config_file_path = '.run-config/' .. selection
   local run_config = require'read-settings'.read_json(config_file_path) or {}
   local winpath = run_config["winpath"]
-  vim.cmd('!echo "' .. winpath .. '" | xsel -b')
+  local dataanalyst_win = winpath .. "\\Raw\\DataAnalyst"
+  local dataanalyst_linux1 = dataanalyst_win:gsub("\\", "/")
+  local dataanalyst_linux2 = dataanalyst_linux1:gsub("(.):", function(x) return "/mnt/" .. x:lower() end)
+  local latest_rundir = find_latest_run_dir(dataanalyst_linux2)
+  vim.cmd('!echo -n "' .. winpath .. '\\Raw\\DataAnalyst\\' .. latest_rundir ..'" | xsel -b')
+end
+
+local open_config_file = function(selection)
+  local config_file_path = '.run-config/' .. selection
+  vim.cmd('tabe ' .. config_file_path)
 end
 
 
@@ -45,7 +81,6 @@ simple_picker.on_config_selected(function(metadata)
   local file_path = '.run-config/' .. metadata.text
   save_run_config(file_path)
   L.launch2(file_path)
-  print(metadata.text)
 end)
 
 return M
