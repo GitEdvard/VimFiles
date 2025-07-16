@@ -71,5 +71,6 @@ Plug 'whatyouhide/vim-textobj-xmlattr'
 Plug 'nvim-neotest/nvim-nio'
 Plug 'davidhalter/jedi-vim'
 source ~/.vim/myplugfiles/merginal.vim
-Plug 'tjdevries/apyrori.nvim'
+source ~/.vim/myplugfiles/apyrori.vim
+" Plug 'tjdevries/apyrori.nvim'
 source ~/.vim/myplugfiles/linediff.vim

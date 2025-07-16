@@ -55,3 +55,19 @@ function lines_from(file)
   end
   return lines
 end
+
+investigate_package_loaded = function()
+  local n = 1
+  local keyset = {}
+  for k, v in pairs(package.loaded) do
+    if string.find(k, "test") ~= nil then
+      keyset[n] = k
+      n = n + 1
+    end
+  end
+  return keyset
+end
+
+isloaded = function(plugin)
+  P(package.loaded[plugin])
+end
