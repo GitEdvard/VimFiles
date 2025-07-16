@@ -3,7 +3,7 @@
 "---------------------------------------------------
 " Remove "create" in auto generated veriables
 " nnoremap <leader>d "_d
-set switchbuf+=usetab,newtab " open quickfix links in new tabs
+" set switchbuf+=usetab,newtab " open quickfix links in new tabs
 nnoremap <leader>kt ysi}<c-j>=ie
 nnoremap <leader>km <c-w><bar><c-w>_
 nnoremap <leader>kr <c-w>v:Gedit rc/dev-master:%<cr>
@@ -32,8 +32,8 @@ nnoremap <leader>Q :bufdo bdelete<cr>
 imap ;; <esc>A;<esc>
 imap ,, <esc>A,<esc>
 inoremap {{ <esc>A {<c-m>}<esc>
-inoremap jp <esc>la
-inoremap j; ();<esc>
+inoremap j; <esc>la
+" inoremap j; ();<esc>
 inoremap j, (),
 inoremap j. ().
 inoremap <c-d> <esc>lxi
