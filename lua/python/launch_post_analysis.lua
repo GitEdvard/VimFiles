@@ -86,4 +86,16 @@ M.launch2 = function(run_config_file)
   require'trigger-commands'.run_poly( instructions )
 end
 
+M.open_latest = function()
+  local latest_dir = ""
+  vim.fn.jobstart({"xsel", "-b"}, {
+    on_stdout = function(_, data)
+      if data ~= nil and #data > 0 then
+        latest_dir = data[1]
+        vim.fn.jobstart({"powershell.exe", "-command", "Invoke-Item", latest_dir}, {detach = true})
+      end
+    end,
+  })
+end
+
 return M

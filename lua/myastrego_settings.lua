@@ -5,3 +5,4 @@ local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<leader>uk', L.launch, opts)
 vim.keymap.set('n', '<leader>ul', L.launch_latest, opts)
 vim.keymap.set('n', '<leader>ur', R.list_configs, bufopts)
+vim.keymap.set('n', '<leader>uo', L.open_latest, bufopts)
