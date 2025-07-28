@@ -2,7 +2,8 @@ local Job = require("plenary.job")
 local M = {}
 local run_config_file_instance = ""
 local latest_run_setting = ""
-local latest_rundir = ""
+local latest_rundir = "C:\\post-analys\\20230414134119_P6_10085_CID-221931C0286\\RES_2025-05-27_170153\\Raw\\DataAnalyst\\2025-07-28_095634"
+-- local latest_rundir = ""
 
 M.launch = function()
   local run_settings = require'read-settings'.read_json('.command.json')
@@ -87,6 +88,10 @@ end
 
 M.open_latest = function()
   vim.fn.jobstart({"powershell.exe", "-command", "Invoke-Item", latest_rundir}, {detach = true})
+end
+
+M.open_latest_in_nvim = function()
+  vim.fn.jobstart({"cmd.exe", "/c", "start", "cmd.exe", "/k", "cd " .. latest_rundir }, {detach = true})
 end
 
 return M

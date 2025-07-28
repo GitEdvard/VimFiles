@@ -24,7 +24,7 @@ end
 vim.keymap.set('n', '<leader>us', trigger_command_single, opts)
 vim.keymap.set('n', '<leader>ur', trigger_command_rest, opts)
 -- vim.keymap.set('n', '<leader>ux', reset)
-vim.keymap.set('n', '<leader>up', push)
+-- vim.keymap.set('n', '<leader>up', push)
 
 -- local hello = function()
 --     print('hello')
