@@ -189,3 +189,8 @@ concept {}  {{
 ]], { namespace(1), i(2) }))
 })
 
+ls.add_snippets("lua", {
+  s("_print", fmt([[print("{}")
+print({})]], { i(1), rep(1) })),
+})
+

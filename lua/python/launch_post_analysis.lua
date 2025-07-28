@@ -1,8 +1,8 @@
 local Job = require("plenary.job")
 local M = {}
 local run_config_file_instance = ""
-
 local latest_run_setting = ""
+local latest_rundir = ""
 
 M.launch = function()
   local run_settings = require'read-settings'.read_json('.command.json')
@@ -60,10 +60,9 @@ local copy_path_clipboard = function(run_config_file)
   local dataanalyst_win = winpath .. "\\Raw\\DataAnalyst"
   local dataanalyst_linux1 = dataanalyst_win:gsub("\\", "/")
   local dataanalyst_linux2 = dataanalyst_linux1:gsub("(.):", function(x) return "/mnt/" .. x:lower() end)
-  local latest_rundir = find_latest_run_dir(dataanalyst_linux2)
-  print("latest_rundir")
-  P(latest_rundir)
-  vim.cmd('!echo -n "' .. winpath .. '\\Raw\\DataAnalyst\\' .. latest_rundir ..'" | xsel -b')
+  local latest_rundir_name = find_latest_run_dir(dataanalyst_linux2)
+  latest_rundir = winpath .. '\\Raw\\DataAnalyst\\' .. latest_rundir_name
+  vim.cmd('!echo -n latest_rundir | xsel -b')
 end
 
 M.launch_latest = function()
@@ -87,15 +86,7 @@ M.launch2 = function(run_config_file)
 end
 
 M.open_latest = function()
-  local latest_dir = ""
-  vim.fn.jobstart({"xsel", "-b"}, {
-    on_stdout = function(_, data)
-      if data ~= nil and #data > 0 then
-        latest_dir = data[1]
-        vim.fn.jobstart({"powershell.exe", "-command", "Invoke-Item", latest_dir}, {detach = true})
-      end
-    end,
-  })
+  vim.fn.jobstart({"powershell.exe", "-command", "Invoke-Item", latest_rundir}, {detach = true})
 end
 
 return M
