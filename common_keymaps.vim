@@ -4,6 +4,7 @@
 " Remove "create" in auto generated veriables
 " nnoremap <leader>d "_d
 " set switchbuf+=usetab,newtab " open quickfix links in new tabs
+nnoremap <leader>rx :Git blame<cr>
 nnoremap <leader>kt ysi}<c-j>=ie
 nnoremap <leader>km <c-w><bar><c-w>_
 nnoremap <leader>kr <c-w>v:Gedit rc/dev-master:%<cr>

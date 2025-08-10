@@ -26,6 +26,8 @@ augroup ansible_augroup
     autocmd FileType yaml setlocal autoindent expandtab tabstop=2 shiftwidth=2 cursorcolumn
 augroup END
 
+lua require('gitblame.keymaps')
+
 " Workaround some broken plugins which set guicursor indiscriminately.
 autocmd OptionSet guicursor noautocmd set guicursor=
 
