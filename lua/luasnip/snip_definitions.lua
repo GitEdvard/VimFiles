@@ -160,6 +160,9 @@ ls.add_snippets("python", {
   s("_print", fmt([[
   print(f"{}: {{{}}}")
   ]], { i(1), rep(1) })),
+  s("_print2", fmt([[
+  print(f"{}: {{{}}}")
+  ]], { i(1), i(2) })),
 })
 
 local namespace = function(index)
