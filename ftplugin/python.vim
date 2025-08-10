@@ -10,6 +10,7 @@ nnoremap <leader>iG :!darker -i -l 120 .<cr>
 :set errorformat=%f:%l:\ %m
 :set errorformat+=%f:%l:\ 
 :set errorformat+=%.%#File\ \"%f\"\\,\ line\ %l\\,\ in\ %m
+:set errorformat+=%f:%l:%c:%m
 :set makeprg=pytest
 
 let g:jedi#goto_command = ""
