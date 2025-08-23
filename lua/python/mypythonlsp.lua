@@ -2,6 +2,11 @@
 local N = {}
 local M = require'test_on_save_core'
 local Job = require('plenary.job')
+local pickers = require "telescope.pickers"
+local conf = require("telescope.config").values
+local finders = require "telescope.finders"
+local make_entry = require "telescope.make_entry"
+
 
 local query_for_class = [[
 (
@@ -10,31 +15,46 @@ superclasses: (argument_list (identifier) @name))
 )
 ]]
 
-local find_super_class = function()
+local query_for_function = [[
+(
+(function_definition
+name: (identifier) @name)
+)
+]]
+
+local find_with_prefix = function(query_list, prefix)
     local bufnr = vim.api.nvim_get_current_buf()
     local cwd = vim.fn.getcwd()
-    local query_list = {
-        ['class'] = query_for_class,
-    }
-    local super_class_name = M.execute_query(bufnr, query_list, "python")
-    if super_class_name == "" or super_class_name == nil then
+    local search_hit = M.execute_query(bufnr, query_list, "python")
+    if search_hit == "" or search_hit == nil then
       return {}
     end
-    local search_text = super_class_name
+    local search_text = prefix .. search_hit
     grepper = Job:new({
       command = "rg",
       args = {"--vimgrep", "--type", "py", "-w", search_text, cwd},
       cwd = cwd,
     })
     local rg_hits = grepper:sync()
-    super_class_hits = {}
-    for _, single_rg_hit in pairs(rg_hits) do
-      P(single_rg_hit)
-      if string.find(single_rg_hit, "class ".. search_text .. "%w*") then
-        table.insert(super_class_hits, single_rg_hit)
-      end
-    end
-    return super_class_hits
+    return rg_hits
+end
+
+local find_method_definitions = function()
+    local query_list = {
+        ['function'] = query_for_function,
+    }
+    local prefix = "def "
+    return find_with_prefix(query_list, prefix)
+end
+
+local find_super_class = function()
+    local bufnr = vim.api.nvim_get_current_buf()
+    local cwd = vim.fn.getcwd()
+    local query_list = {
+        ['class'] = query_for_class,
+    }
+    local prefix = "class "
+    return find_with_prefix(query_list, prefix)
 end
 
 local to_vim_script_arr = function(lua_table)
@@ -47,9 +67,23 @@ local to_vim_script_arr = function(lua_table)
     return '[\'' .. table.concat(escaped_table, '\',\'') .. '\']'
 end
 
+N.show_method_definitions = function()
+  method_definitions = find_method_definitions()
+  local opts = {}
+  pickers.new(opts, {
+    prompt_title = "Find methods",
+    finder = finders.new_table {
+      results = method_definitions,
+      entry_maker = opts.entry_maker or make_entry.gen_from_vimgrep(opts)
+    },
+    previewer = conf.grep_previewer(opts),
+    sorter = conf.generic_sorter(opts),
+    push_cursor_on_edit = true,
+  }):find()
+end
+
 N.goto_superclass = function()
   super_class_hits = find_super_class()
-  P(super_class_hits)
   super_class_hits_arr = to_vim_script_arr(super_class_hits)
   vim.cmd { cmd = 'cgetexpr', args = {super_class_hits_arr} }
   vim.cmd { cmd = 'cfirst'}
