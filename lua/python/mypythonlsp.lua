@@ -39,12 +39,42 @@ local find_with_prefix = function(query_list, prefix)
     return rg_hits
 end
 
+local find_filtered_for_def = function(query_list)
+    local bufnr = vim.api.nvim_get_current_buf()
+    local cwd = vim.fn.getcwd()
+    local search_hit = M.execute_query(bufnr, query_list, "python")
+    if search_hit == "" or search_hit == nil then
+      return {}
+    end
+    local search_text = search_hit
+    grepper = Job:new({
+      command = "rg",
+      args = {"--vimgrep", "--type", "py", "--glob", "!tests", "-w", search_text, cwd},
+      cwd = cwd,
+    })
+    local rg_hits = grepper:sync()
+    local filtered_hits = {}
+    for _, value in pairs(rg_hits) do
+      if not value:find("def") then
+        table.insert(filtered_hits, value)
+      end
+    end
+    return filtered_hits
+end
+
 local find_method_definitions = function()
     local query_list = {
         ['function'] = query_for_function,
     }
     local prefix = "def "
     return find_with_prefix(query_list, prefix)
+end
+
+local find_method_usages = function()
+    local query_list = {
+        ['function'] = query_for_function,
+    }
+    return find_filtered_for_def(query_list)
 end
 
 local find_super_class = function()
@@ -67,19 +97,30 @@ local to_vim_script_arr = function(lua_table)
     return '[\'' .. table.concat(escaped_table, '\',\'') .. '\']'
 end
 
-N.show_method_definitions = function()
-  method_definitions = find_method_definitions()
+local show_picker = function(title, contents_table)
   local opts = {}
   pickers.new(opts, {
-    prompt_title = "Find methods",
+    prompt_title = title,
     finder = finders.new_table {
-      results = method_definitions,
+      results = contents_table,
       entry_maker = opts.entry_maker or make_entry.gen_from_vimgrep(opts)
     },
     previewer = conf.grep_previewer(opts),
     sorter = conf.generic_sorter(opts),
     push_cursor_on_edit = true,
   }):find()
+end
+
+N.show_method_definitions = function()
+  local method_definitions = find_method_definitions()
+  local opts = {}
+  show_picker("Find methods", method_definitions)
+end
+
+N.show_method_usages = function()
+  local method_usages = find_method_usages()
+  local opts = {}
+  show_picker("Methods usages", method_usages)
 end
 
 N.goto_superclass = function()
