@@ -5,9 +5,13 @@
 " nnoremap <leader>d "_d
 " set switchbuf+=usetab,newtab " open quickfix links in new tabs
 nnoremap <leader>rx :Git blame<cr>
-nnoremap <leader>kt ysi}<c-j>=ie
+nmap <leader>kt ysi}<c-j>=ie 
+nnoremap <leader>kq :Reload<cr>
+nnoremap <leader>kw :PlugClean<cr>
+nnoremap <leader>ke :PlugInstall<cr>
 nnoremap <leader>km <c-w><bar><c-w>_
-nnoremap <leader>kr <c-w>v:Gedit rc/dev-master:%<cr>
+" nnoremap <leader>kr <c-w>v:Gedit rc/dev-master:%<cr>
+nnoremap <leader>kr :lua print(vim.api.nvim_eval_statusline(vim.o.statusline, {}).str)<cr>
 nnoremap <leader>x "_x
 nnoremap <leader>kc ebd/\u<cr>gul:noh<cr>
 nnoremap <leader>kd <c-w>h:diffthis<cr><c-w>l:diffthis<cr>
@@ -114,7 +118,8 @@ noremap <A-j> <c-w>j
 noremap <A-k> <c-w>k
 
 nmap <leader>s :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
-nmap <leader>kf :v/java/s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
+nnoremap <leader>kf :lua require'common'.copy_current_file_path_to_clipboard()<cr>
+
 
 " Resize with arrows
 noremap <c-Up> :resize -2<cr>
