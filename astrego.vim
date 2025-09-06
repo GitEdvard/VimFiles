@@ -16,8 +16,8 @@ runtime ./common_plugs.vim
 runtime ./plugs_astrego.vim
 call plug#end()
 doautocmd User plug-event
-
 runtime ./common_basic_config.vim
+
 runtime ./common_keymaps.vim
 runtime ./astrego_keymaps.vim
 runtime ./common_autocommand.vim

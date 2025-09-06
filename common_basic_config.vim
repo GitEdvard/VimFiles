@@ -2,6 +2,7 @@
 " Basic config
 "---------------------------------------------------
 filetype plugin indent on
+lua vim.opt.termguicolors = true
 set t_Co=256
 set encoding=utf-8
 set hidden
@@ -29,8 +30,6 @@ lua vim.opt.incsearch = true
 lua vim.opt.ic = true
 
 lua vim.opt.smartcase = true
-
-lua vim.opt.termguicolors = true
 
 lua vim.opt.bg = dark
 colorscheme codedark

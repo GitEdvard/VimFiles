@@ -66,7 +66,10 @@ Plug 'tpope/vim-projectionist'
 " https://www.youtube.com/watch?v=434tljD-5C8
 " Plug 'vim-airline/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
-source ~/.vim/myplugfiles/lightline.vim
+" source ~/.vim/myplugfiles/lightline.vim
+" source ~/.vim/myplugfiles/feline.vim
+source ~/.vim/myplugfiles/lualine.vim
+Plug 'nvim-tree/nvim-web-devicons'
 Plug 'whatyouhide/vim-textobj-xmlattr'
 Plug 'nvim-neotest/nvim-nio'
 Plug 'davidhalter/jedi-vim'
