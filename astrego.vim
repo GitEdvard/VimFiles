@@ -21,6 +21,7 @@ runtime ./common_basic_config.vim
 runtime ./common_keymaps.vim
 runtime ./astrego_keymaps.vim
 runtime ./common_autocommand.vim
+runtime ./astrego_autocommand.vim
 
 lua require("myastrego_settings")
 

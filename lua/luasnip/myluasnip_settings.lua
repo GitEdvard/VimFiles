@@ -36,4 +36,4 @@ vim.keymap.set({ 'i', 's' }, '<c-l>', function()
   end
 end, { silent = true })
 
-vim.keymap.set('n', '<leader><leader>s', '<cmd>source ~/.vim/plugged/LuaSnip/plugin/luasnip.vim<cr>')
+-- vim.keymap.set('n', '<leader><leader>s', '<cmd>source ~/.vim/plugged/LuaSnip/plugin/luasnip.vim<cr>')
