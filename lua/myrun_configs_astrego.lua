@@ -80,7 +80,12 @@ simple_picker.on_config_selected(function(metadata)
   end
   local file_path = '.run-config/' .. metadata.text
   save_run_config(file_path)
-  L.launch2(file_path)
+  local current_pwd = vim.fn.getcwd()
+  if string.find(current_pwd, "captiver") then
+    L.launch2(file_path)
+  else
+    L.launch_ordinary(file_path)
+  end
 end)
 
 return M

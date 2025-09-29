@@ -61,16 +61,31 @@ local copy_path_clipboard = function(run_config_file)
   local dataanalyst_linux2 = dataanalyst_linux1:gsub("(.):", function(x) return "/mnt/" .. x:lower() end)
   local latest_rundir_name = find_latest_run_dir(dataanalyst_linux2)
   latest_rundir = winpath .. '\\Raw\\DataAnalyst\\' .. latest_rundir_name
-  vim.cmd('!echo -n latest_rundir | xsel -b')
+  vim.cmd('!echo -n "' .. latest_rundir .. '" | xsel -i -b')
 end
 
 M.launch_latest = function()
   fetch_latest_run_setting()
-  M.launch2(latest_run_setting)
+  local current_pwd = vim.fn.getcwd()
+  if string.find(current_pwd, "captiver") then
+    M.launch2(latest_run_setting)
+  else
+    M.launch_ordinary(latest_run_setting)
+  end
 end
 
 local copy_path_clipboard_wrapped = function()
   copy_path_clipboard(run_config_file_instance)
+end
+
+M.launch_ordinary = function(run_config_file)
+  run_config_file_instance = run_config_file
+  local run_config = require'read-settings'.read_json(run_config_file)
+  cmd = run_config["cmd"]
+  local launch_text = "Running " .. run_config_file
+  local instruction1 = { "hidden-scratch", cmd, { "RuntimeError", "Traceback" }, launch_text, "." }
+  local instructions = {instruction1}
+  require'trigger-commands'.run_poly( instructions )
 end
 
 M.launch2 = function(run_config_file)
