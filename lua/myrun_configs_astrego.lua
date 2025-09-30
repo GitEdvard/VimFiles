@@ -1,4 +1,5 @@
 require("telescope").load_extension("simple_picker")
+local filepath_picker = require("telescope.filepath_picker")
 local Job = require("plenary.job")
 local M = {}
 local L = require'python.launch_post_analysis'
@@ -87,5 +88,31 @@ simple_picker.on_config_selected(function(metadata)
     L.launch_ordinary(file_path)
   end
 end)
+
+local write_to_config_file = function(file_name, selection)
+    if not isdir(".run-config") then
+      os.execute("mkdir .run-config")
+    end
+    local path_to_template = "/home/edvard/.vim/lua/run-config-template.txt"
+    local contents = lines_from(path_to_template)
+    vim.cmd("redir! > .run-config/"..file_name)
+    for _, line in pairs(contents) do
+      if not (line == "" or line == nil) then
+        line = line:gsub("<placeholder>", "python "..selection)
+        print(line)
+      end
+    end
+    vim.cmd("redir END")
+end
+
+M.create_config = function()
+  vim.ui.input({ prompt = 'Enter name of run-config file, without extension: ' }, function(input)
+    file_name = input .. ".json"
+    local on_select = function(selection)
+      write_to_config_file(file_name, selection)
+    end
+    filepath_picker.filepath_picker(on_select)
+  end)
+end
 
 return M
