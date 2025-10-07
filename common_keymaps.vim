@@ -120,6 +120,7 @@ noremap <A-k> <c-w>k
 
 nmap <leader>s :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 nnoremap <leader>kf :lua require'common'.copy_current_file_path_to_clipboard()<cr>
+nnoremap <leader>kv :lua require'common'.paste_from_clipboard()<cr>
 
 
 " Resize with arrows
