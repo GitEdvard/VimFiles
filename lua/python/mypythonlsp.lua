@@ -133,6 +133,47 @@ local find_sibling_classes = function(query_list)
     return filtered_hits
 end
 
+local find_filtered_for_def_at_cursor = function()
+    local bufnr = vim.api.nvim_get_current_buf()
+    local cwd = vim.fn.getcwd()
+    local search_hit = M.get_text_at_cursor(bufnr)
+    if search_hit == "" or search_hit == nil then
+      return {}
+    end
+    local search_text = search_hit
+    grepper = Job:new({
+      command = "rg",
+      args = {"--vimgrep", "--type", "py", "--glob", "!tests", "-w", search_text, cwd},
+      cwd = cwd,
+    })
+    local rg_hits = grepper:sync()
+    local filtered_hits = {}
+    for _, value in pairs(rg_hits) do
+      -- Match whole word "def" only
+      if not value:find("%f[%a]def%f[%A]") then
+        table.insert(filtered_hits, value)
+      end
+    end
+    return filtered_hits
+end
+
+local find_method_definitions_at_cursor = function()
+    local bufnr = vim.api.nvim_get_current_buf()
+    local cwd = vim.fn.getcwd()
+    local search_hit = M.get_text_at_cursor(bufnr)
+    if search_hit == "" or search_hit == nil then
+      return {}
+    end
+    local search_text = "def " .. search_hit
+    grepper = Job:new({
+      command = "rg",
+      args = {"--vimgrep", "--type", "py", "-w", search_text, cwd},
+      cwd = cwd,
+    })
+    local rg_hits = grepper:sync()
+    return rg_hits
+end
+
 local find_filtered_for_def = function(query_list)
     local bufnr = vim.api.nvim_get_current_buf()
     local cwd = vim.fn.getcwd()
@@ -224,7 +265,6 @@ end
 
 N.show_method_usages = function()
   local method_usages = find_method_usages()
-  local opts = {}
   show_picker("Methods usages", method_usages)
 end
 
@@ -265,6 +305,16 @@ N.show_class_family = function()
   local accumulated_hits = rg_hits_for_root
   find_subclasses_rec(root_super_class_name, accumulated_hits)
   show_picker("Class family", accumulated_hits)
+end
+
+N.show_method_usages_caret = function()
+  local method_usages = find_filtered_for_def_at_cursor()
+  show_picker("Methods usages", method_usages)
+end
+
+N.show_method_definitions_caret = function()
+  local method_definitions = find_method_definitions_at_cursor()
+  show_picker("Method definitions", method_definitions)
 end
 
 -- remove
