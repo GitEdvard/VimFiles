@@ -1,0 +1,7 @@
+{
+    "type": "python",
+    "request": "launch",
+    "name": "Launch post analysis",
+    "program": "${workspaceFolder}/devtools/post_analysis/post_analysis.py",
+    "args": [ "-t", "1", "-p", "12", "-a", "/mnt/c/post-analys/20241119131751_P6_41_CID-243392401/RES_2024-11-19_131755" ]
+}

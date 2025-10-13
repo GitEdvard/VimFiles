@@ -30,6 +30,15 @@ mysplit = function (inputstr, sep)
   return t
 end
 
+
+myslice_to_end = function(tbl, start_index)
+  local result = {}
+  for i = start_index, #tbl do
+    table.insert(result, tbl[i])
+  end
+  return result
+end
+
 -- Get the root catalog name if you are in a git-worktree
 get_root_from_worktree = function()
   local current_wd = vim.fn.getcwd()

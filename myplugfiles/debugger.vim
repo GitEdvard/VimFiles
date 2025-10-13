@@ -6,5 +6,6 @@ Plug 'nvim-telescope/telescope-dap.nvim'
 
 augroup dap-plug-event
     autocmd!
-    autocmd User plug-event lua require('dap.mydap_settings')
+    autocmd User plug-event lua require('dap.mydap_settings_common')
+    autocmd User plug-event lua require('dap.mydap_settings_astrego')
 augroup END
