@@ -7,6 +7,5 @@ nmap <leader>kB vibo<esc>k
 nmap <leader>kc ]pc
 nmap <leader>kC [pc
 nnoremap <leader>ru :Git submodule update<cr>
-nnoremap <leader>kz :setlocal foldmethod=indent<cr>
 nnoremap <leader>kr :!ruff check %<cr>
 
