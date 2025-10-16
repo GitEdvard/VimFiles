@@ -6,6 +6,9 @@ local pickers = require "telescope.pickers"
 local conf = require("telescope.config").values
 local finders = require "telescope.finders"
 local make_entry = require "telescope.make_entry"
+local latest_search_text = ""
+local latest_prefix_text = ""
+local latest_filter_text = ""
 
 
 local query_for_superclass = [[
@@ -220,12 +223,18 @@ end
 N.show_method_definitions = function()
   local method_text = find_method_text()
   local method_definitions = find_with_rg(method_text, "def", "")
+  latest_search_text = method_text
+  latest_prefix_text = "def"
+  latest_filter_text = ""
   show_picker("Find methods", method_definitions)
 end
 
 N.show_method_usages = function()
   local method_text = find_method_text()
   local method_usages = find_with_rg(method_text, "", "def")
+  latest_search_text = method_text
+  latest_prefix_text = ""
+  latest_filter_text = "def"
   show_picker("Methods usages", method_usages)
 end
 
@@ -271,12 +280,18 @@ end
 N.show_method_usages_caret = function()
   local text_at_cursor = fetch_text_at_cursor()
   local method_usages = find_with_rg(text_at_cursor, "", "def")
+  latest_search_text = text_at_cursor
+  latest_prefix_text = ""
+  latest_filter_text = "def"
   show_picker("Methods usages", method_usages)
 end
 
 N.show_method_definitions_caret = function()
   local text_at_cursor = fetch_text_at_cursor()
   local method_definitions = find_with_rg(text_at_cursor, "def", "")
+  latest_search_text = text_at_cursor
+  latest_prefix_text = "def"
+  latest_filter_text = ""
   show_picker("Method definitions", method_definitions)
 end
 
@@ -287,6 +302,11 @@ N.show_sibbling_classes = function()
     }
   siblings = find_sibling_classes(query_list)
   show_picker("Sibling classes", siblings)
+end
+
+N.show_latest_method_search = function()
+  local method_definitions = find_with_rg(latest_search_text, latest_prefix_text, latest_filter_text)
+  show_picker("Find methods", method_definitions)
 end
 
 return N
