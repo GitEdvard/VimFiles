@@ -29,7 +29,7 @@ name: (identifier) @name)
 )
 ]]
 
-local execute_query = function(query_list)
+local call_execute_query = function(query_list)
     local bufnr = vim.api.nvim_get_current_buf()
     local search_hit = M.execute_query(bufnr, query_list, "python")
     return search_hit
@@ -68,7 +68,7 @@ local find_super_class_name = function()
     local query_list = {
         ['class'] = query_for_superclass,
     }
-    return execute_query(query_list)
+    return call_execute_query(query_list)
 end
 
 local find_super_class = function()
@@ -133,84 +133,44 @@ local find_sibling_classes = function(query_list)
     return filtered_hits
 end
 
-local find_filtered_for_def_at_cursor = function()
+local fetch_text_at_cursor = function()
     local bufnr = vim.api.nvim_get_current_buf()
-    local cwd = vim.fn.getcwd()
     local search_hit = M.get_text_at_cursor(bufnr)
-    if search_hit == "" or search_hit == nil then
+    return search_hit
+end
+
+local find_with_rg = function(search_text, search_prefix, filter_text)
+    if search_text == "" or search_text == nil then
       return {}
     end
-    local search_text = search_hit
+    if not (search_prefix == nil) and not (search_prefix == "") then
+      search_text = search_prefix .. " " .. search_text
+    end
+    local cwd = vim.fn.getcwd()
     grepper = Job:new({
       command = "rg",
       args = {"--vimgrep", "--type", "py", "--glob", "!tests", "-w", search_text, cwd},
       cwd = cwd,
     })
     local rg_hits = grepper:sync()
+    if filter_text == nil or filter_text == "" then
+      return rg_hits
+    end
     local filtered_hits = {}
     for _, value in pairs(rg_hits) do
       -- Match whole word "def" only
-      if not value:find("%f[%a]def%f[%A]") then
+      if not value:find("%f[%a]"..filter_text.."%f[%A]") then
         table.insert(filtered_hits, value)
       end
     end
     return filtered_hits
 end
 
-local find_method_definitions_at_cursor = function()
-    local bufnr = vim.api.nvim_get_current_buf()
-    local cwd = vim.fn.getcwd()
-    local search_hit = M.get_text_at_cursor(bufnr)
-    if search_hit == "" or search_hit == nil then
-      return {}
-    end
-    local search_text = "def " .. search_hit
-    grepper = Job:new({
-      command = "rg",
-      args = {"--vimgrep", "--type", "py", "-w", search_text, cwd},
-      cwd = cwd,
-    })
-    local rg_hits = grepper:sync()
-    return rg_hits
-end
-
-local find_filtered_for_def = function(query_list)
-    local bufnr = vim.api.nvim_get_current_buf()
-    local cwd = vim.fn.getcwd()
-    local search_hit = M.execute_query(bufnr, query_list, "python")
-    if search_hit == "" or search_hit == nil then
-      return {}
-    end
-    local search_text = search_hit
-    grepper = Job:new({
-      command = "rg",
-      args = {"--vimgrep", "--type", "py", "--glob", "!tests", "-w", search_text, cwd},
-      cwd = cwd,
-    })
-    local rg_hits = grepper:sync()
-    local filtered_hits = {}
-    for _, value in pairs(rg_hits) do
-      -- Match whole word "def" only
-      if not value:find("%f[%a]def%f[%A]") then
-        table.insert(filtered_hits, value)
-      end
-    end
-    return filtered_hits
-end
-
-local find_method_definitions = function()
+local find_method_text = function()
     local query_list = {
         ['function'] = query_for_function,
     }
-    local prefix = "def "
-    return find_with_prefix(query_list, prefix)
-end
-
-local find_method_usages = function()
-    local query_list = {
-        ['function'] = query_for_function,
-    }
-    return find_filtered_for_def(query_list)
+    return call_execute_query(query_list)
 end
 
 local to_vim_script_arr = function(lua_table)
@@ -258,13 +218,14 @@ N.find_current_method_name = function()
 end
 
 N.show_method_definitions = function()
-  local method_definitions = find_method_definitions()
-  local opts = {}
+  local method_text = find_method_text()
+  local method_definitions = find_with_rg(method_text, "def", "")
   show_picker("Find methods", method_definitions)
 end
 
 N.show_method_usages = function()
-  local method_usages = find_method_usages()
+  local method_text = find_method_text()
+  local method_usages = find_with_rg(method_text, "", "def")
   show_picker("Methods usages", method_usages)
 end
 
@@ -308,12 +269,14 @@ N.show_class_family = function()
 end
 
 N.show_method_usages_caret = function()
-  local method_usages = find_filtered_for_def_at_cursor()
+  local text_at_cursor = fetch_text_at_cursor()
+  local method_usages = find_with_rg(text_at_cursor, "", "def")
   show_picker("Methods usages", method_usages)
 end
 
 N.show_method_definitions_caret = function()
-  local method_definitions = find_method_definitions_at_cursor()
+  local text_at_cursor = fetch_text_at_cursor()
+  local method_definitions = find_with_rg(text_at_cursor, "def", "")
   show_picker("Method definitions", method_definitions)
 end
 
