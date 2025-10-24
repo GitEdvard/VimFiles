@@ -12,7 +12,7 @@ nnoremap <leader>kw :PlugClean<cr>
 nnoremap <leader>ke :PlugInstall<cr>
 nnoremap <leader>km <c-w><bar><c-w>_
 " nnoremap <leader>kr <c-w>v:Gedit rc/dev-master:%<cr>
-" nnoremap <leader>kr :lua print(vim.api.nvim_eval_statusline(vim.o.statusline, {}).str)<cr>
+nnoremap <leader>kka :lua print(vim.api.nvim_eval_statusline(vim.o.statusline, {}).str)<cr>
 nnoremap <leader>x "_x
 nnoremap <leader>kc ebd/\u<cr>gul:noh<cr>
 nnoremap <leader>kd <c-w>h:diffthis<cr><c-w>l:diffthis<cr>

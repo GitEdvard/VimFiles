@@ -6,7 +6,7 @@ find_current_method_name = require('python.mypythonlsp').find_current_method_nam
 --- @param hide_width number hides component when window width is smaller then hide_width
 --- @param no_ellipsis boolean whether to disable adding '...' at end after truncation
 --- return function that can format the component accordingly
-local function trunc(trunc_width, trunc_len, hide_width, no_ellipsis)
+local function trunc_suggested_from_source(trunc_width, trunc_len, hide_width, no_ellipsis)
   return function(str)
     local win_width = vim.fn.winwidth(0)
     if hide_width and win_width < hide_width then return ''
@@ -19,11 +19,30 @@ end
 
 -- require'lualine'.setup {
 --   lualine_a = {
---     {'mode', fmt=trunc(80, 4, nil, true)},
---     {'filename', fmt=trunc(90, 30, 50)},
+--     {'mode', fmt=trunc_suggested_from_source(80, 4, nil, true)},
+--     {'filename', fmt=trunc_suggested_from_source(90, 30, 50)},
 --     {function() return require'lsp-status'.status() end, fmt=trunc(120, 20, 60)}
 --   }
 -- }
+
+local function trunc()
+  return function(str)
+
+    -- local statusline = require'lualine'.statusline(true)
+    -- statusline = statusline:gsub("%%#(.-)#", " ")
+    -- statusline = statusline:gsub("%%<", "")
+    -- statusline = statusline:gsub("%%=", "")
+    -- if string.len(statusline) > vim.fn.winwidth(0) then
+    --   return ''
+    -- end
+
+    -- local statusline = vim.api.nvim_eval_statusline(vim.o.statusline, {})
+    -- if string.find(statusline.str, "<") then
+    --   return ''
+    -- end
+    return str
+  end
+end
 
 require('lualine').setup {
   options = {
@@ -61,17 +80,18 @@ require('lualine').setup {
     }
   },
   sections = {
-    lualine_a = {'mode'},
-    lualine_b = {'branch'},
+    lualine_a = {{'mode', prio=1}},
+    lualine_b = {{'branch', prio=1}},
     lualine_c = {{
       'filename',
       file_status = true,
       newfile_status = false,
       path = 1,
+      prio = 1,
     }},
-    lualine_x = {{find_current_class_name}, {find_current_method_name}, 'encoding', 'fileformat', 'filetype'},
-    lualine_y = {'progress'},
-    lualine_z = {'location'}
+    lualine_x = {{find_current_class_name, prio=1}, {find_current_method_name, prio=1}, {'encoding'}, {'fileformat'}, {'filetype'}},
+    lualine_y = {{'progress', prio = 1}},
+    lualine_z = {{'location', prio = 1}}
   },
   inactive_sections = {
     lualine_a = {},

@@ -1,4 +1,5 @@
-Plug 'nvim-lualine/lualine.nvim'
+Plug '/home/edvard/sources/admin/VimPlugins/lualine.nvim'
+" Plug 'nvim-lualine/lualine.nvim'
 
 lua vim.opt.termguicolors = true
 
