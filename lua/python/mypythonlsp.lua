@@ -249,7 +249,10 @@ local find_root_super_class_name = function()
   local next_candidate_super_class = find_super_class_name()
   local latest_super_class = ""
   local latest_rg_hits = {}
-  local rg_hits = find_with_rg_from_str("class " .. next_candidate_super_class)
+  local rg_hits = {}
+  if next_candidate_super_class ~= nil and next_candidate_super_class ~= "" then
+    rg_hits = find_with_rg_from_str("class " .. next_candidate_super_class)
+  end
   if #rg_hits == 0 then
     latest_super_class = N.find_current_class_name()
     latest_rg_hits = find_with_rg_from_str("class "..latest_super_class)

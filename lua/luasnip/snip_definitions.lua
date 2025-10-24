@@ -193,7 +193,6 @@ concept {}  {{
 })
 
 ls.add_snippets("lua", {
-  s("_print", fmt([[print("{}")
-print({})]], { i(1), rep(1) })),
+  s("_print", fmt([[print("{}: "..{})]], { i(1), rep(1) })),
 })
 
