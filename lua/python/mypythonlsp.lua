@@ -307,9 +307,17 @@ N.show_sibbling_classes = function()
   show_picker("Sibling classes", siblings)
 end
 
+N.show_subclasses = function()
+  print("hello subclasses")
+end
+
 N.show_latest_method_search = function()
   local method_definitions = find_with_rg(latest_search_text, latest_prefix_text, latest_filter_text)
   show_picker("Find methods", method_definitions)
+end
+
+N.find_classes = function()
+  print("hello")
 end
 
 return N

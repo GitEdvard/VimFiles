@@ -14,6 +14,17 @@ require('telescope').setup {
               ["<C-p>"] = require('telescope.actions').cycle_history_prev,
           }
       },
+      -- vimgrep_arguments = {
+      --   'rg',
+      --   '--color=never',
+      --   '--no-heading',
+      --   '--with-filename',
+      --   '--line-number',
+      --   '--column',
+      --   '--smart-case',
+      --   '--pcre2'
+    -- },
+
   },
   pickers = {
     git_bcommits = {
