@@ -15,5 +15,5 @@ vim.keymap.set("n", "<leader>dc", ":lua require'dapui'.close()<cr>", opts)
 vim.keymap.set("n", "<leader>di", ":lua require('dap.ui.widgets').hover()<cr>", opts)
 vim.keymap.set("n", "<leader>dh", "<cmd>Telescope dap commands<cr>", opts)
 vim.keymap.set("n", "<leader>df", "<cmd>Telescope dap frames<cr>", opts)
-vim.keymap.set("n", "<leader>dq", "<cmd>Telescope dap configurations<cr>", opts)
+vim.keymap.set("n", "<leader>dq", "<cmd>Telescope dap configurations<cr>", opts) -- This is the command that starts debugging!
 vim.keymap.set("n", "<leader>db", "<cmd>Telescope dap list_breakpoints<cr>", opts)

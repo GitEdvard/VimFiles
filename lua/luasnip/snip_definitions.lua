@@ -156,6 +156,22 @@ ls.add_snippets("java", {
 })
 
 ls.add_snippets("python", {
+  s("_parametrize", fmt([[
+  @pytest.mark.parametrize(
+      ("{}"),
+      [
+          ({}),
+      ],
+  )
+  ]], { i(1), i(0) })),
+  s("_main", fmt([[
+  def main():
+      pass
+
+
+  if __name__ == "__main__":
+      main()
+  ]], {})),
   s("_pension_entry", fmt([[self.{} = config_dict["{}"{}]], { i(1), rep(1), t("]") })),
   s("_print", fmt([[
   print(f"{}: {{{}}}")
