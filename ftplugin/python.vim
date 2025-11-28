@@ -24,7 +24,7 @@ let g:jedi#rename_command = ""
 let g:jedi#rename_command_keep_name = ""
 
 " Defined here in order to take precedence over vim-table-mode
-nnoremap <leader>tt :AttachTestMethod<cr>
+nnoremap <leader>tt mT :AttachTestMethod<cr> :echom "Bookmark is set to T"<cr>
 nnoremap <leader>tc :AttachTestClass<cr>
 nnoremap <leader>tm :RunTestMethod<cr>
 nnoremap <leader>tf :RunTestClass<cr>
