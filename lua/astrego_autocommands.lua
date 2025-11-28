@@ -11,7 +11,7 @@ end
 local opts = { noremap = true, silent = true, buffer = true }
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = {"python"},
+  pattern = {"python", "lua"},
   callback = function()
     vim.schedule(function()
       vim.keymap.set("n", "<leader>kz", fold_for_python, opts)
@@ -20,7 +20,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = {"json"},
+  pattern = {"json", "text"},
   callback = function()
     vim.schedule(function()
       vim.keymap.set("n", "<leader>kz", fold_for_json, opts)
