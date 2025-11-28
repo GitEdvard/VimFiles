@@ -44,6 +44,8 @@ local function trunc()
   end
 end
 
+local current_theme = require('lualine.themes.auto')
+
 require('lualine').setup {
   options = {
     icons_enabled = false,
@@ -89,7 +91,7 @@ require('lualine').setup {
       path = 1,
       prio = 1,
     }},
-    lualine_x = {{find_current_class_name, prio=1}, {find_current_method_name, prio=1}, {'encoding'}, {'fileformat'}, {'filetype'}},
+    lualine_x = {{find_current_class_name, prio=1, color = {fg = "#608B4E"}}, {find_current_method_name, prio=1, color = {fg = "#608B4E"}}, {'encoding'}, {'fileformat'}, {'filetype'}},
     lualine_y = {{'progress', prio = 1}},
     lualine_z = {{'location', prio = 1}}
   },
