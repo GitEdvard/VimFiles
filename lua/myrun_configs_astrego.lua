@@ -63,7 +63,7 @@ M.list_configs = function()
   opts.mappings = {
     i = {
       ['<c-i>'] = copy_path_clipboard,
-      ['<c-o>'] = open_config_file
+      ['<c-t>'] = open_config_file
     }
   }
   require('telescope').extensions.simple_picker.simple_picker(opts)
