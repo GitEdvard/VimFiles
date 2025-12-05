@@ -29,5 +29,7 @@ vim.keymap.set('n', '<leader>kK', Q.evaluate_statusline, bufopts)
 vim.keymap.set('n', '<leader>kkb', Q.statusline_len, bufopts)
 vim.keymap.set('n', '<leader>kkc', Q.internal_statusline, bufopts)
 vim.keymap.set('n', '<leader>kkd', Q.print_components, bufopts)
-vim.keymap.set('n', '<leader>ut', print_colors, bufopts)
+vim.keymap.set('n', '<leader>ut', S.show_class_instantiation, bufopts)
+-- vim.keymap.set('n', '<leader>ut', S.test_match, bufopts)
 -- vim.keymap.set("n", "<leader>ic", prefixed_live_grep, { desc = "Live grep for class <name>" })
+
