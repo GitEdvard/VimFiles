@@ -21,3 +21,4 @@ vim.keymap.set('n', '<leader>rhh', G.reset_hard, bufopts)
 
 vim.keymap.set('n', '<leader>rp', G.reset_previous, bufopts)
 vim.keymap.set('n', '<leader>rr', G.commit_reuse_message, bufopts)
+vim.keymap.set('n', '<leader>rk', G.pull_latest, bufopts)

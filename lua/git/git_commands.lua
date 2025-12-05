@@ -26,6 +26,11 @@ M.switch_recent = function()
   vim.cmd("Git co -")
 end
 
+M.pull_latest = function()
+  local current_branch = "feature/SAAPD-2599-update-eu-product-with-us-pan"
+  vim.cmd("Git fetch origin "..current_branch..":"..current_branch)
+end
+
 M.switch_rc_dev_master = function()
   vim.cmd("Git co rc/dev-master")
 end
