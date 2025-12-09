@@ -22,7 +22,6 @@ local latest_search_text = ""
 local latest_prefix_text = ""
 local latest_filter_text = ""
 
-
 local filter_rg_hits = function(rg_hits, filter_text)
     local filtered_hits = {}
     for _, value in pairs(rg_hits) do
@@ -44,6 +43,21 @@ local find_with_rg_from_str = function(search_text)
     local rg_hits = grepper:sync()
     return rg_hits
 end
+
+local find_class_name_and_rg_hit = function(query)
+  local query_list = {
+      ['class'] = query,
+  }
+  local bufnr = vim.api.nvim_get_current_buf()
+  local cwd = vim.fn.getcwd()
+  local search_hit = M.execute_query(bufnr, query_list, "python")
+  local rg_hits = {}
+  if search_hit ~= nil and search_hit ~= "" then
+    rg_hits = find_with_rg_from_str("class " .. search_hit)
+  end
+  return search_hit, rg_hits
+end
+
 
 local find_with_prefix = function(query_list, prefix)
     local bufnr = vim.api.nvim_get_current_buf()
@@ -244,7 +258,7 @@ local find_root_super_class_name = function()
     rg_hits = find_with_rg_from_str("class " .. next_candidate_super_class)
   end
   if #rg_hits == 0 then
-    local latest_super_class, latest_rg_hits = find_class_name_and_rg_hit(query_for_class)
+    latest_super_class, latest_rg_hits = find_class_name_and_rg_hit(query_for_class)
   end
   while #rg_hits > 0 do
     latest_super_class = next_candidate_super_class
@@ -306,20 +320,6 @@ N.show_sibbling_classes = function()
   }
   siblings = find_sibling_classes(query_list)
   show_picker("Sibling classes", siblings)
-end
-
-local find_class_name_and_rg_hit = function(query)
-  local query_list = {
-      ['class'] = query,
-  }
-  local bufnr = vim.api.nvim_get_current_buf()
-  local cwd = vim.fn.getcwd()
-  local search_hit = M.execute_query(bufnr, query_list, "python")
-  local rg_hits = {}
-  if search_hit ~= nil and search_hit ~= "" then
-    rg_hits = find_with_rg_from_str("class " .. search_hit)
-  end
-  return search_hit, rg_hits
 end
 
 N.show_subclasses = function()
