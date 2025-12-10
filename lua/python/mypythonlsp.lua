@@ -275,8 +275,8 @@ local find_root_super_class_name = function()
     first_rg_hit = rg_hits[1]
     rg_hits = {}
     local within_params = first_rg_hit:match("%((.*)%)")
-    local within_params_trimmed = within_params:gsub("%s+", "")
-    if not (within_params_trimmed == "") then
+    local within_params_trimmed = within_param and within_params:gsub("%s+", "") or nil
+    if within_params_trimmed ~= "" and within_params_trimmed ~= nil then
       local class_list = mysplit(within_params, ",")
       next_candidate_super_class = class_list[1]
       rg_hits = find_with_rg_from_str("class " .. next_candidate_super_class)
