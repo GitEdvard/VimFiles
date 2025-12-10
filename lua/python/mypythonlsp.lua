@@ -113,11 +113,11 @@ end
 
 local class_name_from_rg_hit = function(single_rg_hit)
   local class_name_cand2 = single_rg_hit:match(".*class (.*)%(.*%).*")
-  return class_name_cand2
-  -- if class_name_cand2 ~= nil then 
-  -- end
-  -- local class_name_cand1 = single_rg_hit:match(".*class (.*):.*")
-  -- return class_name_cand1
+  if class_name_cand2 ~= nil then 
+    return class_name_cand2
+  end
+  local class_name_cand1 = single_rg_hit:match(".*class (.*):")
+  return class_name_cand1
 end
 
 find_subclasses_rec = function(root_class, rg_hits)
@@ -232,13 +232,22 @@ N.show_method_definitions = function()
   show_picker("Find methods", method_definitions)
 end
 
-N.show_method_usages = function()
-  local method_text = find_method_text()
+local show_method_usages_local = function(method_text)
   local method_usages = find_with_rg(method_text, "", "def")
   latest_search_text = method_text
   latest_prefix_text = ""
   latest_filter_text = "def"
   show_picker("Methods usages", method_usages)
+end
+
+
+N.show_method_usages = function()
+  local method_text = find_method_text()
+  if method_text == "__init__" or method_text == "" then
+    N.show_class_instantiation()
+  else
+    show_method_usages_local(method_text)
+  end
 end
 
 N.goto_superclass = function()
@@ -278,10 +287,6 @@ end
 
 N.show_class_family = function()
   local root_super_class_name, rg_hits_for_root = find_root_super_class_name()
-  print("root_super_class_name:")
-  P(root_super_class_name)
-  print("rg_hits_for_root:")
-  P(rg_hits_for_root)
   local accumulated_hits = rg_hits_for_root
   find_subclasses_rec(root_super_class_name, accumulated_hits)
   show_picker("Class family", accumulated_hits)
@@ -403,8 +408,6 @@ N.show_class_instantiation = function()
   find_subclasses_rec(current_class_name, accumulated_rg_hits)
   vim.cmd("normal! mB")
 
-  print("accumulated_rg_hits:")
-  P(accumulated_rg_hits)
   local instantiation_list = {}
   for _, rg_hit in ipairs(accumulated_rg_hits) do
     local class_name = class_name_from_rg_hit(rg_hit)
