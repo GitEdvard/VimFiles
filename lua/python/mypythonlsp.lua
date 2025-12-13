@@ -18,9 +18,11 @@ local matches_pattern = require'treesitter.my_utils'.matches_pattern
 local get_node_text = require'treesitter.my_utils'.get_node_text
 local get_multiple_node_texts = require'treesitter.my_utils'.get_multiple_node_texts
 
+local latest_search_type = ""
 local latest_search_text = ""
 local latest_prefix_text = ""
 local latest_filter_text = ""
+local latest_instantiation_list = {}
 
 local filter_rg_hits = function(rg_hits, filter_text)
     local filtered_hits = {}
@@ -229,6 +231,7 @@ N.show_method_definitions = function()
   latest_search_text = method_text
   latest_prefix_text = "def"
   latest_filter_text = ""
+  latest_search_type = "method"
   show_picker("Find methods", method_definitions)
 end
 
@@ -237,6 +240,7 @@ local show_method_usages_local = function(method_text)
   latest_search_text = method_text
   latest_prefix_text = ""
   latest_filter_text = "def"
+  latest_search_type = "method"
   show_picker("Methods usages", method_usages)
 end
 
@@ -297,6 +301,7 @@ local show_method_usages_caret = function(text_at_cursor)
   latest_search_text = text_at_cursor
   latest_prefix_text = ""
   latest_filter_text = "def"
+  latest_search_type = "method"
   show_picker("Methods usages", method_usages)
 end
 
@@ -315,6 +320,7 @@ N.show_method_definitions_caret = function()
   latest_search_text = text_at_cursor
   latest_prefix_text = "def"
   latest_filter_text = ""
+  latest_search_type = "method"
   show_picker("Method definitions", method_definitions)
 end
 
@@ -335,8 +341,13 @@ N.show_subclasses = function()
 end
 
 N.show_latest_method_search = function()
-  local method_definitions = find_with_rg(latest_search_text, latest_prefix_text, latest_filter_text)
-  show_picker("Find methods", method_definitions)
+  if latest_search_type == "method" then
+    local method_definitions = find_with_rg(latest_search_text, latest_prefix_text, latest_filter_text)
+    show_picker("Find methods", method_definitions)
+  end
+  if latest_search_type == "class" then
+    show_picker("Find instantiations", latest_instantiation_list)
+  end
 end
 
 N.find_classes = function()
@@ -421,6 +432,8 @@ N.show_class_instantiation = function()
   end
 
   vim.cmd("normal! `B")
+  latest_instantiation_list = instantiation_list
+  latest_search_type = "class"
   show_picker("Find instantiations", instantiation_list)
 end
 
