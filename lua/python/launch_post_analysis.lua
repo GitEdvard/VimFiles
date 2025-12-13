@@ -78,22 +78,59 @@ local copy_path_clipboard_wrapped = function()
   copy_path_clipboard(run_config_file_instance)
 end
 
+local extract_stacktraces = function(data, err_output)
+  local previous_line = ""
+  local found_errors = false
+  local found_errors_single = false
+  local candidate_stacktrace = {}
+  local candidate_stacktrace_single = {}
+  for _, line in pairs(data) do
+    if string.find(line, "Traceback") then
+      found_errors_single = true
+      table.insert(candidate_stacktrace_single, previous_line)
+      inside_traceback = true
+    end
+    if inside_traceback then
+      if not string.find(line, "Traceback") and line:match("^%S") then
+        if line:match("EOFError") then -- handle this for post-analysis only
+          found_errors_single = false
+        end
+        inside_traceback = false
+        if found_errors_single then
+          found_errors = true
+          table.insert(candidate_stacktrace_single, line)
+          vim.list_extend(candidate_stacktrace, candidate_stacktrace_single)
+          candidate_stacktrace_single = {}
+        end
+      else
+        table.insert(candidate_stacktrace_single, line)
+      end
+    end
+    previous_line = line
+  end
+  if found_errors then
+    vim.list_extend(err_output, candidate_stacktrace)
+  end
+  return found_errors, err_output
+end
+
 M.launch_ordinary = function(run_config_file)
   run_config_file_instance = run_config_file
   local run_config = require'read-settings'.read_json(run_config_file)
   cmd = run_config["cmd"]
   local launch_text = "Running " .. run_config_file
-  local instruction1 = { "hidden-scratch", cmd, { "RuntimeError", "Traceback" }, launch_text, "." }
+  local instruction1 = { "hidden-scratch", cmd, { "RuntimeError", "Traceback" }, launch_text, ".", extract_stacktraces }
   local instructions = {instruction1}
   require'trigger-commands'.run_poly( instructions )
 end
+
 
 M.launch2 = function(run_config_file)
   run_config_file_instance = run_config_file
   local run_config = require'read-settings'.read_json(run_config_file)
   cmd = run_config["cmd"]
   local launch_text = "post analysis"
-  local instruction1 = { "hidden-scratch", cmd, { "RuntimeError", "Traceback" }, launch_text, "." }
+  local instruction1 = { "hidden-scratch", cmd, { "RuntimeError", "Traceback" }, launch_text, "." , extract_stacktraces}
   local instruction2 = { "lua", copy_path_clipboard_wrapped, "Copy runpath" }
   local instructions = {instruction1, instruction2}
   require'trigger-commands'.run_poly( instructions )
