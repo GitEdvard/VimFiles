@@ -53,7 +53,7 @@ ls.add_snippets("typescript", {
 
 ls.add_snippets("text", {
   ls.parser.parse_snippet("_newday",[[
-$1 $2/$3 2025
+$1 $2/$3 2026
 &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 Idag:
 * $0
@@ -214,5 +214,12 @@ ls.add_snippets("lua", {
   print("{}:")
   P({})
   ]], { i(1), rep(1) })),
+  s("_jumplist", fmt([[
+  local {} = function()
+    vim.cmd("normal! m'")
+    {}.{}()
+  end
+  ]], 
+  { i(1), i(2), rep(1)})),
 })
 
