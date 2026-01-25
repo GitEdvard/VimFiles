@@ -4,8 +4,6 @@ nnoremap <leader>ks viW:s/\\/\\\\/g<cr> \| :noh<cr>
 nnoremap <leader>kS viW:s/\\\\/\\/g<cr> \| :noh<cr>
 nmap <leader>kb m'vib<esc>j
 nmap <leader>kB m'vibo<esc>k
-nmap <leader>kc m']pc
-nmap <leader>kC m'[pc
 nnoremap <leader>ru :Git submodule update<cr>
 nnoremap <leader>kr :!ruff check %<cr>
 
