@@ -12,6 +12,23 @@ M.schedule_close_on_q_for_filetypes = function()
   })
 end
 
+local is_ctrlfs_open = function()
+  local wins = vim.api.nvim_tabpage_list_wins(0)
+  for _, w in ipairs(wins) do
+    local mybuf = vim.api.nvim_win_get_buf(w)
+    local ft = vim.api.nvim_get_option_value("filetype", { buf = mybuf })
+    if ft:find("ctrlsf") then
+      return true
+    end
+  end
+  return false
+end
+
+local let_current_q_mapping_be = function()
+  local ft = vim.api.nvim_get_option_value("filetype", { buf = 0 })
+  return  is_ctrlfs_open() or (ft == "qf")
+end
+
 ---Return true if the current tabpage shows a split AND another window is a quickfix.
 ---@param include_loclist boolean|nil  -- also treat loclist as quickfix-like
 local is_split_with_quickfix = function()
@@ -52,6 +69,9 @@ end
 
 -- Recalculate window count and detect transitions
 local function close_quickfix_with_q()
+  if let_current_q_mapping_be() then
+    return
+  end
   if is_split_with_quickfix() then
     vim.keymap.set("n", "q", close_quickfix_in_current_tab, {buffer = true})
   else
