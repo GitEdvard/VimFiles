@@ -19,7 +19,6 @@ nnoremap <leader>kd <c-w>h:diffthis<cr><c-w>l:diffthis<cr>
 nnoremap <leader>kg :tabe <cr>:Gclog<cr>
 nnoremap <leader>kl <c-^>
 nnoremap <space> i<space><esc>l
-nnoremap s f
 nnoremap <c-o> <c-o>zz
 nnoremap <c-t> <c-t>zz
 nnoremap <c-i> <c-i>zz
@@ -89,7 +88,7 @@ inoremap jk <esc>
 inoremap jl <esc>l
 
 " Swap colon and semicolon
-noremap ; :
+" noremap ; :
 noremap , ;
 " Find next backward
 nnoremap <leader>, ,
@@ -102,6 +101,8 @@ function DeleteHiddenBuffers()
     endfor
 endfunction
 nmap <leader>D :call DeleteHiddenBuffers()<CR>
+
+" nnoremap s f
 
 " Copy to system clipboard
 vmap <leader>c "+y
