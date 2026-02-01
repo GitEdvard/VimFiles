@@ -5,7 +5,7 @@ local Q = require'mylualine.mystatusline'
 local T = require'telescope.prefixed_picker'
 local U = require'python.my_utils'
 local V = require'python.nodes_on_row'
-local remap_s_preparation = require'remap_s_preparation'
+local remapping = require'remapping'
 
 local print_colors = function()
   local custom_theme = require('lualine.themes.auto')
@@ -55,7 +55,7 @@ end
 
 
 local opts = { noremap = true, silent = true }
-vim.keymap.set('n', 's', remap_s_preparation.remap_s)
+vim.keymap.set('n', 's', remapping.remap_s)
 vim.keymap.set('n', '<leader>uk', L.launch, opts)
 vim.keymap.set('n', '<leader>ul', L.launch_latest, opts)
 vim.keymap.set('n', '<leader>ur', R.list_configs, bufopts)
@@ -78,6 +78,9 @@ vim.keymap.set('n', '<leader>kkd', Q.print_components, bufopts)
 vim.keymap.set('n', '<leader>ut', S.show_class_instantiation, bufopts)
 vim.keymap.set('n', '<leader>kc', S.goto_next_class, bufopts)
 vim.keymap.set('n', '<leader>kC', S.goto_previous_class, bufopts)
+
+vim.keymap.set('n', '<leader>kb', remapping.goto_next_bracket, bufopts)
+vim.keymap.set('n', '<leader>kB', remapping.goto_previous_bracket, bufopts)
 -- vim.keymap.set('n', '<leader>ut', V.nodes_on_line, bufopts)
 -- vim.keymap.set("n", "<leader>ic", prefixed_live_grep, { desc = "Live grep for class <name>" })
 
