@@ -5,7 +5,7 @@ execute pathogen#infect()
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
-let mapleader = "f"
+let mapleader = " "
 
 lua require('globals')
 " https://github.com/junegunn/vim-plug
