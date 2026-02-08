@@ -81,6 +81,9 @@ vim.keymap.set('n', '<leader>kC', S.goto_previous_class, bufopts)
 
 vim.keymap.set('n', '<leader>kb', remapping.goto_next_bracket, bufopts)
 vim.keymap.set('n', '<leader>kB', remapping.goto_previous_bracket, bufopts)
+
+vim.keymap.set('n', ']c', remapping.remap_next_change, bufopts)
+vim.keymap.set('n', '[c', remapping.remap_previous_change, bufopts)
 -- vim.keymap.set('n', '<leader>ut', V.nodes_on_line, bufopts)
 -- vim.keymap.set("n", "<leader>ic", prefixed_live_grep, { desc = "Live grep for class <name>" })
 

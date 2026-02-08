@@ -156,6 +156,7 @@ ls.add_snippets("java", {
 })
 
 ls.add_snippets("python", {
+  s("_noqa", fmt([[  # noqa: {}]], { i(0) })),
   s("_parametrize", fmt([[
   @pytest.mark.parametrize(
       ("{}"),

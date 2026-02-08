@@ -14,6 +14,23 @@ M.remap_s = function()
 
 end
 
+M.remap_next_change = function()
+  vim.cmd.normal({ args = { "]c" }, bang = true })
+  pcall(vim.keymap.del,'n', ",")
+  pcall(vim.keymap.del,'n', ";")
+  pcall(vim.keymap.set,'n', ",", "]c")
+  pcall(vim.keymap.set,'n', ";", "[c")
+end
+
+M.remap_previous_change = function()
+  vim.cmd.normal({ args = { "[c" }, bang = true })
+  pcall(vim.keymap.del,'n', ",")
+  pcall(vim.keymap.del,'n', ";")
+  pcall(vim.keymap.set,'n', ",", "[c")
+  pcall(vim.keymap.set,'n', ";", "]c")
+end
+
+
 local goto_next_bracket = function()
   local term = vim.api.nvim_replace_termcodes("j0vib<esc>jj", true, true, true)
   vim.api.nvim_feedkeys(term , "m", false)
