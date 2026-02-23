@@ -29,6 +29,12 @@ augroup END
 lua require('close_on_q').schedule_close_on_q_for_filetypes()
 lua require('close_on_q').close_quickfix_with_q()
 
+augroup ansible_augroup
+    autocmd!
+    autocmd FileType markdown lua require('peek').setup()
+augroup END
+
+
 " Workaround some broken plugins which set guicursor indiscriminately.
 autocmd OptionSet guicursor noautocmd set guicursor=
 

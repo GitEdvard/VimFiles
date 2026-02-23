@@ -79,3 +79,4 @@ source ~/.vim/myplugfiles/apyrori.vim
 source ~/.vim/myplugfiles/linediff.vim
 Plug 'dhruvasagar/vim-table-mode'
 source ~/.vim/myplugfiles/oil.vim
+source ~/.vim/myplugfiles/peek.vim
