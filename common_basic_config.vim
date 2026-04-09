@@ -2,8 +2,6 @@
 " Basic config
 "---------------------------------------------------
 filetype plugin indent on
-lua vim.opt.termguicolors = true
-set t_Co=256
 set encoding=utf-8
 set hidden
 lua vim.opt.syntax = "on"
@@ -14,9 +12,8 @@ set list lcs=trail:·,tab:»·
 lua vim.opt.wildmenu = true
 lua vim.opt.path:append("**")
 
-set cursorline
-
-highlight CursorLine ctermbg=Yellow cterm=bold guibg=#2b2b2b
+" set cursorline
+" highlight CursorLine ctermbg=Yellow cterm=bold guibg=#2b2b2b
 
 " let g:airline_powerline_fonts = 1
 
@@ -31,8 +28,9 @@ lua vim.opt.ic = true
 
 lua vim.opt.smartcase = true
 
-lua vim.opt.bg = dark
-colorscheme codedark
+" colorscheme codedark
+" lua vim.opt.background="light"
+" colorscheme PaperColor
 
 set tabstop=4 shiftwidth=4 expandtab
 
@@ -54,4 +52,3 @@ set scrolloff=3
 if has('mouse')
   set mouse-=a
 endif
-

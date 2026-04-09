@@ -11,7 +11,8 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'RRethy/vim-illuminate'
 Plug 'patstockwell/vim-monokai-tasty'
-Plug 'tomasiser/vim-code-dark'
+" Plug 'tomasiser/vim-code-dark'
+source ~/.vim/myplugfiles/papercolor-theme.vim
 " source ~/.vim/myplugfiles/ultisnips.vim
 " Plug 'honza/vim-snippets'
 source ~/.vim/myplugfiles/taglist.vim
@@ -80,3 +81,4 @@ source ~/.vim/myplugfiles/linediff.vim
 Plug 'dhruvasagar/vim-table-mode'
 source ~/.vim/myplugfiles/oil.vim
 source ~/.vim/myplugfiles/peek.vim
+Plug 'tommcdo/vim-exchange'

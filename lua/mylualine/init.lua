@@ -109,6 +109,11 @@ require('lualine').setup {
         'tabs',
         max_length = vim.fn.winwidth(0),
         mode = 1,
+        -- this is adapted for PaperColor
+        tabs_color = {
+          active   = { fg = '#000000', bg = '#eeeeee', gui = 'bold' },
+          inactive = { fg = '#888888', bg = '#d0d0d0' },
+        },
       },
     },
     lualine_b = {},
@@ -122,3 +127,4 @@ require('lualine').setup {
   inactive_winbar = {},
   extensions = {}
 }
+
