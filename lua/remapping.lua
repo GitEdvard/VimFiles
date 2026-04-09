@@ -30,6 +30,43 @@ M.remap_previous_change = function()
   pcall(vim.keymap.set,'n', ";", "]c")
 end
 
+M.remap_next_quickfixitem = function()
+  vim.cmd.cnext()
+  pcall(vim.keymap.del,'n', ",")
+  pcall(vim.keymap.del,'n', ";")
+  pcall(vim.keymap.set,'n', ",", vim.cmd.cnext)
+  pcall(vim.keymap.set,'n', ";", vim.cmd.cprevious)
+  -- pcall(vim.keymap.set,'n', ",", "]q")
+  -- pcall(vim.keymap.set,'n', ";", "[q")
+end
+
+M.remap_previous_quickfixitem = function()
+  -- vim.cmd.normal({ args = { "[q" }, bang = false })
+  vim.cmd.cprevious()
+  pcall(vim.keymap.del,'n', ",")
+  pcall(vim.keymap.del,'n', ";")
+  pcall(vim.keymap.set,'n', ",", vim.cmd.cprevious)
+  pcall(vim.keymap.set,'n', ";", vim.cmd.cnext)
+  -- pcall(vim.keymap.set,'n', ",", "[q")
+  -- pcall(vim.keymap.set,'n', ";", "]q")
+end
+
+M.remap_next_file = function()
+  vim.cmd.normal({ args = { "]f" }, bang = true })
+  pcall(vim.keymap.del,'n', ",")
+  pcall(vim.keymap.del,'n', ";")
+  pcall(vim.keymap.set,'n', ",", "]f")
+  pcall(vim.keymap.set,'n', ";", "[f")
+end
+
+M.remap_previous_file = function()
+  vim.cmd.normal({ args = { "[f" }, bang = true })
+  pcall(vim.keymap.del,'n', ",")
+  pcall(vim.keymap.del,'n', ";")
+  pcall(vim.keymap.set,'n', ",", "[f")
+  pcall(vim.keymap.set,'n', ";", "]f")
+end
+
 
 local goto_next_bracket = function()
   local term = vim.api.nvim_replace_termcodes("j0vib<esc>jj", true, true, true)
