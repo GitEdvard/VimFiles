@@ -23,6 +23,7 @@ runtime ./astrego_keymaps.vim
 runtime ./common_autocommand.vim
 runtime ./astrego_autocommand.vim
 
+" lua require("lazy_nvim.lazy")
 lua require("myastrego_settings")
 
 function! Tig()
