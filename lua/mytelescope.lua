@@ -85,7 +85,7 @@ vim.keymap.set('n', '<leader>fd', "<cmd>Telescope diagnostics<cr>", bufopts)
 vim.keymap.set('n', '<leader>fs', ":Telescope grep_string search=", bufopts)
 vim.keymap.set('n', '<leader>fl', "<cmd>Telescope lsp_document_symbols<cr>", bufopts)
 -- vim.keymap.set('n', '<leader>fh', "<cmd>Telescope file_browser cwd=" .. vim.fn.getcwd() .. "/" .. vim.fn.expand('%:h') .. "<cr>", bufopts)
-vim.keymap.set('n', 'cx', M.start_file_browser, bufopts)
+vim.keymap.set('n', '<leader>cx', M.start_file_browser, bufopts)
 
 vim.keymap.set('n', '<leader>yk', "<cmd>Telescope keymaps<cr>", bufopts)
 vim.keymap.set('n', '<leader>yp', M.find_files_on_current, bufopts)

@@ -4,12 +4,14 @@
 " Remove "create" in auto generated veriables
 " nnoremap <leader>d "_d
 " set switchbuf+=usetab,newtab " open quickfix links in new tabs
+nnoremap <c-Space> <c-f>
+cnoremap <c-Space> <c-f>
 nnoremap <leader>ku :u1<bar>u<cr>
 nnoremap <leader>rx :Git blame<cr>
 nmap <leader>kt 0s{ysi}<c-j><leader>=i}
 nnoremap <leader>kq :Reload<cr>
 nnoremap <leader>kw :PlugClean<cr>
-nnoremap <leader>ke :PlugInstall<cr>
+nnoremap <leader>ke :Git fetch origin<cr>
 nnoremap <leader>km <c-w><bar><c-w>_
 " nnoremap <leader>kr <c-w>v:Gedit rc/dev-master:%<cr>
 nnoremap <leader>kka :lua print(vim.api.nvim_eval_statusline(vim.o.statusline, {}).str)<cr>
@@ -18,7 +20,7 @@ nnoremap <leader>kc ebd/\u<cr>gul:noh<cr>
 nnoremap <leader>kd <c-w>h:diffthis<cr><c-w>l:diffthis<cr>
 nnoremap <leader>kg :tabe <cr>:Gclog<cr>
 nnoremap <leader>kl <c-^>
-nnoremap <space> i<space><esc>l
+nnoremap f i<space><esc>l
 nnoremap <c-o> <c-o>zz
 nnoremap <c-t> <c-t>zz
 nnoremap <c-i> <c-i>zz
