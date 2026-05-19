@@ -59,6 +59,46 @@ function M.current_buffer_fuzzy_find()
     opts.prompt_prefix = '$ '
     require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_ivy(opts))
 end
+
+function M.current_buffer_fuzzy_find_prefilled()
+    vim.cmd("normal! y")
+    local text = vim.fn.getreg('"')
+    local opts = {}
+    opts.prompt_prefix = '$ '
+    opts.default_text = text
+    require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_ivy(opts))
+end
+
+function M.live_grep_prefilled()
+    vim.cmd("normal! y")
+    local text = vim.fn.getreg('"')
+    local opts = {}
+    opts.prompt_prefix = '$ '
+    opts.default_text = text
+    require('telescope.builtin').live_grep(require('telescope.themes').get_ivy(opts))
+end
+
+function M.live_grep_prefilled_tests_excluded()
+    vim.cmd("normal! y")
+    local text = vim.fn.getreg('"')
+    local opts = {}
+    opts.prompt_prefix = '$ '
+    opts.default_text = text
+    opts.additional_args = function()
+      return {"--glob", "!**/tests/**"}
+    end
+    require('telescope.builtin').live_grep(require('telescope.themes').get_ivy(opts))
+end
+
+function M.live_grep_test_excluded()
+    local opts = {}
+    opts.prompt_prefix = '$ '
+    opts.additional_args = function()
+      return {"--glob", "!**/tests/**"}
+    end
+    require('telescope.builtin').live_grep(require('telescope.themes').get_ivy(opts))
+end
+
 function M.start_file_browser()
     local cwd = vim.fn.getcwd() .. "/" .. vim.fn.expand("%:h")
     local opts = {}
@@ -78,8 +118,12 @@ end
 
 local bufopts = { noremap=true, silent=true }
 vim.keymap.set('n', 'cd', M.current_buffer_fuzzy_find, bufopts)
+vim.keymap.set('v', 'cd', M.current_buffer_fuzzy_find_prefilled, bufopts)
 vim.keymap.set('n', '<leader>ff', "<cmd>Telescope git_files<cr>", bufopts)
-vim.keymap.set('n', '<leader>fg', "<cmd>Telescope live_grep<cr>", bufopts)
+vim.keymap.set('n', '<leader>fg', M.live_grep_test_excluded, bufopts)
+vim.keymap.set('n', '<leader>fG', "<cmd>Telescope live_grep<cr>", bufopts)
+vim.keymap.set('v', '<leader>fg', M.live_grep_prefilled_tests_excluded, bufopts)
+vim.keymap.set('v', '<leader>fG', M.live_grep_prefilled, bufopts)
 vim.keymap.set('n', '<leader>fb', "<cmd>Telescope buffers<cr>", bufopts)
 vim.keymap.set('n', '<leader>fd', "<cmd>Telescope diagnostics<cr>", bufopts)
 vim.keymap.set('n', '<leader>fs', ":Telescope grep_string search=", bufopts)
