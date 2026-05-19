@@ -11,6 +11,10 @@ local test_save = function()
   R.save_run_config("config-path")
 end
 
+local fetch_origin = function()
+  vim.cmd("Git fetch origin")
+end
+
 local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<leader>ro', G.push_origin, bufopts)
 vim.keymap.set('n', '<leader>rO', G.push_origin_hard, bufopts)
@@ -21,4 +25,4 @@ vim.keymap.set('n', '<leader>rhh', G.reset_hard, bufopts)
 
 vim.keymap.set('n', '<leader>rp', G.reset_previous, bufopts)
 vim.keymap.set('n', '<leader>rr', G.commit_reuse_message, bufopts)
-vim.keymap.set('n', '<leader>rk', G.pull_latest, bufopts)
+vim.keymap.set('n', '<leader>rk', fetch_origin, bufopts)

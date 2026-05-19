@@ -11,7 +11,7 @@ nnoremap <leader>rx :Git blame<cr>
 nmap <leader>kt 0s{ysi}<c-j><leader>=i}
 nnoremap <leader>kq :Reload<cr>
 nnoremap <leader>kw :PlugClean<cr>
-nnoremap <leader>ke :Git fetch origin<cr>
+" nnoremap <leader>ke :Git fetch origin<cr>
 nnoremap <leader>km <c-w><bar><c-w>_
 " nnoremap <leader>kr <c-w>v:Gedit rc/dev-master:%<cr>
 nnoremap <leader>kka :lua print(vim.api.nvim_eval_statusline(vim.o.statusline, {}).str)<cr>
