@@ -30,6 +30,22 @@ M.remap_previous_change = function()
   pcall(vim.keymap.set,'n', ";", "]c")
 end
 
+M.remap_next_diagnose = function()
+  vim.diagnostic.goto_next()
+  pcall(vim.keymap.del,'n', ",")
+  pcall(vim.keymap.del,'n', ";")
+  pcall(vim.keymap.set,'n', ",", vim.diagnostic.goto_next)
+  pcall(vim.keymap.set,'n', ";", vim.diagnostic.goto_prev)
+end
+
+M.remap_previous_diagnose = function()
+  vim.diagnostic.goto_prev()
+  pcall(vim.keymap.del,'n', ",")
+  pcall(vim.keymap.del,'n', ";")
+  pcall(vim.keymap.set,'n', ",", vim.diagnostic.goto_prev)
+  pcall(vim.keymap.set,'n', ";", vim.diagnostic.goto_next)
+end
+
 M.remap_next_quickfixitem = function()
   vim.cmd.cnext()
   pcall(vim.keymap.del,'n', ",")
@@ -92,6 +108,38 @@ M.goto_previous_bracket = function()
   pcall(vim.keymap.del, "n", ";")
   pcall(vim.keymap.set, "n", ",", goto_previous_bracket)
   pcall(vim.keymap.set, "n", ";", goto_next_bracket)
+end
+
+M.remap_open_fold = function()
+  vim.cmd.normal({ args = { "zo" }, bang = true })
+  pcall(vim.keymap.del,'n', ",")
+  pcall(vim.keymap.del,'n', ";")
+  pcall(vim.keymap.set,'n', ",", "zo")
+  pcall(vim.keymap.set,'n', ";", "zc")
+end
+
+M.remap_close_fold = function()
+  vim.cmd.normal({ args = { "zc" }, bang = true })
+  pcall(vim.keymap.del,'n', ",")
+  pcall(vim.keymap.del,'n', ";")
+  pcall(vim.keymap.set,'n', ",", "zc")
+  pcall(vim.keymap.set,'n', ";", "zo")
+end
+
+M.remap_next_table_column = function()
+  vim.cmd.normal({ args = { "]|" }, bang = true })
+  pcall(vim.keymap.del,'n', ",")
+  pcall(vim.keymap.del,'n', ";")
+  pcall(vim.keymap.set,'n', ",", "]|")
+  pcall(vim.keymap.set,'n', ";", "[|")
+end
+
+M.remap_previous_table_fold = function()
+  vim.cmd.normal({ args = { "[|" }, bang = true })
+  pcall(vim.keymap.del,'n', ",")
+  pcall(vim.keymap.del,'n', ";")
+  pcall(vim.keymap.set,'n', ",", "[|")
+  pcall(vim.keymap.set,'n', ";", "]|")
 end
 
 return M
