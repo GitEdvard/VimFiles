@@ -181,6 +181,14 @@ ls.add_snippets("python", {
   s("_print2", fmt([[
   print(f"{}: {{{}}}")
   ]], { i(1), i(2) })),
+  s("_pprint", fmt([[
+  print("{1}")
+  from pprint import pprint
+  pprint({})
+  ]], { i(1), rep(1)})),
+  s("_create_error_information", fmt([[
+  return self.create_error_information_tuple({})
+  ]], { i(0) })),
 })
 
 local namespace = function(index)
